@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="de-DE" original="LBBonus">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 3313186052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Setup</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Property Caption</note>
+          <target>Bonus Einrichtung</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 4203770787 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Primärschlüssel"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Primary Key - Property Caption</note>
+          <target>Primärschlüssel</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

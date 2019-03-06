@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="LBBonus">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 3313186052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Setup</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 4203770787 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Primärschlüssel"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3316869552 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>lbt Bonus Setup Card</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3316869552 - Control 2764622776 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2">dEU="Allgmein"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup Card - Control lbt General - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
