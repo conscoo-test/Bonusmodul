@@ -1,4 +1,4 @@
-table 50100 "lbt Bonus Setup"
+table 5266051 "lbt Bonus Setup"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Setup', comment = 'DEU="Bonus Einrichtung"';
@@ -9,15 +9,7 @@ table 50100 "lbt Bonus Setup"
         {
             Caption = 'Primary Key', comment = 'DEU="Primärschlüssel"';
             DataClassification = CustomerContent;
-            trigger OnValidate()
-            var
-                myInt: Integer;
-            begin
-                
-            end;
         }
-
-
     }
 
     keys
@@ -27,10 +19,5 @@ table 50100 "lbt Bonus Setup"
             Clustered = true;
         }
     }
-
-        
-    var
-        Contact: Record Contact;
-        Txtvar: Text[100];
 
 }

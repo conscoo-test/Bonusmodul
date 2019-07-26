@@ -13,12 +13,13 @@
   "capabilities": [],
   "dependencies": [],
   "screenshots": [],
-  "platform": "13.0.0.0",
-  "application": "13.0.0.0",
+  "platform": "14.0.0.0",
+  "application": "14.0.0.0",
   "idRange": {
-    "from": 50100,
-    "to": 50149
+    "from": 5266051,
+    "to": 5266099
+    
   },
   "features": ["TranslationFile"],
-  "runtime": "2.3"
+  "runtime": "3.0"
 }

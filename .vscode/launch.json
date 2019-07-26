@@ -1,16 +1,15 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
+
         {
             "type": "al",
             "request": "launch",
-            "name": "Your own server",
-            "server": "http://Dev/",
-            "serverInstance": "NAV",
-            "authentication": "Windows",
             "startupObjectId": 22,
             "startupObjectType": "Page",
-            "breakOnError": true
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize"
         }
     ]
 }

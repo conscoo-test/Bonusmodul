@@ -1,9 +1,10 @@
-page 50100 "lbt Bonus Setup Card"
+page 5266051 "lbt Bonus Setup"
 {
-
+    UsageCategory = Administration;
+    ApplicationArea = All;
     PageType = Card;
     SourceTable = "lbt Bonus Setup";
-    Caption = 'lbt Bonus Setup Card';
+    Caption = 'Bonus Setup', comment = 'DEU="Bonus Einrichtung"';
 
     layout
     {
@@ -11,7 +12,7 @@ page 50100 "lbt Bonus Setup Card"
         {
             group("lbt General")
             {
-                Caption = 'General', comment = 'dEU="Allgmein"';
+                Caption = 'General', comment = 'DEU="Allgmein"';
                 field("lbt Primary Key"; "lbt Primary Key")
                 {
                     ApplicationArea = All;

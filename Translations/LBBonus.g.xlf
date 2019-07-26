@@ -13,15 +13,285 @@
           <note from="Developer" annotates="general" priority="2">DEU="Primärschlüssel"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Primary Key - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3316869552 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>lbt Bonus Setup Card</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup Card - Property Caption</note>
+        <trans-unit id="Page 3313186052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Setup</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3316869552 - Control 2764622776 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3313186052 - Control 2764622776 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <note from="Developer" annotates="general" priority="2">dEU="Allgmein"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup Card - Control lbt General - Property Caption</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Allgmein"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contracts</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusverträge"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 464803318 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Valid from</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Gültig von"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Valid from - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 2863414281 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Valid to</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Gültig bis"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Valid to - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 3202832968 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Billing Period</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Abrechnungsintervall"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Billing Period - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 2190636595 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reserve Value</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungswert"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Reserve Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 2111692774 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsart</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Reserve Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>bonus ladders</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffeln"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 4294948061 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zeilennummer"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 3877098036 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Unit of Measure</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Artikeleinheit"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Item Unit of Measure - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 486538153 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>From Quantity</source>
+          <note from="Developer" annotates="general" priority="2">DEU="ab Menge"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt From Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 2346806179 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Wert"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 2663850817 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Art"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Bonus Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Line</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffeln"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2314107346 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Dimensions</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusvetrag Dimensionen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Dimensions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2314107346 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Dimensions - Field lbt Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2314107346 - Field 2871933825 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Code</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionscode"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Dimensions - Field lbt Dimension Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2314107346 - Field 2447392355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Value</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionswert"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Dimensions - Field lbt Dimension Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Attribute</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Bonusvertrag Attribute"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 3357097757 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source>
+          <note from="Developer" annotates="general" priority="2">DEU="ID"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 4120347187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Name"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 1889953770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Art"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 3415440375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Wert"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Entry</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3788373115 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Lfd. Nr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 2794648530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Postenart"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Entry Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Entry</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1133050340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Group</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusgruppe"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1133050340 - Field 404633921 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Code"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Group - Field lbt Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1133050340 - Field 1006832544 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Beschreibung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Group - Field lbt Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1133050340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Group</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusgruppe"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4263244020 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Customers - Field lbt Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4263244020 - Field 1021462666 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitor"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Customers - Field lbt Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4263244020 - Field 3704521813 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Code</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Lief. an Code"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Customers - Field lbt Ship-to Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4263244020 - Field 1606486851 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Name</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitorname"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Customers - Field lbt Customer Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4263244020 - Field 1408342075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Name</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Lieferung an Name"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Customers - Field lbt Ship-to Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4263244020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Customers</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus Debitoren"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract List</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusverträge Übersicht"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 1021462666 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitoren"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 2685906550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Dimension - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 2228158291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attribute Filter</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Attribute Filter"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Contract Attribute - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Entry</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Card</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusvertragskarte"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Allgemein"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control Reserve - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 1021462666 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitoren"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 2685906550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Dimension - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 2228158291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attribute Filter</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Attribute Filter"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Contract Attribute - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Entry</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3846533799 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Dimensions</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusvertrag Dimensionen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Dimension - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1013518033 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Attribute Filter</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusvertrag Attribute Filter"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Property Caption</note>
         </trans-unit>
       </group>
     </body>
