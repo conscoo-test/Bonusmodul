@@ -10,6 +10,7 @@ page 5266054 "lbt Bonus Contract Line"
         {
             repeater(General)
             {
+                Caption = 'General', comment = 'DEU="Allgemein"';
                 field("lbt Contract"; "lbt Contract")
                 {
                     ApplicationArea = All;
@@ -21,7 +22,7 @@ page 5266054 "lbt Bonus Contract Line"
 
 
                 }
-                field("lbt Bonus Type"; "lbt Bonus Type")
+                field("lbt Bonus Scale Type";"lbt Bonus Scale Type")
                 {
                     ApplicationArea = All;
                 }

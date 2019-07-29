@@ -1,6 +1,6 @@
 table 5266055 "lbt BonusContractAttribute"
 {
-    Caption = 'Bonus Contract Attribute', comment = 'ESP="Bonusvertrag Attribute"';
+    Caption = 'Bonus Contract Attribute', comment = 'DEU="Bonusvertrag Attribute"';
     DataClassification = CustomerContent;
 
 
@@ -30,7 +30,7 @@ table 5266055 "lbt BonusContractAttribute"
             Caption = 'Type', comment = 'DEU="Art"';
             DataClassification = CustomerContent;
             OptionMembers = "Option","Text","Integer","Decimal";
-            OptionCaptionML = DEU = 'Option,Text,Ganzzahl,Dezimalzahl';
+            OptionCaption = 'Option,Text,Integer,Decimal', comment = 'DEU="Option,Text,Ganzzahl,Dezimalzahl"';
             Editable =false;
         }
         field(5;"lbt Attribute Value"; Text[250] )

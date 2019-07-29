@@ -12,6 +12,7 @@ page 5266056 "lbt BonusContrAttributeFilter"
         {
             repeater(General)
             {
+                Caption = 'General', comment = 'DEU="Allgemein"';
                 field("lbt Contract";"lbt Contract")
                 {
                     ApplicationArea = All;

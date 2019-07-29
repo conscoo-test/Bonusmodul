@@ -17,6 +17,11 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ApplicationArea = All;
                 }
+
+                field("lbt Bonus Group"; "lbt Bonus Group")
+                {
+                    ApplicationArea = All;
+                }
                 field("lbt Billing Period"; "lbt Billing Period")
                 {
                     ApplicationArea = All;
@@ -29,6 +34,40 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ApplicationArea = All;
                 }
+                field("lbt Contract Type"; "lbt Contract Type")
+                {
+                    ApplicationArea = All;
+                }
+
+                field("lbt Bonus Recipient"; "lbt Bonus Recipient")
+                {
+                    ApplicationArea = All;
+                }
+
+
+
+                group(Billing)
+                {
+                    Caption = 'Billing', comment = 'DEU="Abrechnung"';
+                    field("lbt Bonus Billing Type"; "lbt Bonus Billing Type")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("lbt Bonus Billing Unit"; "lbt Bonus Billing Unit")
+                    {
+                        ApplicationArea = All;
+                    }
+
+                    field("lbt Bonus Scale Type"; "lbt Bonus Scale Type")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("lbt Last Billing at"; "lbt Last Billing at")
+                    {
+                        ApplicationArea = All;
+                    }
+                }
+
             }
             group(Reserve)
 
@@ -38,35 +77,105 @@ page 5266053 "lbt Bonus Contract Card"
                 field("lbt Reserve Value"; "lbt Reserve Value")
                 {
                     ApplicationArea = All;
+                    
                 }
                 field("lbt Reserve Type"; "lbt Reserve Type")
                 {
                     ApplicationArea = All;
                 }
-
-
-
+                field("lbt Reserve Unit"; "lbt Reserve Unit")
+                {
+                    ApplicationArea = All;
+                }
+                field("lbt last Reserve at"; "lbt Last Reserve at")
+                {
+                    ApplicationArea = All;
+                }
             }
             part(Bonusstaffeln; "lbt Bonus Contract Line")
             {
                 ApplicationArea = All;
                 SubPageLink = "lbt Contract" = field ("lbt Contract");
-
             }
-
-
-
         }
 
 
         area(Factboxes)
         {
-
+            part("lbt Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
+            {
+                ApplicationArea = all;
+            }
         }
     }
 
     actions
     {
+
+        area(Processing)
+        {
+            action("lbt Create Reserves")
+            {
+                Caption = 'lbt Create Reserves', comment = 'DEU="Rückstellungen erzeugen"';
+                ApplicationArea = all;
+                Image = CashReceiptJournal;
+
+                trigger OnAction();
+                begin
+
+                end;
+            }
+
+            action("lbt Exlode Reservation")
+            {
+                Caption = 'Exlode Reservation', comment = 'DEU="Rückstellungen auflösen"';
+                ApplicationArea = All;
+                Image = CashFlow;
+                RunObject=page "lbt Explode Reservation";
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+
+            action("lbt Bonus Run")
+            {
+                Caption = 'Bonus Run', comment = 'DEU="Bonuslauf"';
+                ApplicationArea = All;
+                Image = AccountingPeriods;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+            action("lbt Reservation")
+            {
+                Caption = 'Reservation', comment = 'DEU="Rückstellungen"';
+                ApplicationArea = All;
+                Image = Print;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+            action("lbt Bonus Cr. Memo")
+            {
+                Caption = 'Bonus Cr. Memo', comment = 'DEU="Bonusgutschriften"';
+                ApplicationArea = All;
+                Image = Print;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+        }
         area(Navigation)
         {
             action("lbt Customer")
@@ -76,7 +185,6 @@ page 5266053 "lbt Bonus Contract Card"
                 Image = Customer;
                 RunObject = page "lbt Bonus Customers";
                 RunPageLink = "lbt Contract" = field ("lbt Contract");
-                Promoted = true;
 
                 trigger OnAction();
                 begin
@@ -91,7 +199,6 @@ page 5266053 "lbt Bonus Contract Card"
                 Image = Dimensions;
                 RunObject = page "lbt Bonus Contract Dimension";
                 RunPageLink = "lbt Contract" = field ("lbt Contract");
-                Promoted = true;
 
                 trigger OnAction()
                 begin
@@ -105,8 +212,19 @@ page 5266053 "lbt Bonus Contract Card"
                 Image = "Filter";
                 RunObject = page "lbt BonusContrAttributeFilter";
                 RunPageLink = "lbt Contract" = field ("lbt Contract");
-                Promoted = true;
 
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+            action("Bonus Group")
+            {
+                Caption = 'Bonus Group', comment = 'DEU="Bonusgruppe"';
+                ApplicationArea = All;
+                Image = Group;
+                RunObject = page "lbt Bonus Group";
                 trigger OnAction()
                 begin
 
@@ -125,6 +243,19 @@ page 5266053 "lbt Bonus Contract Card"
 
                 end;
             }
+            action("lbt Navigate")
+            {
+                Caption = 'Navigate', comment = 'DEU="Navigate"';
+                ApplicationArea = All;
+                Image = Navigate;
+
+                trigger OnAction()
+                begin
+                    Navigate.Run();
+                end;
+            }
         }
     }
+    var
+        Navigate: Page Navigate;
 }

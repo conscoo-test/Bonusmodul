@@ -11,7 +11,7 @@ page 5266055 "lbt Bonus Contract Dimension"
         {
             repeater(General)
             {
-
+                Caption = 'General', comment = 'DEU="Allgemein"';
                 field("lbt Dimension Code"; "lbt Dimension Code")
                 {
                     ApplicationArea = All;

@@ -2,6 +2,8 @@ table 5266052 "lbt Bonus Contract"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contracts', comment = 'DEU="Bonusverträge"';
+    LookupPageId = "lbt Bonus Contract List";
+
 
     fields
     {
@@ -39,13 +41,74 @@ table 5266052 "lbt Bonus Contract"
         {
             Caption = 'Reverse Type', comment = 'DEU="Rückstellungsart';
             OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaptionML = DEU = '%,Festbetrag (MW),Betrag je Einheit';
+            OptionCaption = '%,Amount (LCY),Amount per Unit', comment = 'DEU="%,Festbetrag (MW),Betrag je Einheit"';
+            DataClassification = CustomerContent;
+        }
+        field(7; "lbt Reserve Unit"; Code[10])
+        {
+            Caption = 'Reserve Unit', comment = 'DEU="Rückstellungseinheit"';
+            DataClassification = CustomerContent;
+            TableRelation = "Unit of Measure".Code;
+        }
+
+        field(8; "lbt Last Reserve at"; Date)
+        {
+            Caption = 'Last Reserve at', comment = 'DEU="letzte Rückstellung am"';
             DataClassification = CustomerContent;
         }
 
-        
-    }
+        field(9; "lbt Bonus Billing Type"; Option)
+        {
+            Caption = 'Bonus Billing Type', comment = 'DEU="Bonusabrechnungsart"';
+            DataClassification = CustomerContent;
+            OptionMembers = "%","Amount (LCY)","Amount per Unit";
+            OptionCaption = '%,Amount (LCY),Amount per Unit', comment = 'DEU="%,Festbetrag (MW),Betrag je Einheit"';
+        }
 
+        field(10; "lbt Bonus Billing Unit"; Code[10])
+        {
+            Caption = 'Bonus Billing Unit', comment = 'DEU="Bonusabrechnungseinheit"';
+            DataClassification = CustomerContent;
+            TableRelation = "Unit of Measure".Code;
+        }
+        field(11; "lbt Last Billing at"; Date)
+        {
+            Caption = 'Last Billing at', comment = 'DEU="letzte Abrechnung am"';
+            DataClassification = CustomerContent;
+        }
+
+        field(12; "lbt Bonus Scale Type"; Option)
+        {
+            Caption = 'Bonus Scale Type', comment = 'DEU="Bonusstaffelart"';
+            DataClassification = CustomerContent;
+            OptionMembers = "Sales Qty.","Sales (LCY)";
+            OptionCaption = 'Sales Qty.,Sales (LCY)', comment = 'DEU="Absatz,Umsatz"';
+            
+        }
+
+        field(13; "lbt Bonus Recipient"; Code[20])
+        {
+            Caption = 'Bonus Recipient', comment = 'DEU="Bonusempfänger"';
+            DataClassification = CustomerContent;
+            TableRelation = Customer."No.";
+        }
+        field(14; "lbt Bonus Group"; Code[20])
+        {
+            Caption = 'Bonus Group', comment = 'DEU="Bonusgruppe"';
+            DataClassification = CustomerContent;
+            TableRelation = "lbt Bonus Group"."lbt Code";
+        }
+
+        field(15; "lbt Contract Type"; Option)
+        {
+            Caption = 'Contract Type', comment = 'DEU="Vertragsart"';
+            DataClassification = CustomerContent;
+            OptionMembers = "Bonus","Advertising Costs";
+            OptionCaption = 'Bonus,Advertising Costs', comment = 'DEU="Bonus,Werbekosten"';
+                        
+        }
+
+    }
     keys
     {
         key(PK; "lbt Contract")

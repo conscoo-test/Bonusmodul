@@ -16,7 +16,7 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Entry Type', comment = 'DEU="Postenart"';
             OptionMembers = "Bonus","Reserve","Liquidation of Reserves";
-            OptionCaptionML = DEU = 'Bonus,Rückstellung,Rückstellungsauflösung';
+            OptionCaption = 'Bonus,Reserve,Liquidation of Reserves', comment = 'DEU="Bonus,Rückstellung,Rückstellungsauflösung"';
             DataClassification = CustomerContent;
         }
         field(3; "lbt Contract"; Code[20])
@@ -26,9 +26,6 @@ table 5266056 "lbt Bonus Entry"
            TableRelation="lbt Bonus Contract"."lbt Contract";
            
         }
-
-
-
     }
 
     keys

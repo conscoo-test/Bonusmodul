@@ -21,4 +21,24 @@ page 5266051 "lbt Bonus Setup"
         }
     }
 
+    actions
+    {
+        area(Navigation)
+        {
+            action("lbt Bonus Contract")
+            {
+                Caption = 'Bonus Contract', comment = 'DEU="Bonusverträge"';
+                ApplicationArea = All;
+                Image= ContractPayment;
+                RunObject= page "lbt Bonus Contract List";
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+        }
+
+    }
+
 }

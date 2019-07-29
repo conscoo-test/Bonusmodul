@@ -34,7 +34,7 @@ table 5266058 "lbt Bonus Customers"
 
             trigger OnValidate()
             begin
-                IF ShipToAdressRec.get("lbt Ship-to Code") then
+                IF ShipToAdressRec.get("lbt Customer","lbt Ship-to Code") then
                 "lbt Ship-to Name" := ShipToAdressRec.Name
                 else
                 "lbt Ship-to Name" := '';
