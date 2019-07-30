@@ -75,6 +75,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Reserve Type - Property Caption</note>
           <target>"Rückstellungsart</target>
         </trans-unit>
+        <trans-unit id="Table 289521175 - Field 2111692774 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%,Amount (LCY),Amount per Unit</source>
+          <note from="Developer" annotates="general" priority="2">DEU="%,Festbetrag (MW),Betrag je Einheit"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Reserve Type - Property OptionCaption</note>
+          <target>%,Festbetrag (MW),Betrag je Einheit</target>
+        </trans-unit>
         <trans-unit id="Table 289521175 - Field 1650316408 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve Unit</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungseinheit"</note>
@@ -92,6 +98,12 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonusabrechnungsart"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Bonus Billing Type - Property Caption</note>
           <target>Bonusabrechnungsart</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 3202207888 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%,Amount (LCY),Amount per Unit</source>
+          <note from="Developer" annotates="general" priority="2">DEU="%,Festbetrag (MW),Betrag je Einheit"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Bonus Billing Type - Property OptionCaption</note>
+          <target>%,Festbetrag (MW),Betrag je Einheit</target>
         </trans-unit>
         <trans-unit id="Table 289521175 - Field 2555643950 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Billing Unit</source>
@@ -111,6 +123,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Bonus Scale Type - Property Caption</note>
           <target>Bonusstaffelart</target>
         </trans-unit>
+        <trans-unit id="Table 289521175 - Field 2613224433 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Qty.,Sales (LCY)</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Absatz,Umsatz"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Bonus Scale Type - Property OptionCaption</note>
+          <target>Absatz,Umsatz</target>
+        </trans-unit>
         <trans-unit id="Table 289521175 - Field 2456157104 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Recipient</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusempfänger"</note>
@@ -128,6 +146,12 @@
           <note from="Developer" annotates="general" priority="2">DEU="Vertragsart"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Contract Type - Property Caption</note>
           <target>Vertragsart</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 3341507308 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus,Advertising Costs</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus,Werbekosten"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Contract Type - Property OptionCaption</note>
+          <target>Bonus,Werbekosten</target>
         </trans-unit>
         <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>
@@ -167,9 +191,15 @@
         </trans-unit>
         <trans-unit id="Table 1074296949 - Field 2613224433 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Scale Type</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffelart""</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffelart"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Bonus Scale Type - Property Caption</note>
-          <target>Bonusstaffelart"</target>
+          <target>Bonusstaffelart</target>
+        </trans-unit>
+        <trans-unit id="Table 1074296949 - Field 2613224433 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Qty.,Sales (LCY)</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Absatz,Umsatz"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Bonus Scale Type - Property OptionCaption</note>
+          <target>Absatz,Umsatz</target>
         </trans-unit>
         <trans-unit id="Page 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Line</source>
@@ -237,6 +267,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Type - Property Caption</note>
           <target>Art</target>
         </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 1889953770 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Option,Text,Integer,Decimal</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Option,Text,Ganzzahl,Dezimalzahl"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Type - Property OptionCaption</note>
+          <target>Option,Text,Ganzzahl,Dezimalzahl</target>
+        </trans-unit>
         <trans-unit id="Table 3997009731 - Field 3415440375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Value</source>
           <note from="Developer" annotates="general" priority="2">DEU="Wert"</note>
@@ -260,6 +296,12 @@
           <note from="Developer" annotates="general" priority="2">DEU="Postenart"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Entry Type - Property Caption</note>
           <target>Postenart</target>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 2794648530 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus,Reserve,Liquidation of Reserves</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus,Rückstellung,Rückstellungsauflösung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Entry Type - Property OptionCaption</note>
+          <target>Bonus,Rückstellung,Rückstellungsauflösung</target>
         </trans-unit>
         <trans-unit id="Table 4171831453 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contract</source>

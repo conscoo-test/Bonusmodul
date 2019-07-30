@@ -1,0 +1,83 @@
+title {label: "ER-Diagram LIS365 Bonusmodul", size: "20"}
+# Nice colors from Erwiz:
+# red #fcecec
+# blue #ececfc
+# green #d0e0d0
+# yellow #fbfbdb
+# orange #eee0a0
+# Entities
+
+[lbt_Bonus_Setup]
+  lbt_Primary_Key(PK) {label: "Integer"}
+
+[lbt_Bonus_Contract] {bgcolor: "#d0e0d0"}
+  lbt_Contract(PK) {label: "Code[20]"}
+  lbt_Valid_from {label: "Date"}
+  lbt_Vali_to {label: "Date"}
+  lbt_Billing_Period {label: "DateFormula"}
+  lbt_Reserve_Value {label: "Decimal"}
+  lbt_Reserve_Type {label: "Option"}
+  lbt_Reserv_Unit {label: "Code[10]"}
+  lbt_Last_Reserve_at {label: "Date"}
+  lbt_Bonus_Billing_Type {label: "Option"}
+  lbt_Bonus_Billing_Unit {label: "Code[10]"}
+  lbt_Last_Billing_at {label: "Date"}
+  lbt_Bonus_Scale_Type {label: "Option"}
+  lbt_Bonus_Recipient {label: "Code[20]"}
+  lbt_lbt_Bonus_Group {label: "Code[20]"}
+  lbt_Contract_Type {label: "Option"}
+
+[lbt_Bonus_Contract_Line] {bgcolor: "#ececfc"}
+  lbt_Contract(PK) {label: "Code[20]"}
+  lbt_Line_No.(PK) {label: "Integer"}
+  lbt_Item_Unit_of_Measure {label: "Code[10]"}
+  lbt_From_Quantity {label: "Decimal"}
+  lbt_Value {label: "Decimal"}
+  lbt_Bonus_Scale_Type {label: "Option"}
+
+[lbt_Bonus_Contract_Dimensions] {bgcolor: "#ececfc"}
+  lbt_Contract(PK) {label: "Code[20]"}
+  lbt_Dimension_Code(PK) {label: "Code[20]"}
+  lbt_Dimension_Value {label: "Code[20]"}
+
+[lbt_Bonus_Contract_Attribute] {bgcolor: "#ececfc"}
+  lbt_Contract(PK) {label: "Code[20]"}
+  lbt_Attribute_ID {label: "Integer"}
+  lbt_Attribute_Name {label: "Text[250]"}
+  lbt_Attribute_Type {label: "Option"}
+  lbt_Attribute_Value {label: "Text[250]"}
+
+[lbt_Bonus_Entry] {bgcolor: "#ececfc"}
+  lbt_Entry_No.(PK) {label: "Integer"}
+  lbt_Entry_Type {label: "Option"}
+  lbt_Contract {label: "Code[20]"}
+
+[lbt_Bonus_Group] {bgcolor: "#ececfc"}
+  lbt_Code(PK) {label: "Code [20]"}
+  lbt_Description {label: "Text [100]"}
+
+[lbt_Bonus_Customers] {bgcolor: "#ececfc"}
+  lbt_Contract(PK) {label: "Code[20]"}
+  lbt_Customer {label: "Code[20]"}
+  lbt_Ship-to_Code {label: "Code[10]"}
+  lbt_Customer_Name {label: "Text[100]"}
+  lbt_Ship-to_Name {label: "Text[100]"}
+
+
+# Each relationship must be between exactly two entities, which need not
+# be distinct. Each entity in the relationship has exactly one of four
+# possible cardinalities:
+#
+# Cardinality    Syntax
+# 0 or 1         0
+# exactly 1      1
+# 0 or more      *
+# 1 or more      +
+
+
+lbt_Bonus_Contract 1--* lbt_Bonus_Contract_Line
+lbt_Bonus_Contract 1--* lbt_Bonus_Contract_Dimensions
+lbt_Bonus_Contract 1--* lbt_Bonus_Contract_Attribute
+lbt_Bonus_Contract 0--* lbt_Bonus_Group
+lbt_Bonus_Contract 1--* lbt_Bonus_Customers
+lbt_Bonus_Contract 1--* lbt_Bonus_Entry

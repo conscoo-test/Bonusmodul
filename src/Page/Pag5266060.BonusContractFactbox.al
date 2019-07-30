@@ -17,6 +17,12 @@ page 5266060 "lbt Bonus Contract Factbox"
             {
                 ApplicationArea = All;
             }
+            
+        field("lbt No. of Customer"; "lbt No. of Customers")
+        {
+            ApplicationArea = All;
+           
+        }
         }
 
     }

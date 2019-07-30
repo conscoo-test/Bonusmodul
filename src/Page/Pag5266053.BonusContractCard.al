@@ -43,6 +43,8 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ApplicationArea = All;
                 }
+ 
+                
 
 
 
@@ -52,10 +54,16 @@ page 5266053 "lbt Bonus Contract Card"
                     field("lbt Bonus Billing Type"; "lbt Bonus Billing Type")
                     {
                         ApplicationArea = All;
+
+                        trigger OnValidate()
+                        begin
+                            TypeOnAfterValidate();
+                        end;
                     }
                     field("lbt Bonus Billing Unit"; "lbt Bonus Billing Unit")
                     {
                         ApplicationArea = All;
+                        Enabled=BonusBillingType_Enable;
                     }
 
                     field("lbt Bonus Scale Type"; "lbt Bonus Scale Type")
@@ -256,6 +264,20 @@ page 5266053 "lbt Bonus Contract Card"
             }
         }
     }
+
     var
         Navigate: Page Navigate;
+        BonusBillingType_Enable: Boolean;
+
+    local procedure TypeOnAfterValidate ()
+    begin
+    EnableFields;
+    end;
+ 
+    local procedure EnableFields()
+    begin
+        BonusBillingType_Enable := "lbt Bonus Billing Type" = "lbt Bonus Billing Type"::"Amount per Unit"
+    end;
+    
+
 }

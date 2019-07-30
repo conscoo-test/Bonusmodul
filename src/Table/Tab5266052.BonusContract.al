@@ -104,10 +104,18 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Contract Type', comment = 'DEU="Vertragsart"';
             DataClassification = CustomerContent;
             OptionMembers = "Bonus","Advertising Costs";
-            OptionCaption = 'Bonus,Advertising Costs', comment = 'DEU="Bonus,Werbekosten"';
-                        
+            OptionCaption = 'Bonus,Advertising Costs', comment = 'DEU="Bonus,Werbekosten"';          
         }
 
+        field(16; "lbt No. of Customers"; Integer)
+        {
+            Caption = 'No. of Customers', comment = 'DEU="Anzahl Debitoren"';
+            Editable = false;
+            FieldClass = FlowField;
+            CalcFormula = count("lbt Bonus Customers" where ("lbt Contract"=field("lbt Contract")));
+    
+        }
+        
     }
     keys
     {

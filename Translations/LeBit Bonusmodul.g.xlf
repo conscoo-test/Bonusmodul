@@ -128,6 +128,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonus,Werbekosten"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Contract Type - Property OptionCaption</note>
         </trans-unit>
+        <trans-unit id="Table 289521175 - Field 1418576573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Customers</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Anzahl Debitoren"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt No. of Customers - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffeln"</note>
@@ -160,7 +165,7 @@
         </trans-unit>
         <trans-unit id="Table 1074296949 - Field 2613224433 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Scale Type</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffelart""</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffelart"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract Line - Field lbt Bonus Scale Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1074296949 - Field 2613224433 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
