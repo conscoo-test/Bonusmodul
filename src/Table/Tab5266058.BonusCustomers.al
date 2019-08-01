@@ -1,6 +1,8 @@
 table 5266058 "lbt Bonus Customers"
 {
     DataClassification = CustomerContent;
+    LookupPageId = "lbt Bonus Customers";
+    DrillDownPageId = "lbt Bonus Customers";
 
     fields
     {

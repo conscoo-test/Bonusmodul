@@ -3,7 +3,7 @@ table 5266052 "lbt Bonus Contract"
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contracts', comment = 'DEU="Bonusverträge"';
     LookupPageId = "lbt Bonus Contract List";
-
+    DrillDownPageId = "lbt Bonus Contract List";
 
     fields
     {
@@ -39,7 +39,7 @@ table 5266052 "lbt Bonus Contract"
         }
         field(6; "lbt Reserve Type"; Option)
         {
-            Caption = 'Reverse Type', comment = 'DEU="Rückstellungsart';
+            Caption = 'Reverse Type', comment = 'DEU="Rückstellungsart"';
             OptionMembers = "%","Amount (LCY)","Amount per Unit";
             OptionCaption = '%,Amount (LCY),Amount per Unit', comment = 'DEU="%,Festbetrag (MW),Betrag je Einheit"';
             DataClassification = CustomerContent;
@@ -83,7 +83,7 @@ table 5266052 "lbt Bonus Contract"
             DataClassification = CustomerContent;
             OptionMembers = "Sales Qty.","Sales (LCY)";
             OptionCaption = 'Sales Qty.,Sales (LCY)', comment = 'DEU="Absatz,Umsatz"';
-            
+
         }
 
         field(13; "lbt Bonus Recipient"; Code[20])
@@ -104,7 +104,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Contract Type', comment = 'DEU="Vertragsart"';
             DataClassification = CustomerContent;
             OptionMembers = "Bonus","Advertising Costs";
-            OptionCaption = 'Bonus,Advertising Costs', comment = 'DEU="Bonus,Werbekosten"';          
+            OptionCaption = 'Bonus,Advertising Costs', comment = 'DEU="Bonus,Werbekosten"';
         }
 
         field(16; "lbt No. of Customers"; Integer)
@@ -112,10 +112,18 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'No. of Customers', comment = 'DEU="Anzahl Debitoren"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt Bonus Customers" where ("lbt Contract"=field("lbt Contract")));
-    
+            CalcFormula = count ("lbt Bonus Customers" where ("lbt Contract" = field ("lbt Contract")));
+
         }
-        
+        // field(17; "lbt Balance of Bonus"; Integer)
+        // {
+        //     Caption = 'Balance of Bonus', comment = 'DEU="Saldo Bonus"';
+        //     Editable = false;
+        //     FieldClass = FlowField;
+        //     CalcFormula = sum("lbt Bonus Entry"."lbt Amount" where ("lbt Contract" =field("lbt Contract") ));
+            
+        // }
+
     }
     keys
     {

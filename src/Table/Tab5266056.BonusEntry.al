@@ -2,6 +2,8 @@ table 5266056 "lbt Bonus Entry"
 {
     Caption = 'Bonus Entry', comment = 'DEU="Bonusposten"';
     DataClassification = CustomerContent;
+    LookupPageId = "lbt Bonus Entry";
+    DrillDownPageId= "lbt Bonus Entry";
 
 
     fields
@@ -24,8 +26,26 @@ table 5266056 "lbt Bonus Entry"
            Caption = 'Contract', comment = 'DEU="Vertrag"';
            DataClassification = CustomerContent;
            TableRelation="lbt Bonus Contract"."lbt Contract";
-           
         }
+        field(4; "lbt Bonus Contract Line"; Integer)
+        {
+           Caption = 'Bonus Contract Line', comment = 'DEU="Bonusvetragszeilen"';;
+            DataClassification = CustomerContent;
+            TableRelation = "lbt Bonus Contract Line" where ("lbt Contract" = field("lbt Contract"));
+        }
+        field(5; "lbt Date"; Date)
+        {
+            Caption = 'Date', comment = 'DEU="Datum"';
+            DataClassification = CustomerContent;
+        }
+        field(6; "lbt Amount"; Decimal)
+        {
+            Caption = 'Amount', comment = 'DEU="Betrag"';
+            DataClassification = CustomerContent;
+        }
+        
+        
+        
     }
 
     keys

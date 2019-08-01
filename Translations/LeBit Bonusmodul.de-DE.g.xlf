@@ -15,6 +15,60 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Primary Key - Property Caption</note>
           <target>Primärschlüssel</target>
         </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 3550707387 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reserve Mode</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsmodus"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Reserve Mode - Property Caption</note>
+          <target>Rückstellungsmodus</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 3550707387 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal,CreditMemo</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Buchblatt,Gutschrift"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Reserve Mode - Property OptionCaption</note>
+          <target>Buchblatt,Gutschrift</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 2945659599 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Jnl. Templ. Bonus Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="BuchblVorl. Bonusrückstellung</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Gen.Jnl.Templ.BonusReserve - Property Caption</note>
+          <target>"BuchblVorl. Bonusrückstellung</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 4000424133 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Jnl. Bonus Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Buchblatt Bonusrückstellung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Gen. Jnl. Bonus Reserve - Property Caption</note>
+          <target>Buchblatt Bonusrückstellung</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 1693671200 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Revers Reserve Mode</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsauflösung Modus"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Revers Reserve Mode - Property Caption</note>
+          <target>Rückstellungsauflösung Modus</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 1693671200 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>automatic,Journal Batch</source>
+          <note from="Developer" annotates="general" priority="2">DEU="automatisch,Buchblatt"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Revers Reserve Mode - Property OptionCaption</note>
+          <target>automatisch,Buchblatt</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 1297455922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Gen. Jnl. Bonus Revers Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Buchblatt Bonusrückstellungsauflösung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt GenJnlBonusReversReserve - Property Caption</note>
+          <target>Buchblatt Bonusrückstellungsauflösung</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 1406778967 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cust Gr. Reserve Cr. Memo</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitor-Buch.gr. für Rückstell-Gutschr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Cust Gr. Reserve Cr. Memo - Property Caption</note>
+          <target>Debitor-Buch.gr. für Rückstell-Gutschr.</target>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 4212695510 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bus. Post. Group for Reserve Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Bus.Post.Gr.f.Res.Cr.Memo - Property Caption</note>
+          <target>Gesch.bu.gr. f. Rückstell-Gutschrift</target>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Setup</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
@@ -26,6 +80,18 @@
           <note from="Developer" annotates="general" priority="2">DEU="Allgmein"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt General - Property Caption</note>
           <target>Allgmein</target>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 1964835206 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Reserve - Property Caption</note>
+          <target>Rückstellungen</target>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 3506169441 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Revers Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsauflösungen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Revers Reserve - Property Caption</note>
+          <target>Rückstellungsauflösungen</target>
         </trans-unit>
         <trans-unit id="Page 3313186052 - Action 289521175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract</source>
@@ -71,9 +137,9 @@
         </trans-unit>
         <trans-unit id="Table 289521175 - Field 2111692774 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reverse Type</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsart</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsart"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Reserve Type - Property Caption</note>
-          <target>"Rückstellungsart</target>
+          <target>Rückstellungsart</target>
         </trans-unit>
         <trans-unit id="Table 289521175 - Field 2111692774 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
           <source>%,Amount (LCY),Amount per Unit</source>
@@ -152,6 +218,12 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonus,Werbekosten"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Contract Type - Property OptionCaption</note>
           <target>Bonus,Werbekosten</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 1418576573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Customers</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Anzahl Debitoren"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt No. of Customers - Property Caption</note>
+          <target>Anzahl Debitoren</target>
         </trans-unit>
         <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>

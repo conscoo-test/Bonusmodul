@@ -23,7 +23,14 @@ page 5266060 "lbt Bonus Contract Factbox"
             ApplicationArea = All;
            
         }
+        // field("lbt Balance of Bonus"; "lbt Balance of Bonus")
+        // {
+        //     ApplicationArea = All;
+        // }
+        
         }
+
+    
 
     }
 

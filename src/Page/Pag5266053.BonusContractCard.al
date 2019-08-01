@@ -39,12 +39,9 @@ page 5266053 "lbt Bonus Contract Card"
                     ApplicationArea = All;
                 }
 
-                field("lbt Bonus Recipient"; "lbt Bonus Recipient")
-                {
-                    ApplicationArea = All;
-                }
- 
-                
+
+
+
 
 
 
@@ -63,7 +60,7 @@ page 5266053 "lbt Bonus Contract Card"
                     field("lbt Bonus Billing Unit"; "lbt Bonus Billing Unit")
                     {
                         ApplicationArea = All;
-                        Enabled=BonusBillingType_Enable;
+                        Enabled = BonusBillingType_Enable;
                     }
 
                     field("lbt Bonus Scale Type"; "lbt Bonus Scale Type")
@@ -71,6 +68,10 @@ page 5266053 "lbt Bonus Contract Card"
                         ApplicationArea = All;
                     }
                     field("lbt Last Billing at"; "lbt Last Billing at")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("lbt Bonus Recipient"; "lbt Bonus Recipient")
                     {
                         ApplicationArea = All;
                     }
@@ -85,15 +86,21 @@ page 5266053 "lbt Bonus Contract Card"
                 field("lbt Reserve Value"; "lbt Reserve Value")
                 {
                     ApplicationArea = All;
-                    
+
                 }
                 field("lbt Reserve Type"; "lbt Reserve Type")
                 {
                     ApplicationArea = All;
+
+                    trigger OnValidate()
+                    begin
+                        TypeOnAfterValidate();
+                    end;
                 }
                 field("lbt Reserve Unit"; "lbt Reserve Unit")
                 {
                     ApplicationArea = All;
+                    Enabled=BonusReserveType_Enable;
                 }
                 field("lbt last Reserve at"; "lbt Last Reserve at")
                 {
@@ -139,7 +146,7 @@ page 5266053 "lbt Bonus Contract Card"
                 Caption = 'Exlode Reservation', comment = 'DEU="Rückstellungen auflösen"';
                 ApplicationArea = All;
                 Image = CashFlow;
-                RunObject=page "lbt Explode Reservation";
+                RunObject = page "lbt Explode Reservation";
 
                 trigger OnAction()
                 begin
@@ -268,16 +275,19 @@ page 5266053 "lbt Bonus Contract Card"
     var
         Navigate: Page Navigate;
         BonusBillingType_Enable: Boolean;
+        BonusReserveType_Enable:Boolean;
 
-    local procedure TypeOnAfterValidate ()
+    local procedure TypeOnAfterValidate()
     begin
-    EnableFields;
+        EnableFields();
     end;
- 
+
     local procedure EnableFields()
     begin
-        BonusBillingType_Enable := "lbt Bonus Billing Type" = "lbt Bonus Billing Type"::"Amount per Unit"
+        BonusBillingType_Enable := "lbt Bonus Billing Type" = "lbt Bonus Billing Type"::"Amount per Unit";
+        BonusReserveType_Enable := "lbt Reserve Type" = "lbt Reserve Type"::"Amount per Unit";
+
     end;
-    
+
 
 }

@@ -20,10 +20,27 @@ page 5266057 "lbt Bonus Entry"
                 {
                     ApplicationArea = All;
                 }
+                field("lbt Bonus Contract Line"; "lbt Bonus Contract Line")
+                {
+                    ApplicationArea = All;
+                }
                 field("lbt Entry Type"; "lbt Entry Type")
                 {
                     ApplicationArea = All;
                 }
+                field("lbt Date"; "lbt Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("lbt Amount"; "lbt Amount")
+                {
+                    ApplicationArea = All;
+                }
+
+                
+
+
+
             }
         }
     }
