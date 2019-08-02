@@ -2,6 +2,8 @@ table 5266054 "lbt Bonus Contract Dimensions"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contract Dimensions', comment = 'DEU="Bonusvetrag Dimensionen"';
+    LookupPageId= "lbt Bonus Contract Dimension";
+    DrillDownPageId= "lbt Bonus Contract Dimension";
 
     fields
     {

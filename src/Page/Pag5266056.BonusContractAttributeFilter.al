@@ -13,7 +13,7 @@ page 5266056 "lbt BonusContrAttributeFilter"
             repeater(General)
             {
                 Caption = 'General', comment = 'DEU="Allgemein"';
-                field("lbt Contract";"lbt Contract")
+                field("lbt Attribute ID";"lbt Attribute ID")
                 {
                     ApplicationArea = All;
                 }
@@ -25,10 +25,15 @@ page 5266056 "lbt BonusContrAttributeFilter"
                 {
                     ApplicationArea = All;
                 }
-                field("lbt Attribute Value";"lbt Attribute Value")
+                field("lbt Attribute Value ID";"lbt Attribute Value ID")
                 {
                     ApplicationArea = All;
                 }
+                field("lbt Attribute Value Name";"lbt Attribute Value Name")
+                {
+                    ApplicationArea = All;
+                }
+
             }
         }
     }

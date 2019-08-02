@@ -2,6 +2,8 @@ table 5266057 "lbt Bonus Group"
 {
    Caption = 'Bonus Group', comment = 'DEU="Bonusgruppe"';
    DataClassification = CustomerContent;
+   LookupPageId = "lbt Bonus Group";
+   DrillDownPageId="lbt Bonus Group";
    
    fields
    {

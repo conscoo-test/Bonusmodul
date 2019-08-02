@@ -17,20 +17,36 @@ page 5266060 "lbt Bonus Contract Factbox"
             {
                 ApplicationArea = All;
             }
-            
-        field("lbt No. of Customer"; "lbt No. of Customers")
-        {
-            ApplicationArea = All;
-           
-        }
-        // field("lbt Balance of Bonus"; "lbt Balance of Bonus")
-        // {
-        //     ApplicationArea = All;
-        // }
-        
+
+            field("lbt No. of Customer"; "lbt No. of Customers")
+            {
+                ApplicationArea = All;
+            }
+            field("lbt No. of Attribute"; "lbt No. of Attribute")
+            {
+                ApplicationArea = All;
+            }
+            field("lbt No. of Dimensions"; "lbt No. of Dimensions")
+            {
+                ApplicationArea = All;
+            }
+
+            field("lbt Balance of Reserve"; "lbt Balance of Reserve")
+            {
+                ApplicationArea = All;
+            }
+            field("lbt Balance of Liquid Reserves"; "lbt Balance of Liquid Reserves")
+            {
+                ApplicationArea = All;
+            }
+            field("lbt Balance of Bonus"; "lbt Balance of Bonus")
+            {
+                ApplicationArea = All;
+            }
+
         }
 
-    
+
 
     }
 
