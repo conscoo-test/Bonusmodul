@@ -74,7 +74,7 @@ page 5266054 "lbt Bonus Contract Line"
     begin
         IF BonusContractLRec.GET(ContractNo) THEN
             UoMVsbl := (BonusContractLRec."lbt Bonus Scale Type" = BonusContractLRec."lbt Bonus Scale Type"::"Sales Qty.");
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 
     var
