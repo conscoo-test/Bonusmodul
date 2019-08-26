@@ -225,6 +225,36 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt No. of Customers - Property Caption</note>
           <target>Anzahl Debitoren</target>
         </trans-unit>
+        <trans-unit id="Table 289521175 - Field 4153108196 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balance of Bonus</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Saldo Bonus"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Balance of Bonus - Property Caption</note>
+          <target>Saldo Bonus</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 1623751831 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balance of Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Saldo Rückstellungen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Balance of Reserve - Property Caption</note>
+          <target>Saldo Rückstellungen</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 69286126 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balance of Liquidation Reserve</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Saldo Rückstellungen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Balance of Liquid Reserves - Property Caption</note>
+          <target>Saldo Rückstellungen</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 1483638161 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Dimensions</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Anzahl der Dimensionen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt No. of Dimensions - Property Caption</note>
+          <target>Anzahl der Dimensionen</target>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 4261400508 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Attribute</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Anzahl der Attribute"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt No. of Attribute - Property Caption</note>
+          <target>Anzahl der Attribute</target>
+        </trans-unit>
         <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffeln"</note>
@@ -321,17 +351,23 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Contract - Property Caption</note>
           <target>Vertrag</target>
         </trans-unit>
-        <trans-unit id="Table 3997009731 - Field 3357097757 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 3997009731 - Field 2806464801 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ID</source>
           <note from="Developer" annotates="general" priority="2">DEU="ID"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute ID - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt ID - Property Caption</note>
           <target>ID</target>
         </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 3357097757 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attribute ID</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Attriute ID"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute ID - Property Caption</note>
+          <target>Attriute ID</target>
+        </trans-unit>
         <trans-unit id="Table 3997009731 - Field 4120347187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Name</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Name"</note>
+          <source>Attribute Name</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Attribute Name"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Name - Property Caption</note>
-          <target>Name</target>
+          <target>Attribute Name</target>
         </trans-unit>
         <trans-unit id="Table 3997009731 - Field 1889953770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
@@ -345,11 +381,17 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Type - Property OptionCaption</note>
           <target>Option,Text,Ganzzahl,Dezimalzahl</target>
         </trans-unit>
-        <trans-unit id="Table 3997009731 - Field 3415440375 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Value</source>
+        <trans-unit id="Table 3997009731 - Field 2845636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value ID</source>
           <note from="Developer" annotates="general" priority="2">DEU="Wert"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Value - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Value ID - Property Caption</note>
           <target>Wert</target>
+        </trans-unit>
+        <trans-unit id="Table 3997009731 - Field 1613970398 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value Name</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Wertname"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt BonusContractAttribute - Field lbt Attribute Value Name - Property Caption</note>
+          <target>Wertname</target>
         </trans-unit>
         <trans-unit id="Table 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Entry</source>
@@ -380,6 +422,24 @@
           <note from="Developer" annotates="general" priority="2">DEU="Vertrag"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Contract - Property Caption</note>
           <target>Vertrag</target>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Line</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusvetragszeilen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Bonus Contract Line - Property Caption</note>
+          <target>Bonusvetragszeilen</target>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3488770794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Datum"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Date - Property Caption</note>
+          <target>Datum</target>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3180239442 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Betrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Amount - Property Caption</note>
+          <target>Betrag</target>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Entry</source>

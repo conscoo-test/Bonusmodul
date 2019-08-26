@@ -57,7 +57,12 @@ page 5266052 "lbt Bonus Contract List"
 
                 trigger OnAction();
                 begin
-
+                    BonusContractRec.RESET();
+                    BonusContractRec.SetCurrentKey("lbt Contract");
+                    BonusContractRec.SETRANGE("lbt Contract", "lbt Contract");
+                    CLEAR(BonusReserveRep);
+                    BonusReserveRep.SETTABLEVIEW(BonusContractRec);
+                    BonusReserveRep.RUNMODAL();
                 end;
             }
 
@@ -67,11 +72,6 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = CashFlow;
                 RunObject = page "lbt Explode Reservation";
-
-                trigger OnAction()
-                begin
-
-                end;
             }
 
 
@@ -213,6 +213,10 @@ page 5266052 "lbt Bonus Contract List"
     }
 
     var
+        BonusContractRec: Record "lbt Bonus Contract";
+        BonusReserveRep: Report "lbt Bonus Reserves";
         Navigate: Page Navigate;
+        
+
 
 }

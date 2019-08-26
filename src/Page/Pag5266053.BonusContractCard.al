@@ -75,6 +75,11 @@ page 5266053 "lbt Bonus Contract Card"
                     {
                         ApplicationArea = All;
                     }
+                    field("lbt Accounting Item Charge";"lbt Accounting Item Charge")
+                    {
+                        ApplicationArea = All;
+                    }
+                    
                 }
 
             }
@@ -106,12 +111,31 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ApplicationArea = All;
                 }
+                field("lbt Reserve Item Charge";"lbt Reserve Item Charge")
+                {
+                    ApplicationArea = All;
+                }
+                
             }
             part(Bonusstaffeln; "lbt Bonus Contract Line")
             {
                 ApplicationArea = All;
                 SubPageLink = "lbt Contract" = field ("lbt Contract");
             }
+             group(Discounts)
+             {
+                 
+                 field("lbt Discount %";"lbt Discount %")
+                 {
+                     ApplicationArea = All;
+                     blankzero = true;
+                 }
+                 field("lbt Pmt. Discount %";"lbt Pmt. Discount %")
+                 {
+                     ApplicationArea = All;
+                     BlankZero= true;
+                 }
+             }
         }
 
 

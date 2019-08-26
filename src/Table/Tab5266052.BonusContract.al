@@ -151,6 +151,34 @@ table 5266052 "lbt Bonus Contract"
             CalcFormula = count ("lbt BonusContractAttribute" where ("lbt Contract" = field ("lbt Contract")));
         }
 
+        field( 22 ; "lbt Reserve Item Charge"; Code[20])
+        {
+            Caption = 'Reserve Item Charge', comment = 'DEU="Rückstellungszuschlag"';
+            DataClassification = CustomerContent;
+            TableRelation= "Item Charge"."No.";
+        }
+
+        field(23; "lbt Accounting Item Charge"; Code[20])
+        {
+            Caption = 'Accounting Item Charge', comment = 'DEU="Abrechnungszuschlag"';
+            DataClassification = CustomerContent;
+            TableRelation= "Item Charge"."No.";
+        }
+
+        field(24; "lbt Pmt. Discount %"; Decimal)
+        {
+            Caption = 'Payment Discount %', comment = 'DEU="Skonto %"';
+            DataClassification = CustomerContent;
+        }
+
+        field(25; "lbt Discount %"; Decimal)
+        {
+            Caption = 'Discount %', comment = 'DEU="Rabatt %"';
+            DataClassification = CustomerContent;
+        }
+        
+        
+
 
 
     }

@@ -593,6 +593,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen auflösen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 3116946016 - Control 3677996398 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2">DEU ="Optionen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - Control lbt Options - Property Caption</note>
+        </trans-unit>
       </group>
     </body>
   </file>
