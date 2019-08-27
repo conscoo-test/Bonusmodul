@@ -21,7 +21,7 @@ report 5266051 "lbt Bonus Reserves"
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
-                    DataItemTableView = sorting ("Sell-to Customer No.", "Posting Date"); //OS!?!
+                    DataItemTableView = sorting ("Sell-to Customer No.", "Posting Date"); 
                     DataItemLink = "Sell-to Customer No." = field ("lbt Customer");
 
                     trigger OnPreDataItem()
