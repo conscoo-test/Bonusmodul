@@ -384,17 +384,17 @@ report 5266051 "lbt Bonus Reserves"
 
                     trigger OnPreDataItem()
                     begin
-
+                        //TODO OnPreDataItem()- dataitem "Sales Cr.Memo Header"
                     end;
 
                     trigger OnAfterGetRecord()
                     begin
-
+                        //OnAfterGetRecord()- dataitem "Sales Cr.Memo Header"
                     end;
 
                     trigger OnPostDataItem()
                     begin
-
+                        //TODO OnPostDataItem()- dataitem "Sales Cr.Memo Header"
                     end;
                 }
                 dataitem(Integer; Integer)
@@ -403,33 +403,33 @@ report 5266051 "lbt Bonus Reserves"
 
                     trigger OnPreDataItem()
                     begin
-
+                        //TODO dataitem "Integer" -->OnPreDataItem()
                     end;
 
                     trigger OnAfterGetRecord()
                     begin
-
+                        //TODO dataitem "Integer" -->OnAfterGetRecord()
                     end;
 
                     trigger OnPostDataItem()
                     begin
-
+                        //TODO dataitem "Integer" -->OnPostDataItem()
                     end;
                 }
 
                 trigger OnPreDataItem()
                 begin
-
-                end;
+                    //TODO OnPreDataItem()
+                end;    
 
                 trigger OnAfterGetRecord()
                 begin
-
+                    //TODO OnAfterGetRecord()
                 end;
 
                 trigger OnPostDataItem()
                 begin
-
+                    //TODO OnPostDataItem()
                 end;
 
 
@@ -535,16 +535,10 @@ report 5266051 "lbt Bonus Reserves"
             CustPostGrpRec.GET(BonusSetupRec."lbt Cust Gr. Reserve Cr. Memo");
             CustPostGrpRec.TESTFIELD("Receivables Account");
             GenBussPostGroupRec.GET(BonusSetupRec."lbt Bus.Post.Gr.f.Res.Cr.Memo");
-
-            // BonusSetupRec.TESTFIELD("Internal Statistic Postings");
-            // BonusSetupRec.TESTFIELD("Customer Statistic Postings");
-            //ItemChargeRec.GET(BonusSetupRec."ItemCharge for Bonus Reserve");
         END ELSE BEGIN
             BonusSetupRec.TESTFIELD("lbt Gen.Jnl.Templ.BonusReserve");
             BonusSetupRec.TESTFIELD("lbt Gen. Jnl. Bonus Reserve");
         END;
-        //   BonusSetupRec.TESTFIELD("Reason Code Bonus Reserve");
-        //   BonusSetupRec.TESTFIELD("Billing Code");
         GenJnlLine2Rec.RESET();
         GenJnlLine2Rec.SETRANGE("Journal Template Name", BonusSetupRec."lbt Gen.Jnl.Templ.BonusReserve");
         GenJnlLine2Rec.SETRANGE("Journal Batch Name", BonusSetupRec."lbt Gen. Jnl. Bonus Reserve");
@@ -562,14 +556,9 @@ report 5266051 "lbt Bonus Reserves"
 
     procedure SetJournalBatch(VAR JnlBatchName: Code[10]; VAR JnlTemplateName: Code[10])
     begin
-        /*        
-            CurrentJnlBatchName2 := JnlBatchName;
-            FILTERGROUP(2);
-            SETRANGE("Journal Template Name", JnlTemplateName);
-            SETRANGE("Journal Batch Name", JnlBatchName);
-            FILTERGROUP(0);
 
-        */
+        //TODO Funktion "SetJournalBatch" muss noch umgesetzt werden
+
     end;
 
     procedure getTotalAmount(): Decimal
@@ -603,7 +592,6 @@ report 5266051 "lbt Bonus Reserves"
         ValueEntryRec2: Record "Value Entry";
         ItemLedgEntryRec: Record "Item Ledger Entry";
         ItemCharge2Rec: Record "Item Charge";
-        BonusContractParaRec: Record "lbt BonusContractAttribute";
         BonusMgt: Codeunit "lbt Bonus Mgt.";
 
 
