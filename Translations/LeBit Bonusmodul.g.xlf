@@ -233,6 +233,26 @@
           <note from="Developer" annotates="general" priority="2">DEU="Rabatt %"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field lbt Discount % - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 289521175 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You can not reset the date, while there are unposted bonus credit memos.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text001Msg</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - NamedType 1068754970" size-unit="char" translate="yes" xml:space="preserve">
+          <source>For contract %1 bonus contract entries exists. The contract can not be deleted.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text002Msg</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - NamedType 3457502012" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You must delete Bonus Contract Lines before you modify the contract</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text004Msg</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - NamedType 3014092491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There are already Bonus Contract Entries. You cannot modify the contract.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text005Msg</note>
+        </trans-unit>
         <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusstaffeln"</note>

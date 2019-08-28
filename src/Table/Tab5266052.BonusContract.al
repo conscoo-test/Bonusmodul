@@ -11,6 +11,7 @@ table 5266052 "lbt Bonus Contract"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
+            NotBlank= true;
         }
 
         field(2; "lbt Valid from"; Date)
