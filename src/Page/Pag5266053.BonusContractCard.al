@@ -75,6 +75,11 @@ page 5266053 "lbt Bonus Contract Card"
                     {
                         ApplicationArea = All;
                     }
+                    field("lbt Accounting Item Charge"; "lbt Accounting Item Charge")
+                    {
+                        ApplicationArea = All;
+                    }
+
                 }
 
             }
@@ -100,17 +105,36 @@ page 5266053 "lbt Bonus Contract Card"
                 field("lbt Reserve Unit"; "lbt Reserve Unit")
                 {
                     ApplicationArea = All;
-                    Enabled=BonusReserveType_Enable;
+                    Enabled = BonusReserveType_Enable;
                 }
                 field("lbt last Reserve at"; "lbt Last Reserve at")
                 {
                     ApplicationArea = All;
                 }
+                field("lbt Reserve Item Charge"; "lbt Reserve Item Charge")
+                {
+                    ApplicationArea = All;
+                }
+
             }
             part(Bonusstaffeln; "lbt Bonus Contract Line")
             {
                 ApplicationArea = All;
                 SubPageLink = "lbt Contract" = field ("lbt Contract");
+            }
+            group(Discounts)
+            {
+                Caption = 'Discounts', comment = 'DEU="Rabatte/Skonto"';
+                field("lbt Discount %"; "lbt Discount %")
+                {
+                    ApplicationArea = All;
+                    blankzero = true;
+                }
+                field("lbt Pmt. Discount %"; "lbt Pmt. Discount %")
+                {
+                    ApplicationArea = All;
+                    BlankZero = true;
+                }
             }
         }
 
@@ -275,7 +299,7 @@ page 5266053 "lbt Bonus Contract Card"
     var
         Navigate: Page Navigate;
         BonusBillingType_Enable: Boolean;
-        BonusReserveType_Enable:Boolean;
+        BonusReserveType_Enable: Boolean;
 
     local procedure TypeOnAfterValidate()
     begin
