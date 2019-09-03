@@ -398,15 +398,125 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonusvetragszeilen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Bonus Contract Line - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4171831453 - Field 3488770794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 4171831453 - Field 961395534 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Date</source>
           <note from="Developer" annotates="general" priority="2">DEU="Datum"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Date - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Entry Date - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4171831453 - Field 3180239442 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Amount</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Betrag"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Amount - Property Caption</note>
+        <trans-unit id="Table 4171831453 - Field 3240539365 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>lbt Base Amount</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Basisbetrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Base Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 2656678182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General Ledger Entry No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Sachposten Lfd. Nr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt General Ledger Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3338811521 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Amount</source>
+          <note from="Developer" annotates="general" priority="2">DEU="gebuchter Betrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Posted Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1021462666 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitor"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3704521813 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>lbt Ship-to Code</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Lief. an Code"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Ship-to Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 2906247156 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>lbt Invoice Customer No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rechnungsempfänger"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Invoice Customer No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1474055660 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Document Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusbelegtyp"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Bonus Document Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1474055660 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Sales Invoice,Sales Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2">DEU=" ,Verkaufsrechnung,Verkaufsgutschrift"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Bonus Document Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 4144627809 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Document No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusbelegnummer"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Bonus Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 367698474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Document Line</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusbelegzeile"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Bonus Document Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3502416501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>From Document Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Quellbelegart"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt From Document Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 3502416501 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Sales Invoice,Sales Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2">DEU=" ,Verkaufsrechnung,Verkaufsgutschrift"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt From Document Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1645760992 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>From Document No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Quellbelegnummer"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt From Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 4223297743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>From Document Line</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Quellbelegzeile"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt From Document Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 190812387 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Quantity</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Absatzmenge"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Sales Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 362995578 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calculated Amount</source>
+          <note from="Developer" annotates="general" priority="2">DEU="berechneter Betrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Calculated Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1913409604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>calculated Amount incl. VAT</source>
+          <note from="Developer" annotates="general" priority="2">DEU="errechneter Betrag inkl. MwSt."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt calc. Amount incl. VAT - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 2552448240 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pmt. Discount Amount</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Skontobetrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Pmt. Discount Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 486685909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Amount</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Rabattbetrag"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Discount Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1065575970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assignment Document Type</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zuweisungsbelegart"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Assignment Document Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1065575970 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> ,Sales Shipment,Sales Return Receipt</source>
+          <note from="Developer" annotates="general" priority="2">DEU=" ,Verkaufslieferung,Verkaufsrücksendung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Assignment Document Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 1719222891 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assignment Document No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zuweisungsbelegnr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Assignment Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4171831453 - Field 616705690 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assignment Doc. Line No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zuweisungsbelegzeilennr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Field lbt Assignment Doc. Line No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Entry</source>
@@ -678,6 +788,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Vertrag    #2##############"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - NamedType Text005Msg</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2698428863 - Field 3479676134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonusposten</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusposten Lfd. Nr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt GLEntry - Field lbt Bonus Entry No - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 91298208 - Field 2510053488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Entry No.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Postennr."</note>
@@ -687,6 +802,11 @@
           <source>Bonus consider</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonus berücksichtigen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt Item Charge - Field lbt Bonus consider - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3923589977 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Lbt Bonus Item Charge Assign. - NamedType Text001Msg</note>
         </trans-unit>
       </group>
     </body>

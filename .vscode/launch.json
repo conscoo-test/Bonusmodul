@@ -6,10 +6,11 @@
         {
             "type": "al",
             "request": "launch",
+            "name": "Launch",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": true,
-            "schemaUpdateMode": "Synchronize"
+            "schemaUpdateMode": "Recreate"
         }
     ]
 }
