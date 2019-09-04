@@ -2,7 +2,7 @@ pageextension 5266062 "lbt Item Charges" extends "Item Charges" //5800
 {
    layout
    {
-      addlast(Content)
+      addlast(Control1)
       {
 
          
