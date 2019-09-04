@@ -19,6 +19,7 @@ page 5266051 "lbt Bonus Setup"
                     Caption = 'Reserve', comment = 'DEU="Rückstellungen"';
                     field("lbt Reserve Mode"; "lbt Reserve Mode")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         trigger OnValidate()
 
@@ -28,21 +29,25 @@ page 5266051 "lbt Bonus Setup"
                     }
                     field("lbt Gen.Jnl.Templ.BonusReserve"; "lbt Gen.Jnl.Templ.BonusReserve")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         Enabled = GenJnlTemplBonusReserve_Enabled;
                     }
                     field("lbt Gen. Jnl. Bonus Reserve"; "lbt Gen. Jnl. Bonus Reserve")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         Enabled = GenJnlBonusReserve_Enabled;
                     }
                     field("lbt Bus.Post.Gr.f.Res.Cr.Memo";"lbt Bus.Post.Gr.f.Res.Cr.Memo")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         Enabled = BusPostGrResCrMemo_Enabled;
                     }
                     field("lbt Cust Gr. Reserve Cr. Memo";"lbt Cust Gr. Reserve Cr. Memo")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         Enabled = CustGrReserveCrMemo_Enabled;
                     }
@@ -56,12 +61,14 @@ page 5266051 "lbt Bonus Setup"
                     Caption = 'Revers Reserve', comment = 'DEU="Rückstellungsauflösungen"';
                     field("lbt Revers Reserve Mode"; "lbt Revers Reserve Mode")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         Enabled = ReversReserve_Enabled;
 
                     }
                     field("lbt GenJnlBonusReversReserve";"lbt GenJnlBonusReversReserve")
                     {
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                         Enabled = GenJnlBonusReversReserve_Enabled;
                     }
@@ -80,6 +87,7 @@ page 5266051 "lbt Bonus Setup"
             action("lbt Bonus Contract")
             {
                 Caption = 'Bonus Contract', comment = 'DEU="Bonusverträge"';
+                ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                 ApplicationArea = All;
                 Image = ContractPayment;
                 RunObject = page "lbt Bonus Contract List";

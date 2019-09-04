@@ -23,21 +23,25 @@ page 5266054 "lbt Bonus Contract Line"
                 } */
                 field("lbt Bonus Scale Type"; "lbt Bonus Scale Type")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                 }
                 field("lbt Item Unit of Measure"; "lbt Item Unit of Measure")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                     Visible= UoMVsbl;
                 }
                 field("lbt From Quantity"; "lbt From Quantity")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
 
                 }
 
                 field("lbt Value"; "lbt Value")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                 }
 

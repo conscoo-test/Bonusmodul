@@ -14,10 +14,12 @@ page 5266055 "lbt Bonus Contract Dimension"
                 Caption = 'General', comment = 'DEU="Allgemein"';
                 field("lbt Dimension Code"; "lbt Dimension Code")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                 }
                 field("lbt Dimension Value"; "lbt Dimension Value")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                 }
             }

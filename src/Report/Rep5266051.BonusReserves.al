@@ -921,11 +921,13 @@ report 5266051 "lbt Bonus Reserves"
                     field(DateFrom; DateFrom)
                     {
                         Caption = 'Date from', comment = 'DEU="Datum von"';
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                     }
                     field(DateTo; DateTo)
                     {
                         Caption = 'Date to', comment = 'DEU="Datum Bis"';
+                        ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                         ApplicationArea = All;
                     }
 

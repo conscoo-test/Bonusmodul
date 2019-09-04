@@ -13,10 +13,12 @@ page 5266058 "lbt Bonus Group"
             {
                 field("lbt Code";"lbt Code")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                 }
                 field("lbt Description";"lbt Description")
                 {
+                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
                     ApplicationArea = All;
                 }
             }
