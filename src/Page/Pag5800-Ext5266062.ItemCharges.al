@@ -8,7 +8,7 @@ pageextension 5266062 "lbt Item Charges" extends "Item Charges" //5800
          
           field("lbt Bonus consider";"lbt Bonus consider")
           {
-              ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+              ToolTip = 'Indicate which surcharges and discounts are relevant for bonus.', comment = 'deu="Kennzeichnen, welche ZU-/ABSCHLÄGE Bonusrelevant sind."';
               ApplicationArea = All;
           }
       }

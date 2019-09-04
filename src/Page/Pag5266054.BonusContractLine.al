@@ -23,25 +23,25 @@ page 5266054 "lbt Bonus Contract Line"
                 } */
                 field("lbt Bonus Scale Type"; "lbt Bonus Scale Type")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Indicates whether the rebate calculation is based on sales or turnover.', comment = 'deu="Gibt an, ob die Bonusberechnung auf Grundlage des Absatzes oder des Umsatzes erfolgt."';
                     ApplicationArea = All;
                 }
                 field("lbt Item Unit of Measure"; "lbt Item Unit of Measure")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Specifies the unit of the article.', comment = 'deu="Gibt an, welche Einheit der Artikel hat."';
                     ApplicationArea = All;
                     Visible= UoMVsbl;
                 }
                 field("lbt From Quantity"; "lbt From Quantity")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'For each contract, you define a staggering of the bonus amount depending on the sales volume or the sales quantity.', comment = 'deu="Je Vertrag wird eine Staffelung des Bonusbetrags in Abhängigkeit des Umsatzes oder der Absatzmenge hinterlegt."';
                     ApplicationArea = All;
 
                 }
 
                 field("lbt Value"; "lbt Value")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'The value of the scale is used for bonus calculation depending on the value unit of the contract.', comment = 'deu="Der Wert der Staffel wird in Abhängigkeit von der Werteinheit des Vertrages für die Bonusberechnung verwendet."';
                     ApplicationArea = All;
                 }
 

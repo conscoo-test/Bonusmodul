@@ -15,27 +15,27 @@ page 5266056 "lbt BonusContrAttributeFilter"
                 Caption = 'General', comment = 'DEU="Allgemein"';
                 field("lbt Attribute ID";"lbt Attribute ID")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Specifies which attributes the article has.', comment = 'deu="Gibt an, welche Attribute der Artikel besitzt."';
                     ApplicationArea = All;
                 }
                 field("lbt Attribute Name";"lbt Attribute Name")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Specifies the Name of the article.This field will be filled automatically, if a attribute ID is defined.', comment = 'deu="Gibt den Namen der Attribute an. Wird automatisch befüllt, sobald eine Attribute ID angegeben wird."';
                     ApplicationArea = All;
                 }
                 field("lbt Attribute Type";"lbt Attribute Type")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Specifies the type of attribute value.This field will be filled automatically, if a attribute ID is defined.', comment = 'deu="Gibt an, um welche Art von Attributwert es sich handelt.Wird automatisch befüllt, sobald eine Attribute ID angegeben wird."';
                     ApplicationArea = All;
                 }
                 field("lbt Attribute Value ID";"lbt Attribute Value ID")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Specifies the item attribute value.', comment = 'deu="Gibt den Artikelattributwert an."';
                     ApplicationArea = All;
                 }
                 field("lbt Attribute Value Name";"lbt Attribute Value Name")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Indicates which attribute is involved. This field will be filled automatically, if a attribute Value ID is defined.', comment = 'deu="Gibt an, um welches Attribut es sich handelt. Wird automatisch befüllt, sobald ein Attributwert angegeben wird."';
                     ApplicationArea = All;
                 }
 
