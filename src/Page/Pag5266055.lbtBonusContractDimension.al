@@ -14,10 +14,12 @@ page 5266055 "lbt Bonus Contract Dimension"
                 Caption = 'General', comment = 'DEU="Allgemein"';
                 field("lbt Dimension Code"; "lbt Dimension Code")
                 {
+                    ToolTip = 'You can define default dimensions for the provision for each contract.', comment = 'deu=" Je Vertrag können Vorgabedimensionen für die Rückstellung hinterlegt werden. "';
                     ApplicationArea = All;
                 }
                 field("lbt Dimension Value"; "lbt Dimension Value")
                 {
+                    ToolTip = 'Here you can define the departments or the Value of the dimensions.', comment = 'deu="Hier können Sie den Wert der Dimension oder Abteilung angeben."';
                     ApplicationArea = All;
                 }
             }

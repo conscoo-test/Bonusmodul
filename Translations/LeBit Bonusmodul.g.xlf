@@ -73,15 +73,55 @@
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Reserve - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 3550707387 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Reserve Mode - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 2945659599 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Gen.Jnl.Templ.BonusReserve - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 4000424133 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Gen. Jnl. Bonus Reserve - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 4212695510 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Bus.Post.Gr.f.Res.Cr.Memo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 1406778967 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Cust Gr. Reserve Cr. Memo - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 3506169441 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Revers Reserve</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsauflösungen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Revers Reserve - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 1693671200 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Revers Reserve Mode - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 1297455922 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt GenJnlBonusReversReserve - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Action 289521175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusverträge"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Action lbt Bonus Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Action 289521175 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Action lbt Bonus Contract - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 289521175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contracts</source>
@@ -303,6 +343,26 @@
           <note from="Developer" annotates="general" priority="2">DEU="Allgemein"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Line - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1074296949 - Control 2613224433 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Line - Control lbt Bonus Scale Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1074296949 - Control 3877098036 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Line - Control lbt Item Unit of Measure - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1074296949 - Control 486538153 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Line - Control lbt From Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1074296949 - Control 2346806179 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Line - Control lbt Value - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Table 2314107346 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Dimensions</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusvetrag Dimensionen"</note>
@@ -523,6 +583,131 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 3788373115 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 3330090636 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Contract - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1074296949 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Bonus Contract Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 2794648530 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Entry Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1021462666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Customer - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 3704521813 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Ship-to Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 961395534 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Entry Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 190812387 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Sales Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 3240539365 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Base Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 362995578 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Calculated Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1913409604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt calc. Amount incl. VAT - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 3338811521 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Posted Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 486685909 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Discount Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 2552448240 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Pmt. Discount Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 3502416501 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt From Document Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1645760992 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt From Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 4223297743 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt From Document Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1474055660 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Bonus Document Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 4144627809 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Bonus Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 367698474 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Bonus Document Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1065575970 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Assignment Document Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 1719222891 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Assignment Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 616705690 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Assignment Doc. Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 2656678182 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt General Ledger Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4171831453 - Control 2906247156 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Invoice Customer No. - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Table 1133050340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Group</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusgruppe"</note>
@@ -542,6 +727,16 @@
           <source>Bonus Group</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusgruppe"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1133050340 - Control 404633921 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Group - Control lbt Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1133050340 - Control 1006832544 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Group - Control lbt Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 4263244020 - Field 3330090636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contract</source>
@@ -573,70 +768,170 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Debitoren"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4263244020 - Control 1021462666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Control lbt Customer - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4263244020 - Control 3704521813 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Control lbt Ship-to Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4263244020 - Control 1606486851 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Control lbt Customer Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4263244020 - Control 1408342075 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Control lbt Ship-to Name - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusverträge"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Control 3330090636 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Control lbt Contract - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Control 464803318 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Control lbt Valid from - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Control 2863414281 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Control lbt Valid to - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Control 3202832968 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Control lbt Billing Period - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 3181742087 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>lbt Create Reserves</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen erzeugen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Create Reserves - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 134577121 - Action 3181742087 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Create Reserves - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Action 1346032943 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Exlode Reservation</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen auflösen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Exlode Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 1346032943 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Exlode Reservation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 1650538642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Run</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonuslauf"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Run - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 134577121 - Action 1650538642 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Run - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Action 351001030 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reservation</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 351001030 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Reservation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 3548332814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Cr. Memo</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusgutschriften"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Cr. Memo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 134577121 - Action 3548332814 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Cr. Memo - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Action 1021462666 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer</source>
           <note from="Developer" annotates="general" priority="2">DEU="Debitoren"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 1021462666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Customer - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 2685906550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Dimension</source>
           <note from="Developer" annotates="general" priority="2">DEU="Dimensionen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Dimension - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 134577121 - Action 2685906550 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Dimension - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Action 2228158291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Attribute Filter</source>
           <note from="Developer" annotates="general" priority="2">DEU="Attribute Filter"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Contract Attribute - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 2228158291 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Contract Attribute - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Group</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusgruppe"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action Bonus Group - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 134577121 - Action 3293458110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action Bonus Group - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Action 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Entry</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 4171831453 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Entry - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 1413345143 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Navigate</source>
           <note from="Developer" annotates="general" priority="2">DEU="Navigate"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Navigate - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 134577121 - Action 1413345143 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Navigate - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 134577121 - Action 3313186052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Setup</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 134577121 - Action 3313186052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Setup - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Card</source>
@@ -648,75 +943,225 @@
           <note from="Developer" annotates="general" priority="2">DEU="Allgemein"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Control 3330090636 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Contract - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 1133050340 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Bonus Group - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 3202832968 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Billing Period - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 464803318 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Valid from - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2863414281 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Valid to - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 3341507308 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Contract Type - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Control 823174853 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Billing</source>
           <note from="Developer" annotates="general" priority="2">DEU="Abrechnung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control Billing - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 3202207888 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Bonus Billing Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2555643950 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Bonus Billing Unit - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2613224433 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Bonus Scale Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 1221855666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Last Billing at - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2456157104 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Bonus Recipient - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2061881416 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Accounting Item Charge - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Control 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control Reserve - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2190636595 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Reserve Value - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2111692774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Reserve Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 1650316408 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Reserve Unit - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 892314847 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt last Reserve at - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 3689486175 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Reserve Item Charge - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Control 633568778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discounts</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rabatte/Skonto"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control Discounts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2488107814 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Discount % - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 952096711 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Pmt. Discount % - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 3181742087 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>lbt Create Reserves</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen erzeugen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Create Reserves - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Action 3181742087 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Create Reserves - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Action 1346032943 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Exlode Reservation</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen auflösen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Exlode Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 1346032943 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Exlode Reservation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 1650538642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Run</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonuslauf"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Run - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Action 1650538642 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Run - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Action 351001030 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reservation</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 351001030 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Reservation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 3548332814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Cr. Memo</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusgutschriften"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Cr. Memo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Action 3548332814 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Cr. Memo - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Action 1021462666 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer</source>
           <note from="Developer" annotates="general" priority="2">DEU="Debitoren"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 1021462666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Customer - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 2685906550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Dimension</source>
           <note from="Developer" annotates="general" priority="2">DEU="Dimensionen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Dimension - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Action 2685906550 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Dimension - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Action 2228158291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Attribute Filter</source>
           <note from="Developer" annotates="general" priority="2">DEU="Attribute Filter"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Contract Attribute - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 2228158291 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Contract Attribute - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Group</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusgruppe"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action Bonus Group - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Action 3293458110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action Bonus Group - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Action 4171831453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Entry</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusposten"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Entry - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 617064915 - Action 4171831453 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Entry - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 617064915 - Action 1413345143 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Navigate</source>
           <note from="Developer" annotates="general" priority="2">DEU="Navigate"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Navigate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Action 1413345143 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Navigate - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3846533799 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Dimensions</source>
@@ -728,6 +1173,16 @@
           <note from="Developer" annotates="general" priority="2">DEU="Allgemein"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Dimension - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3846533799 - Control 2871933825 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Dimension - Control lbt Dimension Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3846533799 - Control 2447392355 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Dimension - Control lbt Dimension Value - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1013518033 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Attribute Filter</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusvertrag Attribute Filter"</note>
@@ -738,15 +1193,130 @@
           <note from="Developer" annotates="general" priority="2">DEU="Allgemein"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1013518033 - Control 3357097757 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Control lbt Attribute ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1013518033 - Control 4120347187 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Control lbt Attribute Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1013518033 - Control 1889953770 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Control lbt Attribute Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1013518033 - Control 2845636 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Control lbt Attribute Value ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1013518033 - Control 1613970398 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt BonusContrAttributeFilter - Control lbt Attribute Value Name - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 782511444 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Details</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusvertrag Details"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 782511444 - Control 2568811967 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt Last Reserve at - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 1221855666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt Last Billing at - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 935750012 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt No. of Customer - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 4261400508 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt No. of Attribute - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 1483638161 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt No. of Dimensions - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 1623751831 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt Balance of Reserve - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 69286126 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt Balance of Liquid Reserves - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 782511444 - Control 4153108196 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Factbox - Control lbt Balance of Bonus - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3767893007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Explode Reservation</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen auflösen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 244370474 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control lbt Posting Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 3852983238 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control G/L Account No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 3710982960 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Posting Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 2363328873 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Document Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 1891586249 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Bal. Account No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 636392376 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3767893007 - Control 2720485332 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Source Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Report 3116946016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Reserves</source>
@@ -763,10 +1333,20 @@
           <note from="Developer" annotates="general" priority="2">DEU="Datum von"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - Control DateFrom - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 3116946016 - Control 30259774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - Control DateFrom - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Report 3116946016 - Control 1537575777 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Date to</source>
           <note from="Developer" annotates="general" priority="2">DEU="Datum Bis"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - Control DateTo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3116946016 - Control 1537575777 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - Control DateTo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Report 3116946016 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please input the accounting period.</source>
@@ -787,6 +1367,11 @@
           <source>Contract   #2##############</source>
           <note from="Developer" annotates="general" priority="2">DEU="Vertrag    #2##############"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - NamedType Text005Msg</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2678323290 - Control 919233648 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EnglishText</source>
+          <note from="Developer" annotates="general" priority="2">deu="YourLanguageText"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbt Item Charges - Control lbt Bonus consider - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="TableExtension 2698428863 - Field 3479676134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonusposten</source>

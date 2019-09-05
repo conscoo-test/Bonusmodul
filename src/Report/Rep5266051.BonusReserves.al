@@ -921,11 +921,13 @@ report 5266051 "lbt Bonus Reserves"
                     field(DateFrom; DateFrom)
                     {
                         Caption = 'Date from', comment = 'DEU="Datum von"';
+                        ToolTip = 'In consideration of the sart date, all invoice and credit lines of the period are used, which are additionally checked for relevance of the corresponding contract conditions (calculation rules).', comment = 'deu="Unter Berücksichtigung des Sartdatums, werden alle Rechnungs-und Gutschriftszeilen des Zeitraums herangezogen, welche zusätzlich auf Relevanz der entsprechenden Vertragsbedingungen (Berechnungsregeln) geprüft werden. "';
                         ApplicationArea = All;
                     }
                     field(DateTo; DateTo)
                     {
                         Caption = 'Date to', comment = 'DEU="Datum Bis"';
+                        ToolTip = 'In Consideration of the end date, all invoice and credit memo lines of the period are used, which are also checked for relevance of the corresponding contract conditions (calculation rules).', comment = 'deu="Unter Berücksichtigung des Enddatums, werden alle Rechnungs-und Gutschriftszeilen des Zeitraums herangezogen, welche zusätzlich auf Relevanz der entsprechenden Vertragsbedingungen (Berechnungsregeln) geprüft werden."';
                         ApplicationArea = All;
                     }
 
