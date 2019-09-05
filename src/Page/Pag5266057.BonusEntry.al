@@ -34,7 +34,7 @@ page 5266057 "lbt Bonus Entry"
                 }
                 field("lbt Customer"; "lbt Customer")
                 {
-                    ToolTip = 'This field is filled with the customer from the bonus contract.', comment = 'deu="Dieses Feld wird mit dem Debitor aus dem Bonusvertrag gefüllt"';
+                    ToolTip = 'This field is filled with the customer from the bonus contract.', comment = 'deu="Dieses Feld wird mit dem Debitor aus dem Bonusvertrag gefüllt."';
                     ApplicationArea = All;
                 }
                 field("lbt Ship-to Code"; "lbt Ship-to Code")
@@ -75,70 +75,70 @@ page 5266057 "lbt Bonus Entry"
                 }
                 field("lbt Discount Amount"; "lbt Discount Amount")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'This field contains the calculated discount.', comment = 'deu="Dieses Feld beinhaltet den berechneten Rabatt."';
                     ApplicationArea = All;
                 }
                 field("lbt Pmt. Discount Amount"; "lbt Pmt. Discount Amount")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'This field contains the calculated cash discount.', comment = 'deu="Dieses Feld beinhaltet den berechneten Skonto."';
                     ApplicationArea = All;
                 }
                 field("lbt From Document Type"; "lbt From Document Type")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field.', comment = 'deu="Handelt es sich um ein Bonusposten mit der Postenart „Bonus“ wird in diesem Feld „Verkaufsgutschrift“ als Belegart hinterlegt."';
                     ApplicationArea = All;
                 }
 
                 field("lbt From Document No."; "lbt From Document No.")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'If it is a bonus item with the item type Bonus, the document number of the bonus credit memo is entered in this field.', comment = 'deu="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘wird in diesem Feld die Belegnr. der Bonusgutschrift erfasst."';
                     ApplicationArea = All;
                 }
                 field("lbt From Document Line"; "lbt From Document Line")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'You can use the Document line field to identify the credit line in which this bonus item is located in the bonus credit memo.', comment = 'deu="Mit Hilfe des Feldes Belegzeile kann identifiziert werden, in welcher Gutschriftzeile sich dieser Bonusposten in der Bonusgutschrift befindet."';
                     ApplicationArea = All;
                 }
 
                 field("lbt Bonus Document Type"; "lbt Bonus Document Type")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field. ', comment = 'deu="Handelt es sich um ein Bonusposten mit der Postenart „Bonus“ wird in diesem Feld „Verkaufsgutschrift“ als Bonus Dokumentenart hinterlegt. "';
                     ApplicationArea = All;
                 }
 
                 field("lbt Bonus Document No."; "lbt Bonus Document No.")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'If it is a bonus item with the item type Bonus, the bonus document number is entered in this field.', comment = 'deu="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘wird in diesem Feld die Bonusbelegnummer der Bonusgutschrift erfasst."';
                     ApplicationArea = All;
                 }
                 field("lbt Bonus Document Line"; "lbt Bonus Document Line")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'You can use the bonus document lines field to identify the credit line in which this bonus item is located in the bonus credit memo.', comment = 'deu="Mit Hilfe des Feldes Bonus Dokumentenzeile kann identifiziert werden, in welcher Gutschriftzeile sich dieser Bonusposten in der Bonusgutschrift befindet."';
                     ApplicationArea = All;
                 }
                 field("lbt Assignment Document Type";"lbt Assignment Document Type")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'The assignment document type is stored in this field.', comment = 'deu="In diesem Feld wird die Zuordnungsbelegart hinterlegt."';
                     ApplicationArea = All;
                 }
                 field("lbt Assignment Document No.";"lbt Assignment Document No.")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'If the bonus item has the item type Bonus, the assignment document number of the bonus credit memo is entered in this field.', comment = 'deu="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘ wird in diesem Feld die Zuordnungsbelegnummer der Bonusgutschrift erfasst."';
                     ApplicationArea = All;
                 }
                 field("lbt Assignment Doc. Line No.";"lbt Assignment Doc. Line No.")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'You can use the Assignment document line number field to identify in which credit memo line this rebate item is located in the rebate credit memo.', comment = 'deu="Mit Hilfe des Feldes Zuordnungsbelegzeilennummer kann identifiziert werden, in welcher Gutschriftzeile sich dieser Bonusposten in der Bonusgutschrift befindet."';
                     ApplicationArea = All;
                 }
                 field("lbt General Ledger Entry No.";"lbt General Ledger Entry No.")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'Used to identify posted G/L items as bonus or reserve. ', comment = 'deu=" Dient zur Identifizierung der gebuchten Sachposten als Bonus bzw.Rückstellung."';
                     ApplicationArea = All;
                 }
                 field("lbt Invoice Customer No.";"lbt Invoice Customer No.")
                 {
-                    ToolTip = 'EnglishText', comment = 'deu="YourLanguageText"';
+                    ToolTip = 'This field is filled with the invoice recipient of the bonus agreement.  An alternative customer can also be defined as the bill-to party.', comment = 'deu="Dieses Feld wird mit dem Rechnungsempfänger der Bonusvereinbarung gefüllt.  Als Rechnungsempfänger kann auch ein abweichender Debitor hinterlegt werden."';
                     ApplicationArea = All;
                 }
 
