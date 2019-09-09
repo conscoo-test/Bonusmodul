@@ -19,7 +19,7 @@ page 5266051 "lbt Bonus Setup"
                     Caption = 'Reserve', comment = 'DEU="Rückstellungen"';
                     field("lbt Reserve Mode"; "lbt Reserve Mode")
                     {
-                        ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'deu="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll. "';
+                        ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll. "';
                         ApplicationArea = All;
                         trigger OnValidate()
 
@@ -29,25 +29,25 @@ page 5266051 "lbt Bonus Setup"
                     }
                     field("lbt Gen.Jnl.Templ.BonusReserve"; "lbt Gen.Jnl.Templ.BonusReserve")
                     {
-                        ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'deu="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen. "';
+                        ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen. "';
                         ApplicationArea = All;
                         Enabled = GenJnlTemplBonusReserve_Enabled;
                     }
                     field("lbt Gen. Jnl. Bonus Reserve"; "lbt Gen. Jnl. Bonus Reserve")
                     {
-                        ToolTip = 'Here you can choose a book sheet template name. ', comment = 'deu="Hier können Sie Buch.- Blattvorlagennamen auswählen."';
+                        ToolTip = 'Here you can choose a book sheet template name. ', comment = 'DEU="Hier können Sie Buch.- Blattvorlagennamen auswählen."';
                         ApplicationArea = All;
                         Enabled = GenJnlBonusReserve_Enabled;
                     }
                     field("lbt Bus.Post.Gr.f.Res.Cr.Memo";"lbt Bus.Post.Gr.f.Res.Cr.Memo")
                     {
-                        ToolTip = 'Here you can choose a business booking group for the reserve credit.', comment = 'deu="Hier wählen Sie eine Geschäftsbuchungsgruppe für die Rückstell- Gutschrift aus."';
+                        ToolTip = 'Here you can choose a business booking group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Geschäftsbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
                         Enabled = BusPostGrResCrMemo_Enabled;
                     }
                     field("lbt Cust Gr. Reserve Cr. Memo";"lbt Cust Gr. Reserve Cr. Memo")
                     {
-                        ToolTip = 'Here you can choose a customer posting group for the reserve credit.', comment = 'deu="Hier wählen Sie eine Debitorbuchungsgruppe für die Rückstell- Gutschrift aus."';
+                        ToolTip = 'Here you can choose a customer posting group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Debitorbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
                         Enabled = CustGrReserveCrMemo_Enabled;
                     }
@@ -61,14 +61,14 @@ page 5266051 "lbt Bonus Setup"
                     Caption = 'Revers Reserve', comment = 'DEU="Rückstellungsauflösungen"';
                     field("lbt Revers Reserve Mode"; "lbt Revers Reserve Mode")
                     {
-                        ToolTip = 'Here you specify whether reserves are to be reversed manually or automatically. If you have selected the automatic reversal mode, there is no need to post an extra book page.', comment = 'deu="Hier geben Sie an, ob Rückstellungen manuell oder automatisch aufgelöst werden sollen. Ist für den Auflösungsmodus ‚automatisch‘ gewählt muss kein extra Buchblatt verbucht werden. "';
+                        ToolTip = 'Here you specify whether reserves are to be reversed manually or automatically. If you have selected the automatic reversal mode, there is no need to post an extra book page.', comment = 'DEU="Hier geben Sie an, ob Rückstellungen manuell oder automatisch aufgelöst werden sollen. Ist für den Auflösungsmodus ‚automatisch‘ gewählt muss kein extra Buchblatt verbucht werden. "';
                         ApplicationArea = All;
                         Enabled = ReversReserve_Enabled;
 
                     }
                     field("lbt GenJnlBonusReversReserve";"lbt GenJnlBonusReversReserve")
                     {
-                        ToolTip = 'Here you select the book page for reversing the posted bonus reserves.', comment = 'deu="Hier wählen Sie das Buchblatt zur Auflösung der verbuchten Bonusrückstellungen."';
+                        ToolTip = 'Here you select the book page for reversing the posted bonus reserves.', comment = 'DEU="Hier wählen Sie das Buchblatt zur Auflösung der verbuchten Bonusrückstellungen."';
                         ApplicationArea = All;
                         Enabled = GenJnlBonusReversReserve_Enabled;
                     }
@@ -87,7 +87,7 @@ page 5266051 "lbt Bonus Setup"
             action("lbt Bonus Contract")
             {
                 Caption = 'Bonus Contract', comment = 'DEU="Bonusverträge"';
-                ToolTip = 'Here you can open the bonus contract list.', comment = 'deu="Hier öffnen Sie die Liste der Bonusverträge."';
+                ToolTip = 'Here you can open the bonus contract list.', comment = 'DEU="Hier öffnen Sie die Liste der Bonusverträge."';
                 ApplicationArea = All;
                 Image = ContractPayment;
                 RunObject = page "lbt Bonus Contract List";

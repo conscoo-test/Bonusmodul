@@ -13,12 +13,12 @@ page 5266058 "lbt Bonus Group"
             {
                 field("lbt Code";"lbt Code")
                 {
-                    ToolTip = 'Here you can group bonus contracts by code.', comment = 'deu="Hier können Sie Bonusverträge nach Codes gruppieren."';
+                    ToolTip = 'Here you can group bonus contracts by code.', comment = 'DEU="Hier können Sie Bonusverträge nach Codes gruppieren."';
                     ApplicationArea = All;
                 }
                 field("lbt Description";"lbt Description")
                 {
-                    ToolTip = 'Here you can enter a description of the group.', comment = 'deu="Hier können Sie eine Beschreibung der Gruppe hinterlegen."';
+                    ToolTip = 'Here you can enter a description of the group.', comment = 'DEU="Hier können Sie eine Beschreibung der Gruppe hinterlegen."';
                     ApplicationArea = All;
                 }
             }
