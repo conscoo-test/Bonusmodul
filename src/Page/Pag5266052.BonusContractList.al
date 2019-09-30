@@ -20,6 +20,11 @@ page 5266052 "lbt Bonus Contract List"
                     DrillDownPageId = "lbt Bonus Contract Card";
 
                 }
+                field("Process No."; "Process No.")
+                {
+                    //TODO: Tooltip
+                    ApplicationArea = All;
+                }
                 field("lbt Valid from"; "lbt Valid from")
                 {
                     ToolTip = 'Specifies from when the bonus contract is valid.', comment = 'DEU="Gibt an, ab wann der Bonusvertrag gültig ist."';
@@ -37,6 +42,7 @@ page 5266052 "lbt Bonus Contract List"
                     ToolTip = 'Specifies the interval in which billing takes place.', comment = 'DEU="Gibt an in welchem Intervall abgerechnet wird."';
                     ApplicationArea = All;
                 }
+
             }
         }
         area(Factboxes)
@@ -232,7 +238,7 @@ page 5266052 "lbt Bonus Contract List"
         BonusContractRec: Record "lbt Bonus Contract";
         BonusReserveRep: Report "lbt Bonus Reserves";
         Navigate: Page Navigate;
-        
+
 
 
 }
