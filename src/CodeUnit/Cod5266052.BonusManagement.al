@@ -1,7 +1,7 @@
 codeunit 5266052 "lbt Bonus Mgt."
 {
     trigger OnRun()
-    VAR
+    var
         Rec: Record "G/L Entry";
     begin
         UpdateFromGenLedgEntry(Rec);
@@ -30,15 +30,15 @@ codeunit 5266052 "lbt Bonus Mgt."
         BonusDocLineNo := BonusDocLineNoP;
     end;
 
-    procedure GenLedgEntryToBilling(VAR GenLedgEntryRec: Record "G/L Entry"; BillingCode: Code[10]; BillingEntryNo: Integer)
+    procedure GenLedgEntryToBilling(var GenLedgEntryRec: Record "G/L Entry"; BillingCode: Code[10]; BillingEntryNo: Integer)
     begin
-        //TODO Prüfen ob "Billing Code" noch benötigt wird
+        //TODO: Prüfen ob "Billing Code" noch benötigt wird
     end;
 
-    procedure CreateBonusContractEntry(VAR ContractRec: Record "lbt Bonus Contract";
-                                        VAR BonusCustRec: Record "lbt Bonus Customers";
+    procedure CreateBonusContractEntry(var ContractRec: Record "lbt Bonus Contract";
+                                        var BonusCustRec: Record "lbt Bonus Customers";
                                         EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
-                                        VAR EntryDate: Date;
+                                        var EntryDate: Date;
                                         BonusRule: Integer;
                                         Qty: Decimal;
                                         Amt: Decimal;
@@ -52,19 +52,18 @@ codeunit 5266052 "lbt Bonus Mgt."
         EntryNo: Integer;
     begin
 
-        IF BonusContractEntryRec.FINDLAST() THEN
+        if BonusContractEntryRec.FindLast() then
             EntryNo := BonusContractEntryRec."lbt Entry No."
-        ELSE
+        else
             EntryNo := 0;
         CLEAR(BonusContractEntryRec);
-        BonusContractEntryRec.INIT();
+        BonusContractEntryRec.Init();
         BonusContractEntryRec."lbt Entry No." := EntryNo + 1;
         BonusContractEntryRec."lbt Entry Type" := EntryType;
         BonusContractEntryRec."lbt Contract" := ContractRec."lbt Contract";
         BonusContractEntryRec."lbt Customer" := BonusCustRec."lbt Customer";
         BonusContractEntryRec."lbt Ship-to Code" := BonusCustRec."lbt Ship-to Code";
-        //TODO "Process No." 
-        //BonusContractEntryRec."Process No." := ContractRec."Process No.";
+        BonusContractEntryRec."Process No." := ContractRec."Process No.";
         BonusContractEntryRec."lbt Invoice Customer No." := ContractRec."lbt Bonus Recipient";
         BonusContractEntryRec."lbt Entry Date" := EntryDate;
         BonusContractEntryRec."lbt Bonus Contract Line" := BonusRule;
@@ -83,41 +82,41 @@ codeunit 5266052 "lbt Bonus Mgt."
         BonusContractEntryRec."lbt Assignment Doc. Line No." := AssignmentDocLineNo;
         BonusContractEntryRec."lbt Pmt. Discount Amount" := PmtDiscAmt;
         BonusContractEntryRec."lbt Discount Amount" := DiscAmt;
-        BonusContractEntryRec.INSERT();
+        BonusContractEntryRec.Insert();
 
-        EXIT(BonusContractEntryRec."lbt Entry No.");
+        exit(BonusContractEntryRec."lbt Entry No.");
     end;
 
-    procedure UpdateFromGenLedgEntry(VAR GenLedgEntryRec: Record "G/L Entry")
+    procedure UpdateFromGenLedgEntry(var GenLedgEntryRec: Record "G/L Entry")
     begin
-        IF BonusEntryRec.GET(GenLedgEntryRec."lbt Bonus Entry No") AND (BonusEntryRec."lbt General Ledger Entry No." = 0) THEN BEGIN
+        if BonusEntryRec.Get(GenLedgEntryRec."lbt Bonus Entry No") AND (BonusEntryRec."lbt General Ledger Entry No." = 0) then begin
             BonusEntryRec."lbt General Ledger Entry No." := GenLedgEntryRec."Entry No.";
-            IF BonusEntryRec."lbt Posted Amount" = 0 THEN
-                IF BonusEntryRec."lbt Entry Type" <> BonusEntryRec."lbt Entry Type"::"Liquidation of Reserves" THEN   ///Betrag wird in BonusRückstellauflösung gefüllt
+            if BonusEntryRec."lbt Posted Amount" = 0 then
+                if BonusEntryRec."lbt Entry Type" <> BonusEntryRec."lbt Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
                     BonusEntryRec."lbt Posted Amount" := GenLedgEntryRec.Amount
-                ELSE BEGIN
-                    BonusSetupRec.GET();
-                    IF BonusSetupRec."lbt Reserve Mode" <> BonusSetupRec."lbt Reserve Mode"::Journal THEN
+                else begin
+                    BonusSetupRec.Get();
+                    if BonusSetupRec."lbt Reserve Mode" <> BonusSetupRec."lbt Reserve Mode"::Journal then
                         BonusEntryRec."lbt Posted Amount" := GenLedgEntryRec.Amount;
-                END;
+                end;
             BonusEntryRec."lbt Entry Date" := GenLedgEntryRec."Posting Date";
-            BonusEntryRec.MODIFY();
-        END;
-    End;
+            BonusEntryRec.Modify();
+        end;
+    end;
 
-    local procedure UpdateFromSalesLine(VAR SalesLineRec: Record "Sales Line")
+    local procedure UpdateFromSalesLine(var SalesLineRec: Record "Sales Line")
     begin
-        IF BonusEntryRec.GET(SalesLineRec."lbt Bonus Entry No.") THEN BEGIN
+        if BonusEntryRec.GET(SalesLineRec."lbt Bonus Entry No.") then begin
 
             CASE SalesLineRec."Document Type" OF
                 SalesLineRec."Document Type"::Invoice:
                     BonusEntryRec."lbt Posted Amount" := -SalesLineRec."Line Amount";
                 SalesLineRec."Document Type"::"Credit Memo":
                     BonusEntryRec."lbt Posted Amount" := SalesLineRec."Line Amount";
-            END;
+            end;
 
-            BonusEntryRec.MODIFY();
-        END;
+            BonusEntryRec.Modify();
+        end;
     end;
 
     var

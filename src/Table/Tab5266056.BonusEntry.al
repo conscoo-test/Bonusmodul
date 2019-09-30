@@ -141,8 +141,8 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Assignment Document Type', Comment = 'DEU="Zuweisungsbelegart"';
             DataClassification = CustomerContent;
-            OptionMembers=  ,"Sales Shipment","Sales Return Receipt";
-            OptionCaption=' ,Sales Shipment,Sales Return Receipt', Comment = 'DEU=" ,Verkaufslieferung,Verkaufsrücksendung"';
+            OptionMembers = ,"Sales Shipment","Sales Return Receipt";
+            OptionCaption = ' ,Sales Shipment,Sales Return Receipt', Comment = 'DEU=" ,Verkaufslieferung,Verkaufsrücksendung"';
         }
         field(24; "lbt Assignment Document No."; Code[20])
         {
@@ -154,22 +154,12 @@ table 5266056 "lbt Bonus Entry"
             Caption = 'Assignment Doc. Line No.', Comment = 'DEU="Zuweisungsbelegzeilennr."';
             DataClassification = CustomerContent;
         }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        field(26; "Process No."; Code[50])
+        {
+            Caption = 'Process No.', comment = 'DEU="Prozessnr."';
+            DataClassification = ToBeClassified;
+            TableRelation = "LBT Process";
+        }
 
     }
 

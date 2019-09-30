@@ -44,11 +44,9 @@ table 5266053 "lbt Bonus Contract Line"
             Caption = 'Bonus Scale Type', comment = 'DEU="Bonusstaffelart"';
             OptionMembers = "Sales Qty.","Sales (LCY)'";
             OptionCaption = 'Sales Qty.,Sales (LCY)', comment = 'DEU="Absatz,Umsatz"';
-            
+
             DataClassification = CustomerContent;
         }
-
-
     }
 
     keys
@@ -64,7 +62,7 @@ table 5266053 "lbt Bonus Contract Line"
     var
         BonusContractRec: Record "lbt Bonus Contract";
     begin
-        IF BonusContractRec.Get("lbt Contract") THEN
+        if BonusContractRec.Get("lbt Contract") then
             "lbt Bonus Scale Type" := BonusContractRec."lbt Bonus Scale Type";
     end;
 

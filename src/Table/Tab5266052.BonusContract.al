@@ -11,7 +11,7 @@ table 5266052 "lbt Bonus Contract"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            NotBlank= true;
+            NotBlank = true;
         }
 
         field(2; "lbt Valid from"; Date)
@@ -119,7 +119,6 @@ table 5266052 "lbt Bonus Contract"
                 IF "lbt Bonus Scale Type" <> xRec."lbt Bonus Scale Type" THEN
                     BonusContractEntryRec.SETRANGE("lbt Contract", "lbt Contract");
                 IF NOT BonusContractEntryRec.ISEMPTY() THEN
-                    
                     ERROR(Text005Msg);
                 BonusContractLineRec.SETRANGE("lbt Contract", "lbt Contract");
 
@@ -227,6 +226,13 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Discount %', comment = 'DEU="Rabatt %"';
             DataClassification = CustomerContent;
         }
+        field(26; "Process No."; Code[50])
+        {
+            Caption = 'Process No.', comment = 'DEU="Prozessnr."';
+            DataClassification = ToBeClassified;
+            TableRelation = "LBT Process";
+        }
+
     }
     keys
     {
