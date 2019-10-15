@@ -1,4 +1,4 @@
-codeunit 5266052 "lbt Bonus Mgt."
+codeunit 5266052 "lbt Bonus Management"
 {
     trigger OnRun()
     var
@@ -117,6 +117,16 @@ codeunit 5266052 "lbt Bonus Mgt."
 
             BonusEntryRec.Modify();
         end;
+    end;
+
+    [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
+    local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
+    var
+        BonusContract: Record "lbt Bonus Contract";
+        Navigate: Page Navigate;
+    begin
+        BonusContract.SetRange("Process No.", ProcessNo);
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbt Bonus Contract", 0, BonusContract.TableCaption(), BonusContract.Count);
     end;
 
     var

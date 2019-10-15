@@ -8,7 +8,7 @@ report 5266051 "lbt Bonus Reserves"
     {
         dataitem("lbt Bonus Contract"; "lbt Bonus Contract")
         {
-            DataItemTableView = sorting ("lbt contract");
+            DataItemTableView = sorting("lbt contract");
             RequestFilterFields = "lbt Contract", "lbt Billing Period";
 
 
@@ -16,13 +16,13 @@ report 5266051 "lbt Bonus Reserves"
             dataitem("lbt Bonus Customers"; "lbt Bonus Customers")
             {
 
-                DataItemTableView = sorting ("lbt Contract", "lbt Customer", "lbt Ship-to Code");
-                DataItemLink = "lbt Contract" = field ("lbt Contract");
+                DataItemTableView = sorting("lbt Contract", "lbt Customer", "lbt Ship-to Code");
+                DataItemLink = "lbt Contract" = field("lbt Contract");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
-                    DataItemTableView = sorting ("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field ("lbt Customer");
+                    DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
+                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
 
                     trigger OnPreDataItem()
                     begin
@@ -389,8 +389,8 @@ report 5266051 "lbt Bonus Reserves"
                 }
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
-                    DataItemTableView = sorting ("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field ("lbt Customer");
+                    DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
+                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
 
                     trigger OnPreDataItem()
                     begin
@@ -745,7 +745,7 @@ report 5266051 "lbt Bonus Reserves"
                 }
                 dataitem(Integer; Integer)
                 {
-                    DataItemTableView = sorting (Number) Where (Number = const (1));
+                    DataItemTableView = sorting(Number) Where(Number = const(1));
 
                     trigger OnPreDataItem()
                     begin
@@ -1044,7 +1044,7 @@ report 5266051 "lbt Bonus Reserves"
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
 
 
-        BonusMgt: Codeunit "lbt Bonus Mgt.";
+        BonusMgt: Codeunit "lbt Bonus Management";
         AssignItemChargeSales: Codeunit "Item Charge Assgnt. (Sales)";
 
 
