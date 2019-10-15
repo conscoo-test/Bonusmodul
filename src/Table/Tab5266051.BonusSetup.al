@@ -42,7 +42,7 @@ table 5266051 "lbt Bonus Setup"
         {
             Caption = ' Gen. Jnl. Bonus Revers Reserve', Comment = 'DEU="Buchblatt Bonusrückstellungsauflösung"';
             DataClassification = CustomerContent;
-            TableRelation = "Gen. Journal Batch".Name WHERE ("Journal Template Name" = FIELD ("lbt Gen.Jnl.Templ.BonusReserve"));
+            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = FIELD("lbt Gen.Jnl.Templ.BonusReserve"));
         }
         field(7; "lbt Cust Gr. Reserve Cr. Memo"; Code[20])
         {
@@ -52,11 +52,18 @@ table 5266051 "lbt Bonus Setup"
         }
 
         field(8; "lbt Bus.Post.Gr.f.Res.Cr.Memo"; Code[20])
-    {
-        Caption = 'Bus. Post. Group for Reserve Credit Memo', comment = 'DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"';
+        {
+            Caption = 'Bus. Post. Group for Reserve Credit Memo', comment = 'DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"';
             DataClassification = CustomerContent;
-            TableRelation= "Gen. Business Posting Group".Code;
+            TableRelation = "Gen. Business Posting Group".Code;
         }
+
+        field(9; "Bonus Nos."; Code[50])
+        {
+            Caption = 'Bonus Nos.', comment = 'DEU="Bonusnummern"';
+            DataClassification = CustomerContent;
+        }
+
 
     }
 
