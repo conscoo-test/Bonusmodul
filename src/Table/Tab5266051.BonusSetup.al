@@ -19,7 +19,7 @@ table 5266051 "lbt Bonus Setup"
         }
         field(3; "lbt Gen.Jnl.Templ.BonusReserve"; Code[20])
         {
-            Caption = 'Gen. Jnl. Templ. Bonus Reserve', comment = 'DEU="BuchblVorl. Bonusrückstellung';
+            Caption = 'Gen. Jnl. Templ. Bonus Reserve', comment = 'DEU="BuchblVorl. Bonusrückstellung"';
             DataClassification = CustomerContent;
             TableRelation = "Gen. Journal Template";
 
@@ -62,6 +62,7 @@ table 5266051 "lbt Bonus Setup"
         {
             Caption = 'Bonus Nos.', comment = 'DEU="Bonusnummern"';
             DataClassification = CustomerContent;
+            TableRelation = "No. Series";
         }
 
 

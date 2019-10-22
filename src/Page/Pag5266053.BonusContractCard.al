@@ -17,6 +17,12 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ToolTip = 'This field is filled with the contract number of the bonus agreement.', comment = 'DEU="Dieses Feld wird mit der Vertragsnummer der Bonusvereinbarung gefüllt"';
                     ApplicationArea = All;
+
+                    trigger OnAssistEdit()
+                    begin
+                        if AssistEdit(xRec) then
+                            CurrPage.Update();
+                    end;
                 }
                 field(Description; Description)
                 {

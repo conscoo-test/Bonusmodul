@@ -11,7 +11,6 @@ table 5266052 "lbt Bonus Contract"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            NotBlank = true;
         }
 
         field(2; "lbt Valid from"; Date)
@@ -238,6 +237,13 @@ table 5266052 "lbt Bonus Contract"
             DataClassification = CustomerContent;
         }
 
+        field(28; "No. Series"; Code[50])
+        {
+            Caption = 'No. Series', comment = 'DEU="Nummernserie"';
+            DataClassification = CustomerContent;
+        }
+
+
 
     }
     keys
@@ -252,18 +258,12 @@ table 5266052 "lbt Bonus Contract"
     var
         NoSeriesManagement: Codeunit NoSeriesManagement;
         BonusSetup: Record "lbt Bonus Setup";
-        Process: Record "lbt Process";
     begin
         if "lbt Contract" = '' then begin
             BonusSetup.Get();
             BonusSetup.TestField("Bonus Nos.");
-            NoSeriesManagement.InitSeries(BonusSetup."Bonus Nos.", '', 0D, "lbt Contract", BonusSetup."Bonus Nos.");
-            "Process No." := "lbt Contract";
-            if not Process.get("Process No.") then begin
-                Process.Init();
-                Process."No." := "Process No.";
-                Process.Insert(true);
-            end;
+            NoSeriesManagement.InitSeries(BonusSetup."Bonus Nos.", xRec."No. Series", 0D, "lbt Contract", "No. Series");
+            SetProcessNo();
         end;
     end;
 
@@ -288,6 +288,38 @@ table 5266052 "lbt Bonus Contract"
         END;
     end;
 
+    local procedure SetProcessNo()
+    var
+        Process: Record "lbt Process";
+    begin
+        "Process No." := "lbt Contract";
+        if not Process.get("Process No.") then begin
+            Process.Init();
+            Process."No." := "Process No.";
+            Process.Insert(true);
+        end;
+    end;
+
+    procedure AssistEdit(OldBonusContract: Record "lbt Bonus Contract"): Boolean
+    var
+        BonusContract: Record "lbt Bonus Contract";
+        BonusSetup: Record "lbt Bonus Setup";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+    begin
+        with BonusContract do begin
+            BonusContract := Rec;
+            BonusSetup.Get();
+            BonusSetup.TestField("Bonus Nos.");
+            if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Nos.", OldBonusContract."No. Series", "No. Series") then begin
+                NoSeriesManagement.SetSeries("lbt Contract");
+                Rec := BonusContract;
+                SetProcessNo();
+                exit(true);
+            end;
+        end;
+
+    end;
+
     var
         BonusContractEntryRec: Record "lbt Bonus Entry";
         BonusContractLineRec: Record "lbt Bonus Contract Line";
@@ -296,14 +328,14 @@ table 5266052 "lbt Bonus Contract"
         BonusCustRec: Record "lbt Bonus Customers";
         SalesHeaderRec: Record "Sales Header";
         Text001Msg: Label 'You can not reset the date, while there are unposted bonus credit memos.',
-        Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt';
+        Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"';
 
         Text002Msg: Label 'For contract %1 bonus contract entries exists. The contract can not be deleted.',
-        Comment = 'DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden.';
+        Comment = 'DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden."';
         Text004Msg: Label 'You must delete Bonus Contract Lines before you modify the contract',
-        Comment = 'DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern.';
+        Comment = 'DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern."';
 
         Text005Msg: Label 'There are already Bonus Contract Entries. You cannot modify the contract.',
-        Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden.';
+        Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden."';
 
 }

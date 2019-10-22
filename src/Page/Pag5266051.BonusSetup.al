@@ -22,7 +22,7 @@ page 5266051 "lbt Bonus Setup"
                     Caption = 'Reserve', comment = 'DEU="Rückstellungen"';
                     field("lbt Reserve Mode"; "lbt Reserve Mode")
                     {
-                        ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll. "';
+                        ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll."';
                         ApplicationArea = All;
                         trigger OnValidate()
 
@@ -32,7 +32,7 @@ page 5266051 "lbt Bonus Setup"
                     }
                     field("lbt Gen.Jnl.Templ.BonusReserve"; "lbt Gen.Jnl.Templ.BonusReserve")
                     {
-                        ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen. "';
+                        ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen."';
                         ApplicationArea = All;
                         Enabled = GenJnlTemplBonusReserve_Enabled;
                     }

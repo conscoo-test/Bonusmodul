@@ -58,6 +58,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Bus.Post.Gr.f.Res.Cr.Memo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 1196001075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Nos.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusnummern"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Bonus Nos. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Setup</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
@@ -277,6 +282,16 @@
           <source>Process No.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Prozessnr."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field Process No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Beschreibung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 289521175 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Series</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Nummernserie"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field No. Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 289521175 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
           <source>You can not reset the date, while there are unposted bonus credit memos.</source>
