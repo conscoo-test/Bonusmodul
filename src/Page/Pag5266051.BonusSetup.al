@@ -15,6 +15,7 @@ page 5266051 "lbt Bonus Setup"
                 Caption = 'General', comment = 'DEU="Allgmein"';
                 field("Bonus Nos."; "Bonus Nos.")
                 {
+                    ToolTip = 'Here you select the number series for bonus contracts', comment = 'DEU="Hier wählt man die Nummernserie für Bonusverträge aus."';
                     ApplicationArea = All;
                 }
                 group("lbt Reserve")
