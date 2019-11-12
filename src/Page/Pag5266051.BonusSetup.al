@@ -13,10 +13,14 @@ page 5266051 "lbt Bonus Setup"
             group("lbt General")
             {
                 Caption = 'General', comment = 'DEU="Allgmein"';
-                field("Bonus Nos."; "Bonus Nos.")
+                group("lbt Number Series")
                 {
-                    ToolTip = 'Here you select the number series for bonus contracts.', comment = 'DEU="Hier wählt man die Nummernserie für Bonusverträge aus."';
-                    ApplicationArea = All;
+                    Caption = 'Number Series', comment = 'DEU="Nummernserie"';
+                    field("Bonus Nos."; "Bonus Nos.")
+                    {
+                        ToolTip = 'Here you select the number series for bonus contracts.', comment = 'DEU="Hier wählt man die Nummernserie für Bonusverträge aus."';
+                        ApplicationArea = All;
+                    }
                 }
                 group("lbt Reserve")
                 {
