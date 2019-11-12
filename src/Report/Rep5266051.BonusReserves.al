@@ -8,7 +8,7 @@ report 5266051 "lbt Bonus Reserves"
     {
         dataitem("lbt Bonus Contract"; "lbt Bonus Contract")
         {
-            DataItemTableView = sorting ("lbt contract");
+            DataItemTableView = sorting("lbt contract");
             RequestFilterFields = "lbt Contract", "lbt Billing Period";
 
 
@@ -16,13 +16,13 @@ report 5266051 "lbt Bonus Reserves"
             dataitem("lbt Bonus Customers"; "lbt Bonus Customers")
             {
 
-                DataItemTableView = sorting ("lbt Contract", "lbt Customer", "lbt Ship-to Code");
-                DataItemLink = "lbt Contract" = field ("lbt Contract");
+                DataItemTableView = sorting("lbt Contract", "lbt Customer", "lbt Ship-to Code");
+                DataItemLink = "lbt Contract" = field("lbt Contract");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
-                    DataItemTableView = sorting ("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field ("lbt Customer");
+                    DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
+                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
 
                     trigger OnPreDataItem()
                     begin
@@ -47,279 +47,135 @@ report 5266051 "lbt Bonus Reserves"
                         DiscAmt := 0;
                         CALCFIELDS(Amount);
                         CASE "lbt Bonus Contract"."lbt Reserve Type" OF
-                            "lbt Bonus Contract"."lbt Reserve Type"::"%":                               
+                            "lbt Bonus Contract"."lbt Reserve Type"::"%":
                                 BEGIN
-                                //TODO Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
-                                /*    
-                                    BonusAmt := 0;
-                                    PostedSalesInvLineRec.RESET();
-                                    PostedSalesInvLineRec.SETRANGE("Document No.", "No.");
-                                    PostedSalesInvLineRec.SETRANGE(Type, PostedSalesInvLineRec.Type::Item);
-                                    IF PostedSalesInvLineRec.FINDSET() THEN
-                                        REPEAT
-                                            
-                                                                                       Continue := TRUE;
-                                                                                        BonusContractAttributeRec.RESET;
-                                                                                       BonusContractAttributeRec.SETRANGE("lbt Contract", "lbt Bonus Contract"."lbt Contract");
-                                                                                       IF BonusContractAttributeRec.FINDSET THEN
-                                                                                           REPEAT
-                                                                                               PostParaDocLineRec.RESET;
-                                                                                               PostParaDocLineRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
-                                                                                               PostParaDocLineRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
-                                                                                               PostParaDocLineRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
-                                                                                               PostParaDocLineRec.SETRANGE(Parameter, BonusContractAttributeRec."Parameter Code");
-                                                                                               PostParaDocLineRec.SETRANGE("Lot No.", '');
+                                    //TODO Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
+                                    /*    
+                                        BonusAmt := 0;
+                                        PostedSalesInvLineRec.RESET();
+                                        PostedSalesInvLineRec.SETRANGE("Document No.", "No.");
+                                        PostedSalesInvLineRec.SETRANGE(Type, PostedSalesInvLineRec.Type::Item);
+                                        IF PostedSalesInvLineRec.FINDSET() THEN
+                                            REPEAT
 
-                                                                                               IF PostParaDocLineRec.FINDFIRST THEN BEGIN
+                                                                                           Continue := TRUE;
+                                                                                            BonusContractAttributeRec.RESET;
+                                                                                           BonusContractAttributeRec.SETRANGE("lbt Contract", "lbt Bonus Contract"."lbt Contract");
+                                                                                           IF BonusContractAttributeRec.FINDSET THEN
+                                                                                               REPEAT
+                                                                                                   PostParaDocLineRec.RESET;
+                                                                                                   PostParaDocLineRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
+                                                                                                   PostParaDocLineRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
+                                                                                                   PostParaDocLineRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
+                                                                                                   PostParaDocLineRec.SETRANGE(Parameter, BonusContractAttributeRec."Parameter Code");
+                                                                                                   PostParaDocLineRec.SETRANGE("Lot No.", '');
 
-                                                                                                   CASE BonusContractAttributeRec.Type OF
-                                                                                                       BonusContractAttributeRec.Type::Text:
-                                                                                                           BEGIN
-                                                                                                               PostParaDocLineRec.SETFILTER("Parameter Domain", BonusContractAttributeRec."Parameter Filter");
+                                                                                                   IF PostParaDocLineRec.FINDFIRST THEN BEGIN
 
-                                                                                                               IF PostParaDocLineRec.ISEMPTY THEN
+                                                                                                       CASE BonusContractAttributeRec.Type OF
+                                                                                                           BonusContractAttributeRec.Type::Text:
+                                                                                                               BEGIN
+                                                                                                                   PostParaDocLineRec.SETFILTER("Parameter Domain", BonusContractAttributeRec."Parameter Filter");
 
-                                                                                                                   Continue := FALSE;
-                                                                                                           END;
-                                                                                                       BonusContractAttributeRec.Type::Boolean:
-                                                                                                           IF PostParaDocLineRec.Boolean <> BonusContractAttributeRec.Boolean THEN
-                                                                                                               Continue := FALSE;
-                                                                                                       BonusContractAttributeRec.Type::Decimal:
-                                                                                                           BEGIN
-                                                                                                               IF BonusContractAttributeRec."Parameter Filter" <> '' THEN BEGIN
-                                                                                                                   IF STRPOS(BonusContractAttributeRec."Parameter Filter", '<>') = 1 THEN
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal from", BonusContractAttributeRec."Parameter Filter")
-                                                                                                                   ELSE BEGIN
-                                                                                                                       IF STRPOS(BonusContractAttributeRec."Parameter Filter", '..') = 1 THEN
-                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal from", '..' + FORMAT(BonusContractAttributeRec."Decimal to"))
-                                                                                                                       ELSE
-                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
-                                                                                                                   END;
-                                                                                                               END ELSE BEGIN
-                                                                                                                   IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN BEGIN
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                                                                   FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                                                                 FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                                                                   END;
-                                                                                                                   IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
+                                                                                                                   IF PostParaDocLineRec.ISEMPTY THEN
 
-                                                                                                                   IF (BonusContractAttributeRec."Decimal from" < 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN BEGIN
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                                                                   FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                                                                 FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                                                                   END;
-
-                                                                                                                   IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                                                                 FORMAT(BonusContractAttributeRec."Decimal to"));
-
-                                                                                                                   IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" < 0) THEN
-                                                                                                                       PostParaDocLineRec.SETFILTER("Decimal to", '..' + FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                                                       Continue := FALSE;
                                                                                                                END;
-                                                                                                               ///LBIS01
-                                                                                                               //IF NOT PostParaDocLineRec.FINDSET THEN
-                                                                                                               IF PostParaDocLineRec.ISEMPTY THEN
-                                                                                                                   ///LBIS01-
+                                                                                                           BonusContractAttributeRec.Type::Boolean:
+                                                                                                               IF PostParaDocLineRec.Boolean <> BonusContractAttributeRec.Boolean THEN
                                                                                                                    Continue := FALSE;
-                                                                                                           END;
-                                                                                                   END;
-                                                                                               END ELSE
-                                                                                                   Continue := FALSE;
-                                                                                           UNTIL (BonusContractAttributeRec.NEXT = 0) OR (Continue = FALSE); 
-                                                                                           
-                                            IF Continue THEN BEGIN
-                                                IF "Sales Invoice Header"."Currency Code" = '' THEN BEGIN
-                                                    DocAmount := PostedSalesInvLineRec.Amount;
-                                                    DocAmtInclVAT := PostedSalesInvLineRec."Amount Including VAT";
-                                                END ELSE BEGIN
-                                                    DocAmount := ROUND(PostedSalesInvLineRec.Amount / "Sales Invoice Header"."Currency Factor", 0.01);
-                                                    DocAmtInclVAT := ROUND(PostedSalesInvLineRec."Amount Including VAT" / "Sales Invoice Header"."Currency Factor", 0.01);
-                                                END;
-                                                // Zu- und Abschläge
-                                                ValueEntryRec.RESET();
-                                                ValueEntryRec.SETCURRENTKEY("Document No.");
-                                                ValueEntryRec.SETRANGE("Document No.", "Sales Invoice Header"."No.");
-                                                ValueEntryRec.SETRANGE("Document Type", ValueEntryRec."Document Type"::"Sales Invoice");
-                                                ValueEntryRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
-                                                IF ValueEntryRec.FINDSET() THEN
-                                                    REPEAT
-                                                        IF ValueEntryRec."Sales Amount (Actual)" <> 0 THEN BEGIN
-                                                            IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") THEN
-                                                                ValueEntryRec2.RESET();
-                                                            ValueEntryRec2.SETCURRENTKEY("Item Ledger Entry No.");
-                                                            ValueEntryRec2.SETRANGE("Item Ledger Entry No.", ItemLedgEntryRec."Entry No.");
-                                                            ValueEntryRec2.SETFILTER("Item Charge No.", '<>%1', '');
-                                                            IF ValueEntryRec2.FINDSET() THEN
-                                                                REPEAT
-                                                                    ItemCharge2Rec.GET(ValueEntryRec2."Item Charge No.");
-                                                                    IF ItemCharge2Rec."lbt Bonus consider" THEN BEGIN
-                                                                        DocAmount += ValueEntryRec2."Sales Amount (Actual)";
-                                                                        IF SalesInvLineRec.GET(ValueEntryRec2."Document No.", ValueEntryRec2."Document Line No.") THEN
-                                                                            DocAmtInclVAT += ROUND(ValueEntryRec2."Sales Amount (Actual)" *
-                                                                                      (100 + SalesInvLineRec."VAT %") / 100, 0.0001)
-                                                                    END;
-                                                                UNTIL ValueEntryRec2.NEXT() = 0;
-                                                        END;
+                                                                                                           BonusContractAttributeRec.Type::Decimal:
+                                                                                                               BEGIN
+                                                                                                                   IF BonusContractAttributeRec."Parameter Filter" <> '' THEN BEGIN
+                                                                                                                       IF STRPOS(BonusContractAttributeRec."Parameter Filter", '<>') = 1 THEN
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal from", BonusContractAttributeRec."Parameter Filter")
+                                                                                                                       ELSE BEGIN
+                                                                                                                           IF STRPOS(BonusContractAttributeRec."Parameter Filter", '..') = 1 THEN
+                                                                                                                               PostParaDocLineRec.SETFILTER("Decimal from", '..' + FORMAT(BonusContractAttributeRec."Decimal to"))
+                                                                                                                           ELSE
+                                                                                                                               PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
+                                                                                                                       END;
+                                                                                                                   END ELSE BEGIN
+                                                                                                                       IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN BEGIN
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                                                       FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                                                     FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                                                       END;
+                                                                                                                       IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
 
-                                                    UNTIL ValueEntryRec.NEXT() = 0;
-                                                S_Amount := Amount;
+                                                                                                                       IF (BonusContractAttributeRec."Decimal from" < 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN BEGIN
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                                                       FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                                                     FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                                                       END;
 
-                                                IF "lbt Bonus Contract"."lbt Pmt. Discount %" <> 0 THEN
-                                                    PmtDiscAmt := DocAmount * "lbt Bonus Contract"."lbt Pmt. Discount %" / 100;
-                                                IF "lbt Bonus Contract"."lbt Discount %" <> 0 THEN
-                                                    DiscAmt := (DocAmount - PmtDiscAmt) * "lbt Bonus Contract"."lbt Discount %" / 100;
-                                                BonusAmt := ROUND("lbt Bonus Contract"."lbt Reserve Value" * (DocAmount - DiscAmt - PmtDiscAmt) / 100, 0.01);
+                                                                                                                       IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                                                     FORMAT(BonusContractAttributeRec."Decimal to"));
 
-                                                DocumentBonusAmt += BonusAmt;
-                                                IF BonusAmt <> 0 THEN
-                                                    IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
-                                                        IF ValueEntryRec.FINDFIRST() THEN BEGIN
-                                                            IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") AND
-                                                              (ItemLedgEntryRec."Document Type" = ItemLedgEntryRec."Document Type"::"Sales Shipment")
-                                                            THEN BEGIN
-                                                                AddItemChargeCrMemoLine(PostedSalesInvLineRec."Document No.");
-                                                                CLEAR(BonusMgt);
-                                                                BonusMgt.SetAssignmentDoc(1, ItemLedgEntryRec."Document No.", ItemLedgEntryRec."Document Line No.");
-                                                                BonusMgt.SetSourceDoc(1, "No.", PostedSalesInvLineRec."Line No.");
-                                                                BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
-                                                                BonusEntryNo :=
-                                                                 BonusMgt.CreateBonusContractEntry(
-                                                                "lbt Bonus Contract",
-                                                                "lbt Bonus Customers",
-                                                                1,
-                                                                PostingDate,
-                                                                0,
-                                                                0,
-                                                                BonusAmt,
-                                                                BonusAmt,
-                                                                DocAmount,
-                                                                -DiscAmt,
-                                                                -PmtDiscAmt);
+                                                                                                                       IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" < 0) THEN
+                                                                                                                           PostParaDocLineRec.SETFILTER("Decimal to", '..' + FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                                                   END;
+                                                                                                                   ///LBIS01
+                                                                                                                   //IF NOT PostParaDocLineRec.FINDSET THEN
+                                                                                                                   IF PostParaDocLineRec.ISEMPTY THEN
+                                                                                                                       ///LBIS01-
+                                                                                                                       Continue := FALSE;
+                                                                                                               END;
+                                                                                                       END;
+                                                                                                   END ELSE
+                                                                                                       Continue := FALSE;
+                                                                                               UNTIL (BonusContractAttributeRec.NEXT = 0) OR (Continue = FALSE); 
 
-                                                                SalesLineRec."lbt Bonus Entry No." := BonusEntryNo;
-                                                                SalesLineRec.MODIFY();
-                                                            END ELSE
-                                                                DocumentBonusAmt -= BonusAmt;
-
-                                                        END ELSE
-                                                            DocumentBonusAmt -= BonusAmt;
-
-                                                    END ELSE
-                                                        CreateJournalLine(DATABASE::"Sales Invoice Line", "No.", PostedSalesInvLineRec."Line No.",
-                                                                        "lbt Bonus Customers"."lbt Customer",
-                                                                        BonusAmt, DocAmount,
-                                                                        -DiscAmt, -PmtDiscAmt);
-                                            END;
-                                        UNTIL PostedSalesInvLineRec.NEXT() = 0;
-                                    */
-                                END;
-                            BonusContractRec."lbt Reserve Type"::"Amount per Unit": 
-                                BEGIN
-                                //TODO Auskommentiert weil "PostDocItemUnit" als App noch nicht vorhanden ist
-                                /*
-                                    BonusAmt := 0;
-                                    PostedSalesInvLineRec.RESET();
-                                    PostedSalesInvLineRec.SETRANGE("Document No.", "No.");
-                                    PostedSalesInvLineRec.SETRANGE(Type, PostedSalesInvLineRec.Type::Item);
-                                    IF PostedSalesInvLineRec.FINDSET() THEN
-                                    
-                                    //TODO Auskommentiert
-                                        REPEAT
-                                            PostDocItemUnitRec.RESET;
-                                            PostDocItemUnitRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
-                                            PostDocItemUnitRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
-                                            PostDocItemUnitRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
-                                            PostDocItemUnitRec.SETRANGE("Item Unit", "Bonus Contract"."Unit Reserves Base");
- 
-                                            
-                                            IF PostDocItemUnitRec.FINDFIRST() THEN BEGIN
-
-                                                Continue := TRUE;
-                                                BonusContractAttributeRec.RESET();
-                                                BonusContractAttributeRec.SETRANGE("lbt Bonus Contract", "lbt Bonus Contract"."lbt Contract");
-                                                IF BonusContractAttributeRec.FINDSET() THEN
-                                                    REPEAT
-                                                        PostParaDocLineRec.RESET;
-                                                        PostParaDocLineRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
-                                                        PostParaDocLineRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
-                                                        PostParaDocLineRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
-                                                        PostParaDocLineRec.SETRANGE(Parameter, BonusContractAttributeRec."Parameter Code");
-                                                        PostParaDocLineRec.SETRANGE("Lot No.", '');
-                                                        ///LBIS01
-                                                        //IF PostParaDocLineRec.FINDSET THEN BEGIN
-                                                        IF PostParaDocLineRec.FINDFIRST THEN BEGIN
-                                                            ///LBIS01-
-                                                            CASE BonusContractAttributeRec.Type OF
-                                                                BonusContractAttributeRec.Type::Text:
-                                                                    BEGIN
-                                                                        PostParaDocLineRec.SETFILTER("Parameter Domain", BonusContractAttributeRec."Parameter Filter");
-                                                                        ///LBIS01
-                                                                        //IF NOT PostParaDocLineRec.FINDSET THEN
-                                                                        IF PostParaDocLineRec.ISEMPTY THEN
-                                                                            ///LBIS01-
-                                                                            Continue := FALSE;
-                                                                    END;
-                                                                BonusContractAttributeRec.Type::Boolean:
-                                                                    IF PostParaDocLineRec.Boolean <> BonusContractAttributeRec.Boolean THEN
-                                                                        Continue := FALSE;
-                                                                BonusContractAttributeRec.Type::Decimal:
-                                                                    BEGIN
-                                                                        IF BonusContractAttributeRec."Parameter Filter" <> '' THEN BEGIN
-                                                                            IF STRPOS(BonusContractAttributeRec."Parameter Filter", '<>') = 1 THEN
-                                                                                PostParaDocLineRec.SETFILTER("Decimal from", BonusContractAttributeRec."Parameter Filter")
-                                                                            ELSE BEGIN
-                                                                                IF STRPOS(BonusContractAttributeRec."Parameter Filter", '..') = 1 THEN
-                                                                                    PostParaDocLineRec.SETFILTER("Decimal from", '..' + FORMAT(BonusContractAttributeRec."Decimal to"))
-                                                                                ELSE
-                                                                                    PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
-                                                                            END;
-                                                                        END ELSE BEGIN
-                                                                            IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN BEGIN
-                                                                                PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                            FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                                PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                          FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                            END;
-                                                                            IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN
-                                                                                PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
-
-                                                                            IF (BonusContractAttributeRec."Decimal from" < 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN BEGIN
-                                                                                PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                            FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                                PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                          FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                            END;
-
-                                                                            IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN
-                                                                                PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
-                                                                                                                          FORMAT(BonusContractAttributeRec."Decimal to"));
-
-                                                                            IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" < 0) THEN
-                                                                                PostParaDocLineRec.SETFILTER("Decimal to", '..' + FORMAT(BonusContractAttributeRec."Decimal to"));
-                                                                        END;                                                                        
-                                                                        IF PostParaDocLineRec.ISEMPTY() THEN
-
-                                                                            Continue := FALSE;
-                                                                  END;  
-                                                            END;
-                                                        END ELSE
-                                                            Continue := FALSE;
-                                                    UNTIL (BonusContractAttributeRec.NEXT() = 0) OR (Continue = FALSE);
                                                 IF Continue THEN BEGIN
-                                                    BonusAmt := ROUND(PostDocItemUnitRec.Quantity *
-                                                                      "lbt Bonus Contract"."lbt Reserve Value", 0.01);
+                                                    IF "Sales Invoice Header"."Currency Code" = '' THEN BEGIN
+                                                        DocAmount := PostedSalesInvLineRec.Amount;
+                                                        DocAmtInclVAT := PostedSalesInvLineRec."Amount Including VAT";
+                                                    END ELSE BEGIN
+                                                        DocAmount := ROUND(PostedSalesInvLineRec.Amount / "Sales Invoice Header"."Currency Factor", 0.01);
+                                                        DocAmtInclVAT := ROUND(PostedSalesInvLineRec."Amount Including VAT" / "Sales Invoice Header"."Currency Factor", 0.01);
+                                                    END;
+                                                    // Zu- und Abschläge
+                                                    ValueEntryRec.RESET();
+                                                    ValueEntryRec.SETCURRENTKEY("Document No.");
+                                                    ValueEntryRec.SETRANGE("Document No.", "Sales Invoice Header"."No.");
+                                                    ValueEntryRec.SETRANGE("Document Type", ValueEntryRec."Document Type"::"Sales Invoice");
+                                                    ValueEntryRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
+                                                    IF ValueEntryRec.FINDSET() THEN
+                                                        REPEAT
+                                                            IF ValueEntryRec."Sales Amount (Actual)" <> 0 THEN BEGIN
+                                                                IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") THEN
+                                                                    ValueEntryRec2.RESET();
+                                                                ValueEntryRec2.SETCURRENTKEY("Item Ledger Entry No.");
+                                                                ValueEntryRec2.SETRANGE("Item Ledger Entry No.", ItemLedgEntryRec."Entry No.");
+                                                                ValueEntryRec2.SETFILTER("Item Charge No.", '<>%1', '');
+                                                                IF ValueEntryRec2.FINDSET() THEN
+                                                                    REPEAT
+                                                                        ItemCharge2Rec.GET(ValueEntryRec2."Item Charge No.");
+                                                                        IF ItemCharge2Rec."lbt Bonus consider" THEN BEGIN
+                                                                            DocAmount += ValueEntryRec2."Sales Amount (Actual)";
+                                                                            IF SalesInvLineRec.GET(ValueEntryRec2."Document No.", ValueEntryRec2."Document Line No.") THEN
+                                                                                DocAmtInclVAT += ROUND(ValueEntryRec2."Sales Amount (Actual)" *
+                                                                                          (100 + SalesInvLineRec."VAT %") / 100, 0.0001)
+                                                                        END;
+                                                                    UNTIL ValueEntryRec2.NEXT() = 0;
+                                                            END;
+
+                                                        UNTIL ValueEntryRec.NEXT() = 0;
+                                                    S_Amount := Amount;
+
+                                                    IF "lbt Bonus Contract"."lbt Pmt. Discount %" <> 0 THEN
+                                                        PmtDiscAmt := DocAmount * "lbt Bonus Contract"."lbt Pmt. Discount %" / 100;
+                                                    IF "lbt Bonus Contract"."lbt Discount %" <> 0 THEN
+                                                        DiscAmt := (DocAmount - PmtDiscAmt) * "lbt Bonus Contract"."lbt Discount %" / 100;
+                                                    BonusAmt := ROUND("lbt Bonus Contract"."lbt Reserve Value" * (DocAmount - DiscAmt - PmtDiscAmt) / 100, 0.01);
+
                                                     DocumentBonusAmt += BonusAmt;
-                                                    S_Quantity := PostDocItemUnitRec.Quantity;
                                                     IF BonusAmt <> 0 THEN
                                                         IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
-                                                            ValueEntryRec.RESET();
-                                                            ValueEntryRec.SETCURRENTKEY("Document No.");
-                                                            ValueEntryRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
-                                                            ValueEntryRec.SETRANGE("Document Type", ValueEntryRec."Document Type"::"Sales Invoice");
-                                                            ValueEntryRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
                                                             IF ValueEntryRec.FINDFIRST() THEN BEGIN
                                                                 IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") AND
                                                                   (ItemLedgEntryRec."Document Type" = ItemLedgEntryRec."Document Type"::"Sales Shipment")
@@ -329,68 +185,212 @@ report 5266051 "lbt Bonus Reserves"
                                                                     BonusMgt.SetAssignmentDoc(1, ItemLedgEntryRec."Document No.", ItemLedgEntryRec."Document Line No.");
                                                                     BonusMgt.SetSourceDoc(1, "No.", PostedSalesInvLineRec."Line No.");
                                                                     BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
-                                                                    BonusEntryNo := BonusMgt.CreateBonusContractEntry("lbt Bonus Contract",
-                                                                                    "lbt Bonus Customers",
-                                                                                    1, PostingDate, 0,
-                                                                                    SalesInvLineRec.Quantity, ////PostDocItemUnitRec.Quantity,
-                                                                                    BonusAmt, 
-                                                                                    BonusAmt, 
-                                                                                    DocAmount,
-                                                                                    0, 
-                                                                                    0);
+                                                                    BonusEntryNo :=
+                                                                     BonusMgt.CreateBonusContractEntry(
+                                                                    "lbt Bonus Contract",
+                                                                    "lbt Bonus Customers",
+                                                                    1,
+                                                                    PostingDate,
+                                                                    0,
+                                                                    0,
+                                                                    BonusAmt,
+                                                                    BonusAmt,
+                                                                    DocAmount,
+                                                                    -DiscAmt,
+                                                                    -PmtDiscAmt);
+
                                                                     SalesLineRec."lbt Bonus Entry No." := BonusEntryNo;
                                                                     SalesLineRec.MODIFY();
+                                                                END ELSE
+                                                                    DocumentBonusAmt -= BonusAmt;
+
+                                                            END ELSE
+                                                                DocumentBonusAmt -= BonusAmt;
+
+                                                        END ELSE
+                                                            CreateJournalLine(DATABASE::"Sales Invoice Line", "No.", PostedSalesInvLineRec."Line No.",
+                                                                            "lbt Bonus Customers"."lbt Customer",
+                                                                            BonusAmt, DocAmount,
+                                                                            -DiscAmt, -PmtDiscAmt);
+                                                END;
+                                            UNTIL PostedSalesInvLineRec.NEXT() = 0;
+                                        */
+                                END;
+                            BonusContractRec."lbt Reserve Type"::"Amount per Unit":
+                                BEGIN
+                                    //TODO Auskommentiert weil "PostDocItemUnit" als App noch nicht vorhanden ist
+                                    /*
+                                        BonusAmt := 0;
+                                        PostedSalesInvLineRec.RESET();
+                                        PostedSalesInvLineRec.SETRANGE("Document No.", "No.");
+                                        PostedSalesInvLineRec.SETRANGE(Type, PostedSalesInvLineRec.Type::Item);
+                                        IF PostedSalesInvLineRec.FINDSET() THEN
+
+                                        //TODO Auskommentiert
+                                            REPEAT
+                                                PostDocItemUnitRec.RESET;
+                                                PostDocItemUnitRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
+                                                PostDocItemUnitRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
+                                                PostDocItemUnitRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
+                                                PostDocItemUnitRec.SETRANGE("Item Unit", "Bonus Contract"."Unit Reserves Base");
+
+
+                                                IF PostDocItemUnitRec.FINDFIRST() THEN BEGIN
+
+                                                    Continue := TRUE;
+                                                    BonusContractAttributeRec.RESET();
+                                                    BonusContractAttributeRec.SETRANGE("lbt Bonus Contract", "lbt Bonus Contract"."lbt Contract");
+                                                    IF BonusContractAttributeRec.FINDSET() THEN
+                                                        REPEAT
+                                                            PostParaDocLineRec.RESET;
+                                                            PostParaDocLineRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
+                                                            PostParaDocLineRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
+                                                            PostParaDocLineRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
+                                                            PostParaDocLineRec.SETRANGE(Parameter, BonusContractAttributeRec."Parameter Code");
+                                                            PostParaDocLineRec.SETRANGE("Lot No.", '');
+                                                            ///LBIS01
+                                                            //IF PostParaDocLineRec.FINDSET THEN BEGIN
+                                                            IF PostParaDocLineRec.FINDFIRST THEN BEGIN
+                                                                ///LBIS01-
+                                                                CASE BonusContractAttributeRec.Type OF
+                                                                    BonusContractAttributeRec.Type::Text:
+                                                                        BEGIN
+                                                                            PostParaDocLineRec.SETFILTER("Parameter Domain", BonusContractAttributeRec."Parameter Filter");
+                                                                            ///LBIS01
+                                                                            //IF NOT PostParaDocLineRec.FINDSET THEN
+                                                                            IF PostParaDocLineRec.ISEMPTY THEN
+                                                                                ///LBIS01-
+                                                                                Continue := FALSE;
+                                                                        END;
+                                                                    BonusContractAttributeRec.Type::Boolean:
+                                                                        IF PostParaDocLineRec.Boolean <> BonusContractAttributeRec.Boolean THEN
+                                                                            Continue := FALSE;
+                                                                    BonusContractAttributeRec.Type::Decimal:
+                                                                        BEGIN
+                                                                            IF BonusContractAttributeRec."Parameter Filter" <> '' THEN BEGIN
+                                                                                IF STRPOS(BonusContractAttributeRec."Parameter Filter", '<>') = 1 THEN
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal from", BonusContractAttributeRec."Parameter Filter")
+                                                                                ELSE BEGIN
+                                                                                    IF STRPOS(BonusContractAttributeRec."Parameter Filter", '..') = 1 THEN
+                                                                                        PostParaDocLineRec.SETFILTER("Decimal from", '..' + FORMAT(BonusContractAttributeRec."Decimal to"))
+                                                                                    ELSE
+                                                                                        PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
+                                                                                END;
+                                                                            END ELSE BEGIN
+                                                                                IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN BEGIN
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                              FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                END;
+                                                                                IF (BonusContractAttributeRec."Decimal from" <> 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..');
+
+                                                                                IF (BonusContractAttributeRec."Decimal from" < 0) AND (BonusContractAttributeRec."Decimal to" = 0) THEN BEGIN
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal from", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                                FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                              FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                                END;
+
+                                                                                IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" <> 0) THEN
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal to", FORMAT(BonusContractAttributeRec."Decimal from") + '..' +
+                                                                                                                              FORMAT(BonusContractAttributeRec."Decimal to"));
+
+                                                                                IF (BonusContractAttributeRec."Decimal from" = 0) AND (BonusContractAttributeRec."Decimal to" < 0) THEN
+                                                                                    PostParaDocLineRec.SETFILTER("Decimal to", '..' + FORMAT(BonusContractAttributeRec."Decimal to"));
+                                                                            END;                                                                        
+                                                                            IF PostParaDocLineRec.ISEMPTY() THEN
+
+                                                                                Continue := FALSE;
+                                                                      END;  
+                                                                END;
+                                                            END ELSE
+                                                                Continue := FALSE;
+                                                        UNTIL (BonusContractAttributeRec.NEXT() = 0) OR (Continue = FALSE);
+                                                    IF Continue THEN BEGIN
+                                                        BonusAmt := ROUND(PostDocItemUnitRec.Quantity *
+                                                                          "lbt Bonus Contract"."lbt Reserve Value", 0.01);
+                                                        DocumentBonusAmt += BonusAmt;
+                                                        S_Quantity := PostDocItemUnitRec.Quantity;
+                                                        IF BonusAmt <> 0 THEN
+                                                            IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
+                                                                ValueEntryRec.RESET();
+                                                                ValueEntryRec.SETCURRENTKEY("Document No.");
+                                                                ValueEntryRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
+                                                                ValueEntryRec.SETRANGE("Document Type", ValueEntryRec."Document Type"::"Sales Invoice");
+                                                                ValueEntryRec.SETRANGE("Document Line No.", PostedSalesInvLineRec."Line No.");
+                                                                IF ValueEntryRec.FINDFIRST() THEN BEGIN
+                                                                    IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") AND
+                                                                      (ItemLedgEntryRec."Document Type" = ItemLedgEntryRec."Document Type"::"Sales Shipment")
+                                                                    THEN BEGIN
+                                                                        AddItemChargeCrMemoLine(PostedSalesInvLineRec."Document No.");
+                                                                        CLEAR(BonusMgt);
+                                                                        BonusMgt.SetAssignmentDoc(1, ItemLedgEntryRec."Document No.", ItemLedgEntryRec."Document Line No.");
+                                                                        BonusMgt.SetSourceDoc(1, "No.", PostedSalesInvLineRec."Line No.");
+                                                                        BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
+                                                                        BonusEntryNo := BonusMgt.CreateBonusContractEntry("lbt Bonus Contract",
+                                                                                        "lbt Bonus Customers",
+                                                                                        1, PostingDate, 0,
+                                                                                        SalesInvLineRec.Quantity, ////PostDocItemUnitRec.Quantity,
+                                                                                        BonusAmt, 
+                                                                                        BonusAmt, 
+                                                                                        DocAmount,
+                                                                                        0, 
+                                                                                        0);
+                                                                        SalesLineRec."lbt Bonus Entry No." := BonusEntryNo;
+                                                                        SalesLineRec.MODIFY();
+                                                                    END ELSE 
+                                                                        DocumentBonusAmt -= BonusAmt;
+
                                                                 END ELSE 
                                                                     DocumentBonusAmt -= BonusAmt;
-                                                                
-                                                            END ELSE 
-                                                                DocumentBonusAmt -= BonusAmt;
-                                                           ;
-                                                        END ELSE
-                                                            CreateJournalLine(DATABASE::"Sales Invoice Line",
-                                                                                 "No.", 
-                                                                                 PostedSalesInvLineRec."Line No.",
-                                                                                "lbt Bonus Customers"."lbt Customer",
-                                                                                BonusAmt, 
-                                                                                0,
-                                                                                0, 
-                                                                                0);
-                                                END;
-                                            END
-                                        UNTIL PostedSalesInvLineRec.NEXT() = 0;
-                                    */       
+                                                               ;
+                                                            END ELSE
+                                                                CreateJournalLine(DATABASE::"Sales Invoice Line",
+                                                                                     "No.", 
+                                                                                     PostedSalesInvLineRec."Line No.",
+                                                                                    "lbt Bonus Customers"."lbt Customer",
+                                                                                    BonusAmt, 
+                                                                                    0,
+                                                                                    0, 
+                                                                                    0);
+                                                    END;
+                                                END
+                                            UNTIL PostedSalesInvLineRec.NEXT() = 0;
+                                        */
                                 END;
-      
-                        END; 
 
-                                IF DocumentBonusAmt = 0 THEN
-                                    CurrReport.SKIP();
-                                //TODO Auskommentiert
-                                /*
-                                SumAmounts[1] += S_Amount;
-                                     SumAmounts[2] += S_Amount;
-                                     SumAmounts[3] += S_Amount;
-                                     SumAmounts[4] += S_Amount;
-                                     SumQuantity[1] += S_Quantity;
-                                     SumQuantity[2] += S_Quantity;
-                                     SumQuantity[3] += S_Quantity;
-                                     SumQuantity[4] += S_Quantity;
-                                     SumDocumentAmounts[1] += DocumentBonusAmt;
-                                     SumDocumentAmounts[2] += DocumentBonusAmt;
-                                     SumDocumentAmounts[3] += DocumentBonusAmt;
-                                     SumDocumentAmounts[4] += DocumentBonusAmt; 
-                                    */
+                        END;
+
+                        IF DocumentBonusAmt = 0 THEN
+                            CurrReport.SKIP();
+                        //TODO Auskommentiert
+                        /*
+                        SumAmounts[1] += S_Amount;
+                             SumAmounts[2] += S_Amount;
+                             SumAmounts[3] += S_Amount;
+                             SumAmounts[4] += S_Amount;
+                             SumQuantity[1] += S_Quantity;
+                             SumQuantity[2] += S_Quantity;
+                             SumQuantity[3] += S_Quantity;
+                             SumQuantity[4] += S_Quantity;
+                             SumDocumentAmounts[1] += DocumentBonusAmt;
+                             SumDocumentAmounts[2] += DocumentBonusAmt;
+                             SumDocumentAmounts[3] += DocumentBonusAmt;
+                             SumDocumentAmounts[4] += DocumentBonusAmt; 
+                            */
 
 
-                        end;
-                    
+                    end;
+
 
 
                 }
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
-                    DataItemTableView = sorting ("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field ("lbt Customer");
+                    DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
+                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
 
                     trigger OnPreDataItem()
                     begin
@@ -419,7 +419,7 @@ report 5266051 "lbt Bonus Reserves"
                             "lbt Bonus Contract"."lbt Reserve Type"::"%":
                                 //TODO erstmal auskommentiert, muss komplett überarbeitet werden
                                 BEGIN
-                                    
+
                                     /*
                                     BonusAmt := 0;
                                     PostedCrMemoLineRec.RESET();
@@ -583,7 +583,7 @@ report 5266051 "lbt Bonus Reserves"
 
                             "lbt Bonus Contract"."lbt Reserve Type"::"Amount per Unit":
                                 //TODO erstmal auskommentiert, muss komplett überarbeitet werden
-                                        
+
                                 BEGIN
                                     /*
                                     BonusAmt := 0;
@@ -713,7 +713,7 @@ report 5266051 "lbt Bonus Reserves"
                                                 END;
                                             END;
                                         UNTIL PostedCrMemoLineRec.NEXT = 0;
-                                    */  
+                                    */
                                 END;
 
                         END;
@@ -745,7 +745,7 @@ report 5266051 "lbt Bonus Reserves"
                 }
                 dataitem(Integer; Integer)
                 {
-                    DataItemTableView = sorting (Number) Where (Number = const (1));
+                    DataItemTableView = sorting(Number) Where(Number = const(1));
 
                     trigger OnPreDataItem()
                     begin
@@ -777,7 +777,7 @@ report 5266051 "lbt Bonus Reserves"
                                         SalesShipmentLineRec.SETFILTER("Unit Price", '<>%1', 0);
                                         IF NOT SalesShipmentLineRec.FINDFIRST() THEN
                                             CurrReport.SKIP()
-                                        ELSE 
+                                        ELSE
                                             REPEAT
                                                 SalesShipmentHeaderRec.GET(SalesShipmentLineRec."Document No.");
                                                 IF SalesShipmentHeaderRec."Currency Code" = '' THEN
@@ -831,6 +831,7 @@ report 5266051 "lbt Bonus Reserves"
                                                                                ItemChargeAssRec."Applies-to Doc. Line Amount",
                                                                                0, 0);
                                                     //ToDo Bonusprozess nummer
+                                                    SalesLineRec."LBT Process No." := "lbt Bonus Contract"."Process No.";
                                                     // SalesLineRec."lbt Bonus Entry No." := "lbt Bonus Contract"."Process No.";
                                                     // SalesLineRec."Billing Code" := VertriebEinrRec."Billing Code";
                                                     // SalesLineRec."Billing Entry No." := BonusEntryNo;
@@ -842,12 +843,12 @@ report 5266051 "lbt Bonus Reserves"
                                           0, 0);
                                 END;
                         END;
-                        //TODO, erstmal auskommentiert
-/*                         SumQuantity[1] += S_Quantity;
-                        SumDocumentAmounts[1] += DocumentBonusAmt;
-                        SumDocumentAmounts[2] += DocumentBonusAmt;
-                        SumDocumentAmounts[3] += DocumentBonusAmt;
-                        SumDocumentAmounts[4] += DocumentBonusAmt; */
+                        //TODO:, erstmal auskommentiert
+                        /*                         SumQuantity[1] += S_Quantity;
+                                                SumDocumentAmounts[1] += DocumentBonusAmt;
+                                                SumDocumentAmounts[2] += DocumentBonusAmt;
+                                                SumDocumentAmounts[3] += DocumentBonusAmt;
+                                                SumDocumentAmounts[4] += DocumentBonusAmt; */
 
                     end;
                 }
@@ -981,8 +982,9 @@ report 5266051 "lbt Bonus Reserves"
     end;
 
     procedure getTotalAmount(): Decimal
-    var BonusCust:Record "lbt Bonus Customers";
-    ContractTotalAmt: Decimal;
+    var
+        BonusCust: Record "lbt Bonus Customers";
+        ContractTotalAmt: Decimal;
     begin
         ContractTotalAmt := 0;
         BonusCust.RESET();
@@ -1042,7 +1044,7 @@ report 5266051 "lbt Bonus Reserves"
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
 
 
-        BonusMgt: Codeunit "lbt Bonus Mgt.";
+        BonusMgt: Codeunit "lbt Bonus Management";
         AssignItemChargeSales: Codeunit "Item Charge Assgnt. (Sales)";
 
 

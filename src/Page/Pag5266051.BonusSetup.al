@@ -13,13 +13,21 @@ page 5266051 "lbt Bonus Setup"
             group("lbt General")
             {
                 Caption = 'General', comment = 'DEU="Allgmein"';
-
+                group("lbt Number Series")
+                {
+                    Caption = 'Number Series', comment = 'DEU="Nummernserie"';
+                    field("Bonus Nos."; "Bonus Nos.")
+                    {
+                        ToolTip = 'Here you select the number series for bonus contracts.', comment = 'DEU="Hier wählt man die Nummernserie für Bonusverträge aus."';
+                        ApplicationArea = All;
+                    }
+                }
                 group("lbt Reserve")
                 {
                     Caption = 'Reserve', comment = 'DEU="Rückstellungen"';
                     field("lbt Reserve Mode"; "lbt Reserve Mode")
                     {
-                        ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll. "';
+                        ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll."';
                         ApplicationArea = All;
                         trigger OnValidate()
 
@@ -29,7 +37,7 @@ page 5266051 "lbt Bonus Setup"
                     }
                     field("lbt Gen.Jnl.Templ.BonusReserve"; "lbt Gen.Jnl.Templ.BonusReserve")
                     {
-                        ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen. "';
+                        ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen."';
                         ApplicationArea = All;
                         Enabled = GenJnlTemplBonusReserve_Enabled;
                     }
@@ -39,19 +47,19 @@ page 5266051 "lbt Bonus Setup"
                         ApplicationArea = All;
                         Enabled = GenJnlBonusReserve_Enabled;
                     }
-                    field("lbt Bus.Post.Gr.f.Res.Cr.Memo";"lbt Bus.Post.Gr.f.Res.Cr.Memo")
+                    field("lbt Bus.Post.Gr.f.Res.Cr.Memo"; "lbt Bus.Post.Gr.f.Res.Cr.Memo")
                     {
                         ToolTip = 'Here you can choose a business booking group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Geschäftsbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
                         Enabled = BusPostGrResCrMemo_Enabled;
                     }
-                    field("lbt Cust Gr. Reserve Cr. Memo";"lbt Cust Gr. Reserve Cr. Memo")
+                    field("lbt Cust Gr. Reserve Cr. Memo"; "lbt Cust Gr. Reserve Cr. Memo")
                     {
                         ToolTip = 'Here you can choose a customer posting group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Debitorbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
                         Enabled = CustGrReserveCrMemo_Enabled;
                     }
-                    
+
 
 
 
@@ -66,7 +74,7 @@ page 5266051 "lbt Bonus Setup"
                         Enabled = ReversReserve_Enabled;
 
                     }
-                    field("lbt GenJnlBonusReversReserve";"lbt GenJnlBonusReversReserve")
+                    field("lbt GenJnlBonusReversReserve"; "lbt GenJnlBonusReversReserve")
                     {
                         ToolTip = 'Here you select the book page for reversing the posted bonus reserves.', comment = 'DEU="Hier wählen Sie das Buchblatt zur Auflösung der verbuchten Bonusrückstellungen."';
                         ApplicationArea = All;
@@ -91,7 +99,7 @@ page 5266051 "lbt Bonus Setup"
                 ApplicationArea = All;
                 Image = ContractPayment;
                 RunObject = page "lbt Bonus Contract List";
-                Promoted=true;
+                Promoted = true;
                 trigger OnAction()
                 begin
 
@@ -125,8 +133,8 @@ page 5266051 "lbt Bonus Setup"
         GenJnlTemplBonusReserve_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::Journal;
         CustGrReserveCrMemo_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::CreditMemo;
         BusPostGrResCrMemo_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::CreditMemo;
-        ReversReserve_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::Journal; 
-        GenJnlBonusReversReserve_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::Journal; 
+        ReversReserve_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::Journal;
+        GenJnlBonusReversReserve_Enabled := "lbt Reserve Mode" = "lbt Reserve Mode"::Journal;
     end;
 
     trigger OnOpenPage()

@@ -104,7 +104,7 @@ tableextension 5266062 "Lbt Bonus Item Charge Assign." extends "Item Charge Assi
                 SalesLineRec.VALIDATE(Quantity, "TempItemChAss(Sales)Rec"."Qty. to Assign");
                 SalesLineRec.VALIDATE(Amount, "TempItemChAss(Sales)Rec"."Amount to Assign");
 
-                //TODO muss noch umgestellt werden!!!!
+                //TODO: muss noch umgestellt werden!!!!
                 //  SalesLineRec."Process No." := "TempItemChAss(Sales)Rec"."Process No.";
                 //  SalesLineRec."Billing Code" := "TempItemChAss(Sales)Rec"."Billing Code";
                 //  SalesLineRec."Billing Entry No." := "TempItemChAss(Sales)Rec"."Billing Entry No.";

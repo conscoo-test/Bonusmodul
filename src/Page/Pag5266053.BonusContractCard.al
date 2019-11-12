@@ -17,6 +17,16 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ToolTip = 'This field is filled with the contract number of the bonus agreement.', comment = 'DEU="Dieses Feld wird mit der Vertragsnummer der Bonusvereinbarung gefüllt"';
                     ApplicationArea = All;
+
+                    trigger OnAssistEdit()
+                    begin
+                        if AssistEdit(xRec) then
+                            CurrPage.Update();
+                    end;
+                }
+                field(Description; Description)
+                {
+                    ApplicationArea = All;
                 }
 
                 field("lbt Bonus Group"; "lbt Bonus Group")
@@ -45,7 +55,11 @@ page 5266053 "lbt Bonus Contract Card"
                     ApplicationArea = All;
                 }
 
+                field("Process No."; "Process No.")
+                {
+                    ApplicationArea = All;
 
+                }
 
 
 
@@ -137,7 +151,7 @@ page 5266053 "lbt Bonus Contract Card"
             part(Bonusstaffeln; "lbt Bonus Contract Line")
             {
                 ApplicationArea = All;
-                SubPageLink = "lbt Contract" = field ("lbt Contract");
+                SubPageLink = "lbt Contract" = field("lbt Contract");
             }
             group(Discounts)
             {
@@ -248,7 +262,7 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = Customer;
                 RunObject = page "lbt Bonus Customers";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
                 trigger OnAction();
                 begin
@@ -263,7 +277,7 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = Dimensions;
                 RunObject = page "lbt Bonus Contract Dimension";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
                 trigger OnAction()
                 begin
@@ -277,7 +291,7 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = "Filter";
                 RunObject = page "lbt BonusContrAttributeFilter";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
                 trigger OnAction()
                 begin
@@ -304,7 +318,7 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbt Bonus Entry";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
                 trigger OnAction()
                 begin
@@ -320,6 +334,8 @@ page 5266053 "lbt Bonus Contract Card"
 
                 trigger OnAction()
                 begin
+                    Navigate.SetProcessNo("Process No.");
+                    // Navigate.FindProcess();
                     Navigate.Run();
                 end;
             }

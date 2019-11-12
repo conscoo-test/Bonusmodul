@@ -20,6 +20,11 @@ page 5266052 "lbt Bonus Contract List"
                     DrillDownPageId = "lbt Bonus Contract Card";
 
                 }
+                field("Process No."; "Process No.")
+                {
+                    //TODO: Tooltip
+                    ApplicationArea = All;
+                }
                 field("lbt Valid from"; "lbt Valid from")
                 {
                     ToolTip = 'Specifies from when the bonus contract is valid.', comment = 'DEU="Gibt an, ab wann der Bonusvertrag gültig ist."';
@@ -37,6 +42,7 @@ page 5266052 "lbt Bonus Contract List"
                     ToolTip = 'Specifies the interval in which billing takes place.', comment = 'DEU="Gibt an in welchem Intervall abgerechnet wird."';
                     ApplicationArea = All;
                 }
+
             }
         }
         area(Factboxes)
@@ -125,11 +131,11 @@ page 5266052 "lbt Bonus Contract List"
             action("lbt Customer")
             {
                 Caption = 'Customer', comment = 'DEU="Debitoren"';
-                ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.', comment = 'DEU="Öffnet die Übersicht der zum Bonusvertrag hinterlegten Kunden. Die Übersicht  ist  dabei dieselbe, wie  die, die  in den Bonusverträgen unter ‚Anzahl Kunden‘ befindet."';
+                ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.', comment = 'DEU="Öffnet die Übersicht der zum Bonusvertrag hinterlegten Kunden. Die Übersicht  ist  dabei dieselbe, wie  die, die  in den Bonusverträgen unter "Anzahl Kunden" befindet."';
                 ApplicationArea = All;
                 Image = Customer;
                 RunObject = page "lbt Bonus Customers";
-                RunPageLink = "lbt Customer" = field ("lbt Contract");
+                RunPageLink = "lbt Customer" = field("lbt Contract");
 
 
                 trigger OnAction();
@@ -145,7 +151,7 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = Dimensions;
                 RunObject = page "lbt Bonus Contract Dimension";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
 
                 trigger OnAction()
@@ -156,11 +162,11 @@ page 5266052 "lbt Bonus Contract List"
             action("lbt Bonus Contract Attribute")
             {
                 Caption = 'Attribute Filter', comment = 'DEU="Attribute Filter"';
-                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.', comment = 'DEU=" Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."';
+                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.', comment = 'DEU="Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."';
                 ApplicationArea = All;
                 Image = "Filter";
                 RunObject = page "lbt BonusContrAttributeFilter";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
 
                 trigger OnAction()
@@ -188,7 +194,7 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbt Bonus Entry";
-                RunPageLink = "lbt Contract" = field ("lbt Contract");
+                RunPageLink = "lbt Contract" = field("lbt Contract");
 
                 trigger OnAction()
                 begin
@@ -232,7 +238,7 @@ page 5266052 "lbt Bonus Contract List"
         BonusContractRec: Record "lbt Bonus Contract";
         BonusReserveRep: Report "lbt Bonus Reserves";
         Navigate: Page Navigate;
-        
+
 
 
 }

@@ -1,6 +1,6 @@
 {
   "id": "1716d377-7e43-42d6-ae75-ad9977f24a69",
-  "name": "LeBit Bonusmodul",
+  "name": "LeBit Bonus",
   "publisher": "LeBit Software & Consult GmbH",
   "brief": "",
   "description": "",
@@ -11,14 +11,32 @@
   "url": "https://www.lebit.net/#kontakt",
   "logo": "Appendix\\Logo\\LB18.jpg",
   "capabilities": [],
-  "dependencies": [],
+  "dependencies": [
+    {
+      "appId": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
+      "name": "LIS365 Vorgangsmanagement",
+      "version": "1.0.0.0",
+      "publisher": "LeBit Software & Consult GmbH"
+    },
+    {
+      "appId": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+      "publisher": "Microsoft",
+      "name": "System Application",
+      "version": "1.0.0.0"
+    },
+    {
+      "appId": "437dbf0e-84ff-417a-965d-ed2bb9650972",
+      "publisher": "Microsoft",
+      "name": "Base Application",
+      "version": "15.0.0.0"
+    }
+  ],
   "screenshots": [],
-  "platform": "14.0.0.0",
-  "application": "14.0.0.0",
-  "idRange": {
+  "platform": "15.0.0.0",
+  "idRanges": [{
     "from": 5266051,
     "to": 5266099
-  },
+  }],
   "features": ["TranslationFile"],
-  "runtime": "3.0"
+  "runtime": "4.0"
 }

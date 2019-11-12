@@ -22,6 +22,11 @@ page 5266057 "lbt Bonus Entry"
                     ToolTip = 'This field is filled with the contract number of the bonus agreement.', comment = 'DEU="Dieses Feld wird mit der Vertragsnummerder Bonusvereinbarung gefüllt."';
                     ApplicationArea = All;
                 }
+                field("Process No."; "Process No.")
+                {
+                    //TODO: Tooltip
+                    ApplicationArea = All;
+                }
                 field("lbt Bonus Contract Line"; "lbt Bonus Contract Line")
                 {
                     ToolTip = 'The bonus contract line of the respective contract is written to the bonus items.', comment = 'DEU="Es wird die Bonusvertragszeile des jeweiligen Vertrages in die Bonusposten geschrieben."';
@@ -116,27 +121,27 @@ page 5266057 "lbt Bonus Entry"
                     ToolTip = 'You can use the bonus document lines field to identify the credit line in which this bonus item is located in the bonus credit memo.', comment = 'DEU="Mit Hilfe des Feldes Bonus Dokumentenzeile kann identifiziert werden, in welcher Gutschriftzeile sich dieser Bonusposten in der Bonusgutschrift befindet."';
                     ApplicationArea = All;
                 }
-                field("lbt Assignment Document Type";"lbt Assignment Document Type")
+                field("lbt Assignment Document Type"; "lbt Assignment Document Type")
                 {
                     ToolTip = 'The assignment document type is stored in this field.', comment = 'DEU="In diesem Feld wird die Zuordnungsbelegart hinterlegt."';
                     ApplicationArea = All;
                 }
-                field("lbt Assignment Document No.";"lbt Assignment Document No.")
+                field("lbt Assignment Document No."; "lbt Assignment Document No.")
                 {
                     ToolTip = 'If the bonus item has the item type Bonus, the assignment document number of the bonus credit memo is entered in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘ wird in diesem Feld die Zuordnungsbelegnummer der Bonusgutschrift erfasst."';
                     ApplicationArea = All;
                 }
-                field("lbt Assignment Doc. Line No.";"lbt Assignment Doc. Line No.")
+                field("lbt Assignment Doc. Line No."; "lbt Assignment Doc. Line No.")
                 {
                     ToolTip = 'You can use the Assignment document line number field to identify in which credit memo line this rebate item is located in the rebate credit memo.', comment = 'DEU="Mit Hilfe des Feldes Zuordnungsbelegzeilennummer kann identifiziert werden, in welcher Gutschriftzeile sich dieser Bonusposten in der Bonusgutschrift befindet."';
                     ApplicationArea = All;
                 }
-                field("lbt General Ledger Entry No.";"lbt General Ledger Entry No.")
+                field("lbt General Ledger Entry No."; "lbt General Ledger Entry No.")
                 {
                     ToolTip = 'Used to identify posted G/L items as bonus or reserve. ', comment = 'DEU=" Dient zur Identifizierung der gebuchten Sachposten als Bonus bzw.Rückstellung."';
                     ApplicationArea = All;
                 }
-                field("lbt Invoice Customer No.";"lbt Invoice Customer No.")
+                field("lbt Invoice Customer No."; "lbt Invoice Customer No.")
                 {
                     ToolTip = 'This field is filled with the invoice recipient of the bonus agreement.  An alternative customer can also be defined as the bill-to party.', comment = 'DEU="Dieses Feld wird mit dem Rechnungsempfänger der Bonusvereinbarung gefüllt.  Als Rechnungsempfänger kann auch ein abweichender Debitor hinterlegt werden."';
                     ApplicationArea = All;

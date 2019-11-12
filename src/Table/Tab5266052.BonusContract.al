@@ -11,7 +11,6 @@ table 5266052 "lbt Bonus Contract"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            NotBlank= true;
         }
 
         field(2; "lbt Valid from"; Date)
@@ -119,7 +118,6 @@ table 5266052 "lbt Bonus Contract"
                 IF "lbt Bonus Scale Type" <> xRec."lbt Bonus Scale Type" THEN
                     BonusContractEntryRec.SETRANGE("lbt Contract", "lbt Contract");
                 IF NOT BonusContractEntryRec.ISEMPTY() THEN
-                    
                     ERROR(Text005Msg);
                 BonusContractLineRec.SETRANGE("lbt Contract", "lbt Contract");
 
@@ -160,7 +158,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'No. of Customers', comment = 'DEU="Anzahl Debitoren"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count ("lbt Bonus Customers" where ("lbt Contract" = field ("lbt Contract")));
+            CalcFormula = count ("lbt Bonus Customers" where("lbt Contract" = field("lbt Contract")));
 
         }
         field(17; "lbt Balance of Bonus"; Decimal)
@@ -168,7 +166,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Bonus', comment = 'DEU="Saldo Bonus"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."lbt Calculated Amount" where ("lbt Contract" = field ("lbt Contract"), "lbt Entry Type" = const ("Bonus")));
+            CalcFormula = sum ("lbt Bonus Entry"."lbt Calculated Amount" where("lbt Contract" = field("lbt Contract"), "lbt Entry Type" = const("Bonus")));
 
         }
         field(18; "lbt Balance of Reserve"; Decimal)
@@ -176,7 +174,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Reserve', comment = 'DEU="Saldo Rückstellungen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."lbt Calculated Amount" where ("lbt Contract" = field ("lbt Contract"), "lbt Entry Type" = const ("Reserve")));
+            CalcFormula = sum ("lbt Bonus Entry"."lbt Calculated Amount" where("lbt Contract" = field("lbt Contract"), "lbt Entry Type" = const("Reserve")));
         }
 
 
@@ -185,21 +183,21 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Liquidation Reserve', comment = 'DEU="Saldo Rückstellungen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."lbt Calculated Amount" where ("lbt Contract" = field ("lbt Contract"), "lbt Entry Type" = const ("Liquidation of Reserves")));
+            CalcFormula = sum ("lbt Bonus Entry"."lbt Calculated Amount" where("lbt Contract" = field("lbt Contract"), "lbt Entry Type" = const("Liquidation of Reserves")));
         }
         field(20; "lbt No. of Dimensions"; Integer)
         {
             Caption = 'No. of Dimensions', comment = 'DEU="Anzahl der Dimensionen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count ("lbt Bonus Contract Dimensions" where ("lbt Contract" = field ("lbt Contract")));
+            CalcFormula = count ("lbt Bonus Contract Dimensions" where("lbt Contract" = field("lbt Contract")));
         }
         field(21; "lbt No. of Attribute"; Integer)
         {
             Caption = 'No. of Attribute', comment = 'DEU="Anzahl der Attribute"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count ("lbt BonusContractAttribute" where ("lbt Contract" = field ("lbt Contract")));
+            CalcFormula = count ("lbt BonusContractAttribute" where("lbt Contract" = field("lbt Contract")));
         }
 
         field(22; "lbt Reserve Item Charge"; Code[20])
@@ -227,6 +225,26 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Discount %', comment = 'DEU="Rabatt %"';
             DataClassification = CustomerContent;
         }
+        field(26; "Process No."; Code[50])
+        {
+            Caption = 'Process No.', comment = 'DEU="Prozessnr."';
+            DataClassification = ToBeClassified;
+            TableRelation = "LBT Process";
+        }
+        field(27; Description; Text[50])
+        {
+            Caption = 'Description', comment = 'DEU="Beschreibung"';
+            DataClassification = CustomerContent;
+        }
+
+        field(28; "No. Series"; Code[50])
+        {
+            Caption = 'No. Series', comment = 'DEU="Nummernserie"';
+            DataClassification = CustomerContent;
+        }
+
+
+
     }
     keys
     {
@@ -235,6 +253,19 @@ table 5266052 "lbt Bonus Contract"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+        BonusSetup: Record "lbt Bonus Setup";
+    begin
+        if "lbt Contract" = '' then begin
+            BonusSetup.Get();
+            BonusSetup.TestField("Bonus Nos.");
+            NoSeriesManagement.InitSeries(BonusSetup."Bonus Nos.", xRec."No. Series", 0D, "lbt Contract", "No. Series");
+            SetProcessNo();
+        end;
+    end;
 
     trigger OnDelete()
     begin
@@ -257,6 +288,38 @@ table 5266052 "lbt Bonus Contract"
         END;
     end;
 
+    local procedure SetProcessNo()
+    var
+        Process: Record "lbt Process";
+    begin
+        "Process No." := "lbt Contract";
+        if not Process.get("Process No.") then begin
+            Process.Init();
+            Process."No." := "Process No.";
+            Process.Insert(true);
+        end;
+    end;
+
+    procedure AssistEdit(OldBonusContract: Record "lbt Bonus Contract"): Boolean
+    var
+        BonusContract: Record "lbt Bonus Contract";
+        BonusSetup: Record "lbt Bonus Setup";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+    begin
+        with BonusContract do begin
+            BonusContract := Rec;
+            BonusSetup.Get();
+            BonusSetup.TestField("Bonus Nos.");
+            if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Nos.", OldBonusContract."No. Series", "No. Series") then begin
+                NoSeriesManagement.SetSeries("lbt Contract");
+                Rec := BonusContract;
+                SetProcessNo();
+                exit(true);
+            end;
+        end;
+
+    end;
+
     var
         BonusContractEntryRec: Record "lbt Bonus Entry";
         BonusContractLineRec: Record "lbt Bonus Contract Line";
@@ -265,14 +328,14 @@ table 5266052 "lbt Bonus Contract"
         BonusCustRec: Record "lbt Bonus Customers";
         SalesHeaderRec: Record "Sales Header";
         Text001Msg: Label 'You can not reset the date, while there are unposted bonus credit memos.',
-        Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt';
+        Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"';
 
         Text002Msg: Label 'For contract %1 bonus contract entries exists. The contract can not be deleted.',
-        Comment = 'DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden.';
+        Comment = 'DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden."';
         Text004Msg: Label 'You must delete Bonus Contract Lines before you modify the contract',
-        Comment = 'DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern.';
+        Comment = 'DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern."';
 
         Text005Msg: Label 'There are already Bonus Contract Entries. You cannot modify the contract.',
-        Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden.';
+        Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden."';
 
 }
