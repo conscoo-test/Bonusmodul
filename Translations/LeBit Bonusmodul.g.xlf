@@ -25,7 +25,7 @@
         </trans-unit>
         <trans-unit id="Table 3313186052 - Field 2945659599 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Gen. Jnl. Templ. Bonus Reserve</source>
-          <note from="Developer" annotates="general" priority="2">DEU="BuchblVorl. Bonusrückstellung</note>
+          <note from="Developer" annotates="general" priority="2">DEU="BuchblVorl. Bonusrückstellung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Gen.Jnl.Templ.BonusReserve - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3313186052 - Field 4000424133 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -73,6 +73,16 @@
           <note from="Developer" annotates="general" priority="2">DEU="Allgmein"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 2659657638 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number Series</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Nummernserie"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Number Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 1196001075 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Here you select the number series for bonus contracts.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Hier wählt man die Nummernserie für Bonusverträge aus."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Bonus Nos. - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 1964835206 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen"</note>
@@ -80,12 +90,12 @@
         </trans-unit>
         <trans-unit id="Page 3313186052 - Control 3550707387 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can choose the variant for accruals that is to be generated.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll. "</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Reserve Mode - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3313186052 - Control 2945659599 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can choose a financial book template for the Bonusreverse.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen. "</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control lbt Gen.Jnl.Templ.BonusReserve - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3313186052 - Control 4000424133 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -295,22 +305,22 @@
         </trans-unit>
         <trans-unit id="Table 289521175 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
           <source>You can not reset the date, while there are unposted bonus credit memos.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text001Msg</note>
         </trans-unit>
         <trans-unit id="Table 289521175 - NamedType 1068754970" size-unit="char" translate="yes" xml:space="preserve">
           <source>For contract %1 bonus contract entries exists. The contract can not be deleted.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden.</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Zum Vertrag %1 sind Bonusposten im System vorhanden. Der Bonusvertrag kann nicht gelöscht werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text002Msg</note>
         </trans-unit>
         <trans-unit id="Table 289521175 - NamedType 3457502012" size-unit="char" translate="yes" xml:space="preserve">
           <source>You must delete Bonus Contract Lines before you modify the contract</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern.</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Sie müssen die Vertragszeilen löschen, bevor Sie die Bonusart ändern."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text004Msg</note>
         </trans-unit>
         <trans-unit id="Table 289521175 - NamedType 3014092491" size-unit="char" translate="yes" xml:space="preserve">
           <source>There are already Bonus Contract Entries. You cannot modify the contract.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden.</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - NamedType Text005Msg</note>
         </trans-unit>
         <trans-unit id="Table 1074296949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -895,7 +905,7 @@
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 1021462666 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Öffnet die Übersicht der zum Bonusvertrag hinterlegten Kunden. Die Übersicht  ist  dabei dieselbe, wie  die, die  in den Bonusverträgen unter ‚Anzahl Kunden‘ befindet."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Öffnet die Übersicht der zum Bonusvertrag hinterlegten Kunden. Die Übersicht  ist  dabei dieselbe, wie  die, die  in den Bonusverträgen unter "Anzahl Kunden" befindet."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Customer - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 2685906550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -915,7 +925,7 @@
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 2228158291 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.</source>
-          <note from="Developer" annotates="general" priority="2">DEU=" Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Bonus Contract Attribute - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">

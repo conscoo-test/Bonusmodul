@@ -10,11 +10,10 @@
   "help": "https://www.lebit.net/#support",
   "url": "https://www.lebit.net/#kontakt",
   "logo": "Appendix\\Logo\\LB18.jpg",
-  "capabilities": [],
   "dependencies": [
     {
       "appId": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
-      "name": "LIS365 Vorgangsmanagement",
+      "name": "LeBit Processmanagement",
       "version": "1.0.0.0",
       "publisher": "LeBit Software & Consult GmbH"
     },

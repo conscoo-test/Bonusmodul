@@ -17,8 +17,6 @@ page 5266052 "lbt Bonus Contract List"
                 {
                     ToolTip = 'This field contains the name of the bonus contract.', comment = 'DEU="In diesem Feld befindet sich der Name des bonusvertrags. "';
                     ApplicationArea = All;
-                    DrillDownPageId = "lbt Bonus Contract Card";
-
                 }
                 field("Process No."; "Process No.")
                 {
