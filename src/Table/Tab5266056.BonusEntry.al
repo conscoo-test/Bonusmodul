@@ -32,7 +32,7 @@ table 5266056 "lbt Bonus Entry"
             Caption = 'Bonus Contract Line', comment = 'DEU="Bonusvetragszeilen"';
             ;
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract Line" where ("lbt Contract" = field ("lbt Contract"));
+            TableRelation = "lbt Bonus Contract Line" where("lbt Contract" = field("lbt Contract"));
         }
         field(5; "lbt Entry Date"; Date)
         {
@@ -64,7 +64,7 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'lbt Ship-to Code', Comment = 'DEU="Lief. an Code"';
             DataClassification = CustomerContent;
-            TableRelation = "Ship-to Address".Code where ("Customer No." = Field ("lbt Customer"));
+            TableRelation = "Ship-to Address".Code where("Customer No." = Field("lbt Customer"));
         }
         field(11; "lbt Invoice Customer No."; Code[20])
         {

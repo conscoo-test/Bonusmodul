@@ -32,10 +32,14 @@
   ],
   "screenshots": [],
   "platform": "15.0.0.0",
-  "idRanges": [{
-    "from": 5266051,
-    "to": 5266099
-  }],
-  "features": ["TranslationFile"],
+  "idRanges": [
+    {
+      "from": 5266051,
+      "to": 5266099
+    }
+  ],
+  "features": [
+    "TranslationFile"
+  ],
   "runtime": "4.0"
 }

@@ -54,9 +54,16 @@ table 5266051 "lbt Bonus Setup"
         field(8; "lbt Bus.Post.Gr.f.Res.Cr.Memo"; Code[20])
         {
             Caption = 'Bus. Post. Group for Reserve Credit Memo', comment = 'DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"';
+
             DataClassification = CustomerContent;
             TableRelation = "Gen. Business Posting Group".Code;
         }
+        field(100; Complete; Boolean)
+        {
+            DataClassification = CustomerContent;
+        }
+
+
 
         field(9; "Bonus Nos."; Code[50])
         {
@@ -64,6 +71,7 @@ table 5266051 "lbt Bonus Setup"
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
+
 
 
     }

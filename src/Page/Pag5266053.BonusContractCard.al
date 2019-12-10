@@ -132,7 +132,7 @@ page 5266053 "lbt Bonus Contract Card"
                 }
                 field("lbt Reserve Unit"; "lbt Reserve Unit")
                 {
-                    ToolTip = 'If it is specified in the contract that the reserve run is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.', comment = 'DEU="Ist im Vertrag hinterlegt, dass der Rückstellungslauf anhand der Option „Betrag je Einheit“ durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."';
+                    ToolTip = 'If it is specified in the contract that the reserve run is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.', comment = 'DEU="Ist im Vertrag hinterlegt, dass der Rückstellungslauf anhand der Option "Betrag je Einheit" durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."';
                     ApplicationArea = All;
                     Enabled = BonusReserveType_Enable;
                 }
@@ -143,7 +143,7 @@ page 5266053 "lbt Bonus Contract Card"
                 }
                 field("lbt Reserve Item Charge"; "lbt Reserve Item Charge")
                 {
-                    ToolTip = 'Here you must select the appropriate surcharge/discount to be used in the credit memo for posting the provisions and in the invoice for cancelling the provisions. This is required if the reserve mode credit memo is selected.', comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus ‚Gutschrift‘ gewählt ist"';
+                    ToolTip = 'Here you must select the appropriate surcharge/discount to be used in the credit memo for posting the provisions and in the invoice for cancelling the provisions. This is required if the reserve mode credit memo is selected.', comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist"';
                     ApplicationArea = All;
                 }
 
@@ -287,7 +287,7 @@ page 5266053 "lbt Bonus Contract Card"
             action("lbt Bonus Contract Attribute")
             {
                 Caption = 'Attribute Filter', comment = 'DEU="Attribute Filter"';
-                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.', comment = 'DEU=" Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."';
+                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.', comment = 'DEU="Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."';
                 ApplicationArea = All;
                 Image = "Filter";
                 RunObject = page "lbt BonusContrAttributeFilter";
@@ -314,7 +314,7 @@ page 5266053 "lbt Bonus Contract Card"
             action("lbt Bonus Entry")
             {
                 Caption = 'Bonus Entry', comment = 'DEU="Bonusposten"';
-                ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.', comment = 'DEU="Bei  jeder  Erzeugung  von  Rückstellungen oder  Bonusabrechnungen  werden  im  Hintergrund Bonusposten  geschrieben.  Diese  Bonusposten  können über  diese  Schaltfläche  je  Bonusvertrag aufgerufen werden."';
+                ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.', comment = 'DEU="Bei jeder Erzeugung von Rückstellungen oder Bonusabrechnungen werden im Hintergrund Bonusposten geschrieben. Diese Bonusposten können über diese Schaltfläche je Bonusvertrag aufgerufen werden."';
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbt Bonus Entry";

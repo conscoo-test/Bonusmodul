@@ -90,13 +90,13 @@ page 5266057 "lbt Bonus Entry"
                 }
                 field("lbt From Document Type"; "lbt From Document Type")
                 {
-                    ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart „Bonus“ wird in diesem Feld „Verkaufsgutschrift“ als Belegart hinterlegt."';
+                    ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld „Verkaufsgutschrift“ als Belegart hinterlegt."';
                     ApplicationArea = All;
                 }
 
                 field("lbt From Document No."; "lbt From Document No.")
                 {
-                    ToolTip = 'If it is a bonus item with the item type Bonus, the document number of the bonus credit memo is entered in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘wird in diesem Feld die Belegnr. der Bonusgutschrift erfasst."';
+                    ToolTip = 'If it is a bonus item with the item type Bonus, the document number of the bonus credit memo is entered in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld die Belegnr. der Bonusgutschrift erfasst."';
                     ApplicationArea = All;
                 }
                 field("lbt From Document Line"; "lbt From Document Line")
@@ -107,13 +107,13 @@ page 5266057 "lbt Bonus Entry"
 
                 field("lbt Bonus Document Type"; "lbt Bonus Document Type")
                 {
-                    ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field. ', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart „Bonus“ wird in diesem Feld „Verkaufsgutschrift“ als Bonus Dokumentenart hinterlegt. "';
+                    ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field. ', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld „Verkaufsgutschrift“ als Bonus Dokumentenart hinterlegt. "';
                     ApplicationArea = All;
                 }
 
                 field("lbt Bonus Document No."; "lbt Bonus Document No.")
                 {
-                    ToolTip = 'If it is a bonus item with the item type Bonus, the bonus document number is entered in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘wird in diesem Feld die Bonusbelegnummer der Bonusgutschrift erfasst."';
+                    ToolTip = 'If it is a bonus item with the item type Bonus, the bonus document number is entered in this field.', comment = 'DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld die Bonusbelegnummer der Bonusgutschrift erfasst."';
                     ApplicationArea = All;
                 }
                 field("lbt Bonus Document Line"; "lbt Bonus Document Line")
@@ -138,7 +138,7 @@ page 5266057 "lbt Bonus Entry"
                 }
                 field("lbt General Ledger Entry No."; "lbt General Ledger Entry No.")
                 {
-                    ToolTip = 'Used to identify posted G/L items as bonus or reserve. ', comment = 'DEU=" Dient zur Identifizierung der gebuchten Sachposten als Bonus bzw.Rückstellung."';
+                    ToolTip = 'Used to identify posted G/L items as bonus or reserve. ', comment = 'DEU="Dient zur Identifizierung der gebuchten Sachposten als Bonus bzw.Rückstellung."';
                     ApplicationArea = All;
                 }
                 field("lbt Invoice Customer No."; "lbt Invoice Customer No.")

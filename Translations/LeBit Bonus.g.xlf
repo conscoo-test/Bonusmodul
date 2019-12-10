@@ -58,6 +58,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field lbt Bus.Post.Gr.f.Res.Cr.Memo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 2588201939 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Complete</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Complete - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3313186052 - Field 1196001075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Nos.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusnummern"</note>
@@ -690,12 +695,12 @@
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 3502416501 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart „Bonus“ wird in diesem Feld „Verkaufsgutschrift“ als Belegart hinterlegt."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld „Verkaufsgutschrift“ als Belegart hinterlegt."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt From Document Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 1645760992 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>If it is a bonus item with the item type Bonus, the document number of the bonus credit memo is entered in this field.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘wird in diesem Feld die Belegnr. der Bonusgutschrift erfasst."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld die Belegnr. der Bonusgutschrift erfasst."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt From Document No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 4223297743 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -705,12 +710,12 @@
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 1474055660 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field. </source>
-          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart „Bonus“ wird in diesem Feld „Verkaufsgutschrift“ als Bonus Dokumentenart hinterlegt. "</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld „Verkaufsgutschrift“ als Bonus Dokumentenart hinterlegt. "</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Bonus Document Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 4144627809 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>If it is a bonus item with the item type Bonus, the bonus document number is entered in this field.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart ‚Bonus‘wird in diesem Feld die Bonusbelegnummer der Bonusgutschrift erfasst."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Handelt es sich um ein Bonusposten mit der Postenart "Bonus" wird in diesem Feld die Bonusbelegnummer der Bonusgutschrift erfasst."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt Bonus Document No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 367698474 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -735,7 +740,7 @@
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 2656678182 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Used to identify posted G/L items as bonus or reserve. </source>
-          <note from="Developer" annotates="general" priority="2">DEU=" Dient zur Identifizierung der gebuchten Sachposten als Bonus bzw.Rückstellung."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Dient zur Identifizierung der gebuchten Sachposten als Bonus bzw.Rückstellung."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Entry - Control lbt General Ledger Entry No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4171831453 - Control 2906247156 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -822,6 +827,111 @@
           <source>This field is filled with the delivery contact name from the bonus contract.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Dieses Feld wird mit dem Lieferkontaktnamen aus dem Bonusvertrag gefüllt."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Customers - Control lbt Ship-to Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3772966010 - NamedType 2999628943" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup LIS365 Bonus</source>
+          <note from="Developer" annotates="general" priority="2">DEU="LIS365 Bonus einrichten"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbt Bonus Assisted Setup - NamedType SetupLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3772966010 - NamedType 1433001484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>9c975145-0d59-400f-8eaa-dd087f421cb8</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbt Bonus Assisted Setup - NamedType NotificationIdTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3772966010 - NamedType 1304771032" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The setup for LIS365 Bonus is incomplete</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Die Einrichtung für LIS365 Bonus ist unvollständig."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbt Bonus Assisted Setup - NamedType NotificationMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3772966010 - NamedType 262960121" size-unit="char" translate="yes" xml:space="preserve">
+          <source>To Wizard...</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zum Wizard..."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbt Bonus Assisted Setup - NamedType ActionMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3772966010 - NamedType 1072941650" size-unit="char" translate="yes" xml:space="preserve">
+          <source>1716d377-7e43-42d6-ae75-ad9977f24a69</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbt Bonus Assisted Setup - NamedType ExtensionGuidTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LIS365 Bonus Setup</source>
+          <note from="Developer" annotates="general" priority="2">DEU="LIS365 Bonus Einrichtung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 3800514526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Welcome</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Willkommen bei der Einrichtung des LIS365-Bonusmoduls"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Welcome - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 203669508 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Introduction - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 203669508 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source>english text</source>
+          <note from="Developer" annotates="general" priority="2">DEU="german text"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Introduction - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 926340698 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lets go</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Los gehts"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control LetsGo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 1235620153 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Next - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 1235620153 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Choose Next so you can set up.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Wählen Sie \"Weiter\" damit Sie den Bonus einrichten können."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Next - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 1104893748 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control SalesReceivablesSetup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Control 1104893748 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source>englisch</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bei "weiter" werden in der Debitoren &amp; Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control SalesReceivablesSetup - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Action 2438272767 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>One record back</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Einen Datensatz zurück"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Action ActionBack - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Action 2438272767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Zurück"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Action ActionBack - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Action 914282563 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>One record forward</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Einen Datensatz vor"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Action ActionNext - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Action 914282563 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Next</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Weiter"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Action ActionNext - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Action 3259912055 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Complete the configuration</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Konfiguration abschließen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Action ActionFinish - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - Action 3259912055 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Finish</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Fertig stellen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Action ActionFinish - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3772966010 - NamedType 134228871" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup has not been completed.\\Are you sure you want to exit?</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Die Einrichtung wurde nicht abgeschlossen.\\Möchten Sie den Assistenten wirklich beenden?"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - NamedType FinishWhenNotCompleteQst</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract</source>
@@ -1060,7 +1170,7 @@
         </trans-unit>
         <trans-unit id="Page 617064915 - Control 1650316408 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>If it is specified in the contract that the reserve run is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Ist im Vertrag hinterlegt, dass der Rückstellungslauf anhand der Option „Betrag je Einheit“ durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Ist im Vertrag hinterlegt, dass der Rückstellungslauf anhand der Option "Betrag je Einheit" durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Reserve Unit - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Control 892314847 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1070,7 +1180,7 @@
         </trans-unit>
         <trans-unit id="Page 617064915 - Control 3689486175 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you must select the appropriate surcharge/discount to be used in the credit memo for posting the provisions and in the invoice for cancelling the provisions. This is required if the reserve mode credit memo is selected.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus ‚Gutschrift‘ gewählt ist"</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control lbt Reserve Item Charge - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Control 633568778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1165,7 +1275,7 @@
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 2228158291 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.</source>
-          <note from="Developer" annotates="general" priority="2">DEU=" Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Contract Attribute - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1185,7 +1295,7 @@
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 4171831453 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Bei  jeder  Erzeugung  von  Rückstellungen oder  Bonusabrechnungen  werden  im  Hintergrund Bonusposten  geschrieben.  Diese  Bonusposten  können über  diese  Schaltfläche  je  Bonusvertrag aufgerufen werden."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Bei jeder Erzeugung von Rückstellungen oder Bonusabrechnungen werden im Hintergrund Bonusposten geschrieben. Diese Bonusposten können über diese Schaltfläche je Bonusvertrag aufgerufen werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Action lbt Bonus Entry - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Action 1413345143 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1310,7 +1420,7 @@
         </trans-unit>
         <trans-unit id="Page 3767893007 - Control 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>If the bonus items are posted with the item type Reserves and Reserve reversal, this field is linked to the serial number of the corresponding G/L item.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Werden die Bonusposten mit der Postenart ‚Rückstellung‘ und ‚Rückstellungsauflösung‘ gebucht, wird dieses Feld mit der Lfd.Nr. des zugehörigen Sachpostens verknüpft."</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Werden die Bonusposten mit der Postenart "Rückstellung" und "Rückstellungsauflösung" gebucht, wird dieses Feld mit der Lfd.Nr. des zugehörigen Sachpostens verknüpft."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Explode Reservation - Control Entry No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3767893007 - Control 3852983238 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1370,7 +1480,7 @@
         </trans-unit>
         <trans-unit id="Report 3116946016 - Control 30259774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>In consideration of the sart date, all invoice and credit lines of the period are used, which are additionally checked for relevance of the corresponding contract conditions (calculation rules).</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Unter Berücksichtigung des Sartdatums, werden alle Rechnungs-und Gutschriftszeilen des Zeitraums herangezogen, welche zusätzlich auf Relevanz der entsprechenden Vertragsbedingungen (Berechnungsregeln) geprüft werden. "</note>
+          <note from="Developer" annotates="general" priority="2">DEU="Unter Berücksichtigung des Sartdatums, werden alle Rechnungs-und Gutschriftszeilen des Zeitraums herangezogen, welche zusätzlich auf Relevanz der entsprechenden Vertragsbedingungen (Berechnungsregeln) geprüft werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - Control DateFrom - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Report 3116946016 - Control 1537575777 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
