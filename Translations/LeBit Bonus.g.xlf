@@ -849,12 +849,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Control lbt Billing Period - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 3181742087 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>lbt Create Reserves</source>
+          <source>Create Reserves</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungen erzeugen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Create Reserves - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 134577121 - Action 3181742087 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This function starts the reset run.</source>
+          <source>This function starts the reservation run.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Mit dieser Funktion wird der Rückstellungslauf gestartet."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract List - Action lbt Create Reserves - Property ToolTip</note>
         </trans-unit>
@@ -1402,6 +1402,56 @@
           <source>Contract   #2##############</source>
           <note from="Developer" annotates="general" priority="2">DEU="Vertrag    #2##############"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Reserves - NamedType Text005Msg</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - Control 30259774 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date from</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Datum von"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - Control DateFrom - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - Control 1537575777 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date to</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Datum bis"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - Control DateTo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - Control 3879249624 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting date of exploding bonus reserves</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Buchungsdatum für Rückstellungsauflösung"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - Control ReversePostingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 1108092935" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please input the accounting period.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Geben Sie den Abrechnungszeitraum ein."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType AccountingPeriodMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 2162482411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer    #1##############\</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitor        #1##############\"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType CustomerProgressTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 3491330105" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract #2##############\</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusvertrag   #2##############\"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType ContractProgressTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 565641615" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Document #3##############</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Verkaufsbeleg  #3##############"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType SalesDocProgressTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusgutschrift"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType BonusCreditMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Settlement according to Bonus Contract %1</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonusabrchn. gem. Vertrag %1"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType BonusSettlementTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 1650538642 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting Period %1 to %2</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Abrechnungszeitraum %1 bis %2"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType AccountingPeriodTxt</note>
         </trans-unit>
         <trans-unit id="PageExtension 2678323290 - Control 919233648 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 200707616">
           <source>Indicate which surcharges and discounts are relevant for bonus.</source>

@@ -49,7 +49,7 @@ report 5266051 "lbt Bonus Reserves"
                         CASE "lbt Bonus Contract"."lbt Reserve Type" OF
                             "lbt Bonus Contract"."lbt Reserve Type"::"%":
                                 BEGIN
-                                    //TODO Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
+                                    //TODO: Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
                                     /*    
                                         BonusAmt := 0;
                                         PostedSalesInvLineRec.RESET();
@@ -218,7 +218,7 @@ report 5266051 "lbt Bonus Reserves"
                                 END;
                             BonusContractRec."lbt Reserve Type"::"Amount per Unit":
                                 BEGIN
-                                    //TODO Auskommentiert weil "PostDocItemUnit" als App noch nicht vorhanden ist
+                                    //TODO: Auskommentiert weil "PostDocItemUnit" als App noch nicht vorhanden ist
                                     /*
                                         BonusAmt := 0;
                                         PostedSalesInvLineRec.RESET();
@@ -226,7 +226,7 @@ report 5266051 "lbt Bonus Reserves"
                                         PostedSalesInvLineRec.SETRANGE(Type, PostedSalesInvLineRec.Type::Item);
                                         IF PostedSalesInvLineRec.FINDSET() THEN
 
-                                        //TODO Auskommentiert
+                                        //TODO: Auskommentiert
                                             REPEAT
                                                 PostDocItemUnitRec.RESET;
                                                 PostDocItemUnitRec.SETRANGE("Table ID", DATABASE::"Sales Invoice Line");
@@ -365,7 +365,7 @@ report 5266051 "lbt Bonus Reserves"
 
                         IF DocumentBonusAmt = 0 THEN
                             CurrReport.SKIP();
-                        //TODO Auskommentiert
+                        //TODO: Auskommentiert
                         /*
                         SumAmounts[1] += S_Amount;
                              SumAmounts[2] += S_Amount;
@@ -407,7 +407,7 @@ report 5266051 "lbt Bonus Reserves"
 
                     trigger OnAfterGetRecord()
                     begin
-                        //ToDo OnAfterGetRecord()- dataitem "Sales Cr.Memo Header"
+                        //TODO: OnAfterGetRecord()- dataitem "Sales Cr.Memo Header"
                         Sign := -1;
                         DocumentBonusAmt := 0;
                         S_Amount := 0;
@@ -417,7 +417,7 @@ report 5266051 "lbt Bonus Reserves"
                         CALCFIELDS(Amount);
                         CASE "lbt Bonus Contract"."lbt Reserve Type" OF
                             "lbt Bonus Contract"."lbt Reserve Type"::"%":
-                                //TODO erstmal auskommentiert, muss komplett überarbeitet werden
+                                //TODO: erstmal auskommentiert, muss komplett überarbeitet werden
                                 BEGIN
 
                                     /*
@@ -427,7 +427,7 @@ report 5266051 "lbt Bonus Reserves"
                                     PostedCrMemoLineRec.SETRANGE(Type, PostedCrMemoLineRec.Type::Item);
                                     IF PostedCrMemoLineRec.FINDSET() THEN
                                         REPEAT
-                                            //TODO Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
+                                            //TODO: Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
                                             
                                                 Continue := TRUE;
                                                 BonusContractParaRec.RESET;
@@ -582,7 +582,7 @@ report 5266051 "lbt Bonus Reserves"
                                 END;
 
                             "lbt Bonus Contract"."lbt Reserve Type"::"Amount per Unit":
-                                //TODO erstmal auskommentiert, muss komplett überarbeitet werden
+                                //TODO: erstmal auskommentiert, muss komplett überarbeitet werden
 
                                 BEGIN
                                     /*
@@ -720,7 +720,7 @@ report 5266051 "lbt Bonus Reserves"
 
                         IF DocumentBonusAmt = 0 THEN
                             CurrReport.SKIP();
-                        //TODO TODO erstmal auskommentiert, muss überarbeitet werden
+                        //TODO: erstmal auskommentiert, muss überarbeitet werden
                         /*
                         SumAmounts[1] -= S_Amount;
                         SumAmounts[2] -= S_Amount;
@@ -740,7 +740,7 @@ report 5266051 "lbt Bonus Reserves"
 
                     trigger OnPostDataItem()
                     begin
-                        //TODO OnPostDataItem()- dataitem "Sales Cr.Memo Header"
+                        //TODO: OnPostDataItem()- dataitem "Sales Cr.Memo Header"
                     end;
                 }
                 dataitem(Integer; Integer)
@@ -759,7 +759,7 @@ report 5266051 "lbt Bonus Reserves"
                         CustApplAmt: Decimal;
                         OldSalesLineNo: Integer;
                     begin
-                        //TODO dataitem "Integer" -->OnAfterGetRecord()
+                        //TODO: dataitem "Integer" -->OnAfterGetRecord()
                         DocumentBonusAmt := 0;
                         S_Quantity := 0;
                         S_Amount := 0;
@@ -830,7 +830,7 @@ report 5266051 "lbt Bonus Reserves"
                                                                                0, ItemChargeAssRec."Qty. to Assign", 0,
                                                                                ItemChargeAssRec."Applies-to Doc. Line Amount",
                                                                                0, 0);
-                                                    //ToDo Bonusprozess nummer
+                                                    //TODO: Bonusprozess nummer
                                                     SalesLineRec."LBT Process No." := "lbt Bonus Contract"."Process No.";
                                                     // SalesLineRec."lbt Bonus Entry No." := "lbt Bonus Contract"."Process No.";
                                                     // SalesLineRec."Billing Code" := VertriebEinrRec."Billing Code";
@@ -977,7 +977,7 @@ report 5266051 "lbt Bonus Reserves"
     procedure SetJournalBatch(VAR JnlBatchName: Code[10]; VAR JnlTemplateName: Code[10])
     begin
 
-        //TODO Funktion "SetJournalBatch" muss noch umgesetzt werden
+        //TODO: Funktion "SetJournalBatch" muss noch umgesetzt werden
 
     end;
 
@@ -1011,12 +1011,12 @@ report 5266051 "lbt Bonus Reserves"
 
     procedure AddItemChargeCrMemoLine(DocNoP: Code[20])
     begin
-        //TODO Funktion "AddItemChargeCrMemoLine" muss  noch umgesetzt werden
+        //TODO: Funktion "AddItemChargeCrMemoLine" muss  noch umgesetzt werden
     end;
 
     procedure CreateJournalLine(TableID: Integer; VAR DocNo: Code[20]; DocLineNo: Integer; VAR CustNo: Code[20]; VAR Amt: Decimal; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal)
     begin
-        //TODO Funktion "CreateJournalLine"
+        //TODO: Funktion "CreateJournalLine"
     end;
 
     var

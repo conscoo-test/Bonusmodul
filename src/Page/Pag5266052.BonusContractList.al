@@ -59,8 +59,8 @@ page 5266052 "lbt Bonus Contract List"
         {
             action("lbt Create Reserves")
             {
-                Caption = 'lbt Create Reserves', comment = 'DEU="Rückstellungen erzeugen"';
-                ToolTip = 'This function starts the reset run.', comment = 'DEU="Mit dieser Funktion wird der Rückstellungslauf gestartet."';
+                Caption = 'Create Reserves', comment = 'DEU="Rückstellungen erzeugen"';
+                ToolTip = 'This function starts the reservation run.', comment = 'DEU="Mit dieser Funktion wird der Rückstellungslauf gestartet."';
                 ApplicationArea = all;
                 Image = CashReceiptJournal;
 
