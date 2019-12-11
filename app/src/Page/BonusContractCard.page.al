@@ -195,7 +195,7 @@ page 5266053 "lbt Bonus Contract Card"
 
                 trigger OnAction();
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
 
@@ -206,11 +206,6 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = CashFlow;
                 RunObject = page "lbt Explode Reservation";
-
-                trigger OnAction()
-                begin
-
-                end;
             }
 
 
@@ -223,7 +218,7 @@ page 5266053 "lbt Bonus Contract Card"
 
                 trigger OnAction()
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
 
@@ -236,7 +231,7 @@ page 5266053 "lbt Bonus Contract Card"
 
                 trigger OnAction()
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
 
@@ -249,7 +244,7 @@ page 5266053 "lbt Bonus Contract Card"
 
                 trigger OnAction()
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
         }

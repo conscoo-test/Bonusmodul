@@ -1,0 +1,24 @@
+{
+    "folders": [
+        {
+            "path": "app"
+        },
+        {
+            "path": "test"
+        },
+        {
+            "path": "scripts"
+        }
+    ],
+    "settings": {
+        "al.enableCodeAnalysis": true,
+        "CRS.ObjectNamePrefix": "lbt ",
+        "CRS.OnSaveAlFileAction": "Rename",
+        "CRS.RemovePrefixFromFilename": true,
+        "al.codeAnalyzers": [
+            "${AppSourceCop}",
+            "${CodeCop}",
+            "${UICop}"
+        ],
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "name": "bonus",
+    "appFolders": "app",
+    "testFolders": "test",
+    "dependenciesFolders": "dependencies",
+    "publicDnsName": "lvserver19.lebit.intranet",
+    "launch": {
+        "startupObjectId": 22,
+        "startupObjectType": "Page",
+        "breakOnError": true
+    },
+    "versions": [
+        {
+            "version": "current",
+            "containerImage": "mcr.microsoft.com/businesscentral/sandbox:us",
+            "alwaysPull": true,
+            "reuseContainer": true
+        },
+        {
+            "version": "nextminor",
+            "containerImage": "bcinsider.azurecr.io/bcsandbox:us",
+            "alwaysPull": true
+        },
+        {
+            "version": "nextmajor",
+            "containerImage": "bcinsider.azurecr.io/bcsandbox-master:us",
+            "alwaysPull": true
+        },
+        {
+            "version": "cronus_de",
+            "containerImage": "mcr.microsoft.com/businesscentral/sandbox:de",
+            "reuseContainer": true
+        }
+    ],
+    "userprofiles": [
+        {
+            "profile": "Default",
+            "navContainerHelperPath": "",
+            "licenseFilePath": "https://storagefsijivchhpa3w.blob.core.windows.net/secrets/fin.flf?sp=r&st=2019-02-14T08:27:39Z&se=2020-02-14T16:27:39Z&spr=https&sv=2018-03-28&sig=VsnBxwaxUqHNag%2BRU47xxrz0NXsDzEn3E8qapZsxJOc%3D&sr=b",
+            "Username": "test",
+            "Password": "test",
+            "AzureVM": {
+                "ComputerName": "lvserver19.lebit.intranet",
+                "Username": "lebit/docker",
+                "Password": "Pa$$w0rd@10245"
+            }
+        }
+    ]
+}

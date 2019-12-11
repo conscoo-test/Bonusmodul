@@ -2,14 +2,15 @@
   "id": "1716d377-7e43-42d6-ae75-ad9977f24a69",
   "name": "LeBit Bonus",
   "publisher": "LeBit Software & Consult GmbH",
-  "brief": "",
-  "description": "",
+  "brief": "LeBit Bonus",
+  "description": "LeBit Bonus",
   "version": "1.0.0.0",
   "privacyStatement": "https://www.lebit.net/impressum#datenschutz",
   "EULA": "https://www.lebit.net/impressum#datenschutz",
   "help": "https://www.lebit.net/#support",
   "url": "https://www.lebit.net/#kontakt",
-  "logo": "Appendix\\Logo\\LB18.jpg",
+  "contextSensitiveHelpUrl": "http://www.lebit.net",
+  "logo": "..\\Appendix\\Logo\\LB18.jpg",
   "dependencies": [
     {
       "appId": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",

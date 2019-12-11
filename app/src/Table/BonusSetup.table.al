@@ -17,7 +17,7 @@ table 5266051 "lbt Bonus Setup"
             OptionMembers = "Journal","CreditMemo";
             OptionCaption = 'Journal,CreditMemo', comment = 'DEU="Buchblatt,Gutschrift"';
         }
-        field(3; "lbt Gen.Jnl.Templ.BonusReserve"; Code[20])
+        field(3; "lbt Gen.Jnl.Templ.BonusReserve"; Code[10])
         {
             Caption = 'Gen. Jnl. Templ. Bonus Reserve', comment = 'DEU="BuchblVorl. Bonusrückstellung"';
             DataClassification = CustomerContent;
@@ -25,7 +25,7 @@ table 5266051 "lbt Bonus Setup"
 
         }
 
-        field(4; "lbt Gen. Jnl. Bonus Reserve"; Code[20])
+        field(4; "lbt Gen. Jnl. Bonus Reserve"; Code[10])
         {
             Caption = 'Gen. Jnl. Bonus Reserve', comment = 'DEU="Buchblatt Bonusrückstellung"';
             DataClassification = CustomerContent;
@@ -65,7 +65,7 @@ table 5266051 "lbt Bonus Setup"
 
 
 
-        field(9; "Bonus Nos."; Code[50])
+        field(9; "Bonus Nos."; Code[20])
         {
             Caption = 'Bonus Nos.', comment = 'DEU="Bonusnummern"';
             DataClassification = CustomerContent;

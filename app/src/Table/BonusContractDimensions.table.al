@@ -2,8 +2,8 @@ table 5266054 "lbt Bonus Contract Dimensions"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contract Dimensions', comment = 'DEU="Bonusvetrag Dimensionen"';
-    LookupPageId= "lbt Bonus Contract Dimension";
-    DrillDownPageId= "lbt Bonus Contract Dimension";
+    LookupPageId = "lbt Bonus Contract Dimension";
+    DrillDownPageId = "lbt Bonus Contract Dimension";
 
     fields
     {
@@ -17,14 +17,14 @@ table 5266054 "lbt Bonus Contract Dimensions"
         {
             Caption = 'Dimension Code', comment = 'DEU="Dimensionscode"';
             DataClassification = CustomerContent;
-            TableRelation=Dimension;
+            TableRelation = Dimension;
 
         }
         field(3; "lbt Dimension Value"; Code[20])
         {
             Caption = 'Dimension Value', comment = 'DEU="Dimensionswert"';
             DataClassification = CustomerContent;
-            TableRelation="Dimension Value".Code where ("Dimension Code"= field("lbt Dimension Code"));
+            TableRelation = "Dimension Value".Code where("Dimension Code" = field("lbt Dimension Code"));
         }
 
     }

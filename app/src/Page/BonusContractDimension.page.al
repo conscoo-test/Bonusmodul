@@ -3,7 +3,7 @@ page 5266055 "lbt Bonus Contract Dimension"
     Caption = 'Bonus Contract Dimensions', comment = 'DEU="Bonusvertrag Dimensionen"';
     PageType = List;
     SourceTable = "lbt Bonus Contract Dimensions";
-    UsageCategory=None;
+    UsageCategory = None;
 
     layout
     {

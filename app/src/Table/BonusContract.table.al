@@ -226,10 +226,10 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Discount %', comment = 'DEU="Rabatt %"';
             DataClassification = CustomerContent;
         }
-        field(26; "Process No."; Code[50])
+        field(26; "Process No."; Code[20])
         {
             Caption = 'Process No.', comment = 'DEU="Prozessnr."';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             TableRelation = "LBT Process";
         }
         field(27; Description; Text[50])
@@ -238,7 +238,7 @@ table 5266052 "lbt Bonus Contract"
             DataClassification = CustomerContent;
         }
 
-        field(28; "No. Series"; Code[50])
+        field(28; "No. Series"; Code[20])
         {
             Caption = 'No. Series', comment = 'DEU="Nummernserie"';
             DataClassification = CustomerContent;
@@ -257,8 +257,8 @@ table 5266052 "lbt Bonus Contract"
 
     trigger OnInsert()
     var
-        NoSeriesManagement: Codeunit NoSeriesManagement;
         BonusSetup: Record "lbt Bonus Setup";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
         if "lbt Contract" = '' then begin
             BonusSetup.Get();

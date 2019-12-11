@@ -126,7 +126,7 @@ codeunit 5266052 "lbt Bonus Management"
         Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbt Bonus Contract", 0, BonusContract.TableCaption(), BonusContract.Count);
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbt Bonus Contract", 0, CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
     end;
 
     var

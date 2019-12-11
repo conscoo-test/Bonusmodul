@@ -154,10 +154,10 @@ table 5266056 "lbt Bonus Entry"
             Caption = 'Assignment Doc. Line No.', Comment = 'DEU="Zuweisungsbelegzeilennr."';
             DataClassification = CustomerContent;
         }
-        field(26; "Process No."; Code[50])
+        field(26; "Process No."; Code[20])
         {
             Caption = 'Process No.', comment = 'DEU="Prozessnr."';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             TableRelation = "LBT Process";
         }
 

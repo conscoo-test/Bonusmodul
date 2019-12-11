@@ -1,0 +1,37 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Template
+      
+trigger: none
+schedules:
+- cron: '00 05 * * *'
+  displayName: Daily Next Minor build
+  branches:
+    include:
+    - master
+  always: true
+
+variables:
+- group: secrets
+      
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    variables:
+      build.clean: all
+      platform: x64
+      version: "nextminor"
+      appVersion: "1.0"
+      appBuild: $[counter(variables['appVersion'],20000)]
+      appRevision: 0
+      createRuntimePackages: False
+      skipComponentGovernanceDetection: True
+
+    pool:
+      name: Default
+
+    steps:
+    - template: build-steps.yml@templates

@@ -12,7 +12,7 @@ page 5266062 "lbt Bonus Assisted Setup"
             {
                 Editable = false;
                 Visible = TopBannerVisible and (CurrentStep < 3);
-                field(MediaResources; MediaResources."Media Reference")
+                field("Media Resources"; MediaResources."Media Reference")
                 {
                     ApplicationArea = All;
                     ShowCaption = false;
@@ -23,7 +23,7 @@ page 5266062 "lbt Bonus Assisted Setup"
             {
                 Editable = false;
                 Visible = TopBannerVisible and (CurrentStep = 3);
-                field(MediaResourcesDone; MediaResourcesDone."Media Reference")
+                field("MediaResources Done"; MediaResourcesDone."Media Reference")
                 {
                     ApplicationArea = All;
                     ShowCaption = false;
@@ -63,7 +63,7 @@ page 5266062 "lbt Bonus Assisted Setup"
             group(Step2)
             {
                 Visible = CurrentStep = 2;
-                group(SalesReceivablesSetup)
+                group("Sales Receivables Setup")
                 {
                     Caption = '';
                     InstructionalText = 'englisch', //TODO:

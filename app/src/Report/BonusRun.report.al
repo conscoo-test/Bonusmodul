@@ -52,21 +52,16 @@ report 5266052 "lbt Bonus Run"
                                                 ValueEntry.SetRange("Document No.", "Document No.");
                                                 ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
                                                 ValueEntry.SetRange("Document Line No.", "Line No.");
-                                                if ValueEntry.FindFirst() then begin
+                                                if ValueEntry.FindFirst() then
                                                     if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
                                                         if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
                                                             CreateSalesCreditMemo2(Database::"Sales Invoice Line", "Document No.", "Line No.", DocAmount, BonusAmount, -DiscAmt, -PmtDiscAmt);
-                                                end;
-
                                             end;
                                     end;
                                 "Bonus Contract"."lbt Bonus Billing Type"::"Amount (LCY)":
-                                    begin
-                                    end;
+                                    ;
                                 "Bonus Contract"."lbt Bonus Billing Type"::"Amount per Unit":
-                                    begin
-
-                                    end;
+                                    ;
                             end;
                         end;
                     }
@@ -122,13 +117,13 @@ report 5266052 "lbt Bonus Run"
             {
                 group(Options)
                 {
-                    field(DateFrom; DateFrom)
+                    field("Date From"; DateFrom)
                     {
                         ApplicationArea = All;
                         Caption = 'Date from', Comment = 'DEU="Datum von"';
                     }
 
-                    field(DateTo; DateTo)
+                    field("Date To"; DateTo)
                     {
                         ApplicationArea = All;
                         Caption = 'Date to', Comment = 'DEU="Datum bis"';
@@ -138,7 +133,7 @@ report 5266052 "lbt Bonus Run"
                                 ReversePostingDate := DateTo;
                         end;
                     }
-                    field(ReversePostingDate; ReversePostingDate)
+                    field("Reverse Posting Date"; ReversePostingDate)
                     {
                         ApplicationArea = All;
                         Caption = 'Posting date of exploding bonus reserves', Comment = 'DEU="Buchungsdatum für Rückstellungsauflösung"';
@@ -177,9 +172,6 @@ report 5266052 "lbt Bonus Run"
     end;
 
     local procedure GetCustCode(): Code[20]
-    var
-        CustCode: Code[20];
-
     begin
         // TODO: ?
         // if "Bonus Contract"."lbt Bonus Recipient" = '' then 
@@ -195,7 +187,7 @@ report 5266052 "lbt Bonus Run"
         SalesHeader.Insert(true);
         SalesHeader.Correction := false;
         SalesHeader.SetHideValidationDialog(true);
-        SalesHeader.Validate("Sell-to Customer No.", GetCustCode);
+        SalesHeader.Validate("Sell-to Customer No.", GetCustCode());
         // TODO: ?
         // SalesHeader.Validate("Shortcut Dimension 1 Code", "Bonus Contract"."Allocation Group");
         SalesHeader."Salesperson Code" := SalesPersonCode;
@@ -206,7 +198,7 @@ report 5266052 "lbt Bonus Run"
         SalesHeader.Modify();
     end;
 
-    local procedure CreateTextLine(SalesHeader: Record "Sales Header"; LineNo: Integer; Description: Text)
+    local procedure CreateTextLine(SalesHeader: Record "Sales Header"; LineNo: Integer; Description: Text[100])
     var
         SalesLine: Record "Sales Line";
     begin
@@ -223,7 +215,7 @@ report 5266052 "lbt Bonus Run"
     begin
         SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.", "Salesperson Code", "Shortcut Dimension 1 Code", "Shortcut Dimension 1 Code");
         SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
-        SalesHeader.SetRange("Sell-to Customer No.", GetCustCode);
+        SalesHeader.SetRange("Sell-to Customer No.", GetCustCode());
         // TODO: ?
         // SalesHeader.SetRange("Shortcut Dimension 1 Code", "Bonus Contract"."Allocation Group");
         SalesHeader.SetRange("Document Date", PostingDate);
@@ -254,7 +246,6 @@ report 5266052 "lbt Bonus Run"
     local procedure CreateSalesCreditMemo2(TableId: Integer; DocNo: Code[20]; DocLineNo: Integer; DocAmount: Decimal; BonusAmount: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Amount: Decimal
     var
         SalesHeader: Record "Sales Header";
-        FirstLine: Boolean;
     begin
         GetSalesHeader(SalesHeader);
         if IsFixedAmountAndAlreadyCreated() then
@@ -267,7 +258,6 @@ report 5266052 "lbt Bonus Run"
         BonusContractLine: Record "lbt Bonus Contract Line";
         CustomerPostingGroup: Record "Customer Posting Group";
         GenBusinessPostingGroup: Record "Gen. Business Posting Group";
-        DateFormelLeer: DateFormula;
         DateFrom: Date;
         DateTo: Date;
         ReversePostingDate: Date;

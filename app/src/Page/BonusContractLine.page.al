@@ -11,7 +11,7 @@ page 5266054 "lbt Bonus Contract Line"
             repeater(General)
             {
                 Caption = 'General', comment = 'DEU="Allgemein"';
-                
+
                 /* 
                 field("lbt Contract"; "lbt Contract")
                 {
@@ -30,7 +30,7 @@ page 5266054 "lbt Bonus Contract Line"
                 {
                     ToolTip = 'Specifies the unit of the article.', comment = 'DEU="Gibt an, welche Einheit der Artikel hat."';
                     ApplicationArea = All;
-                    Visible= UoMVsbl;
+                    Visible = UoMVsbl;
                 }
                 field("lbt From Quantity"; "lbt From Quantity")
                 {

@@ -1,4 +1,5 @@
+*/.alpackages/*
+*/.alcache/
+*/.altemplates
 *.app
-rad.json
-.vscode
-.alcache
+*/.vscode/*

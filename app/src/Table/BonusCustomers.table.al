@@ -22,9 +22,9 @@ table 5266058 "lbt Bonus Customers"
             trigger OnValidate()
             begin
                 IF CustRec.get("lbt Customer") then
-                "lbt Customer Name" := CustRec.Name
+                    "lbt Customer Name" := CustRec.Name
                 ELSE
-                "lbt Customer Name" := '';
+                    "lbt Customer Name" := '';
             end;
         }
 
@@ -32,14 +32,14 @@ table 5266058 "lbt Bonus Customers"
         {
             Caption = 'Ship-to Code', comment = 'DEU="Lief. an Code"';
             DataClassification = CustomerContent;
-            TableRelation = "Ship-to Address".Code where ("Customer No." = field ("lbt Customer"));
+            TableRelation = "Ship-to Address".Code where("Customer No." = field("lbt Customer"));
 
             trigger OnValidate()
             begin
-                IF ShipToAdressRec.get("lbt Customer","lbt Ship-to Code") then
-                "lbt Ship-to Name" := ShipToAdressRec.Name
+                IF ShipToAdressRec.get("lbt Customer", "lbt Ship-to Code") then
+                    "lbt Ship-to Name" := ShipToAdressRec.Name
                 else
-                "lbt Ship-to Name" := '';
+                    "lbt Ship-to Name" := '';
             end;
 
         }
@@ -58,15 +58,15 @@ table 5266058 "lbt Bonus Customers"
 
     keys
     {
-        key(PK; "lbt Contract","lbt Customer","lbt Ship-to Code")
+        key(PK; "lbt Contract", "lbt Customer", "lbt Ship-to Code")
         {
             Clustered = true;
         }
     }
 
-    var 
-    CustRec:Record Customer;
-    ShipToAdressRec: Record "Ship-to Address";
-    
+    var
+        CustRec: Record Customer;
+        ShipToAdressRec: Record "Ship-to Address";
+
 
 }

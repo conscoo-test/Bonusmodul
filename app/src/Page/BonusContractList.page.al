@@ -94,7 +94,7 @@ page 5266052 "lbt Bonus Contract List"
 
                 trigger OnAction()
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
 
@@ -107,7 +107,7 @@ page 5266052 "lbt Bonus Contract List"
 
                 trigger OnAction()
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
 
@@ -120,7 +120,7 @@ page 5266052 "lbt Bonus Contract List"
 
                 trigger OnAction()
                 begin
-
+                    Message('not implemented'); //TODO:
                 end;
             }
         }
