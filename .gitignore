@@ -1,5 +1,6 @@
 */.alpackages/*
 */.alcache/
 */.altemplates
-*.app
+app/*.app
+test/*.app
 */.vscode/*
