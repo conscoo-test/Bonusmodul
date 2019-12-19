@@ -1,7 +1,7 @@
 page 5266062 "lbt Bonus Assisted Setup"
 {
     PageType = NavigatePage;
-    Caption = 'LIS365 Bonus Setup', Comment = 'DEU="LIS365 Bonus Einrichtung"';
+    Caption = 'LeBit Bonus Setup', Comment = 'DEU="LeBit Bonus Einrichtung"';
     SourceTable = "lbt Bonus Setup";
 
     layout
@@ -35,7 +35,7 @@ page 5266062 "lbt Bonus Assisted Setup"
                 Visible = CurrentStep = 1;
                 group(Welcome)
                 {
-                    Caption = 'Welcome', Comment = 'DEU="Willkommen bei der Einrichtung des LIS365-Bonusmoduls"'; //TODO: 
+                    Caption = 'Welcome', Comment = 'DEU="Willkommen bei der Einrichtung von LeBit Bonus"'; //TODO: 
 
 
                     group(Introduction)
@@ -55,7 +55,7 @@ page 5266062 "lbt Bonus Assisted Setup"
                     {
                         Caption = '';
                         InstructionalText = 'Choose Next so you can set up.',
-                            Comment = 'DEU="Wählen Sie \"Weiter\" damit Sie den Bonus einrichten können."';
+                            Comment = 'DEU="Wählen Sie "Weiter" damit Sie den Bonus einrichten können."';
                     }
                 }
             }
@@ -163,10 +163,11 @@ page 5266062 "lbt Bonus Assisted Setup"
     end;
 
     local procedure Finish()
+    var
+        AssistedSetup: Codeunit "Assisted Setup";
+        BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
     begin
-        Complete := true;
-        Modify();
-        Commit();
+        AssistedSetup.Complete(BonusAssistedSetup.GetAppId(), BonusAssistedSetup.GetPageId());
         CurrPage.Close();
     end;
 

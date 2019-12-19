@@ -1,19 +1,17 @@
 codeunit 5266053 "lbt Bonus Assisted Setup"
 {
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Assisted Setup", 'OnRegister', '', true, true)]
-    // [EventSubscriber(ObjectType::Table, Database::"Aggregated Assisted Setup", 'OnRegisterAssistedSetup', '', true, true)]
-    local procedure AggregatedSetup_OnRegisterAssistedSetup()
     var
-        AssistedSetup: Codeunit "Assisted Setup";
-        AssistedSetupGroup: Enum "Assisted Setup Group";
-    // CurrentGlobalLanguage: Integer;
-    begin
-        // CurrentGlobalLanguage := GlobalLanguage();
-        AssistedSetup.Add(GetAppId(), GetPageId(), SetupLbl, AssistedSetupGroup::Extensions);
-        // GlobalLanguage(1033);
-        // AssistedSetup.AddTranslation(ExtensionGuidTxt, Page::"LBT Wizard", 1033, SetupLbl);
-        // GlobalLanguage(CurrentGlobalLanguage);
+        SetupLbl: Label 'Setup LeBit Bonus', Comment = 'DEU="LeBit Bonus einrichten"';
+        NotificationIdTxt: Label '9c975145-0d59-400f-8eaa-dd087f421cb8';
+        NotificationMsg: Label 'The setup for LeBit Bonus is incomplete', Comment = 'DEU="Die Einrichtung für LeBit Bonus ist unvollständig."';
+        ActionMsg: Label 'To Wizard...', Comment = 'DEU="Zum Wizard..."';
+        ExtensionGuidTxt: Label '1716d377-7e43-42d6-ae75-ad9977f24a69';
+        AppLbl: Label 'LeBit Bonus', Comment = 'DEU="LeBit Bonus"';
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Assisted Setup", 'OnRegister', '', true, true)]
+    local procedure AggregatedSetup_OnRegisterAssistedSetup()
+    begin
+        AddAssistedSetup();
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Role Center Notification Mgt.", 'OnBeforeShowNotifications', '', true, true)]
@@ -23,6 +21,14 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
     begin
         if not AssistedSetup.IsComplete(GetAppId(), GetPageId()) then
             CreateNotification();
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Manual Setup", 'OnRegisterManualSetup', '', true, true)]
+    local procedure RegisterManualSetup(sender: Codeunit "Manual Setup")
+    var
+        ManualSetupCategory: Enum "Manual Setup Category";
+    begin
+        sender.Insert(AppLbl, SetupLbl, '', Page::"lbt Bonus Setup", GetAppId(), ManualSetupCategory::Uncategorized);
     end;
 
     local procedure CreateNotification()
@@ -44,6 +50,15 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
             AssistedSetup.Run(GetAppId(), GetPageId());
     end;
 
+    procedure AddAssistedSetup()
+    var
+        AssistedSetup: Codeunit "Assisted Setup";
+        AssistedSetupGroup: Enum "Assisted Setup Group";
+    begin
+        if not AssistedSetup.Exists(GetAppId(), GetPageId()) then
+            AssistedSetup.Add(GetAppId(), GetPageId(), SetupLbl, AssistedSetupGroup::Extensions);
+    end;
+
     local procedure GetNotificationId(): Guid
     var
         NotificationId: Guid;
@@ -62,10 +77,5 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
         exit(Page::"lbt Bonus Assisted Setup")
     end;
 
-    var
-        SetupLbl: Label 'Setup LIS365 Bonus', Comment = 'DEU="LIS365 Bonus einrichten"';
-        NotificationIdTxt: Label '9c975145-0d59-400f-8eaa-dd087f421cb8';
-        NotificationMsg: Label 'The setup for LIS365 Bonus is incomplete', Comment = 'DEU="Die Einrichtung für LIS365 Bonus ist unvollständig."';
-        ActionMsg: Label 'To Wizard...', Comment = 'DEU="Zum Wizard..."';
-        ExtensionGuidTxt: Label '1716d377-7e43-42d6-ae75-ad9977f24a69';
+
 }

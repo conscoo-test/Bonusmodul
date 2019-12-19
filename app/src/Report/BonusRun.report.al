@@ -2,6 +2,7 @@ report 5266052 "lbt Bonus Run"
 {
     UsageCategory = Tasks;
     ApplicationArea = All;
+    Caption = 'Bonus Run', Comment = 'DEU="Bonuslauf"';
 
     dataset
     {
@@ -10,11 +11,11 @@ report 5266052 "lbt Bonus Run"
 
             dataitem("Bonus Customer"; "lbt Bonus Customers")
             {
-                DataItemLink = "lbt Contract" = field("lbt Contract");
+                DataItemLink = "Contract" = field("Contract");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
-                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer");
 
                     dataitem("Sales Invoice Line"; "Sales Invoice Line")
                     {
@@ -37,17 +38,17 @@ report 5266052 "lbt Bonus Run"
                         begin
                             //GetDocAmount();
                             //UpdateDocAmountFromValueEntry();
-                            case "Bonus Contract"."lbt Bonus Billing Type" of
-                                "Bonus Contract"."lbt Bonus Billing Type"::"%":
+                            case "Bonus Contract"."Bonus Billing Type" of
+                                "Bonus Contract"."Bonus Billing Type"::"%":
                                     begin
-                                        if "Bonus Contract"."lbt Pmt. Discount %" <> 0 then
-                                            PmtDiscAmt := DocAmount * "Bonus Contract"."lbt Pmt. Discount %" / 100;
-                                        if "Bonus Contract"."lbt Discount %" <> 0 then
-                                            DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."lbt Discount %" / 100;
-                                        BonusAmount := Round((DocAmount - PmtDiscAmt - DiscAmt) * BonusContractLine."lbt Value" / 100, 0.01);
+                                        if "Bonus Contract"."Pmt. Discount %" <> 0 then
+                                            PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
+                                        if "Bonus Contract"."Discount %" <> 0 then
+                                            DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
+                                        BonusAmount := Round((DocAmount - PmtDiscAmt - DiscAmt) * BonusContractLine."Value" / 100, 0.01);
 
                                         if BonusAmount <> 0 then
-                                            if BonusSetup."lbt Reserve Mode" = BonusSetup."lbt Reserve Mode"::CreditMemo then begin
+                                            if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
                                                 ValueEntry.SetCurrentKey("Document No.");
                                                 ValueEntry.SetRange("Document No.", "Document No.");
                                                 ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
@@ -58,9 +59,9 @@ report 5266052 "lbt Bonus Run"
                                                             CreateSalesCreditMemo2(Database::"Sales Invoice Line", "Document No.", "Line No.", DocAmount, BonusAmount, -DiscAmt, -PmtDiscAmt);
                                             end;
                                     end;
-                                "Bonus Contract"."lbt Bonus Billing Type"::"Amount (LCY)":
+                                "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
                                     ;
-                                "Bonus Contract"."lbt Bonus Billing Type"::"Amount per Unit":
+                                "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
                                     ;
                             end;
                         end;
@@ -69,8 +70,8 @@ report 5266052 "lbt Bonus Run"
                     trigger OnPreDataItem()
                     begin
                         SetRange("Posting Date", DateFrom, DateTo);
-                        if "Bonus Customer"."lbt Ship-to Code" <> '' then
-                            SetRange("Ship-to Code", "Bonus Customer"."lbt Ship-to Code")
+                        if "Bonus Customer"."Ship-to Code" <> '' then
+                            SetRange("Ship-to Code", "Bonus Customer"."Ship-to Code")
                         else
                             SetRange("Ship-to Code");
                     end;
@@ -85,13 +86,13 @@ report 5266052 "lbt Bonus Run"
                         // if "Bonus Contract"."Agent From Document" then 
                         //     SalesPersonCode := "Salesperson Code"
                         // else
-                        if Customer.Get("Bonus Contract"."lbt Bonus Recipient") then
+                        if Customer.Get("Bonus Contract"."Bonus Recipient") then
                             SalesPersonCode := Customer."Salesperson Code";
                     end;
                 }
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
-                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer");
 
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
@@ -154,14 +155,14 @@ report 5266052 "lbt Bonus Run"
         //GlobVarCU.s_date(ReversePostingDate,9);
 
         BonusSetup.Get();
-        if BonusSetup."lbt Reserve Mode" = BonusSetup."lbt Reserve Mode"::CreditMemo then begin
+        if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
             //TODO: Fehlendes Feld?
             //BonusSetup.TestField("Billing Code");
-            BonusSetup.TestField("lbt Cust Gr. Reserve Cr. Memo");
-            BonusSetup.TestField("lbt Bus.Post.Gr.f.Res.Cr.Memo");
-            CustomerPostingGroup.Get(BonusSetup."lbt Cust Gr. Reserve Cr. Memo");
+            BonusSetup.TestField("Cust Gr. Reserve Cr. Memo");
+            BonusSetup.TestField("Bus.Post.Gr.f.Res.Cr.Memo");
+            CustomerPostingGroup.Get(BonusSetup."Cust Gr. Reserve Cr. Memo");
             CustomerPostingGroup.TestField("Receivables Account");
-            GenBusinessPostingGroup.Get(BonusSetup."lbt Bus.Post.Gr.f.Res.Cr.Memo");
+            GenBusinessPostingGroup.Get(BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo");
         end;
     end;
 
@@ -174,9 +175,9 @@ report 5266052 "lbt Bonus Run"
     local procedure GetCustCode(): Code[20]
     begin
         // TODO: ?
-        // if "Bonus Contract"."lbt Bonus Recipient" = '' then 
+        // if "Bonus Contract"."Bonus Recipient" = '' then 
         //     exit("Bonus Contract".Customer);
-        exit("Bonus Contract"."lbt Bonus Recipient");
+        exit("Bonus Contract"."Bonus Recipient");
     end;
 
     local procedure InitSalesHeader(var SalesHeader: Record "Sales Header")
@@ -222,7 +223,7 @@ report 5266052 "lbt Bonus Run"
         SalesHeader.SetRange("Posting Description", BonusCreditMemoLbl);
         if not SalesHeader.FindFirst() then begin
             InitSalesHeader(SalesHeader);
-            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."lbt Contract"));
+            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."Contract"));
             CreateTextLine(SalesHeader, 20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
         end;
     end;

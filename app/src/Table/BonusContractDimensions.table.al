@@ -7,31 +7,31 @@ table 5266054 "lbt Bonus Contract Dimensions"
 
     fields
     {
-        field(1; "lbt Contract"; Code[20])
+        field(1; Contract; Code[20])
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."lbt Contract";
+            TableRelation = "lbt Bonus Contract"."Contract";
         }
-        field(2; "lbt Dimension Code"; Code[20])
+        field(2; "Dimension Code"; Code[20])
         {
             Caption = 'Dimension Code', comment = 'DEU="Dimensionscode"';
             DataClassification = CustomerContent;
             TableRelation = Dimension;
 
         }
-        field(3; "lbt Dimension Value"; Code[20])
+        field(3; "Dimension Value"; Code[20])
         {
             Caption = 'Dimension Value', comment = 'DEU="Dimensionswert"';
             DataClassification = CustomerContent;
-            TableRelation = "Dimension Value".Code where("Dimension Code" = field("lbt Dimension Code"));
+            TableRelation = "Dimension Value".Code where("Dimension Code" = field("Dimension Code"));
         }
 
     }
 
     keys
     {
-        key(PK; "lbt Contract", "lbt Dimension Code")
+        key(PK; "Contract", "Dimension Code")
         {
             Clustered = true;
         }

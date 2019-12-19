@@ -8,71 +8,71 @@ table 5266056 "lbt Bonus Entry"
 
     fields
     {
-        field(1; "lbt Entry No."; Integer)
+        field(1; "Entry No."; Integer)
         {
             Caption = 'Entry No.', comment = 'DEU="Lfd. Nr."';
             DataClassification = CustomerContent;
         }
 
-        field(2; "lbt Entry Type"; Option)
+        field(2; "Entry Type"; Option)
         {
             Caption = 'Entry Type', comment = 'DEU="Postenart"';
             OptionMembers = "Bonus","Reserve","Liquidation of Reserves";
             OptionCaption = 'Bonus,Reserve,Liquidation of Reserves', comment = 'DEU="Bonus,Rückstellung,Rückstellungsauflösung"';
             DataClassification = CustomerContent;
         }
-        field(3; "lbt Contract"; Code[20])
+        field(3; Contract; Code[20])
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."lbt Contract";
+            TableRelation = "lbt Bonus Contract"."Contract";
         }
-        field(4; "lbt Bonus Contract Line"; Integer)
+        field(4; "Bonus Contract Line"; Integer)
         {
             Caption = 'Bonus Contract Line', comment = 'DEU="Bonusvetragszeilen"';
             ;
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract Line" where("lbt Contract" = field("lbt Contract"));
+            TableRelation = "lbt Bonus Contract Line" where("Contract" = field("Contract"));
         }
-        field(5; "lbt Entry Date"; Date)
+        field(5; "Entry Date"; Date)
         {
             Caption = 'Date', comment = 'DEU="Datum"';
             DataClassification = CustomerContent;
         }
-        field(6; "lbt Base Amount"; Decimal)
+        field(6; "Base Amount"; Decimal)
         {
-            Caption = 'lbt Base Amount', Comment = 'DEU="Basisbetrag"';
+            Caption = 'Base Amount', Comment = 'DEU="Basisbetrag"';
             DataClassification = CustomerContent;
         }
-        field(7; "lbt General Ledger Entry No."; Integer)
+        field(7; "General Ledger Entry No."; Integer)
         {
             Caption = 'General Ledger Entry No.', comment = 'DEU="Sachposten Lfd. Nr."';
             DataClassification = CustomerContent;
         }
-        field(8; "lbt Posted Amount"; Decimal)
+        field(8; "Posted Amount"; Decimal)
         {
             Caption = 'Posted Amount', comment = 'DEU="gebuchter Betrag"';
             DataClassification = CustomerContent;
         }
-        field(9; "lbt Customer"; Code[20])
+        field(9; Customer; Code[20])
         {
             Caption = 'Customer', comment = 'DEU="Debitor"';
             DataClassification = CustomerContent;
             TableRelation = Customer;
         }
-        field(10; "lbt Ship-to Code"; Code[10])
+        field(10; "Ship-to Code"; Code[10])
         {
-            Caption = 'lbt Ship-to Code', Comment = 'DEU="Lief. an Code"';
+            Caption = 'Ship-to Code', Comment = 'DEU="Lief. an Code"';
             DataClassification = CustomerContent;
-            TableRelation = "Ship-to Address".Code where("Customer No." = Field("lbt Customer"));
+            TableRelation = "Ship-to Address".Code where("Customer No." = Field("Customer"));
         }
-        field(11; "lbt Invoice Customer No."; Code[20])
+        field(11; "Invoice Customer No."; Code[20])
         {
-            Caption = 'lbt Invoice Customer No.', Comment = 'DEU="Rechnungsempfänger"';
+            Caption = 'Invoice Customer No.', Comment = 'DEU="Rechnungsempfänger"';
             DataClassification = CustomerContent;
             TableRelation = Customer;
         }
-        field(12; "lbt Bonus Document Type"; Option)
+        field(12; "Bonus Document Type"; Option)
         {
             Caption = 'Bonus Document Type', Comment = 'DEU="Bonusbelegtyp"';
             DataClassification = CustomerContent;
@@ -82,17 +82,17 @@ table 5266056 "lbt Bonus Entry"
             OptionCaption = ',Sales Invoice,Sales Credit Memo', comment = 'DEU=" ,Verkaufsrechnung,Verkaufsgutschrift"';
         }
 
-        field(13; "lbt Bonus Document No."; Code[20])
+        field(13; "Bonus Document No."; Code[20])
         {
             Caption = 'Bonus Document No.', Comment = 'DEU="Bonusbelegnummer"';
             DataClassification = CustomerContent;
         }
-        field(14; "lbt Bonus Document Line"; Integer)
+        field(14; "Bonus Document Line"; Integer)
         {
             Caption = 'Bonus Document Line', Comment = 'DEU="Bonusbelegzeile"';
             DataClassification = CustomerContent;
         }
-        field(15; "lbt From Document Type"; Option)
+        field(15; "From Document Type"; Option)
         {
             Caption = 'From Document Type', Comment = 'DEU="Quellbelegart"';
             DataClassification = CustomerContent;
@@ -102,54 +102,54 @@ table 5266056 "lbt Bonus Entry"
             OptionCaption = ',Sales Invoice,Sales Credit Memo', comment = 'DEU=" ,Verkaufsrechnung,Verkaufsgutschrift"';
         }
 
-        field(16; "lbt From Document No."; Code[20])
+        field(16; "From Document No."; Code[20])
         {
             Caption = 'From Document No.', Comment = 'DEU="Quellbelegnummer"';
             DataClassification = CustomerContent;
         }
-        field(17; "lbt From Document Line"; Integer)
+        field(17; "From Document Line"; Integer)
         {
             Caption = 'From Document Line', Comment = 'DEU="Quellbelegzeile"';
             DataClassification = CustomerContent;
         }
-        field(18; "lbt Sales Quantity"; decimal)
+        field(18; "Sales Quantity"; decimal)
         {
             Caption = 'Sales Quantity', Comment = 'DEU="Absatzmenge"';
             DataClassification = CustomerContent;
         }
-        field(19; "lbt Calculated Amount"; Decimal)
+        field(19; "Calculated Amount"; Decimal)
         {
             Caption = 'Calculated Amount', Comment = 'DEU="berechneter Betrag"';
             DataClassification = CustomerContent;
         }
-        field(20; "lbt calc. Amount incl. VAT"; Decimal)
+        field(20; "calc. Amount incl. VAT"; Decimal)
         {
             Caption = 'calculated Amount incl. VAT', Comment = 'DEU="errechneter Betrag inkl. MwSt."';
             DataClassification = CustomerContent;
         }
-        field(21; "lbt Pmt. Discount Amount"; Decimal)
+        field(21; "Pmt. Discount Amount"; Decimal)
         {
             Caption = 'Pmt. Discount Amount', Comment = 'DEU="Skontobetrag"';
             DataClassification = CustomerContent;
         }
-        field(22; "lbt Discount Amount"; Decimal)
+        field(22; "Discount Amount"; Decimal)
         {
             Caption = 'Discount Amount', Comment = 'DEU="Rabattbetrag"';
             DataClassification = CustomerContent;
         }
-        field(23; "lbt Assignment Document Type"; Option)
+        field(23; "Assignment Document Type"; Option)
         {
             Caption = 'Assignment Document Type', Comment = 'DEU="Zuweisungsbelegart"';
             DataClassification = CustomerContent;
             OptionMembers = ,"Sales Shipment","Sales Return Receipt";
             OptionCaption = ' ,Sales Shipment,Sales Return Receipt', Comment = 'DEU=" ,Verkaufslieferung,Verkaufsrücksendung"';
         }
-        field(24; "lbt Assignment Document No."; Code[20])
+        field(24; "Assignment Document No."; Code[20])
         {
             Caption = 'Assignment Document No.', Comment = 'DEU="Zuweisungsbelegnr."';
             DataClassification = CustomerContent;
         }
-        field(25; "lbt Assignment Doc. Line No."; Integer)
+        field(25; "Assignment Doc. Line No."; Integer)
         {
             Caption = 'Assignment Doc. Line No.', Comment = 'DEU="Zuweisungsbelegzeilennr."';
             DataClassification = CustomerContent;
@@ -158,14 +158,14 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Process No.', comment = 'DEU="Prozessnr."';
             DataClassification = CustomerContent;
-            TableRelation = "LBT Process";
+            TableRelation = "lbt Process";
         }
 
     }
 
     keys
     {
-        key(PK; "lbt Entry No.")
+        key(PK; "Entry No.")
         {
             Clustered = true;
         }

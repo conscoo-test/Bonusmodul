@@ -6,19 +6,19 @@ table 5266053 "lbt Bonus Contract Line"
 
     fields
     {
-        field(1; "lbt Contract"; Code[20])
+        field(1; Contract; Code[20])
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."lbt Contract";
+            TableRelation = "lbt Bonus Contract"."Contract";
         }
 
-        field(2; "lbt Line No."; Integer)
+        field(2; "Line No."; Integer)
         {
             Caption = 'Line No.', comment = 'DEU="Zeilennummer"';
             DataClassification = CustomerContent;
         }
-        field(3; "lbt Item Unit of Measure"; Code[10])
+        field(3; "Item Unit of Measure"; Code[10])
         {
             Caption = 'Item Unit of Measure', comment = 'DEU="Artikeleinheit"';
             DataClassification = CustomerContent;
@@ -26,20 +26,20 @@ table 5266053 "lbt Bonus Contract Line"
 
             trigger OnValidate()
             begin
-                TestField("lbt Bonus Scale Type", "lbt Bonus Scale Type"::"Sales Qty.");
+                TestField("Bonus Scale Type", "Bonus Scale Type"::"Sales Qty.");
             end;
         }
-        field(4; "lbt From Quantity"; Decimal)
+        field(4; "From Quantity"; Decimal)
         {
             Caption = 'From Quantity', comment = 'DEU="ab Menge"';
             DataClassification = CustomerContent;
         }
-        field(5; "lbt Value"; Decimal)
+        field(5; Value; Decimal)
         {
             Caption = 'Value', comment = 'DEU="Wert"';
             DataClassification = CustomerContent;
         }
-        field(6; "lbt Bonus Scale Type"; Option)
+        field(6; "Bonus Scale Type"; Option)
         {
             Caption = 'Bonus Scale Type', comment = 'DEU="Bonusstaffelart"';
             OptionMembers = "Sales Qty.","Sales (LCY)'";
@@ -51,7 +51,7 @@ table 5266053 "lbt Bonus Contract Line"
 
     keys
     {
-        key(PK; "lbt Contract", "lbt Line No.")
+        key(PK; "Contract", "Line No.")
         {
             Clustered = true;
         }
@@ -62,8 +62,8 @@ table 5266053 "lbt Bonus Contract Line"
     var
         BonusContractRec: Record "lbt Bonus Contract";
     begin
-        if BonusContractRec.Get("lbt Contract") then
-            "lbt Bonus Scale Type" := BonusContractRec."lbt Bonus Scale Type";
+        if BonusContractRec.Get("Contract") then
+            "Bonus Scale Type" := BonusContractRec."Bonus Scale Type";
     end;
 
 

@@ -6,33 +6,30 @@ report 5266051 "lbt Bonus Reserves"
 
     dataset
     {
-        dataitem("lbt Bonus Contract"; "lbt Bonus Contract")
+        dataitem("Bonus Contract"; "lbt Bonus Contract")
         {
-            DataItemTableView = sorting("lbt contract");
-            RequestFilterFields = "lbt Contract", "lbt Billing Period";
+            DataItemTableView = sorting("contract");
+            RequestFilterFields = "Contract", "Billing Period";
 
-
-
-            dataitem("lbt Bonus Customers"; "lbt Bonus Customers")
+            dataitem("Bonus Customers"; "lbt Bonus Customers")
             {
-
-                DataItemTableView = sorting("lbt Contract", "lbt Customer", "lbt Ship-to Code");
-                DataItemLink = "lbt Contract" = field("lbt Contract");
+                DataItemTableView = sorting("Contract", "Customer", "Ship-to Code");
+                DataItemLink = "Contract" = field("Contract");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
                     DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer");
 
                     trigger OnPreDataItem()
                     begin
-                        IF "Lbt Bonus Contract"."lbt Reserve Type" = "lbt Bonus Contract"."lbt Reserve Type"::"Amount (LCY)" THEN
+                        IF "Bonus Contract"."Reserve Type" = "Bonus Contract"."Reserve Type"::"Amount (LCY)" THEN
                             CurrReport.BREAK();
 
                         SETRANGE("Posting Date", DateFrom, DateTo);
                         PostingDate := DateTo;
-                        IF "lbt Bonus Customers"."lbt Ship-to Code" <> '' THEN
-                            SETRANGE("Ship-to Code", "lbt Bonus Customers"."lbt Ship-to Code")
+                        IF "Bonus Customers"."Ship-to Code" <> '' THEN
+                            SETRANGE("Ship-to Code", "Bonus Customers"."Ship-to Code")
                         ELSE
                             SETRANGE("Ship-to Code");
                     end;
@@ -46,8 +43,8 @@ report 5266051 "lbt Bonus Reserves"
                         PmtDiscAmt := 0;
                         DiscAmt := 0;
                         CALCFIELDS(Amount);
-                        CASE "lbt Bonus Contract"."lbt Reserve Type" OF
-                            "lbt Bonus Contract"."lbt Reserve Type"::"%":
+                        CASE "Bonus Contract"."Reserve Type" OF
+                            "Bonus Contract"."Reserve Type"::"%":
                                 ;
                             //TODO: Parameter auskommentier, muss noch auf Atributefilter umgestellt werden!
                             /*    
@@ -61,7 +58,7 @@ report 5266051 "lbt Bonus Reserves"
 
                                                                                    Continue := TRUE;
                                                                                     BonusContractAttributeRec.RESET;
-                                                                                   BonusContractAttributeRec.SETRANGE("lbt Contract", "lbt Bonus Contract"."lbt Contract");
+                                                                                   BonusContractAttributeRec.SETRANGE("Contract", "Bonus Contract"."Contract");
                                                                                    IF BonusContractAttributeRec.FINDSET THEN
                                                                                        REPEAT
                                                                                            PostParaDocLineRec.RESET;
@@ -156,7 +153,7 @@ report 5266051 "lbt Bonus Reserves"
                                                         IF ValueEntryRec2.FINDSET() THEN
                                                             REPEAT
                                                                 ItemCharge2Rec.GET(ValueEntryRec2."Item Charge No.");
-                                                                IF ItemCharge2Rec."lbt Bonus consider" THEN BEGIN
+                                                                IF ItemCharge2Rec."Bonus consider" THEN BEGIN
                                                                     DocAmount += ValueEntryRec2."Sales Amount (Actual)";
                                                                     IF SalesInvLineRec.GET(ValueEntryRec2."Document No.", ValueEntryRec2."Document Line No.") THEN
                                                                         DocAmtInclVAT += ROUND(ValueEntryRec2."Sales Amount (Actual)" *
@@ -168,15 +165,15 @@ report 5266051 "lbt Bonus Reserves"
                                                 UNTIL ValueEntryRec.NEXT() = 0;
                                             S_Amount := Amount;
 
-                                            IF "lbt Bonus Contract"."lbt Pmt. Discount %" <> 0 THEN
-                                                PmtDiscAmt := DocAmount * "lbt Bonus Contract"."lbt Pmt. Discount %" / 100;
-                                            IF "lbt Bonus Contract"."lbt Discount %" <> 0 THEN
-                                                DiscAmt := (DocAmount - PmtDiscAmt) * "lbt Bonus Contract"."lbt Discount %" / 100;
-                                            BonusAmt := ROUND("lbt Bonus Contract"."lbt Reserve Value" * (DocAmount - DiscAmt - PmtDiscAmt) / 100, 0.01);
+                                            IF "Bonus Contract"."Pmt. Discount %" <> 0 THEN
+                                                PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
+                                            IF "Bonus Contract"."Discount %" <> 0 THEN
+                                                DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
+                                            BonusAmt := ROUND("Bonus Contract"."Reserve Value" * (DocAmount - DiscAmt - PmtDiscAmt) / 100, 0.01);
 
                                             DocumentBonusAmt += BonusAmt;
                                             IF BonusAmt <> 0 THEN
-                                                IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
+                                                IF BonusSetupRec."Reserve Mode" = BonusSetupRec."Reserve Mode"::CreditMemo THEN BEGIN
                                                     IF ValueEntryRec.FINDFIRST() THEN BEGIN
                                                         IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") AND
                                                           (ItemLedgEntryRec."Document Type" = ItemLedgEntryRec."Document Type"::"Sales Shipment")
@@ -188,8 +185,8 @@ report 5266051 "lbt Bonus Reserves"
                                                             BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
                                                             BonusEntryNo :=
                                                              BonusMgt.CreateBonusContractEntry(
-                                                            "lbt Bonus Contract",
-                                                            "lbt Bonus Customers",
+                                                            "Bonus Contract",
+                                                            "Bonus Customers",
                                                             1,
                                                             PostingDate,
                                                             0,
@@ -200,7 +197,7 @@ report 5266051 "lbt Bonus Reserves"
                                                             -DiscAmt,
                                                             -PmtDiscAmt);
 
-                                                            SalesLineRec."lbt Bonus Entry No." := BonusEntryNo;
+                                                            SalesLineRec."Bonus Entry No." := BonusEntryNo;
                                                             SalesLineRec.MODIFY();
                                                         END ELSE
                                                             DocumentBonusAmt -= BonusAmt;
@@ -210,14 +207,14 @@ report 5266051 "lbt Bonus Reserves"
 
                                                 END ELSE
                                                     CreateJournalLine(DATABASE::"Sales Invoice Line", "No.", PostedSalesInvLineRec."Line No.",
-                                                                    "lbt Bonus Customers"."lbt Customer",
+                                                                    "Bonus Customers"."Customer",
                                                                     BonusAmt, DocAmount,
                                                                     -DiscAmt, -PmtDiscAmt);
                                         END;
                                     UNTIL PostedSalesInvLineRec.NEXT() = 0;
                         END;
                                 */
-                            BonusContractRec."lbt Reserve Type"::"Amount per Unit":
+                            BonusContractRec."Reserve Type"::"Amount per Unit":
                                 ;
                         //TODO: Auskommentiert weil "PostDocItemUnit" als App noch nicht vorhanden ist
                         /*
@@ -241,7 +238,7 @@ report 5266051 "lbt Bonus Reserves"
 
                                         Continue := TRUE;
                                         BonusContractAttributeRec.RESET();
-                                        BonusContractAttributeRec.SETRANGE("lbt Bonus Contract", "lbt Bonus Contract"."lbt Contract");
+                                        BonusContractAttributeRec.SETRANGE("Bonus Contract", "Bonus Contract"."Contract");
                                         IF BonusContractAttributeRec.FINDSET() THEN
                                             REPEAT
                                                 PostParaDocLineRec.RESET;
@@ -312,11 +309,11 @@ report 5266051 "lbt Bonus Reserves"
                                             UNTIL (BonusContractAttributeRec.NEXT() = 0) OR (Continue = FALSE);
                                         IF Continue THEN BEGIN
                                             BonusAmt := ROUND(PostDocItemUnitRec.Quantity *
-                                                              "lbt Bonus Contract"."lbt Reserve Value", 0.01);
+                                                              "Bonus Contract"."Reserve Value", 0.01);
                                             DocumentBonusAmt += BonusAmt;
                                             S_Quantity := PostDocItemUnitRec.Quantity;
                                             IF BonusAmt <> 0 THEN
-                                                IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
+                                                IF BonusSetupRec."Reserve Mode" = BonusSetupRec."Reserve Mode"::CreditMemo THEN BEGIN
                                                     ValueEntryRec.RESET();
                                                     ValueEntryRec.SETCURRENTKEY("Document No.");
                                                     ValueEntryRec.SETRANGE("Document No.", PostedSalesInvLineRec."Document No.");
@@ -331,8 +328,8 @@ report 5266051 "lbt Bonus Reserves"
                                                             BonusMgt.SetAssignmentDoc(1, ItemLedgEntryRec."Document No.", ItemLedgEntryRec."Document Line No.");
                                                             BonusMgt.SetSourceDoc(1, "No.", PostedSalesInvLineRec."Line No.");
                                                             BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
-                                                            BonusEntryNo := BonusMgt.CreateBonusContractEntry("lbt Bonus Contract",
-                                                                            "lbt Bonus Customers",
+                                                            BonusEntryNo := BonusMgt.CreateBonusContractEntry("Bonus Contract",
+                                                                            "Bonus Customers",
                                                                             1, PostingDate, 0,
                                                                             SalesInvLineRec.Quantity, ////PostDocItemUnitRec.Quantity,
                                                                             BonusAmt, 
@@ -340,7 +337,7 @@ report 5266051 "lbt Bonus Reserves"
                                                                             DocAmount,
                                                                             0, 
                                                                             0);
-                                                            SalesLineRec."lbt Bonus Entry No." := BonusEntryNo;
+                                                            SalesLineRec."Bonus Entry No." := BonusEntryNo;
                                                             SalesLineRec.MODIFY();
                                                         END ELSE 
                                                             DocumentBonusAmt -= BonusAmt;
@@ -352,7 +349,7 @@ report 5266051 "lbt Bonus Reserves"
                                                     CreateJournalLine(DATABASE::"Sales Invoice Line",
                                                                          "No.", 
                                                                          PostedSalesInvLineRec."Line No.",
-                                                                        "lbt Bonus Customers"."lbt Customer",
+                                                                        "Bonus Customers"."Customer",
                                                                         BonusAmt, 
                                                                         0,
                                                                         0, 
@@ -392,17 +389,17 @@ report 5266051 "lbt Bonus Reserves"
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
                     DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field("lbt Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer");
 
                     trigger OnPreDataItem()
                     begin
 
-                        IF "lbt Bonus Contract"."lbt Reserve Type" = "lbt Bonus Contract"."lbt Reserve Type"::"Amount (LCY)" THEN
+                        IF "Bonus Contract"."Reserve Type" = "Bonus Contract"."Reserve Type"::"Amount (LCY)" THEN
                             CurrReport.BREAK();
 
                         SETRANGE("Posting Date", DateFrom, DateTo);
-                        IF BonusCustomerRec."lbt Ship-to Code" <> '' THEN
-                            SETRANGE("Ship-to Code", BonusCustomerRec."lbt Ship-to Code")
+                        IF BonusCustomerRec."Ship-to Code" <> '' THEN
+                            SETRANGE("Ship-to Code", BonusCustomerRec."Ship-to Code")
                         ELSE
                             SETRANGE("Ship-to Code");
                     end;
@@ -417,8 +414,8 @@ report 5266051 "lbt Bonus Reserves"
                         DiscAmt := 0;
                         PmtDiscAmt := 0;
                         CALCFIELDS(Amount);
-                        CASE "lbt Bonus Contract"."lbt Reserve Type" OF
-                            "lbt Bonus Contract"."lbt Reserve Type"::"%":
+                        CASE "Bonus Contract"."Reserve Type" OF
+                            "Bonus Contract"."Reserve Type"::"%":
                                 ;
                             //TODO: erstmal auskommentiert, muss komplett überarbeitet werden
                             /*
@@ -531,7 +528,7 @@ report 5266051 "lbt Bonus Reserves"
                                                 IF ValueEntryRec2.FINDSET THEN
                                                     REPEAT
                                                         ItemCharge2Rec.GET(ValueEntryRec2."Item Charge No.");
-                                                        IF ItemCharge2Rec."lbt Bonus consider" THEN
+                                                        IF ItemCharge2Rec."Bonus consider" THEN
                                                             DocAmount -= ValueEntryRec2."Sales Amount (Actual)";
                                                         IF SalesCrMemoLineRec.GET(ValueEntryRec2."Document No.", ValueEntryRec2."Document Line No.") THEN
                                                             DocAmtInclVAT -= ROUND(ValueEntryRec2."Sales Amount (Actual)" *
@@ -542,16 +539,16 @@ report 5266051 "lbt Bonus Reserves"
 
                                             UNTIL ValueEntryRec.NEXT() = 0;
 
-                                        IF "lbt Bonus Contract"."lbt Pmt. Discount %" <> 0 THEN
-                                            PmtDiscAmt := DocAmount * "lbt Bonus Contract"."lbt Pmt. Discount %" / 100;
-                                        IF "lbt Bonus Contract"."lbt Discount %" <> 0 THEN
-                                            DiscAmt := (DocAmount - PmtDiscAmt) * "lbt Bonus Contract"."lbt Discount %" / 100;
-                                        BonusAmt := -ROUND("lbt Bonus Contract"."lbt Reserve Value" * (DocAmount - DiscAmt - PmtDiscAmt) / 100, 0.01);
+                                        IF "Bonus Contract"."Pmt. Discount %" <> 0 THEN
+                                            PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
+                                        IF "Bonus Contract"."Discount %" <> 0 THEN
+                                            DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
+                                        BonusAmt := -ROUND("Bonus Contract"."Reserve Value" * (DocAmount - DiscAmt - PmtDiscAmt) / 100, 0.01);
 
                                         DocumentBonusAmt += BonusAmt;
                                         S_Amount := Amount;
                                         IF BonusAmt <> 0 THEN
-                                            IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
+                                            IF BonusSetupRec."Reserve Mode" = BonusSetupRec."Reserve Mode"::CreditMemo THEN BEGIN
                                                 IF ValueEntryRec.FINDFIRST() THEN BEGIN
                                                     IF ItemLedgEntryRec.GET(ValueEntryRec."Item Ledger Entry No.") AND
                                                       (ItemLedgEntryRec."Document Type" = ItemLedgEntryRec."Document Type"::"Sales Return Receipt")
@@ -561,12 +558,12 @@ report 5266051 "lbt Bonus Reserves"
                                                     BonusMgt.SetAssignmentDoc(2, ItemLedgEntryRec."Document No.", ItemLedgEntryRec."Document Line No.");
                                                     BonusMgt.SetSourceDoc(2, "No.", PostedCrMemoLineRec."Line No.");
                                                     BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
-                                                    BonusEntryNo := BonusMgt.CreateBonusContractEntry("lbt Bonus Contract",
-                                                                    "lbt Bonus Customers",
+                                                    BonusEntryNo := BonusMgt.CreateBonusContractEntry("Bonus Contract",
+                                                                    "Bonus Customers",
                                                                     1, PostingDate, 0,
                                                                     0, BonusAmt, BonusAmt, -DocAmount,
                                                                     DiscAmt, PmtDiscAmt);
-                                                    SalesLineRec."lbt Bonus Entry No." := BonusEntryNo;
+                                                    SalesLineRec."Bonus Entry No." := BonusEntryNo;
                                                     SalesLineRec.MODIFY();
                                                 END ELSE
                                                     DocumentBonusAmt -= BonusAmt;
@@ -576,7 +573,7 @@ report 5266051 "lbt Bonus Reserves"
 
                                     END ELSE
                                         CreateJournalLine(DATABASE::"Sales Cr.Memo Line", "No.", PostedCrMemoLineRec."Line No.",
-                                                      "lbt Bonus Customers"."lbt Customer",
+                                                      "Bonus Customers"."Customer",
                                                       BonusAmt, DocAmount,
                                                       -DiscAmt, -PmtDiscAmt);
 
@@ -584,7 +581,7 @@ report 5266051 "lbt Bonus Reserves"
                         END;
                                 */
 
-                            "lbt Bonus Contract"."lbt Reserve Type"::"Amount per Unit":
+                            "Bonus Contract"."Reserve Type"::"Amount per Unit":
                                 ;
                         //TODO: erstmal auskommentiert, muss komplett überarbeitet werden
                         /*
@@ -753,7 +750,7 @@ report 5266051 "lbt Bonus Reserves"
                     trigger OnPreDataItem()
                     begin
 
-                        IF "lbt Bonus Contract"."lbt Reserve Type" <> "lbt Bonus Contract"."lbt Reserve Type"::"Amount (LCY)" THEN
+                        IF "Bonus Contract"."Reserve Type" <> "Bonus Contract"."Reserve Type"::"Amount (LCY)" THEN
                             CurrReport.BREAK();
                     end;
 
@@ -766,14 +763,14 @@ report 5266051 "lbt Bonus Reserves"
                         DocumentBonusAmt := 0;
                         S_Quantity := 0;
                         S_Amount := 0;
-                        CASE "lbt Bonus Contract"."lbt Reserve Type" OF
-                            "lbt Bonus Contract"."lbt Reserve Type"::"Amount (LCY)":
+                        CASE "Bonus Contract"."Reserve Type" OF
+                            "Bonus Contract"."Reserve Type"::"Amount (LCY)":
                                 BEGIN
                                     DocumentBonusAmt += BonusAmt;
                                     S_Quantity := 1;
-                                    IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
+                                    IF BonusSetupRec."Reserve Mode" = BonusSetupRec."Reserve Mode"::CreditMemo THEN BEGIN
                                         SalesShipmentLineRec.RESET();
-                                        SalesShipmentLineRec.SETRANGE("Sell-to Customer No.", "lbt Bonus Customers"."lbt Customer");
+                                        SalesShipmentLineRec.SETRANGE("Sell-to Customer No.", "Bonus Customers"."Customer");
                                         SalesShipmentLineRec.SETRANGE("Posting Date", DateFrom, DateTo);
                                         SalesShipmentLineRec.SETRANGE(Type, SalesShipmentLineRec.Type::Item);
                                         SalesShipmentLineRec.SETFILTER(Quantity, '<>%1', 0);
@@ -788,7 +785,7 @@ report 5266051 "lbt Bonus Reserves"
                                                 ELSE
                                                     CustApplAmt += ROUND(SalesShipmentLineRec."Item Charge Base Amount" / SalesShipmentHeaderRec."Currency Factor", 0.01);
                                             UNTIL SalesShipmentLineRec.NEXT() = 0;
-                                        BonusAmt := ROUND("Lbt Bonus Contract"."lbt Reserve Value" * CustApplAmt / ContractTotalApplAmt, 0.01);
+                                        BonusAmt := ROUND("Bonus Contract"."Reserve Value" * CustApplAmt / ContractTotalApplAmt, 0.01);
                                         Sign := 2;
                                         OldSalesLineNo := SalesLineNo;
                                         AddItemChargeCrMemoLine('');
@@ -826,23 +823,23 @@ report 5266051 "lbt Bonus Reserves"
                                                     BonusMgt.SetBonusDoc(2, SalesLineRec."Document No.", SalesLineRec."Line No.");
                                                     BonusMgt.SetAssignmentDoc(0, ItemChargeAssRec."Applies-to Doc. No.", ItemChargeAssRec."Applies-to Doc. Line No.");
                                                     BonusEntryNo := BonusMgt.CreateBonusContractEntry(
-                                                                               "lbt Bonus Contract",
-                                                                               "lbt Bonus Customers",
+                                                                               "Bonus Contract",
+                                                                               "Bonus Customers",
                                                                                1, PostingDate, 0,
                                                                                //0,BonusAmt,0,
                                                                                0, ItemChargeAssRec."Qty. to Assign", 0,
                                                                                ItemChargeAssRec."Applies-to Doc. Line Amount",
                                                                                0, 0);
                                                     //TODO: Bonusprozess nummer
-                                                    SalesLineRec."LBT Process No." := "lbt Bonus Contract"."Process No.";
-                                                    // SalesLineRec."lbt Bonus Entry No." := "lbt Bonus Contract"."Process No.";
+                                                    SalesLineRec."lbt Process No." := "Bonus Contract"."Process No.";
+                                                    // SalesLineRec."Bonus Entry No." := "Bonus Contract"."Process No.";
                                                     // SalesLineRec."Billing Code" := VertriebEinrRec."Billing Code";
                                                     // SalesLineRec."Billing Entry No." := BonusEntryNo;
                                                     SalesLineRec.MODIFY();
                                                 END;
                                             UNTIL SalesLineRec.NEXT() = 0;
                                     END ELSE
-                                        CreateJournalLine(0, "lbt Bonus Contract"."lbt Contract", 0, "lbt Bonus Customers"."lbt Customer", BonusAmt, 0,
+                                        CreateJournalLine(0, "Bonus Contract"."Contract", 0, "Bonus Customers"."Customer", BonusAmt, 0,
                                           0, 0);
                                 END;
                         END;
@@ -869,22 +866,22 @@ report 5266051 "lbt Bonus Reserves"
             trigger OnAfterGetRecord()
             begin
                 CLEAR(ContractTotalApplAmt);
-                IF ("BonusContractRec"."lbt Valid from" <= PostingDate) AND
-                  (("BonusContractRec"."lbt Valid to" = 0D) OR ("BonusContractRec"."lbt Valid to" >= PostingDate)) THEN BEGIN
-                    TESTFIELD("lbt Reserve Item Charge");
-                    Dia.UPDATE(1, "lbt Bonus Contract"."lbt No. of Customers");
-                    Dia.UPDATE(2, "lbt Bonus Contract"."lbt Contract");
+                IF ("BonusContractRec"."Valid from" <= PostingDate) AND
+                  (("BonusContractRec"."Valid to" = 0D) OR ("BonusContractRec"."Valid to" >= PostingDate)) THEN BEGIN
+                    TESTFIELD("Reserve Item Charge");
+                    Dia.UPDATE(1, "Bonus Contract"."No. of Customers");
+                    Dia.UPDATE(2, "Bonus Contract"."Contract");
                     Continue := FALSE;
-                    IF ("BonusContractRec"."lbt Last Reserve at" = 0D) THEN
+                    IF ("BonusContractRec"."Last Reserve at" = 0D) THEN
                         Continue := TRUE
                     ELSE
-                        IF (DateFrom > "lbt Last Reserve at") THEN
+                        IF (DateFrom > "Last Reserve at") THEN
                             Continue := TRUE;
                     IF Continue THEN BEGIN
-                        "BonusContractRec"."lbt Last Reserve at" := PostingDate;
+                        "BonusContractRec"."Last Reserve at" := PostingDate;
                         "BonusContractRec".MODIFY();
                         BonusAmt := 0;
-                        IF "lbt Reserve Type" = "lbt Reserve Type"::"Amount (LCY)" THEN
+                        IF "Reserve Type" = "Reserve Type"::"Amount (LCY)" THEN
                             ContractTotalApplAmt := GetTotalAmount();
                     END ELSE
                         CurrReport.SKIP();
@@ -896,7 +893,7 @@ report 5266051 "lbt Bonus Reserves"
             begin
                 Dia.CLOSE();
                 COMMIT();
-                IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
+                IF BonusSetupRec."Reserve Mode" = BonusSetupRec."Reserve Mode"::CreditMemo THEN BEGIN
                     IF NOT CrMemoHeaderCreated THEN
                         EXIT;
                     CLEAR(SalesCreditMemoPage);
@@ -906,7 +903,7 @@ report 5266051 "lbt Bonus Reserves"
                     SalesCreditMemoPage.RUN();
                 END ELSE BEGIN
                     CLEAR(GenJnlPage);
-                    SetJournalBatch(BonusSetupRec."lbt Gen. Jnl. Bonus Reserve", BonusSetupRec."lbt Gen.Jnl.Templ.BonusReserve");
+                    SetJournalBatch(BonusSetupRec."Gen. Jnl. Bonus Reserve", BonusSetupRec."Gen.Jnl.Templ.BonusReserve");
                     GenJnlPage.RUN();
                 END;
             end;
@@ -952,19 +949,19 @@ report 5266051 "lbt Bonus Reserves"
         IF DateFrom > DateTo THEN
             ERROR(Text002Msg);
         BonusSetupRec.GET();
-        IF BonusSetupRec."lbt Reserve Mode" = BonusSetupRec."lbt Reserve Mode"::CreditMemo THEN BEGIN
-            BonusSetupRec.TESTFIELD("lbt Cust Gr. Reserve Cr. Memo");
-            BonusSetupRec.TESTFIELD("lbt Bus.Post.Gr.f.Res.Cr.Memo");
-            CustPostGrpRec.GET(BonusSetupRec."lbt Cust Gr. Reserve Cr. Memo");
+        IF BonusSetupRec."Reserve Mode" = BonusSetupRec."Reserve Mode"::CreditMemo THEN BEGIN
+            BonusSetupRec.TESTFIELD("Cust Gr. Reserve Cr. Memo");
+            BonusSetupRec.TESTFIELD("Bus.Post.Gr.f.Res.Cr.Memo");
+            CustPostGrpRec.GET(BonusSetupRec."Cust Gr. Reserve Cr. Memo");
             CustPostGrpRec.TESTFIELD("Receivables Account");
-            GenBussPostGroupRec.GET(BonusSetupRec."lbt Bus.Post.Gr.f.Res.Cr.Memo");
+            GenBussPostGroupRec.GET(BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
         END ELSE BEGIN
-            BonusSetupRec.TESTFIELD("lbt Gen.Jnl.Templ.BonusReserve");
-            BonusSetupRec.TESTFIELD("lbt Gen. Jnl. Bonus Reserve");
+            BonusSetupRec.TESTFIELD("Gen.Jnl.Templ.BonusReserve");
+            BonusSetupRec.TESTFIELD("Gen. Jnl. Bonus Reserve");
         END;
         GenJnlLine2Rec.RESET();
-        GenJnlLine2Rec.SETRANGE("Journal Template Name", BonusSetupRec."lbt Gen.Jnl.Templ.BonusReserve");
-        GenJnlLine2Rec.SETRANGE("Journal Batch Name", BonusSetupRec."lbt Gen. Jnl. Bonus Reserve");
+        GenJnlLine2Rec.SETRANGE("Journal Template Name", BonusSetupRec."Gen.Jnl.Templ.BonusReserve");
+        GenJnlLine2Rec.SETRANGE("Journal Batch Name", BonusSetupRec."Gen. Jnl. Bonus Reserve");
         IF GenJnlLine2Rec.FINDLAST() THEN
             LineNo := GenJnlLine2Rec."Line No."
         ELSE
@@ -991,11 +988,11 @@ report 5266051 "lbt Bonus Reserves"
     begin
         ContractTotalAmt := 0;
         BonusCust.RESET();
-        BonusCust.SETRANGE("lbt Contract", "lbt Bonus Contract"."lbt Contract");
+        BonusCust.SETRANGE("Contract", "Bonus Contract"."Contract");
         IF BonusCust.FINDSET() THEN
             REPEAT
                 SalesShipmentLineRec.RESET();
-                SalesShipmentLineRec.SETRANGE("Sell-to Customer No.", BonusCust."lbt Customer");
+                SalesShipmentLineRec.SETRANGE("Sell-to Customer No.", BonusCust."Customer");
                 SalesShipmentLineRec.SETRANGE("Posting Date", DateFrom, DateTo);
                 SalesShipmentLineRec.SETRANGE(Type, SalesShipmentLineRec.Type::Item);
                 SalesShipmentLineRec.SETFILTER(Quantity, '<>%1', 0);

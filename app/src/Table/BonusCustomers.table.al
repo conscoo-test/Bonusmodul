@@ -3,17 +3,18 @@ table 5266058 "lbt Bonus Customers"
     DataClassification = CustomerContent;
     LookupPageId = "lbt Bonus Customers";
     DrillDownPageId = "lbt Bonus Customers";
+    Caption = 'Bonus Customer', Comment = 'DEU="Bonusdebitor"';
 
     fields
     {
-        field(1; "lbt Contract"; Code[20])
+        field(1; Contract; Code[20])
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."lbt Contract";
+            TableRelation = "lbt Bonus Contract"."Contract";
         }
 
-        field(2; "lbt Customer"; Code[20])
+        field(2; Customer; Code[20])
         {
             Caption = 'Customer', comment = 'DEU="Debitor"';
             DataClassification = CustomerContent;
@@ -21,35 +22,35 @@ table 5266058 "lbt Bonus Customers"
 
             trigger OnValidate()
             begin
-                IF CustRec.get("lbt Customer") then
-                    "lbt Customer Name" := CustRec.Name
+                IF CustRec.get("Customer") then
+                    "Customer Name" := CustRec.Name
                 ELSE
-                    "lbt Customer Name" := '';
+                    "Customer Name" := '';
             end;
         }
 
-        field(3; "lbt Ship-to Code"; Code[10])
+        field(3; "Ship-to Code"; Code[10])
         {
             Caption = 'Ship-to Code', comment = 'DEU="Lief. an Code"';
             DataClassification = CustomerContent;
-            TableRelation = "Ship-to Address".Code where("Customer No." = field("lbt Customer"));
+            TableRelation = "Ship-to Address".Code where("Customer No." = field("Customer"));
 
             trigger OnValidate()
             begin
-                IF ShipToAdressRec.get("lbt Customer", "lbt Ship-to Code") then
-                    "lbt Ship-to Name" := ShipToAdressRec.Name
+                IF ShipToAdressRec.get("Customer", "Ship-to Code") then
+                    "Ship-to Name" := ShipToAdressRec.Name
                 else
-                    "lbt Ship-to Name" := '';
+                    "Ship-to Name" := '';
             end;
 
         }
-        field(4; "lbt Customer Name"; Text[100])
+        field(4; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name', comment = 'DEU="Debitorname"';
             DataClassification = CustomerContent;
         }
 
-        field(5; "lbt Ship-to Name"; Text[100])
+        field(5; "Ship-to Name"; Text[100])
         {
             Caption = 'Ship-to Name', comment = 'DEU="Lieferung an Name"';
             DataClassification = CustomerContent;
@@ -58,7 +59,7 @@ table 5266058 "lbt Bonus Customers"
 
     keys
     {
-        key(PK; "lbt Contract", "lbt Customer", "lbt Ship-to Code")
+        key(PK; "Contract", "Customer", "Ship-to Code")
         {
             Clustered = true;
         }

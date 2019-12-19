@@ -53,53 +53,53 @@ codeunit 5266052 "lbt Bonus Management"
     begin
 
         if BonusContractEntryRec.FindLast() then
-            EntryNo := BonusContractEntryRec."lbt Entry No."
+            EntryNo := BonusContractEntryRec."Entry No."
         else
             EntryNo := 0;
         CLEAR(BonusContractEntryRec);
         BonusContractEntryRec.Init();
-        BonusContractEntryRec."lbt Entry No." := EntryNo + 1;
-        BonusContractEntryRec."lbt Entry Type" := EntryType;
-        BonusContractEntryRec."lbt Contract" := ContractRec."lbt Contract";
-        BonusContractEntryRec."lbt Customer" := BonusCustRec."lbt Customer";
-        BonusContractEntryRec."lbt Ship-to Code" := BonusCustRec."lbt Ship-to Code";
+        BonusContractEntryRec."Entry No." := EntryNo + 1;
+        BonusContractEntryRec."Entry Type" := EntryType;
+        BonusContractEntryRec."Contract" := ContractRec."Contract";
+        BonusContractEntryRec."Customer" := BonusCustRec."Customer";
+        BonusContractEntryRec."Ship-to Code" := BonusCustRec."Ship-to Code";
         BonusContractEntryRec."Process No." := ContractRec."Process No.";
-        BonusContractEntryRec."lbt Invoice Customer No." := ContractRec."lbt Bonus Recipient";
-        BonusContractEntryRec."lbt Entry Date" := EntryDate;
-        BonusContractEntryRec."lbt Bonus Contract Line" := BonusRule;
-        BonusContractEntryRec."lbt Bonus Document Type" := BonusDocType;
-        BonusContractEntryRec."lbt Bonus Document No." := BonusDocNo;
-        BonusContractEntryRec."lbt Bonus Document Line" := BonusDocLineNo;
-        BonusContractEntryRec."lbt From Document Type" := SourceDocType;
-        BonusContractEntryRec."lbt From Document No." := SourceDocNo;
-        BonusContractEntryRec."lbt From Document Line" := SourceDocLineNo;
-        BonusContractEntryRec."lbt Sales Quantity" := Qty;
-        BonusContractEntryRec."lbt Calculated Amount" := Amt;
-        BonusContractEntryRec."lbt calc. Amount incl. VAT" := AmtIncVAT;
-        BonusContractEntryRec."lbt Base Amount" := DocAmt;
-        BonusContractEntryRec."lbt Assignment Document Type" := AssignmentDocType;
-        BonusContractEntryRec."lbt Assignment Document No." := AssignmentDocNo;
-        BonusContractEntryRec."lbt Assignment Doc. Line No." := AssignmentDocLineNo;
-        BonusContractEntryRec."lbt Pmt. Discount Amount" := PmtDiscAmt;
-        BonusContractEntryRec."lbt Discount Amount" := DiscAmt;
+        BonusContractEntryRec."Invoice Customer No." := ContractRec."Bonus Recipient";
+        BonusContractEntryRec."Entry Date" := EntryDate;
+        BonusContractEntryRec."Bonus Contract Line" := BonusRule;
+        BonusContractEntryRec."Bonus Document Type" := BonusDocType;
+        BonusContractEntryRec."Bonus Document No." := BonusDocNo;
+        BonusContractEntryRec."Bonus Document Line" := BonusDocLineNo;
+        BonusContractEntryRec."From Document Type" := SourceDocType;
+        BonusContractEntryRec."From Document No." := SourceDocNo;
+        BonusContractEntryRec."From Document Line" := SourceDocLineNo;
+        BonusContractEntryRec."Sales Quantity" := Qty;
+        BonusContractEntryRec."Calculated Amount" := Amt;
+        BonusContractEntryRec."calc. Amount incl. VAT" := AmtIncVAT;
+        BonusContractEntryRec."Base Amount" := DocAmt;
+        BonusContractEntryRec."Assignment Document Type" := AssignmentDocType;
+        BonusContractEntryRec."Assignment Document No." := AssignmentDocNo;
+        BonusContractEntryRec."Assignment Doc. Line No." := AssignmentDocLineNo;
+        BonusContractEntryRec."Pmt. Discount Amount" := PmtDiscAmt;
+        BonusContractEntryRec."Discount Amount" := DiscAmt;
         BonusContractEntryRec.Insert();
 
-        exit(BonusContractEntryRec."lbt Entry No.");
+        exit(BonusContractEntryRec."Entry No.");
     end;
 
     procedure UpdateFromGenLedgEntry(var GenLedgEntryRec: Record "G/L Entry")
     begin
-        if BonusEntryRec.Get(GenLedgEntryRec."lbt Bonus Entry No") AND (BonusEntryRec."lbt General Ledger Entry No." = 0) then begin
-            BonusEntryRec."lbt General Ledger Entry No." := GenLedgEntryRec."Entry No.";
-            if BonusEntryRec."lbt Posted Amount" = 0 then
-                if BonusEntryRec."lbt Entry Type" <> BonusEntryRec."lbt Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
-                    BonusEntryRec."lbt Posted Amount" := GenLedgEntryRec.Amount
+        if BonusEntryRec.Get(GenLedgEntryRec."lbt Bonus Entry No") AND (BonusEntryRec."General Ledger Entry No." = 0) then begin
+            BonusEntryRec."General Ledger Entry No." := GenLedgEntryRec."Entry No.";
+            if BonusEntryRec."Posted Amount" = 0 then
+                if BonusEntryRec."Entry Type" <> BonusEntryRec."Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
+                    BonusEntryRec."Posted Amount" := GenLedgEntryRec.Amount
                 else begin
                     BonusSetupRec.Get();
-                    if BonusSetupRec."lbt Reserve Mode" <> BonusSetupRec."lbt Reserve Mode"::Journal then
-                        BonusEntryRec."lbt Posted Amount" := GenLedgEntryRec.Amount;
+                    if BonusSetupRec."Reserve Mode" <> BonusSetupRec."Reserve Mode"::Journal then
+                        BonusEntryRec."Posted Amount" := GenLedgEntryRec.Amount;
                 end;
-            BonusEntryRec."lbt Entry Date" := GenLedgEntryRec."Posting Date";
+            BonusEntryRec."Entry Date" := GenLedgEntryRec."Posting Date";
             BonusEntryRec.Modify();
         end;
     end;
@@ -110,9 +110,9 @@ codeunit 5266052 "lbt Bonus Management"
 
             CASE SalesLineRec."Document Type" OF
                 SalesLineRec."Document Type"::Invoice:
-                    BonusEntryRec."lbt Posted Amount" := -SalesLineRec."Line Amount";
+                    BonusEntryRec."Posted Amount" := -SalesLineRec."Line Amount";
                 SalesLineRec."Document Type"::"Credit Memo":
-                    BonusEntryRec."lbt Posted Amount" := SalesLineRec."Line Amount";
+                    BonusEntryRec."Posted Amount" := SalesLineRec."Line Amount";
             end;
 
             BonusEntryRec.Modify();

@@ -7,24 +7,21 @@ table 5266057 "lbt Bonus Group"
 
     fields
     {
-        field(1; "lbt Code"; Code[20])
+        field(1; "Code"; Code[20])
         {
             Caption = 'Code', comment = 'DEU="Code"';
             DataClassification = CustomerContent;
         }
-        field(2; "lbt Description"; Text[100])
+        field(2; Description; Text[100])
         {
             Caption = 'Description', comment = 'DEU="Beschreibung"';
             DataClassification = CustomerContent;
         }
-
-
-
     }
 
     keys
     {
-        key(PK; "lbt Code")
+        key(PK; "Code")
         {
             Clustered = true;
         }

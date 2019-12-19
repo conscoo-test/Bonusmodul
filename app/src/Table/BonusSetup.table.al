@@ -4,66 +4,71 @@ table 5266051 "lbt Bonus Setup"
     Caption = 'Bonus Setup', comment = 'DEU="Bonus Einrichtung"';
     fields
     {
-        field(1; "lbt Primary Key"; code[10])
+        field(1; "Primary Key"; code[10])
         {
             Caption = 'Primary Key', comment = 'DEU="Primärschlüssel"';
             DataClassification = CustomerContent;
         }
 
-        field(2; "lbt Reserve Mode"; Option)
+        field(2; "Reserve Mode"; Option)
         {
             Caption = 'Reserve Mode', comment = 'DEU="Rückstellungsmodus"';
             DataClassification = CustomerContent;
             OptionMembers = "Journal","CreditMemo";
             OptionCaption = 'Journal,CreditMemo', comment = 'DEU="Buchblatt,Gutschrift"';
         }
-        field(3; "lbt Gen.Jnl.Templ.BonusReserve"; Code[10])
+        field(3; "Gen.Jnl.Templ.BonusReserve"; Code[10])
         {
             Caption = 'Gen. Jnl. Templ. Bonus Reserve', comment = 'DEU="BuchblVorl. Bonusrückstellung"';
             DataClassification = CustomerContent;
             TableRelation = "Gen. Journal Template";
+            trigger OnLookup()
+            var
+                GenJournalTemplate: Record "Gen. Journal Template";
+                GeneralJournalTemplates: Page "General Journal Templates";
 
+            begin
+                GeneralJournalTemplates.LookupMode(true);
+                if GeneralJournalTemplates.RunModal() = Action::LookupOK then begin
+                    GeneralJournalTemplates.GetRecord(GenJournalTemplate);
+                    "Gen.Jnl.Templ.BonusReserve" := GenJournalTemplate.Name;
+                end;
+            end;
         }
 
-        field(4; "lbt Gen. Jnl. Bonus Reserve"; Code[10])
+        field(4; "Gen. Jnl. Bonus Reserve"; Code[10])
         {
             Caption = 'Gen. Jnl. Bonus Reserve', comment = 'DEU="Buchblatt Bonusrückstellung"';
+            TableRelation = "Gen. Journal Batch".Name where("Journal Template Name" = field("Gen.Jnl.Templ.BonusReserve"));
             DataClassification = CustomerContent;
-            TableRelation = "Gen. Journal Batch";
         }
-        field(5; "lbt Revers Reserve Mode"; Option)
+        field(5; "Revers Reserve Mode"; Option)
         {
             Caption = 'Revers Reserve Mode', Comment = 'DEU="Rückstellungsauflösung Modus"';
             DataClassification = CustomerContent;
             OptionMembers = automatic,"Journal Batch";
             OptionCaption = 'automatic,Journal Batch', Comment = 'DEU="automatisch,Buchblatt"';
         }
-        field(6; "lbt GenJnlBonusReversReserve"; Code[20])
+        field(6; GenJnlBonusReversReserve; Code[20])
         {
             Caption = ' Gen. Jnl. Bonus Revers Reserve', Comment = 'DEU="Buchblatt Bonusrückstellungsauflösung"';
             DataClassification = CustomerContent;
-            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = FIELD("lbt Gen.Jnl.Templ.BonusReserve"));
+            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = FIELD("Gen.Jnl.Templ.BonusReserve"));
         }
-        field(7; "lbt Cust Gr. Reserve Cr. Memo"; Code[20])
+        field(7; "Cust Gr. Reserve Cr. Memo"; Code[20])
         {
             Caption = 'Cust Gr. Reserve Cr. Memo', comment = 'DEU="Debitor-Buch.gr. für Rückstell-Gutschr."';
             DataClassification = CustomerContent;
             TableRelation = "Customer Posting Group".Code;
         }
 
-        field(8; "lbt Bus.Post.Gr.f.Res.Cr.Memo"; Code[20])
+        field(8; "Bus.Post.Gr.f.Res.Cr.Memo"; Code[20])
         {
             Caption = 'Bus. Post. Group for Reserve Credit Memo', comment = 'DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"';
 
             DataClassification = CustomerContent;
             TableRelation = "Gen. Business Posting Group".Code;
         }
-        field(100; Complete; Boolean)
-        {
-            DataClassification = CustomerContent;
-        }
-
-
 
         field(9; "Bonus Nos."; Code[20])
         {
@@ -71,14 +76,11 @@ table 5266051 "lbt Bonus Setup"
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
-
-
-
     }
 
     keys
     {
-        key(PK; "lbt Primary Key")
+        key(PK; "Primary Key")
         {
             Clustered = true;
         }
@@ -86,7 +88,7 @@ table 5266051 "lbt Bonus Setup"
 
     trigger OnInsert()
     begin
-        "lbt Primary Key" := '1';
+        "Primary Key" := '1';
     end;
 
 
