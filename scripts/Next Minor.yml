@@ -6,8 +6,8 @@ resources:
       
 trigger: none
 schedules:
-- cron: '00 05 * * *'
-  displayName: Daily Next Minor build
+- cron: '0 1 * * SUN'
+  displayName: Weekly Next Minor build
   branches:
     include:
     - master
