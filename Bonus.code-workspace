@@ -8,6 +8,12 @@
         },
         {
             "path": "scripts"
+        },
+        {
+            "path": "Appendix"
+        },        
+        {
+            "path": "dependencies"
         }
     ],
     "settings": {

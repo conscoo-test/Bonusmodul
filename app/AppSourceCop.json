@@ -1,3 +1,6 @@
- {
-     "mandatoryPrefix": "lbt"
+{
+    "mandatoryPrefix": "lbt ",
+    "supportedCountries": [
+        "DE"
+    ]
  }
