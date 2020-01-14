@@ -1,30 +1,33 @@
 {
-    "folders": [
-        {
-            "path": "app"
-        },
-        {
-            "path": "test"
-        },
-        {
-            "path": "scripts"
-        },
-        {
-            "path": "Appendix"
-        },        
-        {
-            "path": "dependencies"
-        }
-    ],
-    "settings": {
-        "al.enableCodeAnalysis": true,
-        "CRS.ObjectNamePrefix": "lbt ",
-        "CRS.OnSaveAlFileAction": "Rename",
-        "CRS.RemovePrefixFromFilename": true,
-        "al.codeAnalyzers": [
-            "${AppSourceCop}",
-            "${CodeCop}",
-            "${UICop}"
-        ],
-    }
+	"folders": [
+		{
+			"path": "App"
+		},
+		{
+			"path": "Test"
+		},
+		{
+			"path": "Scripts"
+		},
+		{
+			"path": "Appendix"
+		},
+		{
+			"path": "Dependencies"
+		}
+	],
+	"settings": {
+		"al.enableCodeAnalysis": true,
+		"CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.RemovePrefixFromFilename": true,
+		"CRS.ObjectNamePrefix": "lbt ",
+		"CRS.OnSaveAlFileAction": "Rename",
+		"al.codeAnalyzers": [
+			"${AppSourceCop}",
+			"${CodeCop}",
+			"${UICop}"
+		],
+	}
 }
