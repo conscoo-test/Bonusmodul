@@ -10,8 +10,8 @@
   "help": "https://www.lebit.net/#support",
   "url": "https://www.lebit.net/#kontakt",
   "contextSensitiveHelpUrl": "http://www.lebit.net",
-  "logo": "\\Appendix\\Logo\\LB18.jpg",
-  "dependencies": [
+  "logo": "Appendix\\Logo\\LB18.jpg",
+    "dependencies": [
     {
       "appId": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
       "name": "LeBit Processmanagement",
