@@ -1573,20 +1573,15 @@
           <note from="Developer" annotates="general" priority="2">DEU="Abrechnungszeitraum %1 bis %2"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbt Bonus Run - NamedType AccountingPeriodTxt</note>
         </trans-unit>
-        <trans-unit id="PageExtension 2678323290 - Control 919233648 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 200707616">
+        <trans-unit id="PageExtension 2678323290 - Control 1631311664 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 200707616">
           <source>Indicate which surcharges and discounts are relevant for bonus.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Kennzeichnen, welche ZU-/ABSCHLÄGE Bonusrelevant sind."</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbt Item Charges - Control lbt Bonus consider - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbt Item Charges - Control lbt LBT lbt Bonus consider - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="TableExtension 2698428863 - Field 3479676134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2825951060">
           <source>Bonusposten</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusposten Lfd. Nr."</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt GLEntry - Field lbt Bonus Entry No - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 91298208 - Field 2510053488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>Bonus Entry No.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Bonus Postennr."</note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt SalesLine - Field lbt Bonus Entry No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2581847119 - Field 919233648 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 151375497">
           <source>Bonus consider</source>
@@ -1597,6 +1592,11 @@
           <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen."</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Lbt Bonus Item Charge Assign. - NamedType Text001Msg</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 91298208 - Field 2510053488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
+          <source>Bonus Entry No.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Bonus Postennr."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt SalesLine - Field lbt Bonus Entry No. - Property Caption</note>
         </trans-unit>
       </group>
     </body>
