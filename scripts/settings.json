@@ -29,6 +29,7 @@
         {
             "version": "cronus_de",
             "containerImage": "mcr.microsoft.com/businesscentral/sandbox:de",
+            "alwaysPull": true,
             "reuseContainer": true
         }
     ],
