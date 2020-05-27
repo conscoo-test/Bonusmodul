@@ -1,0 +1,33 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Template
+      
+trigger: none
+
+variables:
+- group: secrets
+      
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    variables:
+      build.clean: all
+      platform: x64
+      version: "current"
+      appVersion: "1"
+      appMinor: $[counter(variables['appVersion'],1)] 
+      appBuild: 0
+      appRevision: 0
+      createRuntimePackages: False
+      skipComponentGovernanceDetection: True
+
+    pool:
+      name: Default
+
+    steps:
+    - template: build-steps.yml@templates
+
+
