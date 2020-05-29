@@ -1,4 +1,4 @@
-tableextension 5266062 "Lbt Bonus Item Charge Assign." extends "Item Charge Assignment (Sales)" //5809
+tableextension 5266062 "lbt Bonus Item Charge Assign." extends "Item Charge Assignment (Sales)" //5809
 {
     fields
     {

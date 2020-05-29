@@ -39,30 +39,45 @@ page 5266051 "lbt Bonus Setup"
                     {
                         ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen."';
                         ApplicationArea = All;
-                        Enabled = GenJnlTemplBonusReserve_Enabled;
+                        Enabled = ReserveMode_Journal;
                     }
                     field("Gen. Jnl. Bonus Reserve"; "Gen. Jnl. Bonus Reserve")
                     {
                         ToolTip = 'Here you can choose a book sheet template name. ', comment = 'DEU="Hier können Sie Buch.- Blattvorlagennamen auswählen."';
                         ApplicationArea = All;
-                        Enabled = GenJnlBonusReserve_Enabled;
+                        Enabled = ReserveMode_Journal;
                     }
                     field("Bus.Post.Gr.f.Res.Cr.Memo"; "Bus.Post.Gr.f.Res.Cr.Memo")
                     {
                         ToolTip = 'Here you can choose a business booking group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Geschäftsbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
-                        Enabled = BusPostGrResCrMemo_Enabled;
+                        Enabled = ReserveMode_CreditMemo;
                     }
                     field("Cust Gr. Reserve Cr. Memo"; "Cust Gr. Reserve Cr. Memo")
                     {
                         ToolTip = 'Here you can choose a customer posting group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Debitorbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
-                        Enabled = CustGrReserveCrMemo_Enabled;
+                        Enabled = ReserveMode_CreditMemo;
                     }
+                    field("Customer Reserve Cr.Memo"; "Customer Reserve Cr.Memo")
+                    {
+                        //TODO: Tooltip
+                        ApplicationArea = All;
+                        Enabled = ReserveMode_Journal;
+                    }
+                    field("Reason Code"; "Reason Code")
+                    {
+                        //TODO: Tooltip
+                        ApplicationArea = All;
+                        Enabled = ReserveMode_Journal;
 
-
-
-
+                    }
+                    field("Reserve Cr.Memo Nos."; "Reserve Cr.Memo Nos.")
+                    {
+                        //TODO: Tooltip
+                        ApplicationArea = All;
+                        Enabled = ReserveMode_Journal;
+                    }
                 }
                 group("Revers Reserve")
                 {
@@ -71,14 +86,14 @@ page 5266051 "lbt Bonus Setup"
                     {
                         ToolTip = 'Here you specify whether reserves are to be reversed manually or automatically. If you have selected the automatic reversal mode, there is no need to post an extra book page.', comment = 'DEU="Hier geben Sie an, ob Rückstellungen manuell oder automatisch aufgelöst werden sollen. Ist für den Auflösungsmodus ‚automatisch‘ gewählt muss kein extra Buchblatt verbucht werden. "';
                         ApplicationArea = All;
-                        Enabled = ReversReserve_Enabled;
+                        Enabled = ReserveMode_Journal;
 
                     }
                     field(GenJnlBonusReversReserve; "GenJnlBonusReversReserve")
                     {
                         ToolTip = 'Here you select the book page for reversing the posted bonus reserves.', comment = 'DEU="Hier wählen Sie das Buchblatt zur Auflösung der verbuchten Bonusrückstellungen."';
                         ApplicationArea = All;
-                        Enabled = GenJnlBonusReversReserve_Enabled;
+                        Enabled = ReserveMode_Journal;
                     }
                 }
 
@@ -110,12 +125,8 @@ page 5266051 "lbt Bonus Setup"
 
     }
     var
-        GenJnlBonusReserve_Enabled: Boolean;
-        GenJnlTemplBonusReserve_Enabled: Boolean;
-        BusPostGrResCrMemo_Enabled: Boolean;
-        CustGrReserveCrMemo_Enabled: Boolean;
-        ReversReserve_Enabled: Boolean;
-        GenJnlBonusReversReserve_Enabled: Boolean;
+        ReserveMode_Journal: Boolean;
+        ReserveMode_CreditMemo: Boolean;
 
     local procedure SetEnabledOnAfterValidate()
     begin
@@ -129,12 +140,8 @@ page 5266051 "lbt Bonus Setup"
 
     local procedure EnabledFields()
     begin
-        GenJnlBonusReserve_Enabled := "Reserve Mode" = "Reserve Mode"::Journal;
-        GenJnlTemplBonusReserve_Enabled := "Reserve Mode" = "Reserve Mode"::Journal;
-        CustGrReserveCrMemo_Enabled := "Reserve Mode" = "Reserve Mode"::CreditMemo;
-        BusPostGrResCrMemo_Enabled := "Reserve Mode" = "Reserve Mode"::CreditMemo;
-        ReversReserve_Enabled := "Reserve Mode" = "Reserve Mode"::Journal;
-        GenJnlBonusReversReserve_Enabled := "Reserve Mode" = "Reserve Mode"::Journal;
+        ReserveMode_Journal := "Reserve Mode" = "Reserve Mode"::Journal;
+        ReserveMode_CreditMemo := "Reserve Mode" = "Reserve Mode"::CreditMemo;
     end;
 
     trigger OnOpenPage()

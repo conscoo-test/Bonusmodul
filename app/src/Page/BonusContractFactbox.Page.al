@@ -43,7 +43,7 @@ page 5266060 "lbt Bonus Contract Factbox"
             }
             field("Balance of Liquid Reserves"; "Balance of Liquid Reserves")
             {
-                ToolTip = 'Indicates the Balance of Liquid Reserves.', comment = 'DEU="Gibt den Saldo der Liquiditätsreserven an."';
+                ToolTip = 'Indicates the balance of the reversal of reserves.', comment = 'DEU="Gibt den Saldo der Rückstellungsauflösungen an."';
                 ApplicationArea = All;
             }
             field("Balance of Bonus"; "Balance of Bonus")

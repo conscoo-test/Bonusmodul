@@ -1,12 +1,5 @@
 codeunit 5266052 "lbt Bonus Management"
 {
-    trigger OnRun()
-    var
-        Rec: Record "G/L Entry";
-    begin
-        UpdateFromGenLedgEntry(Rec);
-    end;
-
     procedure SetAssignmentDoc(AssignmentDocTypeP: Option " ","Sales Shipment","Sales Return Receipt";
                                AssignmentDocNoP: Code[20];
                                AssignmentDocLineNoP: Integer)
@@ -28,11 +21,6 @@ codeunit 5266052 "lbt Bonus Management"
         BonusDocType := BonusDocTypeP;
         BonusDocNo := BonusDocNoP;
         BonusDocLineNo := BonusDocLineNoP;
-    end;
-
-    procedure GenLedgEntryToBilling(var GenLedgEntryRec: Record "G/L Entry"; BillingCode: Code[10]; BillingEntryNo: Integer)
-    begin
-        //TODO: Prüfen ob "Billing Code" noch benötigt wird
     end;
 
     procedure CreateBonusContractEntry(var ContractRec: Record "lbt Bonus Contract";
@@ -87,35 +75,38 @@ codeunit 5266052 "lbt Bonus Management"
         exit(BonusContractEntryRec."Entry No.");
     end;
 
-    procedure UpdateFromGenLedgEntry(var GenLedgEntryRec: Record "G/L Entry")
+    procedure UpdateFromGenLedgEntry(var GLEntry: Record "G/L Entry")
     begin
-        if BonusEntryRec.Get(GenLedgEntryRec."lbt Bonus Entry No") AND (BonusEntryRec."General Ledger Entry No." = 0) then begin
-            BonusEntryRec."General Ledger Entry No." := GenLedgEntryRec."Entry No.";
-            if BonusEntryRec."Posted Amount" = 0 then
-                if BonusEntryRec."Entry Type" <> BonusEntryRec."Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
-                    BonusEntryRec."Posted Amount" := GenLedgEntryRec.Amount
+        BonusSetup.Get();
+        if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
+            exit;
+        if BonusEntry.Get(GLEntry."lbt Bonus Entry No") then begin
+            BonusEntry."General Ledger Entry No." := GLEntry."Entry No.";
+            if BonusEntry."Posted Amount" = 0 then
+                if BonusEntry."Entry Type" <> BonusEntry."Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
+                    BonusEntry."Posted Amount" := GLEntry.Amount
                 else begin
-                    BonusSetupRec.Get();
-                    if BonusSetupRec."Reserve Mode" <> BonusSetupRec."Reserve Mode"::Journal then
-                        BonusEntryRec."Posted Amount" := GenLedgEntryRec.Amount;
+                    BonusSetup.Get();
+                    if BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::Journal then
+                        BonusEntry."Posted Amount" := GLEntry.Amount;
                 end;
-            BonusEntryRec."Entry Date" := GenLedgEntryRec."Posting Date";
-            BonusEntryRec.Modify();
+            BonusEntry."Entry Date" := GLEntry."Posting Date";
+            BonusEntry.Modify();
         end;
     end;
 
     local procedure UpdateFromSalesLine(var SalesLineRec: Record "Sales Line")
     begin
-        if BonusEntryRec.GET(SalesLineRec."lbt Bonus Entry No.") then begin
+        if BonusEntry.GET(SalesLineRec."lbt Bonus Entry No.") then begin
 
             CASE SalesLineRec."Document Type" OF
                 SalesLineRec."Document Type"::Invoice:
-                    BonusEntryRec."Posted Amount" := -SalesLineRec."Line Amount";
+                    BonusEntry."Posted Amount" := -SalesLineRec."Line Amount";
                 SalesLineRec."Document Type"::"Credit Memo":
-                    BonusEntryRec."Posted Amount" := SalesLineRec."Line Amount";
+                    BonusEntry."Posted Amount" := SalesLineRec."Line Amount";
             end;
 
-            BonusEntryRec.Modify();
+            BonusEntry.Modify();
         end;
     end;
 
@@ -130,8 +121,8 @@ codeunit 5266052 "lbt Bonus Management"
     end;
 
     var
-        BonusEntryRec: Record "lbt Bonus Entry";
-        BonusSetupRec: Record "lbt Bonus Setup";
+        BonusEntry: Record "lbt Bonus Entry";
+        BonusSetup: Record "lbt Bonus Setup";
 
         AssignmentDocType: Option;
         AssignmentDocNo: Code[20];

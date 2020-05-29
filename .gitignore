@@ -4,6 +4,8 @@
 *.app
 app/*.app
 test/*.app
+test/**/*.xlf
+*/.vscode/*
 */.vscode/*
 app/permissionsAnalyzer.json
 rad.json

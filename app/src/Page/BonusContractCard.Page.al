@@ -148,6 +148,8 @@ page 5266053 "lbt Bonus Contract Card"
                     ToolTip = 'Here you must select the appropriate surcharge/discount to be used in the credit memo for posting the provisions and in the invoice for cancelling the provisions. This is required if the reserve mode credit memo is selected.',
                         Comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist"';
                     ApplicationArea = All;
+                    Enabled = ItemChargeEnabled;
+
                 }
 
             }
@@ -182,6 +184,7 @@ page 5266053 "lbt Bonus Contract Card"
             part("Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
             {
                 ApplicationArea = all;
+                SubPageLink = Contract = field(Contract);
             }
         }
     }
@@ -215,7 +218,28 @@ page 5266053 "lbt Bonus Contract Card"
                 ToolTip = 'You use this function to cancel a reserve.', Comment = 'DEU="Mit dieser Funktion lösen Sie eine Rückstellung auf."';
                 ApplicationArea = All;
                 Image = CashFlow;
-                RunObject = page "lbt Explode Reservation";
+
+                trigger OnAction()
+                var
+                    BonusSetup: Record "lbt Bonus Setup";
+                    BonusEntry: Record "lbt Bonus Entry";
+                    ExplodeReservation: Page "lbt Explode Reservation";
+                begin
+                    BonusSetup.Get();
+                    if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
+                        BonusEntry.SetRange(Contract, Contract);
+                        BonusEntry.SetRange("Entry Type", BonusEntry."Entry Type"::Reserve);
+                        //TODO: BonusEntry.SetRange(Reversed, false);
+                        BonusEntry.SetFilter("Posted Amount", '<>%1', 0);
+
+                        if BonusEntry.IsEmpty() then
+                            Error(NoPostedReservesErr);
+
+                        ExplodeReservation.SetTableView(BonusEntry);
+                        ExplodeReservation.Run();
+                    end;
+                    //TODO: "Reserve Mode"::Journal
+                end;
             }
 
 
@@ -353,10 +377,18 @@ page 5266053 "lbt Bonus Contract Card"
         }
     }
 
+    trigger OnAfterGetRecord()
+    begin
+        EnableFields();
+    end;
+
     var
         NavigatePage: Page Navigate;
         BonusBillingType_Enable: Boolean;
         BonusReserveType_Enable: Boolean;
+        ItemChargeEnabled: Boolean;
+        NoPostedReservesErr: Label 'There are no posted reserves for Reversing.',
+            Comment = 'DEU="Es gibt zu diesem Vertrag keine gebuchten Rückstellungen zur Auflösung."';
 
     local procedure TypeOnAfterValidate()
     begin
@@ -364,9 +396,13 @@ page 5266053 "lbt Bonus Contract Card"
     end;
 
     local procedure EnableFields()
+    var
+        BonusSetup: Record "lbt Bonus Setup";
     begin
         BonusBillingType_Enable := "Bonus Billing Type" = "Bonus Billing Type"::"Amount per Unit";
         BonusReserveType_Enable := "Reserve Type" = "Reserve Type"::"Amount per Unit";
+        BonusSetup.Get();
+        ItemChargeEnabled := (BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo);
 
     end;
 

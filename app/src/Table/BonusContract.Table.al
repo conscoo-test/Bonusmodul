@@ -167,7 +167,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Bonus', comment = 'DEU="Saldo Bonus"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."Calculated Amount" where("Contract" = field("Contract"), "Entry Type" = const("Bonus")));
+            CalcFormula = sum ("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Bonus")));
 
         }
         field(18; "Balance of Reserve"; Decimal)
@@ -175,16 +175,16 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Reserve', comment = 'DEU="Saldo Rückstellungen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."Calculated Amount" where("Contract" = field("Contract"), "Entry Type" = const("Reserve")));
+            CalcFormula = sum ("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Reserve")));
         }
 
 
         field(19; "Balance of Liquid Reserves"; Decimal)
         {
-            Caption = 'Balance of Liquidation Reserve', comment = 'DEU="Saldo Rückstellungen"';
+            Caption = 'Balance of Liquidation Reserve', comment = 'DEU="Saldo Rückstellungsauflösung"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."Calculated Amount" where("Contract" = field("Contract"), "Entry Type" = const("Liquidation of Reserves")));
+            CalcFormula = sum ("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Liquidation of Reserves")));
         }
         field(20; "No. of Dimensions"; Integer)
         {

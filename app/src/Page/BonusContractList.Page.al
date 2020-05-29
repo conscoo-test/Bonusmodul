@@ -48,6 +48,7 @@ page 5266052 "lbt Bonus Contract List"
             part("Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
             {
                 ApplicationArea = all;
+                SubPageLink = Contract = field(Contract);
                 Visible = true;
             }
         }

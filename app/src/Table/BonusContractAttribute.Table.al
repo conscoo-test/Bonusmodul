@@ -21,16 +21,18 @@ table 5266055 "lbt BonusContractAttribute"
 
         field(3; "Attribute ID"; Integer)
         {
-            Caption = 'Attribute ID', comment = 'DEU="Attriute ID"';
+            Caption = 'Attribute ID', comment = 'DEU="Attribute ID"';
             DataClassification = CustomerContent;
             TableRelation = "Item Attribute".ID;
 
             trigger OnValidate()
+            var
+                ItemAttribute: Record "Item Attribute";
             begin
-                if AttributeRec.Get("Attribute ID") then
-                    "Attribute Name" := AttributeRec.Name;
-                "Attribute Type" := AttributeRec.Type;
-
+                if ItemAttribute.Get("Attribute ID") then begin
+                    "Attribute Name" := ItemAttribute.Name;
+                    "Attribute Type" := ItemAttribute.Type;
+                end;
             end;
         }
         field(4; "Attribute Name"; Text[250])
@@ -38,13 +40,6 @@ table 5266055 "lbt BonusContractAttribute"
             Caption = 'Attribute Name', comment = 'DEU="Attribute Name"';
             DataClassification = CustomerContent;
             TableRelation = "Item Attribute".Name;
-            trigger OnValidate()
-            begin
-                if AttributeRec.Get("Attribute Name") then
-                    "Attribute ID" := AttributeRec.ID;
-                "Attribute Type" := AttributeRec.Type;
-
-            end;
         }
         field(5; "Attribute Type"; Option)
         {
@@ -60,9 +55,11 @@ table 5266055 "lbt BonusContractAttribute"
             DataClassification = CustomerContent;
             TableRelation = "Item Attribute Value".ID where("Attribute ID" = field("Attribute ID"));
             trigger OnValidate()
+            var
+                ItemAttributeValue: Record "Item Attribute Value";
             begin
-                if AttributeValueRec.Get("Attribute ID", "Attribute Value ID") then
-                    "Attribute Value Name" := AttributeValueRec.Value
+                if ItemAttributeValue.Get("Attribute ID", "Attribute Value ID") then
+                    "Attribute Value Name" := ItemAttributeValue.Value
                 else
                     "Attribute Value Name" := '';
             end;
@@ -81,19 +78,16 @@ table 5266055 "lbt BonusContractAttribute"
         }
     }
 
+    trigger OnInsert()
     var
-        AttributeRec: Record "Item Attribute";
-        AttributeValueRec: Record "Item Attribute Value";
-    /*         ContractAttributRec: Record "BonusContractAttribute";
-
-     trigger OnInsert()
-     var NewID: Integer;
-      begin
-         IF "ID" = 0 then 
-             ContractAttributRec.SetRange("Contract","Contract");
-             if ContractAttributRec.FindLast() then
-             NewID := ContractAttributRec."ID";
-             NewID += 1;
-             "ID" := NewID;
-     end; */
+        ContractAttribut: Record "lbt BonusContractAttribute";
+        NewID: Integer;
+    begin
+        if "ID" = 0 then
+            ContractAttribut.SetRange("Contract", "Contract");
+        if ContractAttribut.FindLast() then
+            NewID := ContractAttribut."ID";
+        NewID += 1;
+        "ID" := NewID;
+    end;
 }

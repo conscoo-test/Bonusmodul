@@ -1,4 +1,4 @@
-tableextension 5266061 "lbt GLEntry" extends "G/L Entry" //17
+tableextension 5266052 "lbt Gen. Journal Line" extends "Gen. Journal Line" //81
 {
     fields
     {
@@ -7,7 +7,7 @@ tableextension 5266061 "lbt GLEntry" extends "G/L Entry" //17
             Caption = 'Bonus Entry No.', comment = 'DEU="Bonusposten Lfd. Nr."';
             DataClassification = CustomerContent;
         }
-
     }
+
 
 }
