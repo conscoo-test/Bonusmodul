@@ -1,8 +1,8 @@
 resources:
   repositories:
-    - repository: templates
+    - repository: template
       type: git
-      name: Template
+      name: 'Produktplanung LIS/Template'
       
 trigger: none
 schedules:
@@ -34,4 +34,4 @@ stages:
       name: Default
 
     steps:
-    - template: build-steps.yml@templates
+    - template: build-steps.yml@template
