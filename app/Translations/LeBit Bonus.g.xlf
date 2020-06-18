@@ -168,6 +168,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Nummernserie"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field No. Series - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 289521175 - Field 2188680187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Reserve Cr.Memo</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitor Rückstellungsgutschrift"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Contract - Field Customer Reserve Cr.Memo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 289521175 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
           <source>You can not reset the date, while there are unposted bonus credit memos.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"</note>
@@ -758,11 +763,6 @@
           <note from="Developer" annotates="general" priority="2">DEU="Ursachencode"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Reason Code - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3313186052 - Field 2188680187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Customer Reserve Cr.Memo</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Debitor Rückstellungsgutschrift"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Customer Reserve Cr.Memo - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 3313186052 - Field 4140162563 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve Cr.Memo Nos.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellungsgutschriftnummern"</note>
@@ -1032,6 +1032,11 @@
           <source>Reserve</source>
           <note from="Developer" annotates="general" priority="2">DEU="Rückstellung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control Reserve - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 617064915 - Control 2188680187 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Reserve Cr.Memo</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Contract Card - Control Customer Reserve Cr.Memo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 617064915 - Control 3550920557 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specification of a reserve value.</source>
@@ -1653,6 +1658,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Kennzeichnen, welche ZU-/ABSCHLÄGE Bonusrelevant sind."</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbt Item Charges - Control lbt LBT lbt Bonus consider - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="TableExtension 4221491321 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 253769375">
+          <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt Bonus Item Charge Assign. - NamedType Text001Msg</note>
+        </trans-unit>
         <trans-unit id="TableExtension 2998561251 - Field 2728578642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
           <source>Bonus Reserve Account</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusrückstellungskonto"</note>
@@ -1668,11 +1678,6 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonusposten Lfd. Nr."</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt Gen. Journal Line - Field lbt Bonus Entry No - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 4221491321 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 253769375">
-          <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen."</note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt Bonus Item Charge Assign. - NamedType Text001Msg</note>
-        </trans-unit>
         <trans-unit id="TableExtension 2698428863 - Field 3479676134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2825951060">
           <source>Bonus Entry No.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusposten Lfd. Nr."</note>
@@ -1682,11 +1687,6 @@
           <source>Bonus consider</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonus berücksichtigen"</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt Item Charge - Field lbt Bonus consider - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 91298208 - Field 2510053488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>Bonus Entry No.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Bonus Postennr."</note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbt SalesLine - Field lbt Bonus Entry No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 91298208 - Field 2510053488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>Bonus Entry No.</source>

@@ -565,7 +565,7 @@ report 5266051 "lbt Bonus Reserves"
             Reset();
             SetCurrentKey("Document Type", "Sell-to Customer No.");
             SetRange("Document Type", "Document Type"::"Credit Memo");
-            SetRange("Sell-to Customer No.", BonusSetup."Customer Reserve Cr.Memo");
+            SetRange("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
             SetRange("Posting Description", BonusReserveLbl);
             if FindFirst() then
                 Error(UnpostedCreditMemoErr);
@@ -579,7 +579,7 @@ report 5266051 "lbt Bonus Reserves"
             "No." := NoSeriesManagement.GetNextNo("No. Series", WorkDate(), true);
             Insert(true);
             SetHideValidationDialog(true);
-            Validate("Sell-to Customer No.", BonusSetup."Customer Reserve Cr.Memo");
+            Validate("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
             // Validate("Gen. Bus. Posting Group", BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
             // Validate("Customer Posting Group", BonusSetupRec."Cust Gr. Reserve Cr. Memo");
             "Posting Description" := BonusReserveLbl;

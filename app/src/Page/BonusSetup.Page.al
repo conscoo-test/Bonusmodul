@@ -59,12 +59,7 @@ page 5266051 "lbt Bonus Setup"
                         ApplicationArea = All;
                         Enabled = ReserveMode_CreditMemo;
                     }
-                    field("Customer Reserve Cr.Memo"; "Customer Reserve Cr.Memo")
-                    {
-                        //TODO: Tooltip
-                        ApplicationArea = All;
-                        Enabled = ReserveMode_Journal;
-                    }
+
                     field("Reason Code"; "Reason Code")
                     {
                         //TODO: Tooltip

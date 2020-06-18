@@ -10,7 +10,7 @@
   "help": "https://www.lebit.net/#support",
   "contextSensitiveHelpUrl": "https://www.lebit.net/#support",
   "url": "https://www.lebit.net/#kontakt",
-  "logo": "",
+  "logo": "../App/Appendix/Logo/LB18.jpg",
   "dependencies": [
     {
       "appId": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",

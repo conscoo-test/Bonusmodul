@@ -328,7 +328,6 @@ codeunit 5266061 "lbt Test Bonus Reserve"
         LibraryUtility.CreateNoSeries(NoSeries, true, true, true);
         LibraryUtility.CreateNoSeriesLine(NoSeriesLine, NoSeries.Code, NoSeries.Code, '');
         LibrarySales.createcustomer(ReserveCustomer);
-        BonusSetup."Customer Reserve Cr.Memo" := ReserveCustomer."No.";
         BonusSetup."Reserve Cr.Memo Nos." := NoSeries.Code;
         BonusSetup.Modify();
         LibrarySales.CreateCustomer(Customer);
@@ -341,6 +340,7 @@ codeunit 5266061 "lbt Test Bonus Reserve"
         BonusContract."Reserve Value" := LibraryRandom.RandDecInDecimalRange(2.0, 12.0, 1);
         LibraryInventory.CreateItemCharge(ItemCharge);
         BonusContract."Reserve Item Charge" := ItemCharge."No.";
+        BonusContract."Customer Reserve Cr.Memo" := ReserveCustomer."No.";
         BonusContract.Insert();
 
         BonusCustomers.Init();

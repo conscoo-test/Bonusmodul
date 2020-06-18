@@ -84,12 +84,12 @@ table 5266051 "lbt Bonus Setup"
             TableRelation = "Reason Code";
         }
 
-        field(11; "Customer Reserve Cr.Memo"; Code[20])
-        {
-            Caption = 'Customer Reserve Cr.Memo', comment = 'DEU="Debitor Rückstellungsgutschrift"';
-            DataClassification = CustomerContent;
-            TableRelation = Customer;
-        }
+        // field(11; "Customer Reserve Cr.Memo"; Code[20])
+        // {
+        //     Caption = 'Customer Reserve Cr.Memo', comment = 'DEU="Debitor Rückstellungsgutschrift"';
+        //     DataClassification = CustomerContent;
+        //     TableRelation = Customer;
+        // }
 
         field(12; "Reserve Cr.Memo Nos."; Code[20])
         {

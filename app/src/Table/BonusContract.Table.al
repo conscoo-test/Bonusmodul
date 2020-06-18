@@ -244,7 +244,12 @@ table 5266052 "lbt Bonus Contract"
             DataClassification = CustomerContent;
         }
 
-
+        field(29; "Customer Reserve Cr.Memo"; Code[20])
+        {
+            Caption = 'Customer Reserve Cr.Memo', comment = 'DEU="Debitor Rückstellungsgutschrift"';
+            DataClassification = CustomerContent;
+            TableRelation = Customer;
+        }
 
     }
     keys

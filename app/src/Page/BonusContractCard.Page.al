@@ -113,7 +113,11 @@ page 5266053 "lbt Bonus Contract Card"
 
             {
                 Caption = 'Reserve', Comment = 'DEU="Rückstellung"';
-
+                field("Customer Reserve Cr.Memo"; "Customer Reserve Cr.Memo")
+                {
+                    ToolTip = 'Customer Reserve Cr.Memo';
+                    ApplicationArea = All;
+                }
                 field("Reserve Value"; "Reserve Value")
                 {
                     ToolTip = 'Specification of a reserve value.', Comment = 'DEU="Angabe eines Rückstellungswertes."';
