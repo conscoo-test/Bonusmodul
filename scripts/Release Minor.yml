@@ -2,7 +2,7 @@ resources:
   repositories:
     - repository: template
       type: git
-      name: 'Produktplanung LIS/Template'
+      name: 'Templates/Template'
       
 trigger: none
 

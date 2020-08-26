@@ -1,7 +1,6 @@
 */.alpackages/*
 */.alcache/
 */.altemplates
-*.app
 app/*.app
 test/*.app
 test/**/*.xlf
@@ -10,3 +9,4 @@ test/**/*.xlf
 app/permissionsAnalyzer.json
 rad.json
 *.flf
+*/.altestrunner

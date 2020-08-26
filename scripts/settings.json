@@ -3,6 +3,12 @@
     "appFolders": "app",
     "testFolders": "test",
     "dependenciesFolders": "dependencies",
+    "dependencies": [
+        {
+            "project": "Produktplanung LIS", 
+            "pipeline": "LeBit365_Vorgangsmanagement - CI"
+        } 
+    ], 
     "publicDnsName": "lvserver19.lebit.intranet",
     "launch": {
         "startupObjectId": 22,
