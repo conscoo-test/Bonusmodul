@@ -3,7 +3,6 @@ resources:
     - repository: template
       type: git
       name: 'Templates/Template'
-      ref: dev
       
 trigger: none
 
