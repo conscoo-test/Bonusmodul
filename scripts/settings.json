@@ -2,7 +2,7 @@
     "name": "LeBit365 Bonus",
     "appFolders": "app",
     "testFolders": "test",
-    "dependenciesFolders": "dependencies",
+    "dependenciesFolders": "",
     "dependencies": [
         {
             "project": "Produktplanung LIS", 
