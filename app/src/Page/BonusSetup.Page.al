@@ -16,7 +16,7 @@ page 5266051 "lbt Bonus Setup"
                 group("Number Series")
                 {
                     Caption = 'Number Series', comment = 'DEU="Nummernserie"';
-                    field("Bonus Nos."; "Bonus Nos.")
+                    field("Bonus Nos."; Rec."Bonus Nos.")
                     {
                         ToolTip = 'Here you select the number series for bonus contracts.', comment = 'DEU="Hier wählt man die Nummernserie für Bonusverträge aus."';
                         ApplicationArea = All;
@@ -25,7 +25,7 @@ page 5266051 "lbt Bonus Setup"
                 group(Reserve)
                 {
                     Caption = 'Reserve', comment = 'DEU="Rückstellungen"';
-                    field("Reserve Mode"; "Reserve Mode")
+                    field("Reserve Mode"; Rec."Reserve Mode")
                     {
                         ToolTip = 'Here you can choose the variant for accruals that is to be generated.', comment = 'DEU="Hier können Sie die Variante für Rückstellungen wählen, die erzeugt werden soll."';
                         ApplicationArea = All;
@@ -35,56 +35,56 @@ page 5266051 "lbt Bonus Setup"
                             SetEnabledOnAfterValidate();
                         end;
                     }
-                    field("Gen.Jnl.Templ.BonusReserve"; "Gen.Jnl.Templ.BonusReserve")
+                    field("Gen.Jnl.Templ.BonusReserve"; Rec."Gen.Jnl.Templ.BonusReserve")
                     {
                         ToolTip = 'Here you can choose a financial book template for the Bonusreverse.', comment = 'DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen."';
                         ApplicationArea = All;
                         Enabled = ReserveMode_Journal;
                     }
-                    field("Gen. Jnl. Bonus Reserve"; "Gen. Jnl. Bonus Reserve")
+                    field("Gen. Jnl. Bonus Reserve"; Rec."Gen. Jnl. Bonus Reserve")
                     {
                         ToolTip = 'Here you can choose a book sheet template name. ', comment = 'DEU="Hier können Sie Buch.- Blattvorlagennamen auswählen."';
                         ApplicationArea = All;
                         Enabled = ReserveMode_Journal;
                     }
-                    field("Bus.Post.Gr.f.Res.Cr.Memo"; "Bus.Post.Gr.f.Res.Cr.Memo")
+                    field("Bus.Post.Gr.f.Res.Cr.Memo"; Rec."Bus.Post.Gr.f.Res.Cr.Memo")
                     {
                         ToolTip = 'Here you can choose a business booking group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Geschäftsbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
                         Enabled = ReserveMode_CreditMemo;
                     }
-                    field("Cust Gr. Reserve Cr. Memo"; "Cust Gr. Reserve Cr. Memo")
+                    field("Cust Gr. Reserve Cr. Memo"; Rec."Cust Gr. Reserve Cr. Memo")
                     {
                         ToolTip = 'Here you can choose a customer posting group for the reserve credit.', comment = 'DEU="Hier wählen Sie eine Debitorbuchungsgruppe für die Rückstell- Gutschrift aus."';
                         ApplicationArea = All;
                         Enabled = ReserveMode_CreditMemo;
                     }
 
-                    field("Reason Code"; "Reason Code")
+                    field("Reason Code"; Rec."Reason Code")
                     {
-                        //TODO: Tooltip
                         ApplicationArea = All;
                         Enabled = ReserveMode_Journal;
+                        ToolTip = 'Specifies the reason code';
 
                     }
-                    field("Reserve Cr.Memo Nos."; "Reserve Cr.Memo Nos.")
+                    field("Reserve Cr.Memo Nos."; Rec."Reserve Cr.Memo Nos.")
                     {
-                        //TODO: Tooltip
                         ApplicationArea = All;
                         Enabled = ReserveMode_Journal;
+                        ToolTip = 'Specifies the reserve cr.memo nos.';
                     }
                 }
                 group("Revers Reserve")
                 {
                     Caption = 'Revers Reserve', comment = 'DEU="Rückstellungsauflösungen"';
-                    field("Revers Reserve Mode"; "Revers Reserve Mode")
+                    field("Revers Reserve Mode"; Rec."Revers Reserve Mode")
                     {
                         ToolTip = 'Here you specify whether reserves are to be reversed manually or automatically. If you have selected the automatic reversal mode, there is no need to post an extra book page.', comment = 'DEU="Hier geben Sie an, ob Rückstellungen manuell oder automatisch aufgelöst werden sollen. Ist für den Auflösungsmodus ‚automatisch‘ gewählt muss kein extra Buchblatt verbucht werden. "';
                         ApplicationArea = All;
                         Enabled = ReserveMode_Journal;
 
                     }
-                    field(GenJnlBonusReversReserve; "GenJnlBonusReversReserve")
+                    field(GenJnlBonusReversReserve; Rec."GenJnlBonusReversReserve")
                     {
                         ToolTip = 'Here you select the book page for reversing the posted bonus reserves.', comment = 'DEU="Hier wählen Sie das Buchblatt zur Auflösung der verbuchten Bonusrückstellungen."';
                         ApplicationArea = All;
@@ -135,8 +135,8 @@ page 5266051 "lbt Bonus Setup"
 
     local procedure EnabledFields()
     begin
-        ReserveMode_Journal := "Reserve Mode" = "Reserve Mode"::Journal;
-        ReserveMode_CreditMemo := "Reserve Mode" = "Reserve Mode"::CreditMemo;
+        ReserveMode_Journal := Rec."Reserve Mode" = Rec."Reserve Mode"::Journal;
+        ReserveMode_CreditMemo := Rec."Reserve Mode" = Rec."Reserve Mode"::CreditMemo;
     end;
 
     trigger OnOpenPage()

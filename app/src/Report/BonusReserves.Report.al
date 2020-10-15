@@ -163,6 +163,8 @@ report 5266051 "lbt Bonus Reserves"
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
             // BonusSetup.TestField("Customer Reserve Cr.Memo")
+            ;
+            ;
         end
         else begin
             BonusSetup.TestField("Gen.Jnl.Templ.BonusReserve");
@@ -224,43 +226,41 @@ report 5266051 "lbt Bonus Reserves"
 
     local procedure CheckDates(): Boolean
     begin
-        with "Bonus Contract" do begin
-            if (PostingDate < "Valid from") or (("Valid to" <> 0D) and (PostingDate > "Valid to")) then
-                exit(false);
+        if (PostingDate < "Bonus Contract"."Valid from") or (("Bonus Contract"."Valid to" <> 0D) and (PostingDate > "Bonus Contract"."Valid to")) then
+            exit(false);
 
-            if "Last Reserve at" >= DateFrom then
-                exit(false);
-        end;
+        if "Bonus Contract"."Last Reserve at" >= DateFrom then
+            exit(false);
         exit(true);
     end;
 
-    local procedure getTotalAmount(): Decimal
-    var
-        BonusCust: Record "lbt Bonus Customers";
-        ContractTotalAmt: Decimal;
-    begin
-        ContractTotalAmt := 0;
-        BonusCust.Reset();
-        BonusCust.SetRange("Contract", "Bonus Contract"."Contract");
-        if BonusCust.FindSet() then
-            Repeat
-                SalesShipmentLineRec.Reset();
-                SalesShipmentLineRec.SetRange("Sell-to Customer No.", BonusCust."Customer");
-                SalesShipmentLineRec.SetRange("Posting Date", DateFrom, DateTo);
-                SalesShipmentLineRec.SetRange(Type, SalesShipmentLineRec.Type::Item);
-                SalesShipmentLineRec.SetFilter(Quantity, '<>%1', 0);
-                SalesShipmentLineRec.SetFilter("Unit Price", '<>%1', 0);
-                if SalesShipmentLineRec.FindSet() then
-                    Repeat
-                        SalesShipmentHeaderRec.Get(SalesShipmentLineRec."Document No.");
-                        if SalesShipmentHeaderRec."Currency Code" = '' then
-                            ContractTotalAmt += SalesShipmentLineRec."Item Charge Base Amount"
-                        else
-                            ContractTotalAmt += Round(SalesShipmentLineRec."Item Charge Base Amount" / SalesShipmentHeaderRec."Currency Factor", 0.01);
-                    until SalesShipmentLineRec.Next() = 0;
-            until BonusCust.Next() = 0;
-        Exit(ContractTotalAmt);
-    end;
+    // local procedure getTotalAmount(): Decimal
+    // var
+    //     BonusCust: Record "lbt Bonus Customers";
+    //     ContractTotalAmt: Decimal;
+    // begin
+    //     ContractTotalAmt := 0;
+    //     BonusCust.Reset();
+    //     BonusCust.SetRange("Contract", "Bonus Contract"."Contract");
+    //     if BonusCust.FindSet() then
+    //         Repeat
+    //             SalesShipmentLineRec.Reset();
+    //             SalesShipmentLineRec.SetRange("Sell-to Customer No.", BonusCust."Customer");
+    //             SalesShipmentLineRec.SetRange("Posting Date", DateFrom, DateTo);
+    //             SalesShipmentLineRec.SetRange(Type, SalesShipmentLineRec.Type::Item);
+    //             SalesShipmentLineRec.SetFilter(Quantity, '<>%1', 0);
+    //             SalesShipmentLineRec.SetFilter("Unit Price", '<>%1', 0);
+    //             if SalesShipmentLineRec.FindSet() then
+    //                 Repeat
+    //                     SalesShipmentHeaderRec.Get(SalesShipmentLineRec."Document No.");
+    //                     if SalesShipmentHeaderRec."Currency Code" = '' then
+    //                         ContractTotalAmt += SalesShipmentLineRec."Item Charge Base Amount"
+    //                     else
+    //                         ContractTotalAmt += Round(SalesShipmentLineRec."Item Charge Base Amount" / SalesShipmentHeaderRec."Currency Factor", 0.01);
+    //                 until SalesShipmentLineRec.Next() = 0;
+    //         until BonusCust.Next() = 0;
+    //     Exit(ContractTotalAmt);
+    // end;
 
     local procedure FindQuantity(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer): Decimal
     var
@@ -277,19 +277,19 @@ report 5266051 "lbt Bonus Reserves"
         end;
     end;
 
-    local procedure FindQuantity(quantity: decimal): Decimal
-    begin
-        //TODO: implementation
-        // PostDocItemUnitRec.Reset;
-        // PostDocItemUnitRec.SetRange("Table ID", Database::"Sales Invoice Line");
-        // PostDocItemUnitRec.SetRange("Document No.", PostedSalesInvLineRec."Document No.");
-        // PostDocItemUnitRec.SetRange("Document Line No.", PostedSalesInvLineRec."Line No.");
-        // PostDocItemUnitRec.SetRange("Item Unit", "Bonus Contract"."Unit Reserves Base");
+    // local procedure FindQuantity(quantity: decimal): Decimal
+    // begin
+    //     //TODO: implementation
+    //     // PostDocItemUnitRec.Reset;
+    //     // PostDocItemUnitRec.SetRange("Table ID", Database::"Sales Invoice Line");
+    //     // PostDocItemUnitRec.SetRange("Document No.", PostedSalesInvLineRec."Document No.");
+    //     // PostDocItemUnitRec.SetRange("Document Line No.", PostedSalesInvLineRec."Line No.");
+    //     // PostDocItemUnitRec.SetRange("Item Unit", "Bonus Contract"."Unit Reserves Base");
 
-        // if PostDocItemUnitRec.FindFirst() then 
-        //   exit(PostDocItemUnitRec.Quantity)
-        exit(quantity);
-    end;
+    //     // if PostDocItemUnitRec.FindFirst() then 
+    //     //   exit(PostDocItemUnitRec.Quantity)
+    //     exit(quantity);
+    // end;
 
     local procedure CheckAttributes(ItemNo: Code[20]): Boolean
     var
@@ -561,49 +561,45 @@ report 5266051 "lbt Bonus Reserves"
         if CrMemoHeaderCreated then
             exit;
 
-        with SalesHeader do begin
-            Reset();
-            SetCurrentKey("Document Type", "Sell-to Customer No.");
-            SetRange("Document Type", "Document Type"::"Credit Memo");
-            SetRange("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
-            SetRange("Posting Description", BonusReserveLbl);
-            if FindFirst() then
-                Error(UnpostedCreditMemoErr);
+        SalesHeader.Reset();
+        SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.");
+        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
+        SalesHeader.SetRange("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
+        SalesHeader.SetRange("Posting Description", BonusReserveLbl);
+        if SalesHeader.FindFirst() then
+            Error(UnpostedCreditMemoErr);
 
-            Init();
-            "Document Type" := "Document Type"::"Credit Memo";
-            "No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
-            "Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
-            "Shipping No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
-            "Return Receipt No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
-            "No." := NoSeriesManagement.GetNextNo("No. Series", WorkDate(), true);
-            Insert(true);
-            SetHideValidationDialog(true);
-            Validate("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
-            // Validate("Gen. Bus. Posting Group", BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
-            // Validate("Customer Posting Group", BonusSetupRec."Cust Gr. Reserve Cr. Memo");
-            "Posting Description" := BonusReserveLbl;
-            PostingDate := 0D;
-            "lbt Process No." := "Bonus Contract"."Process No.";
-            Modify();
+        SalesHeader.Init();
+        SalesHeader."Document Type" := SalesHeader."Document Type"::"Credit Memo";
+        SalesHeader."No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."Shipping No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."Return Receipt No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."No." := NoSeriesManagement.GetNextNo(SalesHeader."No. Series", WorkDate(), true);
+        SalesHeader.Insert(true);
+        SalesHeader.SetHideValidationDialog(true);
+        SalesHeader.Validate("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
+        // Validate("Gen. Bus. Posting Group", BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
+        // Validate("Customer Posting Group", BonusSetupRec."Cust Gr. Reserve Cr. Memo");
+        SalesHeader."Posting Description" := BonusReserveLbl;
+        PostingDate := 0D;
+        SalesHeader."lbt Process No." := "Bonus Contract"."Process No.";
+        SalesHeader.Modify();
 
-            CrMemoHeaderCreated := true;
-        end;
+        CrMemoHeaderCreated := true;
 
-        with SalesLine do begin
-            SalesLineNo := 10000;
-            Init();
-            "Document Type" := SalesHeader."Document Type";
-            "Document No." := SalesHeader."No.";
-            "Line No." := SalesLineNo;
-            Description := StrSubstNo(BonusAccountingLbl, "Bonus Contract".Contract);
-            Insert();
+        SalesLineNo := 10000;
+        SalesLine.Init();
+        SalesLine."Document Type" := SalesHeader."Document Type";
+        SalesLine."Document No." := SalesHeader."No.";
+        SalesLine."Line No." := SalesLineNo;
+        SalesLine.Description := StrSubstNo(BonusAccountingLbl, "Bonus Contract".Contract);
+        SalesLine.Insert();
 
-            SalesLineNo += 10000;
-            "Line No." := SalesLineNo;
-            Description := StrSubstNo(AccountingPeriodLbl, DateFrom, DateTo);
-            Insert();
-        end;
+        SalesLineNo += 10000;
+        SalesLine."Line No." := SalesLineNo;
+        SalesLine.Description := StrSubstNo(AccountingPeriodLbl, DateFrom, DateTo);
+        SalesLine.Insert();
     end;
 
     local procedure CreateJournalLine(TableID: Integer; var DocNo: Code[20]; DocLineNo: Integer; var CustNo: Code[20]; var Amt: Decimal; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal)
@@ -686,7 +682,7 @@ report 5266051 "lbt Bonus Reserves"
                             end;
                     end
                 else begin
-                    GenJournalLine."Dimension Set ID" := CreateDimSetID("Bonus Contract".Contract);
+                    GenJournalLine."Dimension Set ID" := CreateDimSetID();
                     DimMgt.UpdateGlobalDimFromDimSetID(GenJournalLine."Dimension Set ID",
                                                          GenJournalLine."Shortcut Dimension 1 Code",
                                                           GenJournalLine."Shortcut Dimension 2 Code");
@@ -695,7 +691,7 @@ report 5266051 "lbt Bonus Reserves"
             end;
     end;
 
-    local procedure CreateDimSetID(var ContractNo: Code[20]): Integer
+    local procedure CreateDimSetID(): Integer
     var
         BonusContractDimensions: Record "lbt Bonus Contract Dimensions";
         TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
@@ -718,41 +714,45 @@ report 5266051 "lbt Bonus Reserves"
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
     begin
-        with SalesCrMemoLine do begin
-
-            SetRange("Document No.", "Sales Cr.Memo Header"."No.");
-            SetRange(Type, Type::Item);
-            if FindSet() then
-                repeat
-                    if CheckAttributes("No.") then
-                        case "Bonus Contract"."Reserve Type" of
-                            "Bonus Contract"."Reserve Type"::"%":
-                                CalcPercentage(Database::"Sales Cr.Memo Line", "Document No.", "Line No.", Amount, "Amount Including VAT");
-                            "Bonus Contract"."Reserve Type"::"Amount per Unit":
-                                CalcPerUnit(Database::"Sales Cr.Memo Line", "Document No.", "Line No.");
-                        end;
-                until Next() = 0;
-        end;
+        SalesCrMemoLine.SetRange("Document No.", "Sales Cr.Memo Header"."No.");
+        SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
+        if SalesCrMemoLine.FindSet() then
+            repeat
+                if CheckAttributes(SalesCrMemoLine."No.") then
+                    case "Bonus Contract"."Reserve Type" of
+                        "Bonus Contract"."Reserve Type"::"%":
+                            CalcPercentage(Database::"Sales Cr.Memo Line",
+                                            SalesCrMemoLine."Document No.",
+                                            SalesCrMemoLine."Line No.",
+                                            SalesCrMemoLine.Amount,
+                                            SalesCrMemoLine."Amount Including VAT");
+                        "Bonus Contract"."Reserve Type"::"Amount per Unit":
+                            CalcPerUnit(Database::"Sales Cr.Memo Line", SalesCrMemoLine."Document No.", SalesCrMemoLine."Line No.");
+                    end;
+            until SalesCrMemoLine.Next() = 0;
     end;
 
     local procedure CalcFromSalesInvoice()
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
     begin
-        with SalesInvoiceLine do begin
-            SetRange("Document No.", "Sales Invoice Header"."No.");
-            SetRange(Type, Type::Item);
-            if FindSet() then
-                repeat
-                    if CheckAttributes("No.") then
-                        case "Bonus Contract"."Reserve Type" of
-                            "Bonus Contract"."Reserve Type"::"%":
-                                CalcPercentage(Database::"Sales Invoice Line", "Document No.", "Line No.", Amount, "Amount Including VAT");
-                            "Bonus Contract"."Reserve Type"::"Amount per Unit":
-                                CalcPerUnit(Database::"Sales Invoice Line", "Document No.", "Line No.");
-                        end;
-                until Next() = 0;
-        end;
+
+        SalesInvoiceLine.SetRange("Document No.", "Sales Invoice Header"."No.");
+        SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
+        if SalesInvoiceLine.FindSet() then
+            repeat
+                if CheckAttributes(SalesInvoiceLine."No.") then
+                    case "Bonus Contract"."Reserve Type" of
+                        "Bonus Contract"."Reserve Type"::"%":
+                            CalcPercentage(Database::"Sales Invoice Line",
+                                            SalesInvoiceLine."Document No.",
+                                            SalesInvoiceLine."Line No.",
+                                            SalesInvoiceLine.Amount,
+                                            SalesInvoiceLine."Amount Including VAT");
+                        "Bonus Contract"."Reserve Type"::"Amount per Unit":
+                            CalcPerUnit(Database::"Sales Invoice Line", SalesInvoiceLine."Document No.", SalesInvoiceLine."Line No.");
+                    end;
+            until SalesInvoiceLine.Next() = 0;
     end;
 
     local procedure CalcPerUnit(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer)
@@ -811,9 +811,6 @@ report 5266051 "lbt Bonus Reserves"
 
     var
         BonusSetup: Record "lbt Bonus Setup";
-        // SalesLineRec: Record "Sales Line";
-        SalesShipmentLineRec: Record "Sales Shipment Line";
-        SalesShipmentHeaderRec: Record "Sales Shipment Header";
         BonusMgt: Codeunit "lbt Bonus Management";
         Dia: Dialog;
         LineNo: Integer;

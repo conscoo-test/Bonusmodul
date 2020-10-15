@@ -19,7 +19,7 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
     var
         AssistedSetup: Codeunit "Assisted Setup";
     begin
-        if not AssistedSetup.IsComplete(GetAppId(), GetPageId()) then
+        if not AssistedSetup.IsComplete(GetPageId()) then
             CreateNotification();
     end;
 
@@ -46,8 +46,8 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
     var
         AssistedSetup: Codeunit "Assisted Setup";
     begin
-        if AssistedSetup.ExistsAndIsNotComplete(GetAppId(), GetPageId()) then
-            AssistedSetup.Run(GetAppId(), GetPageId());
+        if AssistedSetup.ExistsAndIsNotComplete(GetPageId()) then
+            AssistedSetup.Run(GetPageId());
     end;
 
     procedure AddAssistedSetup()
@@ -55,7 +55,7 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
         AssistedSetup: Codeunit "Assisted Setup";
         AssistedSetupGroup: Enum "Assisted Setup Group";
     begin
-        if not AssistedSetup.Exists(GetAppId(), GetPageId()) then
+        if not AssistedSetup.Exists(GetPageId()) then
             AssistedSetup.Add(GetAppId(), GetPageId(), SetupLbl, AssistedSetupGroup::Extensions);
     end;
 

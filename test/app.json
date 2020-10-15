@@ -13,46 +13,46 @@
   "logo": "../App/Appendix/Logo/LB18.jpg",
   "dependencies": [
     {
-      "appId": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
       "publisher": "Microsoft",
       "name": "Library Assert",
-      "version": "16.0.0.0"
+      "version": "17.0.0.0"
     },
     {
-      "appId": "e7320ebb-08b3-4406-b1ec-b4927d3e280b",
+      "id": "e7320ebb-08b3-4406-b1ec-b4927d3e280b",
       "publisher": "Microsoft",
       "name": "Any",
-      "version": "16.0.0.0"
+      "version": "17.0.0.0"
     },
     {
-      "appId": "23de40a6-dfe8-4f80-80db-d70f83ce8caf",
+      "id": "23de40a6-dfe8-4f80-80db-d70f83ce8caf",
       "publisher": "Microsoft",
       "name": "Test Runner",
-      "version": "16.0.0.0"
+      "version": "17.0.0.0"
     },
     {
-      "appId": "5d86850b-0d76-4eca-bd7b-951ad998e997",
+      "id": "5d86850b-0d76-4eca-bd7b-951ad998e997",
       "publisher": "Microsoft",
       "name": "Tests-TestLibraries",
-      "version": "16.0.0.0"
+      "version": "17.0.0.0"
     },
     {
-      "appId": "1716d377-7e43-42d6-ae75-ad9977f24a69",
+      "id": "1716d377-7e43-42d6-ae75-ad9977f24a69",
       "name": "LeBit Bonus",
       "publisher": "LeBit Software & Consult GmbH",
       "version": "1.0.0.0"
     }
   ],
   "screenshots": [],
-  "platform": "16.0.0.0",
-  "application": "16.0.0.0",
+  "platform": "17.0.0.0",
+  "application": "17.0.0.0",
   "idRanges": [
     {
       "from": 5266051,
       "to": 5266099
     }
   ],
-  "runtime": "4.0",
+  "runtime": "6.0",
   "target": "Cloud",
   "features": [
     "TranslationFile"

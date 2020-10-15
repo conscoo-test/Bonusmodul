@@ -13,29 +13,29 @@ page 5266052 "lbt Bonus Contract List"
         {
             repeater(General)
             {
-                field(Contract; "Contract")
+                field(Contract; Rec."Contract")
                 {
                     ToolTip = 'This field contains the name of the bonus contract.', comment = 'DEU="In diesem Feld befindet sich der Name des bonusvertrags. "';
                     ApplicationArea = All;
                 }
-                field("Process No."; "Process No.")
+                field("Process No."; Rec."Process No.")
                 {
-                    //TODO: Tooltip
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the process no.';
                 }
-                field("Valid from"; "Valid from")
+                field("Valid from"; Rec."Valid from")
                 {
                     ToolTip = 'Specifies from when the bonus contract is valid.', comment = 'DEU="Gibt an, ab wann der Bonusvertrag gültig ist."';
                     ApplicationArea = All;
                 }
 
-                field("Valid to"; "Valid to")
+                field("Valid to"; Rec."Valid to")
                 {
                     ToolTip = 'Specifies the expiry date of the bonus contract.', comment = 'DEU="Gibt an, wann der Bonusvertrag abläuft."';
                     ApplicationArea = All;
                 }
 
-                field("Billing Period"; "Billing Period")
+                field("Billing Period"; Rec."Billing Period")
                 {
                     ToolTip = 'Specifies the interval in which billing takes place.', comment = 'DEU="Gibt an in welchem Intervall abgerechnet wird."';
                     ApplicationArea = All;
@@ -69,7 +69,7 @@ page 5266052 "lbt Bonus Contract List"
                 begin
                     BonusContractRec.RESET();
                     BonusContractRec.SetCurrentKey("Contract");
-                    BonusContractRec.SETRANGE("Contract", "Contract");
+                    BonusContractRec.SETRANGE("Contract", Rec."Contract");
                     CLEAR(BonusReserveRep);
                     BonusReserveRep.SETTABLEVIEW(BonusContractRec);
                     BonusReserveRep.RUNMODAL();
