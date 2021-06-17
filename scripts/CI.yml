@@ -3,7 +3,8 @@ resources:
     - repository: template
       type: git
       name: 'Templates/Template'
-      
+      ref: v2
+
 trigger: none
 
 variables:
@@ -18,7 +19,7 @@ stages:
       platform: x64
       version: "current"
       appVersion: "1.0"
-      appBuild: $[counter(variables['appVersion'],0)]
+      appBuild: $(Build.BuildID)
       appRevision: 0
       createRuntimePackages: False
       skipComponentGovernanceDetection: True
@@ -28,18 +29,3 @@ stages:
 
     steps:
     - template: build-steps.yml@template
-
-- stage: Release
-  dependsOn: Build
-  jobs:
-    - deployment: "Release_D"
-      variables:
-        version: "cronus_de"
-      pool:
-        name: Default
-      environment: environment_1
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - template: release-steps.yml@template

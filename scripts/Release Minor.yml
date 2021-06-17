@@ -3,6 +3,7 @@ resources:
     - repository: template
       type: git
       name: 'Templates/Template'
+      ref: v2
       
 trigger: none
 
@@ -17,9 +18,8 @@ stages:
       build.clean: all
       platform: x64
       version: "current"
-      appVersion: "1"
-      appMinor: $[counter(variables['appVersion'],1)] 
-      appBuild: 0
+      appVersion: '1.0'
+      appBuild: $(Build.BuildID)
       appRevision: 0
       createRuntimePackages: False
       skipComponentGovernanceDetection: True
