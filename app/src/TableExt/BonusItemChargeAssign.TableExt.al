@@ -1,10 +1,5 @@
 tableextension 5266062 "lbt Bonus Item Charge Assign." extends "Item Charge Assignment (Sales)" //5809
 {
-    fields
-    {
-
-    }
-
     procedure CreateSeparateLines(var SalesLineRecPar: Record "Sales Line")
     var
         "ItemChAss(Sales)Rec": Record "Item Charge Assignment (Sales)";

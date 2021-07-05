@@ -13,62 +13,59 @@ page 5266053 "lbt Bonus Contract Card"
             {
                 Caption = 'General', Comment = 'DEU="Allgemein"';
 
-                field(Contract; "Contract")
+                field(Contract; Rec."Contract")
                 {
                     ToolTip = 'This field is filled with the contract number of the bonus agreement.', Comment = 'DEU="Dieses Feld wird mit der Vertragsnummer der Bonusvereinbarung gefüllt"';
                     ApplicationArea = All;
 
                     trigger OnAssistEdit()
                     begin
-                        if AssistEdit(xRec) then
+                        if Rec.AssistEdit(xRec) then
                             CurrPage.Update();
                     end;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the description';
                 }
 
-                field("Bonus Group"; "Bonus Group")
+                field("Bonus Group"; Rec."Bonus Group")
                 {
                     ToolTip = 'This field is filled with the Bonus group.', Comment = 'DEU="Dieses Feld wird mit der Bonusgruppe gefüllt"';
                     ApplicationArea = All;
                 }
-                field("Billing Period"; "Billing Period")
+                field("Billing Period"; Rec."Billing Period")
                 {
                     ToolTip = 'This field specifies the interval in which billing takes place.', Comment = 'DEU="Dieses Feld gibt den Abrechnungsintervall an."';
                     ApplicationArea = All;
                 }
-                field("Valid from"; "Valid from")
+                field("Valid from"; Rec."Valid from")
                 {
                     ToolTip = 'Specifies from when the bonus contract is valid.', Comment = 'DEU="Gibt an, ab wann der Bonusvertrag gültig ist."';
                     ApplicationArea = All;
                 }
-                field("Valid to"; "Valid to")
+                field("Valid to"; Rec."Valid to")
                 {
                     ToolTip = 'Specifies the expiry date of the bonus contract.', Comment = 'DEU="Gibt an, wann der Bonusvertrag abläuft."';
                     ApplicationArea = All;
                 }
-                field("Contract Type"; "Contract Type")
+                field("Contract Type"; Rec."Contract Type")
                 {
                     ToolTip = 'Here you can choose whether the bonus item is a bonus or an advertising subsidy.', Comment = 'DEU="Hier kann man wählen, ob es sich bei dem Bonusposten um einen Bonus oder einen Werbekostenzuschuss handelt. "';
                     ApplicationArea = All;
                 }
 
-                field("Process No."; "Process No.")
+                field("Process No."; Rec."Process No.")
                 {
                     ApplicationArea = All;
-
+                    ToolTip = 'Specifies the process no.';
                 }
-
-
-
-
 
                 group(Billing)
                 {
                     Caption = 'Billing', Comment = 'DEU="Abrechnung"';
-                    field("Bonus Billing Type"; "Bonus Billing Type")
+                    field("Bonus Billing Type"; Rec."Bonus Billing Type")
                     {
                         ToolTip = 'Here you select the specification of settlement type.', Comment = 'DEU="Hier wählt man die Abrechnungsart aus."';
                         ApplicationArea = All;
@@ -78,29 +75,29 @@ page 5266053 "lbt Bonus Contract Card"
                             TypeOnAfterValidate();
                         end;
                     }
-                    field("Bonus Billing Unit"; "Bonus Billing Unit")
+                    field("Bonus Billing Unit"; Rec."Bonus Billing Unit")
                     {
                         ToolTip = 'If it is specified in the contract that the settlement type is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.', Comment = 'DEU="Ist im Vertrag hinterlegt, dass die Bonusabrechnungsart anhand der Option „Betrag je Einheit“ durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."';
                         ApplicationArea = All;
                         Enabled = BonusBillingType_Enable;
                     }
 
-                    field("Bonus Scale Type"; "Bonus Scale Type")
+                    field("Bonus Scale Type"; Rec."Bonus Scale Type")
                     {
                         ToolTip = 'Indicates whether the bonus calculation is based on sales or turnover.', Comment = 'DEU="Gibt an, ob die Bonusberechnung auf Grundlage des Absatzes oder des Umsatzes erfolgt"';
                         ApplicationArea = All;
                     }
-                    field("Last Billing at"; "Last Billing at")
+                    field("Last Billing at"; Rec."Last Billing at")
                     {
                         ToolTip = 'Is filled by the system after bonus settlement.', Comment = 'DEU="Wird nach der Bonusabrechnung vom System gefüllt."';
                         ApplicationArea = All;
                     }
-                    field("Bonus Recipient"; "Bonus Recipient")
+                    field("Bonus Recipient"; Rec."Bonus Recipient")
                     {
                         ToolTip = 'Here you enter the customer who receives the bonus and is used to create the sales credit memo.', Comment = 'DEU="Hier wird der Debitor eingetragen, der den Bonus empfängt und bei der Erstellung der Verkaufsgutschrift verwendet wird."';
                         ApplicationArea = All;
                     }
-                    field("Accounting Item Charge"; "Accounting Item Charge")
+                    field("Accounting Item Charge"; Rec."Accounting Item Charge")
                     {
                         ToolTip = 'Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.', Comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der bei der Erstellung der Abrechnungsgutschrift verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus ‚Gutschrift‘ gewählt ist."';
                         ApplicationArea = All;
@@ -113,18 +110,18 @@ page 5266053 "lbt Bonus Contract Card"
 
             {
                 Caption = 'Reserve', Comment = 'DEU="Rückstellung"';
-                field("Customer Reserve Cr.Memo"; "Customer Reserve Cr.Memo")
+                field("Customer Reserve Cr.Memo"; Rec."Customer Reserve Cr.Memo")
                 {
                     ToolTip = 'Customer Reserve Cr.Memo';
                     ApplicationArea = All;
                 }
-                field("Reserve Value"; "Reserve Value")
+                field("Reserve Value"; Rec."Reserve Value")
                 {
                     ToolTip = 'Specification of a reserve value.', Comment = 'DEU="Angabe eines Rückstellungswertes."';
                     ApplicationArea = All;
 
                 }
-                field("Reserve Type"; "Reserve Type")
+                field("Reserve Type"; Rec."Reserve Type")
                 {
                     ToolTip = 'There are three different ways to make provisions:Provision in %:The provision run makes provisions as a percentage of the receipts. For each invoice or credit memo line, a posting line is created in the reserve ledger sheet. Amount (MW): A fixed amount is reserved depending on the settlement period (the fixed amount is divided proportionally among the document lines included). Amount per unit: Reserves based on the quantity of article units from the contracts. A posting line is created in the provisions ledger sheet for each invoice or credit memo line.',
                         Comment = 'DEU="Es gibt drei verschiedene Arten um Rückstellungen zu bilden:Rückstellung in %:Der Rückstellungslauf bildet prozentual anhand derBelege Rückstellungen. Für jede Rechnungs-bzw. Gutschriftszeile wird eine Buchungszeile im Rückstellungsbuchblatt erzeugt.Betrag (MW):Ein Festbetrag wird je nach Abrechnungszeitraumzurückgestellt(festgelegter Betrag teilt sich dabei anteilig auf die einbezogenen Belegzeilen auf). Betrag je Einheit: Rückstellungen bezogen auf die Menge der Artikeleinheiten aus den Verträgen. Für jede Rechnungs-bzw. Gutschriftszeile wird eine Buchungszeile im Rückstellungsbuchblatt erzeugt"';
@@ -135,19 +132,19 @@ page 5266053 "lbt Bonus Contract Card"
                         TypeOnAfterValidate();
                     end;
                 }
-                field("Reserve Unit"; "Reserve Unit")
+                field("Reserve Unit"; Rec."Reserve Unit")
                 {
                     ToolTip = 'If it is specified in the contract that the reserve run is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.',
                         Comment = 'DEU="Ist im Vertrag hinterlegt, dass der Rückstellungslauf anhand der Option "Betrag je Einheit" durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."';
                     ApplicationArea = All;
                     Enabled = BonusReserveType_Enable;
                 }
-                field("last Reserve at"; "Last Reserve at")
+                field("last Reserve at"; Rec."Last Reserve at")
                 {
                     ToolTip = 'Is filled by the system after the bonus reserve.', Comment = 'DEU="Wird nach der Bonusrückstellung vom System gefüllt."';
                     ApplicationArea = All;
                 }
-                field("Reserve Item Charge"; "Reserve Item Charge")
+                field("Reserve Item Charge"; Rec."Reserve Item Charge")
                 {
                     ToolTip = 'Here you must select the appropriate surcharge/discount to be used in the credit memo for posting the provisions and in the invoice for cancelling the provisions. This is required if the reserve mode credit memo is selected.',
                         Comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist"';
@@ -165,14 +162,14 @@ page 5266053 "lbt Bonus Contract Card"
             group(Discounts)
             {
                 Caption = 'Discounts', Comment = 'DEU="Rabatte/Skonto"';
-                field("Discount %"; "Discount %")
+                field("Discount %"; Rec."Discount %")
                 {
                     ToolTip = 'Here you can enter a percentage value to calculate an additional discount.',
                         Comment = 'DEU="Hier kann ein prozentualer Wert zur Berechnung eines zusätzlichen Rabattes hinterlegt werden."';
                     ApplicationArea = All;
                     blankzero = true;
                 }
-                field("Pmt. Discount %"; "Pmt. Discount %")
+                field("Pmt. Discount %"; Rec."Pmt. Discount %")
                 {
                     ToolTip = 'Here you can enter a percentage value for the calculation of an additional cash discount.',
                         Comment = 'DEU="Hier kann ein prozentualer Wert zur Berechnung eines zusätzlichen Skontos hinterlegt werden"';
@@ -210,7 +207,7 @@ page 5266053 "lbt Bonus Contract Card"
                     BonusContract: Record "lbt Bonus Contract";
                     BonusReserves: Report "lbt Bonus Reserves";
                 begin
-                    BonusContract.SetRange(Contract, Contract);
+                    BonusContract.SetRange(Contract, Rec.Contract);
                     BonusReserves.SetTableView(BonusContract);
                     BonusReserves.RunModal();
                 end;
@@ -231,7 +228,7 @@ page 5266053 "lbt Bonus Contract Card"
                 begin
                     BonusSetup.Get();
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
-                        BonusEntry.SetRange(Contract, Contract);
+                        BonusEntry.SetRange(Contract, Rec.Contract);
                         BonusEntry.SetRange("Entry Type", BonusEntry."Entry Type"::Reserve);
                         //TODO: BonusEntry.SetRange(Reversed, false);
                         BonusEntry.SetFilter("Posted Amount", '<>%1', 0);
@@ -260,7 +257,7 @@ page 5266053 "lbt Bonus Contract Card"
                     BonusContract: Record "lbt Bonus Contract";
                     BonusRun: Report "lbt Bonus Run";
                 begin
-                    BonusContract.SetRange(Contract, Contract);
+                    BonusContract.SetRange(Contract, Rec.Contract);
                     BonusRun.SetTableView(BonusContract);
                     BonusRun.RunModal();
                 end;
@@ -373,7 +370,7 @@ page 5266053 "lbt Bonus Contract Card"
 
                 trigger OnAction()
                 begin
-                    NavigatePage.SetProcessNo("Process No.");
+                    NavigatePage.SetProcessNo(Rec."Process No.");
                     // Navigate.FindProcess();
                     NavigatePage.Run();
                 end;
@@ -403,8 +400,8 @@ page 5266053 "lbt Bonus Contract Card"
     var
         BonusSetup: Record "lbt Bonus Setup";
     begin
-        BonusBillingType_Enable := "Bonus Billing Type" = "Bonus Billing Type"::"Amount per Unit";
-        BonusReserveType_Enable := "Reserve Type" = "Reserve Type"::"Amount per Unit";
+        BonusBillingType_Enable := Rec."Bonus Billing Type" = Rec."Bonus Billing Type"::"Amount per Unit";
+        BonusReserveType_Enable := Rec."Reserve Type" = Rec."Reserve Type"::"Amount per Unit";
         BonusSetup.Get();
         ItemChargeEnabled := (BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo);
 

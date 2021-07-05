@@ -11,12 +11,12 @@ page 5266058 "lbt Bonus Group"
         {
             repeater(General)
             {
-                field("Code"; "Code")
+                field("Code"; Rec."Code")
                 {
                     ToolTip = 'Here you can group bonus contracts by code.', comment = 'DEU="Hier können Sie Bonusverträge nach Codes gruppieren."';
                     ApplicationArea = All;
                 }
-                field(Description; "Description")
+                field(Description; Rec."Description")
                 {
                     ToolTip = 'Here you can enter a description of the group.', comment = 'DEU="Hier können Sie eine Beschreibung der Gruppe hinterlegen."';
                     ApplicationArea = All;

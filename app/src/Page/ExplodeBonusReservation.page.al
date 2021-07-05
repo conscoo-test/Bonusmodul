@@ -13,33 +13,40 @@ page 5266063 "lbt Explode Bonus Reservation"
         {
             repeater(General)
             {
-                field(Customer; Customer)
+                field(Customer; Rec.Customer)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the customer';
                 }
-                field(Contract; Contract)
+                field(Contract; Rec.Contract)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the contract';
                 }
-                field("Entry Date"; "Entry Date")
+                field("Entry Date"; Rec."Entry Date")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the entry date';
                 }
-                field("From Document Type"; "From Document Type")
+                field("From Document Type"; Rec."From Document Type")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the from document type';
                 }
-                field("From Document No."; "From Document No.")
+                field("From Document No."; Rec."From Document No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the from document no.';
                 }
-                field("From Document Line"; "From Document Line")
+                field("From Document Line"; Rec."From Document Line")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the from document line';
                 }
-                field("Posted Amount"; "Posted Amount")
+                field("Posted Amount"; Rec."Posted Amount")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the posted amount';
                 }
             }
 
@@ -47,7 +54,9 @@ page 5266063 "lbt Explode Bonus Reservation"
             {
                 field("Sum Amount"; SumAmount)
                 {
+                    Caption = 'Total';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the Total';
 
                     trigger OnAssistEdit()
                     begin
@@ -69,6 +78,7 @@ page 5266063 "lbt Explode Bonus Reservation"
                 Caption = 'Explode Reservation', Comment = 'DEU="Rückstellungen auflösen"';
                 ApplicationArea = All;
                 Image = CashFlow;
+                ToolTip = 'explode reservation';
 
                 trigger OnAction()
                 var

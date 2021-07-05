@@ -122,12 +122,14 @@ report 5266052 "lbt Bonus Run"
                     {
                         ApplicationArea = All;
                         Caption = 'Date from', Comment = 'DEU="Datum von"';
+                        ToolTip = 'Specifies Date from';
                     }
 
                     field("Date To"; DateTo)
                     {
                         ApplicationArea = All;
                         Caption = 'Date to', Comment = 'DEU="Datum bis"';
+                        ToolTip = 'Specifies Date to';
                         trigger OnValidate()
                         begin
                             if ReversePostingDate = 0D then
@@ -138,12 +140,11 @@ report 5266052 "lbt Bonus Run"
                     {
                         ApplicationArea = All;
                         Caption = 'Posting date of exploding bonus reserves', Comment = 'DEU="Buchungsdatum für Rückstellungsauflösung"';
+                        ToolTip = 'Specifies date of exploding bonus reserves';
                     }
                 }
             }
         }
-
-
     }
 
     trigger OnPreReport()

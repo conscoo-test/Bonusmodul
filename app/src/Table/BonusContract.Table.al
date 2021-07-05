@@ -159,7 +159,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'No. of Customers', comment = 'DEU="Anzahl Debitoren"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count ("lbt Bonus Customers" where("Contract" = field("Contract")));
+            CalcFormula = count("lbt Bonus Customers" where("Contract" = field("Contract")));
 
         }
         field(17; "Balance of Bonus"; Decimal)
@@ -167,7 +167,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Bonus', comment = 'DEU="Saldo Bonus"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Bonus")));
+            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Bonus")));
 
         }
         field(18; "Balance of Reserve"; Decimal)
@@ -175,7 +175,7 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Reserve', comment = 'DEU="Saldo Rückstellungen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Reserve")));
+            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Reserve")));
         }
 
 
@@ -184,21 +184,21 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Balance of Liquidation Reserve', comment = 'DEU="Saldo Rückstellungsauflösung"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum ("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Liquidation of Reserves")));
+            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where("Contract" = field("Contract"), "Entry Type" = const("Liquidation of Reserves")));
         }
         field(20; "No. of Dimensions"; Integer)
         {
             Caption = 'No. of Dimensions', comment = 'DEU="Anzahl der Dimensionen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count ("lbt Bonus Contract Dimensions" where("Contract" = field("Contract")));
+            CalcFormula = count("lbt Bonus Contract Dimensions" where("Contract" = field("Contract")));
         }
         field(21; "No. of Attribute"; Integer)
         {
             Caption = 'No. of Attribute', comment = 'DEU="Anzahl der Attribute"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count ("lbt BonusContractAttribute" where("Contract" = field("Contract")));
+            CalcFormula = count("lbt BonusContractAttribute" where("Contract" = field("Contract")));
         }
 
         field(22; "Reserve Item Charge"; Code[20])
@@ -312,16 +312,14 @@ table 5266052 "lbt Bonus Contract"
         BonusSetup: Record "lbt Bonus Setup";
         NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
-        with BonusContract do begin
-            BonusContract := Rec;
-            BonusSetup.Get();
-            BonusSetup.TestField("Bonus Nos.");
-            if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Nos.", OldBonusContract."No. Series", "No. Series") then begin
-                NoSeriesManagement.SetSeries("Contract");
-                Rec := BonusContract;
-                SetProcessNo();
-                exit(true);
-            end;
+        BonusContract := Rec;
+        BonusSetup.Get();
+        BonusSetup.TestField("Bonus Nos.");
+        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Nos.", OldBonusContract."No. Series", "No. Series") then begin
+            NoSeriesManagement.SetSeries("Contract");
+            Rec := BonusContract;
+            SetProcessNo();
+            exit(true);
         end;
 
     end;

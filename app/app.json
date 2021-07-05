@@ -13,15 +13,15 @@
   "logo": "Appendix\\Logo\\LB18.jpg",
     "dependencies": [
     {
-      "appId": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
+      "id": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
       "name": "LeBit Processmanagement",
       "version": "1.0.0.0",
       "publisher": "LeBit Software & Consult GmbH"
     }
   ],
   "screenshots": [],
-  "platform": "16.0.0.0",
-  "application": "16.0.0.0",
+  "platform": "17.0.0.0",
+  "application": "17.0.0.0",
   "idRanges": [
     {
       "from": 5266051,
@@ -31,5 +31,5 @@
   "features": [
     "TranslationFile"
   ],
-  "runtime": "4.0"
+  "runtime": "6.0"
 }

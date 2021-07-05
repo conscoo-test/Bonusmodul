@@ -157,7 +157,7 @@ page 5266062 "lbt Bonus Assisted Setup"
         BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
     begin
         if CloseAction = Action::OK then
-            if not AssistedSetup.IsComplete(BonusAssistedSetup.GetAppId(), BonusAssistedSetup.GetPageId()) then
+            if not AssistedSetup.IsComplete(BonusAssistedSetup.GetPageId()) then
                 if not Confirm(FinishWhenNotCompleteQst, false) then
                     Error('');
     end;
@@ -167,7 +167,7 @@ page 5266062 "lbt Bonus Assisted Setup"
         AssistedSetup: Codeunit "Assisted Setup";
         BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
     begin
-        AssistedSetup.Complete(BonusAssistedSetup.GetAppId(), BonusAssistedSetup.GetPageId());
+        AssistedSetup.Complete(BonusAssistedSetup.GetPageId());
         CurrPage.Close();
     end;
 
@@ -192,15 +192,13 @@ page 5266062 "lbt Bonus Assisted Setup"
     var
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
     begin
-        with SalesReceivablesSetup do begin
-            Get();
-            if not ("Shipment on Invoice" and "Return Receipt on Credit Memo") then begin
-                "Shipment on Invoice" := true;
-                "Return Receipt on Credit Memo" := true;
-                Modify();
-            end;
-
+        SalesReceivablesSetup.Get();
+        if not (SalesReceivablesSetup."Shipment on Invoice" and SalesReceivablesSetup."Return Receipt on Credit Memo") then begin
+            SalesReceivablesSetup."Shipment on Invoice" := true;
+            SalesReceivablesSetup."Return Receipt on Credit Memo" := true;
+            Rec.Modify();
         end;
+
     end;
 
     local procedure LoadTopBanners();
