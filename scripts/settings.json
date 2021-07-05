@@ -5,6 +5,7 @@
     "installApps": [
         "\\\\lbserver20\\Software_Business\\apps\\LeBit365_Vorgangsmanagement\\latest.zip"
     ],
+    "previousApps": "\\\\lbserver20\\Software_Business\\apps\\LeBit365_Bonusmodul\\latest.zip",
     "installTestRunner": true,
     "installTestFramework": true,
     "installTestLibraries": true,
