@@ -37,5 +37,6 @@ permissionset 5266051 "lbtbn Bonus"
         tabledata "lbtbn Bonus Entry" = RIMD,
         tabledata "lbtbn Bonus Group" = RIMD,
         tabledata "lbtbn Bonus Setup" = RIMD,
-        tabledata "lbtbn BonusContractAttribute" = RIMD;
+        tabledata "lbtbn BonusContractAttribute" = RIMD,
+        codeunit "lbtbn CheckAttributes Meth" = X;
 }

@@ -106,7 +106,25 @@ report 5266052 "lbtbn Bonus Run"
                 Dialog.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
             end;
 
-
+            trigger OnAfterGetRecord()
+            var
+                BonusCustomer: Record "lbtbn Bonus Customer";
+                Quantity: Decimal;
+                Amount: Decimal;
+            begin
+                Clear(Quantity);
+                Clear(Amount);
+                BonusCustomer.SetRange(Contract, "Bonus Contract"."No.");
+                if BonusCustomer.FindSet() then
+                    repeat
+                        AddQuantityAndAmountBonusCustomer(Quantity, Amount, BonusCustomer);
+                    until BonusCustomer.Next() = 0;
+                BonusContractLine.SetFilter("From Quantity", '<=%1', Amount);
+                if not BonusContractLine.FindLast() then
+                    CurrReport.Skip();
+                //ReverseBonusEntry
+                // or ReverseGenLedgEntry
+            end;
 
         }
     }
@@ -265,6 +283,58 @@ report 5266052 "lbtbn Bonus Run"
             DocAmount := Round(Amount / "Sales Invoice Header"."Currency Factor", 0.01);
     end;
 
+    local procedure AddQuantityAndAmountBonusCustomer(var Quantity: Decimal; var Amount: Decimal; BonusCustomer: Record "lbtbn Bonus Customer")
+    var
+        SalesInvoiceHeader: Record "Sales Invoice Header";
+        SalesCrMemoHeader: Record "Sales Cr.Memo Header";
+    begin
+        SalesInvoiceHeader.SetRange("Sell-to Customer No.", BonusCustomer."Customer No.");
+        if BonusCustomer."Ship-to Code" <> '' then
+            SalesInvoiceHeader.SetRange("Ship-to Code", BonusCustomer."Ship-to Code");
+        if SalesInvoiceHeader.FindSet() then
+            repeat
+                GetQuantityAndAmountInvoice(Quantity, Amount, SalesInvoiceHeader."No.");
+            until SalesInvoiceHeader.Next() = 0;
+
+        SalesCrMemoHeader.SetRange("Sell-to Customer No.", BonusCustomer."Customer No.");
+        if BonusCustomer."Ship-to Code" <> '' then
+            SalesCrMemoHeader.SetRange("Ship-to Code", BonusCustomer."Ship-to Code");
+        if SalesCrMemoHeader.FindSet() then
+            repeat
+                GetQuantityAndAmountCrMemo(Quantity, Amount, SalesCrMemoHeader."No.");
+            until SalesCrMemoHeader.Next() = 0;
+    end;
+
+    local procedure GetQuantityAndAmountInvoice(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
+    var
+        SalesInvoiceLine: Record "Sales Invoice Line";
+    begin
+        SalesInvoiceLine.SetRange("Document No.", No);
+        SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
+        if SalesInvoiceLine.FindSet() then
+            repeat
+                if "Bonus Contract".CheckAttributes(SalesInvoiceLine."No.") then begin
+                    Quantity += SalesInvoiceLine.Quantity;
+                    Amount += SalesInvoiceLine.Amount;
+                end;
+            until SalesInvoiceLine.Next() = 0;
+    end;
+
+    local procedure GetQuantityAndAmountCrMemo(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
+    var
+        SalesCrMemoLine: Record "Sales Cr.Memo Line";
+    begin
+        SalesCrMemoLine.SetRange("Document No.", No);
+        SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
+        if SalesCrMemoLine.FindSet() then
+            repeat
+                if "Bonus Contract".CheckAttributes(SalesCrMemoLine."No.") then begin
+                    Quantity += SalesCrMemoLine.Quantity;
+                    Amount += SalesCrMemoLine.Amount;
+                end;
+            until SalesCrMemoLine.Next() = 0;
+    end;
+
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         BonusContractLine: Record "lbtbn Bonus Contract Line";
@@ -286,4 +356,5 @@ report 5266052 "lbtbn Bonus Run"
         BonusCreditMemoLbl: Label 'Bonus Credit Memo';
         BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1', Comment = '%1 No.';
         AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = '%1 from %2 to';
+
 }

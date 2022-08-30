@@ -268,6 +268,13 @@ table 5266052 "lbtbn Bonus Contract"
         end;
     end;
 
+    procedure CheckAttributes(ItemNo: Code[20]) Result: Boolean;
+    var
+        CheckAttributesMeth: Codeunit "lbtbn CheckAttributes Meth";
+    begin
+        exit(CheckAttributesMeth.CheckAttributes(Rec."No.", ItemNo));
+    end;
+
     local procedure SetProcessNo()
     var
         Process: Record "lbt Process";
