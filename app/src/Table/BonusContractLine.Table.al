@@ -4,6 +4,7 @@ table 5266053 "lbt Bonus Contract Line"
     DataClassification = ToBeClassified;
 
 
+
     fields
     {
         field(1; Contract; Code[20])
@@ -64,6 +65,9 @@ table 5266053 "lbt Bonus Contract Line"
     begin
         if BonusContractRec.Get("Contract") then
             "Bonus Scale Type" := BonusContractRec."Bonus Scale Type";
+
+        if "Bonus Scale Type" = "Bonus Scale Type"::"Sales Qty." then
+            TestField("Item Unit of Measure");
     end;
 
 

@@ -1,8 +1,10 @@
 page 5266054 "lbt Bonus Contract Line"
 {
     Caption = 'Bonus Contract Line', comment = 'DEU="Bonusstaffeln"';
-    PageType = CardPart;
+    PageType = ListPart;
     SourceTable = "lbt Bonus Contract Line";
+    AutoSplitKey = true;
+    DelayedInsert = true;
 
     layout
     {
@@ -12,15 +14,15 @@ page 5266054 "lbt Bonus Contract Line"
             {
                 Caption = 'General', comment = 'DEU="Allgemein"';
 
-                /* 
-                field(Contract; "Contract")
-                {
-                    ApplicationArea = All;
-                }
-                field("Line No."; "Line No.")
-                {
-                    ApplicationArea = All;
-                } */
+
+                // field(Contract; "Contract")
+                // {
+                //     ApplicationArea = All;
+                // }
+                // field("Line No."; "Line No.")
+                // {
+                //     ApplicationArea = All;
+                // }
                 field("Bonus Scale Type"; Rec."Bonus Scale Type")
                 {
                     ToolTip = 'Indicates whether the rebate calculation is based on sales or turnover.', comment = 'DEU="Gibt an, ob die Bonusberechnung auf Grundlage des Absatzes oder des Umsatzes erfolgt."';
@@ -30,7 +32,6 @@ page 5266054 "lbt Bonus Contract Line"
                 {
                     ToolTip = 'Specifies the unit of the article.', comment = 'DEU="Gibt an, welche Einheit der Artikel hat."';
                     ApplicationArea = All;
-                    Visible = UoMVsbl;
                 }
                 field("From Quantity"; Rec."From Quantity")
                 {
@@ -60,9 +61,9 @@ page 5266054 "lbt Bonus Contract Line"
 
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
-        IF Rec."Bonus Scale Type" = Rec."Bonus Scale Type"::"Sales Qty." THEN
-            IF Rec."Item Unit of Measure" = '' THEN
-                EXIT(FALSE);
+        // IF Rec."Bonus Scale Type" = Rec."Bonus Scale Type"::"Sales Qty." THEN
+        //     IF Rec."Item Unit of Measure" = '' THEN
+        //         EXIT(FALSE);
     end;
 
     trigger OnAfterGetCurrRecord()
