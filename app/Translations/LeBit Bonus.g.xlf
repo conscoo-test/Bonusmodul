@@ -458,10 +458,15 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3313186052 - Field 1196001075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Nos.</source>
+        <trans-unit id="Table 3313186052 - Field 3047527542 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Billing Cr.Memo Nos.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Abrechnungssgutschriftnummern"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Billing Cr.Memo Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3313186052 - Field 2893372117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract Nos.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bonusnummern"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Bonus Nos. - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Setup - Field Bonus Contract Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3313186052 - Field 2375226972 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bus. Post. Group for Reserve Credit Memo</source>
@@ -618,11 +623,6 @@
           <note from="Developer" annotates="general" priority="2">DEU="Wählen Sie "Weiter" damit Sie den Bonus einrichten können."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Next - Property InstructionalText</note>
         </trans-unit>
-        <trans-unit id="Page 3772966010 - Control 1235620153 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source></source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Next - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3772966010 - Control 3800514526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Welcome</source>
           <note from="Developer" annotates="general" priority="2">DEU="Willkommen bei der Einrichtung von LeBit Bonus"</note>
@@ -633,20 +633,10 @@
           <note from="Developer" annotates="general" priority="2">DEU="german text"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Introduction - Property InstructionalText</note>
         </trans-unit>
-        <trans-unit id="Page 3772966010 - Control 203669508 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source></source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Introduction - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3772966010 - Control 2691068236 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
           <source>englisch</source>
           <note from="Developer" annotates="general" priority="2">DEU="Bei "weiter" werden in der Debitoren &amp; Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Sales Receivables Setup - Property InstructionalText</note>
-        </trans-unit>
-        <trans-unit id="Page 3772966010 - Control 2691068236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source></source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Assisted Setup - Control Sales Receivables Setup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3772966010 - Action 2438272767 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>One record back</source>
@@ -1353,20 +1343,25 @@
           <note from="Developer" annotates="general" priority="2">DEU="Bonus Einrichtung"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3313186052 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>General</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Allgmein"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control General - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 3771739932 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Number Series</source>
           <note from="Developer" annotates="general" priority="2">DEU="Nummernserie"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Number Series - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 3047527542 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the code for the number series that will be used to assign numbers to Billing Cr.Memo Nos.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Billing Cr.Memo Nos. - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 1196001075 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you select the number series for bonus contracts.</source>
+          <source>Specifies the code for the number series that will be used to assign numbers to bonus contracts.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Hier wählt man die Nummernserie für Bonusverträge aus."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Bonus Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 4140162563 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the code for the number series that will be used to assign numbers to Reserve Cr.Memo Nos.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Reserve Cr.Memo Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3313186052 - Control 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve</source>
@@ -1378,30 +1373,45 @@
           <note from="Developer" annotates="general" priority="2">DEU="Hier wählen Sie eine Geschäftsbuchungsgruppe für die Rückstell- Gutschrift aus."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Bus.Post.Gr.f.Res.Cr.Memo - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 2375226972 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Bus. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Bus.Post.Gr.f.Res.Cr.Memo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 546130065 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can choose a customer posting group for the reserve credit.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Hier wählen Sie eine Debitorbuchungsgruppe für die Rückstell- Gutschrift aus."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Cust Gr. Reserve Cr. Memo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 546130065 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Cust Gr. Reserve Cr. Memo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3313186052 - Control 756057899 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can choose a book sheet template name. </source>
           <note from="Developer" annotates="general" priority="2">DEU="Hier können Sie Buch.- Blattvorlagennamen auswählen."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Gen. Jnl. Bonus Reserve - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 756057899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal Batch</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Gen. Jnl. Bonus Reserve - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 3306946841 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can choose a financial book template for the Bonusreverse.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Hier können Sie eine FIBU Buchblattvorlage für die Bonusrückstellung auswählen."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Gen.Jnl.Templ.BonusReserve - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3313186052 - Control 3306946841 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal Template</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Gen.Jnl.Templ.BonusReserve - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3313186052 - Control 1908046867 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the reason code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Reason Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3313186052 - Control 4140162563 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the reserve cr.memo nos.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbt Bonus Setup - Control Reserve Cr.Memo Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3313186052 - Control 1713543829 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can choose the variant for accruals that is to be generated.</source>

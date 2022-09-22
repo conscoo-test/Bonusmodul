@@ -1,4 +1,4 @@
-table 5266054 "lbt Bonus Contract Dimensions"
+table 5266054 "lbt Bonus Contract Dimension"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contract Dimensions', comment = 'DEU="Bonusvetrag Dimensionen"';

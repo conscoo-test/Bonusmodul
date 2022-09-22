@@ -10,6 +10,7 @@ page 5266062 "lbt Bonus Assisted Setup"
         {
             group(StandardBanner)
             {
+                Caption = '', Locked = true;
                 Editable = false;
                 Visible = TopBannerVisible and (CurrentStep < 3);
                 field("Media Resources"; MediaResources."Media Reference")
@@ -21,6 +22,7 @@ page 5266062 "lbt Bonus Assisted Setup"
 
             group(FinishedBanner)
             {
+                Caption = '', Locked = true;
                 Editable = false;
                 Visible = TopBannerVisible and (CurrentStep = 3);
                 field("MediaResources Done"; MediaResourcesDone."Media Reference")
@@ -32,6 +34,7 @@ page 5266062 "lbt Bonus Assisted Setup"
 
             group(Step1)
             {
+                Caption = '', Locked = true;
                 Visible = CurrentStep = 1;
                 group(Welcome)
                 {
@@ -40,7 +43,7 @@ page 5266062 "lbt Bonus Assisted Setup"
 
                     group(Introduction)
                     {
-                        Caption = '';
+                        Caption = '', Locked = true;
                         InstructionalText = 'english text', //TODO:
                             Comment = 'DEU="german text"';
 
@@ -53,7 +56,7 @@ page 5266062 "lbt Bonus Assisted Setup"
 
                     group("Next")
                     {
-                        Caption = '';
+                        Caption = '', Locked = true;
                         InstructionalText = 'Choose Next so you can set up.',
                             Comment = 'DEU="Wählen Sie "Weiter" damit Sie den Bonus einrichten können."';
                     }
@@ -62,10 +65,11 @@ page 5266062 "lbt Bonus Assisted Setup"
 
             group(Step2)
             {
+                Caption = '', Locked = true;
                 Visible = CurrentStep = 2;
                 group("Sales Receivables Setup")
                 {
-                    Caption = '';
+                    Caption = '', Locked = true;
                     InstructionalText = 'englisch', //TODO:
                         Comment = 'DEU="Bei "weiter" werden in der Debitoren & Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"';
                 }
@@ -77,6 +81,7 @@ page 5266062 "lbt Bonus Assisted Setup"
             }
             group(Step3)
             {
+                Caption = '', Locked = true;
                 Visible = CurrentStep = 3;
                 // field("lbt Journal Template"; "lbt Journal Template")
                 // {
@@ -153,21 +158,21 @@ page 5266062 "lbt Bonus Assisted Setup"
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     var
-        AssistedSetup: Codeunit "Assisted Setup";
+        GuidedExperience: Codeunit "Guided Experience";
         BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
     begin
         if CloseAction = Action::OK then
-            if not AssistedSetup.IsComplete(BonusAssistedSetup.GetPageId()) then
+            if not GuidedExperience.IsAssistedSetupComplete(ObjectType::Page, BonusAssistedSetup.GetPageId()) then
                 if not Confirm(FinishWhenNotCompleteQst, false) then
                     Error('');
     end;
 
     local procedure Finish()
     var
-        AssistedSetup: Codeunit "Assisted Setup";
+        GuidedExperience: Codeunit "Guided Experience";
         BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
     begin
-        AssistedSetup.Complete(BonusAssistedSetup.GetPageId());
+        GuidedExperience.CompleteAssistedSetup(ObjectType::Page, BonusAssistedSetup.GetPageId());
         CurrPage.Close();
     end;
 
@@ -203,8 +208,8 @@ page 5266062 "lbt Bonus Assisted Setup"
 
     local procedure LoadTopBanners();
     begin
-        if MediaRepository.GET('AssistedSetup-NoText-400px.png', Format(CurrentClientType())) then
-            if MediaResources.GET(MediaRepository."Media Resources Ref") then
+        if MediaRepository.Get('AssistedSetup-NoText-400px.png', Format(CurrentClientType())) then
+            if MediaResources.Get(MediaRepository."Media Resources Ref") then
                 TopBannerVisible := MediaResources."Media Reference".HasValue();
         if MediaRepositoryDone.Get('AssistedSetupDone-NoText-400px.png', Format(CurrentClientType())) then
             if MediaResourcesDone.Get(MediaRepositoryDone."Media Resources Ref") then

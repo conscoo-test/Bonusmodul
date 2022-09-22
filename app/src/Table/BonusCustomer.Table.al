@@ -1,4 +1,4 @@
-table 5266058 "lbt Bonus Customers"
+table 5266058 "lbt Bonus Customer"
 {
     DataClassification = CustomerContent;
     LookupPageId = "lbt Bonus Customers";
@@ -11,20 +11,20 @@ table 5266058 "lbt Bonus Customers"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            TableRelation = "lbt Bonus Contract".Contract;
         }
 
-        field(2; Customer; Code[20])
+        field(2; "Customer No."; Code[20])
         {
             Caption = 'Customer', comment = 'DEU="Debitor"';
             DataClassification = CustomerContent;
-            tableRelation = Customer."No.";
+            TableRelation = Customer."No.";
 
             trigger OnValidate()
             begin
-                IF CustRec.get("Customer") then
-                    "Customer Name" := CustRec.Name
-                ELSE
+                if Customer.Get("Customer No.") then
+                    "Customer Name" := Customer.Name
+                else
                     "Customer Name" := '';
             end;
         }
@@ -33,12 +33,12 @@ table 5266058 "lbt Bonus Customers"
         {
             Caption = 'Ship-to Code', comment = 'DEU="Lief. an Code"';
             DataClassification = CustomerContent;
-            TableRelation = "Ship-to Address".Code where("Customer No." = field("Customer"));
+            TableRelation = "Ship-to Address".Code where("Customer No." = field("Customer No."));
 
             trigger OnValidate()
             begin
-                IF ShipToAdressRec.get("Customer", "Ship-to Code") then
-                    "Ship-to Name" := ShipToAdressRec.Name
+                if ShipToAdress.Get("Customer No.", "Ship-to Code") then
+                    "Ship-to Name" := ShipToAdress.Name
                 else
                     "Ship-to Name" := '';
             end;
@@ -59,15 +59,13 @@ table 5266058 "lbt Bonus Customers"
 
     keys
     {
-        key(PK; "Contract", "Customer", "Ship-to Code")
+        key(PK; Contract, "Customer No.", "Ship-to Code")
         {
             Clustered = true;
         }
     }
 
     var
-        CustRec: Record Customer;
-        ShipToAdressRec: Record "Ship-to Address";
-
-
+        Customer: Record Customer;
+        ShipToAdress: Record "Ship-to Address";
 }

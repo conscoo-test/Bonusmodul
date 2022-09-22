@@ -52,6 +52,7 @@ page 5266063 "lbt Explode Bonus Reservation"
 
             group(y)
             {
+                Caption = '', Locked = true;
                 field("Sum Amount"; SumAmount)
                 {
                     Caption = 'Total';

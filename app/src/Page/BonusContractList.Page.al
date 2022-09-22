@@ -28,19 +28,16 @@ page 5266052 "lbt Bonus Contract List"
                     ToolTip = 'Specifies from when the bonus contract is valid.', comment = 'DEU="Gibt an, ab wann der Bonusvertrag gültig ist."';
                     ApplicationArea = All;
                 }
-
                 field("Valid to"; Rec."Valid to")
                 {
                     ToolTip = 'Specifies the expiry date of the bonus contract.', comment = 'DEU="Gibt an, wann der Bonusvertrag abläuft."';
                     ApplicationArea = All;
                 }
-
                 field("Billing Period"; Rec."Billing Period")
                 {
                     ToolTip = 'Specifies the interval in which billing takes place.', comment = 'DEU="Gibt an in welchem Intervall abgerechnet wird."';
                     ApplicationArea = All;
                 }
-
             }
         }
         area(Factboxes)
@@ -67,12 +64,12 @@ page 5266052 "lbt Bonus Contract List"
 
                 trigger OnAction();
                 begin
-                    BonusContractRec.RESET();
+                    BonusContractRec.Reset();
                     BonusContractRec.SetCurrentKey("Contract");
-                    BonusContractRec.SETRANGE("Contract", Rec."Contract");
-                    CLEAR(BonusReserveRep);
-                    BonusReserveRep.SETTABLEVIEW(BonusContractRec);
-                    BonusReserveRep.RUNMODAL();
+                    BonusContractRec.SetRange("Contract", Rec."Contract");
+                    Clear(BonusReserves);
+                    BonusReserves.SetTableView(BonusContractRec);
+                    BonusReserves.RunModal();
                 end;
             }
 
@@ -82,9 +79,8 @@ page 5266052 "lbt Bonus Contract List"
                 ToolTip = 'You use this function to cancel a reserve.', comment = 'DEU="Mit dieser Funktion lösen Sie eine Rückstellung auf."';
                 ApplicationArea = All;
                 Image = CashFlow;
-                RunObject = page "lbt Explode Reservation";
+                RunObject = Page "lbt Explode Reservation";
             }
-
 
             action("Bonus Run")
             {
@@ -133,13 +129,11 @@ page 5266052 "lbt Bonus Contract List"
                 ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.', comment = 'DEU="Öffnet die Übersicht der zum Bonusvertrag hinterlegten Kunden. Die Übersicht  ist  dabei dieselbe, wie  die, die  in den Bonusverträgen unter "Anzahl Kunden" befindet."';
                 ApplicationArea = All;
                 Image = Customer;
-                RunObject = page "lbt Bonus Customers";
-                RunPageLink = "Customer" = field("Contract");
-
+                RunObject = Page "lbt Bonus Customers";
+                RunPageLink = "Customer No." = field("Contract");
 
                 trigger OnAction();
                 begin
-
                 end;
             }
 
@@ -149,13 +143,11 @@ page 5266052 "lbt Bonus Contract List"
                 ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.', comment = 'DEU="Hier können je Vertrag Vorgabedimensionen für die Rückstellung hinterlegt werden. Die hier angelegten Dimensionen werden beim Rückstellungslauf in die Buchungszeilen geschrieben."';
                 ApplicationArea = All;
                 Image = Dimensions;
-                RunObject = page "lbt Bonus Contract Dimension";
+                RunObject = Page "lbt Bonus Contract Dimension";
                 RunPageLink = "Contract" = field("Contract");
-
 
                 trigger OnAction()
                 begin
-
                 end;
             }
             action("Bonus Contract Attribute")
@@ -164,13 +156,11 @@ page 5266052 "lbt Bonus Contract List"
                 ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.', comment = 'DEU="Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."';
                 ApplicationArea = All;
                 Image = "Filter";
-                RunObject = page "lbt BonusContrAttributeFilter";
+                RunObject = Page "lbt BonusContrAttributeFilter";
                 RunPageLink = "Contract" = field("Contract");
-
 
                 trigger OnAction()
                 begin
-
                 end;
             }
 
@@ -180,10 +170,9 @@ page 5266052 "lbt Bonus Contract List"
                 ToolTip = 'Here you can group bonus contracts.', comment = 'DEU="Hier können Sie Bonusverträge gruppieren."';
                 ApplicationArea = All;
                 Image = Group;
-                RunObject = page "lbt Bonus Group";
+                RunObject = Page "lbt Bonus Group";
                 trigger OnAction()
                 begin
-
                 end;
             }
             action("Bonus Entry")
@@ -192,12 +181,11 @@ page 5266052 "lbt Bonus Contract List"
                 ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.', comment = 'DEU="Bei  jeder  Erzeugung  von  Rückstellungen oder  Bonusabrechnungen  werden  im  Hintergrund Bonusposten  geschrieben.  Diese  Bonusposten  können über  diese  Schaltfläche  je  Bonusvertrag aufgerufen werden."';
                 ApplicationArea = All;
                 Image = LedgerEntries;
-                RunObject = page "lbt Bonus Entry";
+                RunObject = Page "lbt Bonus Entry";
                 RunPageLink = "Contract" = field("Contract");
 
                 trigger OnAction()
                 begin
-
                 end;
             }
 
@@ -221,23 +209,12 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = Setup;
                 RunObject = Page "lbt Bonus Setup";
-
-                trigger OnAction()
-                begin
-
-                end;
             }
-
-
         }
-
     }
 
     var
         BonusContractRec: Record "lbt Bonus Contract";
-        BonusReserveRep: Report "lbt Bonus Reserves";
+        BonusReserves: Report "lbt Bonus Reserves";
         NavigatePage: Page Navigate;
-
-
-
 }

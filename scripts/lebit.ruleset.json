@@ -1,0 +1,16 @@
+{
+    "name": "lebit",
+    "rules": [
+        {
+            "id": "LC0015",
+            "action": "Error"
+        },
+        {
+            "id": "LC0010",
+            "action": "None",
+            "justification": "doesn't work"
+        }
+
+    ]
+
+}

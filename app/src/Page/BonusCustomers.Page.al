@@ -2,7 +2,7 @@ page 5266059 "lbt Bonus Customers"
 {
 
     PageType = List;
-    SourceTable = "lbt Bonus Customers";
+    SourceTable = "lbt Bonus Customer";
     Caption = 'Bonus Customers', comment = 'DEU="Bonus Debitoren"';
     UsageCategory = None;
 
@@ -13,7 +13,7 @@ page 5266059 "lbt Bonus Customers"
             repeater(General)
             {
 
-                field(Customer; Rec."Customer")
+                field(Customer; Rec."Customer No.")
                 {
                     ToolTip = 'This field is filled with the customer from the bonus contract.', comment = 'DEU="Dieses Feld wird mit dem Debitor aus dem Bonusvertrag gefüllt."';
                     ApplicationArea = All;

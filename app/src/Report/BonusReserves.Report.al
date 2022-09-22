@@ -8,18 +8,18 @@ report 5266051 "lbt Bonus Reserves"
     {
         dataitem("Bonus Contract"; "lbt Bonus Contract")
         {
-            DataItemTableView = sorting("contract");
-            RequestFilterFields = "Contract", "Billing Period";
+            DataItemTableView = sorting(Contract);
+            RequestFilterFields = Contract, "Billing Period";
 
-            dataitem("Bonus Customers"; "lbt Bonus Customers")
+            dataitem("Bonus Customers"; "lbt Bonus Customer")
             {
-                DataItemTableView = sorting("Contract", "Customer", "Ship-to Code");
-                DataItemLink = "Contract" = field("Contract");
+                DataItemTableView = sorting(Contract, "Customer No.", "Ship-to Code");
+                DataItemLink = Contract = field(Contract);
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
                     DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field("Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
                     trigger OnPreDataItem()
                     begin
@@ -43,7 +43,7 @@ report 5266051 "lbt Bonus Reserves"
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
                     DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
-                    DataItemLink = "Sell-to Customer No." = field("Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
                     trigger OnPreDataItem()
                     begin
@@ -64,7 +64,7 @@ report 5266051 "lbt Bonus Reserves"
                 }
                 dataitem("Fixed Amount"; Integer)
                 {
-                    DataItemTableView = sorting(Number) Where(Number = const(1));
+                    DataItemTableView = sorting(Number) where(Number = const(1));
 
                     trigger OnPreDataItem()
                     begin
@@ -79,11 +79,11 @@ report 5266051 "lbt Bonus Reserves"
                         case BonusSetup."Reserve Mode" of
                             BonusSetup."Reserve Mode"::CreditMemo:
                                 begin
-                                    CreateBonusCrMemoLine(0, '', 0, "Bonus Contract"."Reserve Value", 0, SalesLine);
+                                    CreateBonusCrMemoLine(0, '', "Bonus Contract"."Reserve Value", SalesLine);
                                     CreateBonusEntryForFixedAmount(SalesLine);
                                 end;
                             BonusSetup."Reserve Mode"::Journal:
-                                CreateJournalLine(0, "Bonus Contract"."Contract", 0, "Bonus Customers"."Customer", "Bonus Contract"."Reserve Value", 0,
+                                CreateJournalLine(0, "Bonus Contract".Contract, 0, "Bonus Customers"."Customer No.", "Bonus Contract"."Reserve Value", 0,
                                   0, 0);
                         end;
                     end;
@@ -93,14 +93,14 @@ report 5266051 "lbt Bonus Reserves"
             // DataItem "Bonus Contract"
             trigger OnPreDataItem()
             begin
-                Dia.Open(CustomerProgressTxt + ContractProgressTxt);
+                Dialog.Open(CustomerProgressTxt + ContractProgressTxt);
                 PostingDate := DateTo;
             end;
 
             trigger OnAfterGetRecord()
             begin
-                Dia.Update(1, "No. of Customers");
-                Dia.Update(2, "Contract");
+                Dialog.Update(1, "No. of Customers");
+                Dialog.Update(2, Contract);
 
                 if not CheckDates() then
                     CurrReport.Skip();
@@ -111,7 +111,7 @@ report 5266051 "lbt Bonus Reserves"
 
             trigger OnPostDataItem()
             begin
-                Dia.Close();
+                Dialog.Close();
                 Commit();
 
                 OpenPage();
@@ -182,8 +182,8 @@ report 5266051 "lbt Bonus Reserves"
 
     local procedure CreateBonusEntryForFixedAmount(var SalesLine: Record "Sales Line")
     begin
-        BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
-        BonusEntryNo := BonusMgt.CreateBonusContractEntry(
+        BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
+        BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                                    "Bonus Contract",
                                    "Bonus Customers",
                                    1, PostingDate, 0,
@@ -200,7 +200,7 @@ report 5266051 "lbt Bonus Reserves"
         GenJournalLine: Record "Gen. Journal Line";
         SalesHeader: Record "Sales Header";
         SalesCreditMemoPage: Page "Sales Credit Memo";
-        GenJnlPage: Page "General Journal";
+        GeneralJournal: Page "General Journal";
 
     begin
         case BonusSetup."Reserve Mode" of
@@ -217,8 +217,8 @@ report 5266051 "lbt Bonus Reserves"
                 begin
                     GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
                     GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
-                    GenJnlPage.SetTableView(GenJournalLine);
-                    GenJnlPage.Run();
+                    GeneralJournal.SetTableView(GenJournalLine);
+                    GeneralJournal.Run();
                 end;
         end;
 
@@ -374,11 +374,11 @@ report 5266051 "lbt Bonus Reserves"
             until (BonusContractAttribute.Next() = 0);
     end;
 
-    local procedure CalcItemCharge(TableNo: Integer; LineNo: Integer; var DocAmtInclVAT: Decimal; var DocAmount: Decimal)
+    local procedure CalcItemCharge(TableNo: Integer; p_LineNo: Integer; var DocAmtInclVAT: Decimal; var DocAmount: Decimal)
     var
         ValueEntry: Record "Value Entry";
         ValueEntry2: Record "Value Entry";
-        SalesInvLineRec: Record "Sales Invoice Line";
+        SalesInvoiceLine: Record "Sales Invoice Line";
         ItemCharge: Record "Item Charge";
         ItemLedgerEntry: Record "Item Ledger Entry";
         l_Sign: Integer;
@@ -400,9 +400,9 @@ report 5266051 "lbt Bonus Reserves"
                 end;
 
         end;
-        ValueEntry.SetRange("Document Line No.", LineNo);
+        ValueEntry.SetRange("Document Line No.", p_LineNo);
         if ValueEntry.FindSet() then
-            Repeat
+            repeat
                 if ValueEntry."Sales Amount (Actual)" <> 0 then begin
                     if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
                         ValueEntry2.Reset();
@@ -410,13 +410,13 @@ report 5266051 "lbt Bonus Reserves"
                     ValueEntry2.SetRange("Item Ledger Entry No.", ItemLedgerEntry."Entry No.");
                     ValueEntry2.SetFilter("Item Charge No.", '<>%1', '');
                     if ValueEntry2.FindSet() then
-                        Repeat
+                        repeat
                             ItemCharge.Get(ValueEntry2."Item Charge No.");
                             if ItemCharge."lbt Bonus consider" then
                                 DocAmount += l_Sign * ValueEntry2."Sales Amount (Actual)";
-                            if SalesInvLineRec.Get(ValueEntry2."Document No.", ValueEntry2."Document Line No.") then
+                            if SalesInvoiceLine.Get(ValueEntry2."Document No.", ValueEntry2."Document Line No.") then
                                 DocAmtInclVAT += l_Sign * Round(ValueEntry2."Sales Amount (Actual)" *
-                                          (100 + SalesInvLineRec."VAT %") / 100, 0.0001)
+                                          (100 + SalesInvoiceLine."VAT %") / 100, 0.0001)
 
                         until ValueEntry2.Next() = 0;
                 end;
@@ -450,14 +450,14 @@ report 5266051 "lbt Bonus Reserves"
                 Database::"Sales Cr.Memo Line":
                     DocTypeMatches := (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Return Receipt");
             end;
-            CreateBonusCrMemoLine(TableNo, DocNo, p_LineNo, BonusAmt, DocAmount, SalesLine);
+            CreateBonusCrMemoLine(TableNo, DocNo, BonusAmt, SalesLine);
             AddItemChargeToSalesLine(SalesLine, TableNo, DocNo, p_LineNo, DocAmount, BonusAmt);
             if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") and DocTypeMatches then begin
-                Clear(BonusMgt);
-                BonusMgt.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
-                BonusMgt.SetSourceDoc(1, DocNo, p_LineNo);
-                BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
-                BonusEntryNo := BonusMgt.CreateBonusContractEntry(
+                Clear(BonusManagement);
+                BonusManagement.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
+                BonusManagement.SetSourceDoc(1, DocNo, p_LineNo);
+                BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
+                BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                                     "Bonus Contract",
                                     "Bonus Customers",
                                     1,
@@ -476,7 +476,7 @@ report 5266051 "lbt Bonus Reserves"
 
     end;
 
-    local procedure CreateBonusCrMemoLine(TableNo: Integer; DocNoP: Code[20]; LineNoP: Integer; BonusAmt: Decimal; DocAmount: Decimal; var SalesLineRec: Record "Sales Line")
+    local procedure CreateBonusCrMemoLine(TableNo: Integer; DocNoP: Code[20]; BonusAmt: Decimal; var SalesLineRec: Record "Sales Line")
     var
         SalesHeader: Record "Sales Header";
     begin
@@ -602,14 +602,14 @@ report 5266051 "lbt Bonus Reserves"
         SalesLine.Insert();
     end;
 
-    local procedure CreateJournalLine(TableID: Integer; var DocNo: Code[20]; DocLineNo: Integer; var CustNo: Code[20]; var Amt: Decimal; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal)
+    local procedure CreateJournalLine(TableID: Integer; DocNo: Code[20]; DocLineNo: Integer; CustNo: Code[20]; Amt: Decimal; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal)
     var
         Customer: Record Customer;
         GenJournalLine: Record "Gen. Journal Line";
         SalesInvoiceLine: Record "Sales Invoice Line";
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         CustomerPostingGroup: Record "Customer Posting Group";
-        DimMgt: Codeunit DimensionManagement;
+        DimensionManagement: Codeunit DimensionManagement;
 
         DocType: Integer;
         vz: Integer;
@@ -630,10 +630,10 @@ report 5266051 "lbt Bonus Reserves"
                             vz := -1;
                         end;
                 end;
-                Clear(BonusMgt);
-                BonusMgt.SetSourceDoc(DocType, DocNo, DocLineNo);
-                BonusMgt.SetBonusDoc(0, '', 0);
-                BonusEntryNo := BonusMgt.CreateBonusContractEntry(
+                Clear(BonusManagement);
+                BonusManagement.SetSourceDoc(DocType, DocNo, DocLineNo);
+                BonusManagement.SetBonusDoc(0, '', 0);
+                BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                     "Bonus Contract",
                     "Bonus Customers",
                     1,                //Postenart Rückstellung
@@ -659,14 +659,14 @@ report 5266051 "lbt Bonus Reserves"
                 GenJournalLine.Validate("Bal. Account No.", CustomerPostingGroup."lbt Bonus Reserve Bal. Account");
                 GenJournalLine."Gen. Bus. Posting Group" := '';
                 GenJournalLine."Gen. Prod. Posting Group" := '';
-                GenJournalLine.Description := BonusReserveForLbl + FORMAT("Bonus Contract".Contract);
+                GenJournalLine.Description := BonusReserveForLbl + Format("Bonus Contract".Contract);
                 GenJournalLine.Validate(Amount, Amt * vz);
                 GenJournalLine."lbt Process No." := "Bonus Contract"."Process No.";
                 GenJournalLine."lbt Bonus Entry No" := BonusEntryNo;
                 GenJournalLine."Reason Code" := BonusSetup."Reason Code";
                 if (TableID <> 0) then
                     case TableID of
-                        database::"Sales Invoice Line":
+                        Database::"Sales Invoice Line":
                             begin
                                 SalesInvoiceLine.Get(DocNo, DocLineNo);
                                 GenJournalLine."Shortcut Dimension 1 Code" := SalesInvoiceLine."Shortcut Dimension 1 Code";
@@ -683,7 +683,7 @@ report 5266051 "lbt Bonus Reserves"
                     end
                 else begin
                     GenJournalLine."Dimension Set ID" := CreateDimSetID();
-                    DimMgt.UpdateGlobalDimFromDimSetID(GenJournalLine."Dimension Set ID",
+                    DimensionManagement.UpdateGlobalDimFromDimSetID(GenJournalLine."Dimension Set ID",
                                                          GenJournalLine."Shortcut Dimension 1 Code",
                                                           GenJournalLine."Shortcut Dimension 2 Code");
                 end;
@@ -693,9 +693,9 @@ report 5266051 "lbt Bonus Reserves"
 
     local procedure CreateDimSetID(): Integer
     var
-        BonusContractDimensions: Record "lbt Bonus Contract Dimensions";
+        BonusContractDimensions: Record "lbt Bonus Contract Dimension";
         TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
-        DimMgt: Codeunit DimensionManagement;
+        DimensionManagement: Codeunit DimensionManagement;
     begin
         BonusContractDimensions.SetRange(Contract, "Bonus Contract".Contract);
         if BonusContractDimensions.FindSet() then
@@ -706,7 +706,7 @@ report 5266051 "lbt Bonus Reserves"
                 if TempDimensionSetEntry.Insert() then;
             until BonusContractDimensions.Next() = 0;
 
-        exit(DimMgt.GetDimensionSetID(TempDimensionSetEntry));
+        exit(DimensionManagement.GetDimensionSetID(TempDimensionSetEntry));
     end;
 
 
@@ -768,7 +768,7 @@ report 5266051 "lbt Bonus Reserves"
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, Quantity, BonusAmt, 0, 0, 0)
         else
-            CreateJournalLine(TableNo, DocNo, DocLineNo, "Bonus Customers"."Customer", BonusAmt, 0, 0, 0);
+            CreateJournalLine(TableNo, DocNo, DocLineNo, "Bonus Customers"."Customer No.", BonusAmt, 0, 0, 0);
     end;
 
 
@@ -803,7 +803,7 @@ report 5266051 "lbt Bonus Reserves"
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, 0, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
         else
             CreateJournalLine(TableNo, DocNo, DocLineNo,
-                            "Bonus Customers"."Customer",
+                            "Bonus Customers"."Customer No.",
                             BonusAmt, DocAmount,
                             -DiscAmt, -PmtDiscAmt);
     end;
@@ -811,8 +811,8 @@ report 5266051 "lbt Bonus Reserves"
 
     var
         BonusSetup: Record "lbt Bonus Setup";
-        BonusMgt: Codeunit "lbt Bonus Management";
-        Dia: Dialog;
+        BonusManagement: Codeunit "lbt Bonus Management";
+        Dialog: Dialog;
         LineNo: Integer;
         DateFrom: Date;
         DateTo: Date;

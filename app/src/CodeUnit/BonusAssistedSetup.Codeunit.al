@@ -6,10 +6,10 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
         NotificationMsg: Label 'The setup for LeBit Bonus is incomplete', Comment = 'DEU="Die Einrichtung für LeBit Bonus ist unvollständig."';
         ActionMsg: Label 'To Wizard...', Comment = 'DEU="Zum Wizard..."';
         ExtensionGuidTxt: Label '1716d377-7e43-42d6-ae75-ad9977f24a69';
-        AppLbl: Label 'LeBit Bonus', Comment = 'DEU="LeBit Bonus"';
+    // AppLbl: Label 'LeBit Bonus', Comment = 'DEU="LeBit Bonus"';
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Assisted Setup", 'OnRegister', '', true, true)]
-    local procedure AggregatedSetup_OnRegisterAssistedSetup()
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Guided Experience", 'OnRegisterAssistedSetup', '', false, false)]
+    local procedure OnRegisterAssistedSetup();
     begin
         AddAssistedSetup();
     end;
@@ -17,18 +17,25 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Role Center Notification Mgt.", 'OnBeforeShowNotifications', '', true, true)]
     local procedure ShowAssistedSetupNotCompleteNotification()
     var
-        AssistedSetup: Codeunit "Assisted Setup";
+        GuidedExperience: Codeunit "Guided Experience";
     begin
-        if not AssistedSetup.IsComplete(GetPageId()) then
+        if GuidedExperience.AssistedSetupExistsAndIsNotComplete(ObjectType::Page, GetPageId()) then
             CreateNotification();
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Manual Setup", 'OnRegisterManualSetup', '', true, true)]
-    local procedure RegisterManualSetup(sender: Codeunit "Manual Setup")
-    var
-        ManualSetupCategory: Enum "Manual Setup Category";
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Guided Experience", 'OnRegisterManualSetup', '', false, false)]
+    local procedure OnRegisterManualSetup(var Sender: Codeunit "Guided Experience");
     begin
-        sender.Insert(AppLbl, SetupLbl, '', Page::"lbt Bonus Setup", GetAppId(), ManualSetupCategory::Uncategorized);
+        Sender.InsertManualSetup(
+            SetupLbl, //Title
+            SetupLbl, //ShortTitle
+            SetupLbl, //Description
+            3, //ExpectedDuration
+            ObjectType::Page, //ObjectTypeToRun 
+            Page::"lbt Bonus Setup", //ObjectIDToRun 
+            Enum::"Manual Setup Category"::Uncategorized, //ManualSetupCategory 
+            '' //Keywords 
+            );
     end;
 
     local procedure CreateNotification()
@@ -44,19 +51,28 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
 
     procedure HandleNotification(Note: Notification)
     var
-        AssistedSetup: Codeunit "Assisted Setup";
+        GuidedExperience: Codeunit "Guided Experience";
     begin
-        if AssistedSetup.ExistsAndIsNotComplete(GetPageId()) then
-            AssistedSetup.Run(GetPageId());
+        if GuidedExperience.AssistedSetupExistsAndIsNotComplete(ObjectType::Page, GetPageId()) then
+            GuidedExperience.Run(Enum::"Guided Experience Type"::"Assisted Setup", ObjectType::Page, GetPageId());
     end;
 
     procedure AddAssistedSetup()
     var
-        AssistedSetup: Codeunit "Assisted Setup";
-        AssistedSetupGroup: Enum "Assisted Setup Group";
+        GuidedExperience: Codeunit "Guided Experience";
     begin
-        if not AssistedSetup.Exists(GetPageId()) then
-            AssistedSetup.Add(GetAppId(), GetPageId(), SetupLbl, AssistedSetupGroup::Extensions);
+        GuidedExperience.InsertAssistedSetup(
+            SetupLbl, //Title
+            SetupLbl, //ShortTitle
+            SetupLbl, //Description
+            3, //ExpectedDuration
+            ObjectType::Page, //ObjectTypeToRun 
+            Page::"lbt Bonus Assisted Setup", //ObjectIDToRun 
+            Enum::"Assisted Setup Group"::Uncategorized, //AssistedSetupGroup
+            '', // VideoUrl 
+            Enum::"Video Category"::Uncategorized,
+            '' //HelpUrl
+        );
     end;
 
     local procedure GetNotificationId(): Guid

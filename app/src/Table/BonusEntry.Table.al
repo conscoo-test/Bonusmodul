@@ -17,7 +17,7 @@ table 5266056 "lbt Bonus Entry"
         field(2; "Entry Type"; Option)
         {
             Caption = 'Entry Type', comment = 'DEU="Postenart"';
-            OptionMembers = "Bonus","Reserve","Liquidation of Reserves";
+            OptionMembers = Bonus,Reserve,"Liquidation of Reserves";
             OptionCaption = 'Bonus,Reserve,Liquidation of Reserves', comment = 'DEU="Bonus,Rückstellung,Rückstellungsauflösung"';
             DataClassification = CustomerContent;
         }
@@ -25,14 +25,14 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            TableRelation = "lbt Bonus Contract".Contract;
         }
         field(4; "Bonus Contract Line"; Integer)
         {
             Caption = 'Bonus Contract Line', comment = 'DEU="Bonusvetragszeilen"';
             ;
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract Line" where("Contract" = field("Contract"));
+            TableRelation = "lbt Bonus Contract Line" where(Contract = field(Contract));
         }
         field(5; "Entry Date"; Date)
         {
@@ -64,7 +64,7 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Ship-to Code', Comment = 'DEU="Lief. an Code"';
             DataClassification = CustomerContent;
-            TableRelation = "Ship-to Address".Code where("Customer No." = Field("Customer"));
+            TableRelation = "Ship-to Address".Code where("Customer No." = field(Customer));
         }
         field(11; "Invoice Customer No."; Code[20])
         {
@@ -112,7 +112,7 @@ table 5266056 "lbt Bonus Entry"
             Caption = 'From Document Line', Comment = 'DEU="Quellbelegzeile"';
             DataClassification = CustomerContent;
         }
-        field(18; "Sales Quantity"; decimal)
+        field(18; "Sales Quantity"; Decimal)
         {
             Caption = 'Sales Quantity', Comment = 'DEU="Absatzmenge"';
             DataClassification = CustomerContent;

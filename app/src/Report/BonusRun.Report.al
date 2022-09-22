@@ -9,13 +9,13 @@ report 5266052 "lbt Bonus Run"
         dataitem("Bonus Contract"; "lbt Bonus Contract")
         {
 
-            dataitem("Bonus Customer"; "lbt Bonus Customers")
+            dataitem("Bonus Customer"; "lbt Bonus Customer")
             {
                 DataItemLink = "Contract" = field("Contract");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
-                    DataItemLink = "Sell-to Customer No." = field("Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
                     dataitem("Sales Invoice Line"; "Sales Invoice Line")
                     {
@@ -56,7 +56,7 @@ report 5266052 "lbt Bonus Run"
                                                 if ValueEntry.FindFirst() then
                                                     if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
                                                         if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
-                                                            CreateSalesCreditMemo2(Database::"Sales Invoice Line", "Document No.", "Line No.", DocAmount, BonusAmount, -DiscAmt, -PmtDiscAmt);
+                                                            CreateSalesCreditMemo2();
                                             end;
                                     end;
                                 "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
@@ -80,7 +80,7 @@ report 5266052 "lbt Bonus Run"
                     var
                         Customer: Record Customer;
                     begin
-                        dia.Update(3, "No.");
+                        Dialog.Update(3, "No.");
                         SalesPersonCode := '';
                         //TODO: 
                         // if "Bonus Contract"."Agent From Document" then 
@@ -92,7 +92,7 @@ report 5266052 "lbt Bonus Run"
                 }
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
-                    DataItemLink = "Sell-to Customer No." = field("Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
@@ -102,7 +102,7 @@ report 5266052 "lbt Bonus Run"
             }
             trigger OnPreDataItem()
             begin
-                dia.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
+                Dialog.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
             end;
 
 
@@ -118,6 +118,7 @@ report 5266052 "lbt Bonus Run"
             {
                 group(Options)
                 {
+                    Caption = 'Options';
                     field("Date From"; DateFrom)
                     {
                         ApplicationArea = All;
@@ -245,7 +246,7 @@ report 5266052 "lbt Bonus Run"
 
     end;
 
-    local procedure CreateSalesCreditMemo2(TableId: Integer; DocNo: Code[20]; DocLineNo: Integer; DocAmount: Decimal; BonusAmount: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Amount: Decimal
+    local procedure CreateSalesCreditMemo2()
     var
         SalesHeader: Record "Sales Header";
     begin
@@ -265,7 +266,7 @@ report 5266052 "lbt Bonus Run"
         ReversePostingDate: Date;
         PostingDate: Date;
         SalesPersonCode: Code[20];
-        dia: Dialog;
+        Dialog: Dialog;
         BonusAmount: Decimal;
 
 

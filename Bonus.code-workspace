@@ -17,11 +17,14 @@
 		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
 		"CRS.RemovePrefixFromFilename": true,
 		"CRS.ObjectNamePrefix": "lbt ",
-		"CRS.OnSaveAlFileAction": "Rename",
+		"CRS.OnSaveAlFileAction": "DoNothing",
 		"al.codeAnalyzers": [
-			"${AppSourceCop}",
 			"${CodeCop}",
-			"${UICop}"
+			"${UICop}",
+			"${AppSourceCop}",
+			"${analyzerFolder}BusinessCentral.LinterCop.dll"
 		],
+		"al.ruleSetPath": "../scripts/lebit.ruleset.json"
+
 	}
 }

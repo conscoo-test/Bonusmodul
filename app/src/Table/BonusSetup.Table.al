@@ -4,7 +4,7 @@ table 5266051 "lbt Bonus Setup"
     Caption = 'Bonus Setup', comment = 'DEU="Bonus Einrichtung"';
     fields
     {
-        field(1; "Primary Key"; code[10])
+        field(1; "Primary Key"; Code[10])
         {
             Caption = 'Primary Key', comment = 'DEU="Primärschlüssel"';
             DataClassification = CustomerContent;
@@ -14,7 +14,7 @@ table 5266051 "lbt Bonus Setup"
         {
             Caption = 'Reserve Mode', comment = 'DEU="Rückstellungsmodus"';
             DataClassification = CustomerContent;
-            OptionMembers = "Journal","CreditMemo";
+            OptionMembers = Journal,CreditMemo;
             OptionCaption = 'Journal,CreditMemo', comment = 'DEU="Buchblatt,Gutschrift"';
         }
         field(3; "Gen.Jnl.Templ.BonusReserve"; Code[10])
@@ -22,6 +22,7 @@ table 5266051 "lbt Bonus Setup"
             Caption = 'Gen. Jnl. Templ. Bonus Reserve', comment = 'DEU="BuchblVorl. Bonusrückstellung"';
             DataClassification = CustomerContent;
             TableRelation = "Gen. Journal Template";
+            #region OnLookup
             trigger OnLookup()
             var
                 GenJournalTemplate: Record "Gen. Journal Template";
@@ -34,6 +35,7 @@ table 5266051 "lbt Bonus Setup"
                     "Gen.Jnl.Templ.BonusReserve" := GenJournalTemplate.Name;
                 end;
             end;
+            #endregion OnLookup
         }
 
         field(4; "Gen. Jnl. Bonus Reserve"; Code[10])
@@ -53,7 +55,7 @@ table 5266051 "lbt Bonus Setup"
         {
             Caption = ' Gen. Jnl. Bonus Revers Reserve', Comment = 'DEU="Buchblatt Bonusrückstellungsauflösung"';
             DataClassification = CustomerContent;
-            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = FIELD("Gen.Jnl.Templ.BonusReserve"));
+            TableRelation = "Gen. Journal Batch".Name where("Journal Template Name" = field("Gen.Jnl.Templ.BonusReserve"));
         }
         field(7; "Cust Gr. Reserve Cr. Memo"; Code[20])
         {
@@ -70,9 +72,9 @@ table 5266051 "lbt Bonus Setup"
             TableRelation = "Gen. Business Posting Group".Code;
         }
 
-        field(9; "Bonus Nos."; Code[20])
+        field(9; "Bonus Contract Nos."; Code[20])
         {
-            Caption = 'Bonus Nos.', comment = 'DEU="Bonusnummern"';
+            Caption = 'Bonus Contract Nos.', comment = 'DEU="Bonusnummern"';
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
@@ -97,6 +99,12 @@ table 5266051 "lbt Bonus Setup"
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
+        field(13; "Billing Cr.Memo Nos."; Code[20])
+        {
+            Caption = 'Billing Cr.Memo Nos.', comment = 'DEU="Abrechnungssgutschriftnummern"';
+            DataClassification = CustomerContent;
+            TableRelation = "No. Series";
+        }
     }
 
     keys
@@ -107,10 +115,12 @@ table 5266051 "lbt Bonus Setup"
         }
     }
 
+    #region OnInsert
     trigger OnInsert()
     begin
         "Primary Key" := '1';
     end;
+    #endregion OnInsert
 
 
 
