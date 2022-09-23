@@ -1,6 +1,6 @@
 report 5266051 "lbt Bonus Reserves"
 {
-    Caption = 'Bonus Reserves', comment = 'DEU="Bonusrückstellungslauf"';
+    Caption = 'Bonus Reserves';
     UsageCategory = None;
     ProcessingOnly = true;
 
@@ -130,14 +130,14 @@ report 5266051 "lbt Bonus Reserves"
                     Caption = 'Option', comment = 'DEU ="Optionen"';
                     field("Date From"; DateFrom)
                     {
-                        Caption = 'Date from', comment = 'DEU="Datum von"';
-                        ToolTip = 'In consideration of the sart date, all invoice and credit lines of the period are used, which are additionally checked for relevance of the corresponding contract conditions (calculation rules).', comment = 'DEU="Unter Berücksichtigung des Sartdatums, werden alle Rechnungs-und Gutschriftszeilen des Zeitraums herangezogen, welche zusätzlich auf Relevanz der entsprechenden Vertragsbedingungen (Berechnungsregeln) geprüft werden."';
+                        Caption = 'Date from';
+                        ToolTip = 'In consideration of the sart date, all invoice and credit lines of the period are used, which are additionally checked for relevance of the corresponding contract conditions (calculation rules).';
                         ApplicationArea = All;
                     }
                     field("Date To"; DateTo)
                     {
-                        Caption = 'Date to', comment = 'DEU="Datum Bis"';
-                        ToolTip = 'In Consideration of the end date, all invoice and credit memo lines of the period are used, which are also checked for relevance of the corresponding contract conditions (calculation rules).', comment = 'DEU="Unter Berücksichtigung des Enddatums, werden alle Rechnungs-und Gutschriftszeilen des Zeitraums herangezogen, welche zusätzlich auf Relevanz der entsprechenden Vertragsbedingungen (Berechnungsregeln) geprüft werden."';
+                        Caption = 'Date to';
+                        ToolTip = 'In Consideration of the end date, all invoice and credit memo lines of the period are used, which are also checked for relevance of the corresponding contract conditions (calculation rules).';
                         ApplicationArea = All;
                     }
 
@@ -820,19 +820,19 @@ report 5266051 "lbt Bonus Reserves"
         CrMemoHeaderCreated: Boolean;
         BonusEntryNo: Integer;
         SalesLineNo: Integer;
-        InputAccountingPeriodMsg: Label 'Please input the accounting period.', Comment = 'DEU="Geben Sie den Abrechnungszeitraum ein."';
-        CheckAccountingPeriodMsg: Label 'Please check the accounting period.', Comment = 'DEU="Überprüfen Sie den Abrechnungszeitraum."';
+        InputAccountingPeriodMsg: Label 'Please input the accounting period.';
+        CheckAccountingPeriodMsg: Label 'Please check the accounting period.';
         UnpostedCreditMemoErr: Label 'There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.',
             Comment = 'DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."';
-        CustomerProgressTxt: Label 'Customer #1##############\', Comment = 'DEU="Debitor    #1##############\"';
-        ContractProgressTxt: Label 'Contract   #2##############', Comment = 'DEU="Vertrag    #2##############"';
-        BonusReserveForLbl: Label 'Bonus Reserve for ', Comment = 'DEU="Bonusrückstellung für "';
-        BonusReserveLbl: Label 'Bonus Reserve', Comment = 'DEU="Bonusrückstellung"';
-        InvoiceLbl: Label 'Invoice ', Comment = 'DEU="Rechnung "';
-        CrMemoLbl: Label 'Credit Memo ', Comment = 'DEU="Gutschrift "';
-        FixedAmountLbl: Label 'Bonus Fixed Amount', Comment = 'DEU="Bonusfestbetrag"';
-        BonusAccountingLbl: Label 'Bonus Accounting accordingly Bonus Contract %1.', Comment = 'DEU="Rückstellungen gem. Vertrag %1"';
-        AccountingPeriodLbl: Label 'Accounting Period %1 to %2', Comment = 'DEU="Abrechnungszeitraum %1 bis %2"';
+        CustomerProgressTxt: Label 'Customer #1##############\';
+        ContractProgressTxt: Label 'Contract   #2##############';
+        BonusReserveForLbl: Label 'Bonus Reserve for ';
+        BonusReserveLbl: Label 'Bonus Reserve';
+        InvoiceLbl: Label 'Invoice ';
+        CrMemoLbl: Label 'Credit Memo ';
+        FixedAmountLbl: Label 'Bonus Fixed Amount';
+        BonusAccountingLbl: Label 'Bonus Accounting accordingly Bonus Contract %1.';
+        AccountingPeriodLbl: Label 'Accounting Period %1 to %2';
 }
 
 

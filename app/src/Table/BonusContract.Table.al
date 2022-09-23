@@ -1,7 +1,7 @@
 table 5266052 "lbt Bonus Contract"
 {
     DataClassification = ToBeClassified;
-    Caption = 'Bonus Contract', comment = 'DEU="Bonusvertrag"';
+    Caption = 'Bonus Contract';
     LookupPageId = "lbt Bonus Contracts";
     DrillDownPageId = "lbt Bonus Contracts";
 
@@ -19,29 +19,29 @@ table 5266052 "lbt Bonus Contract"
         }
         field(2; "Valid from"; Date)
         {
-            Caption = 'Valid from', comment = 'DEU="Gültig von"';
+            Caption = 'Valid from';
             DataClassification = CustomerContent;
         }
         field(3; "Valid to"; Date)
         {
-            Caption = 'Valid to', comment = 'DEU="Gültig bis"';
+            Caption = 'Valid to';
             DataClassification = CustomerContent;
         }
         field(4; "Billing Period"; DateFormula)
         {
-            Caption = 'Billing Period', comment = 'DEU="Abrechnungsintervall"';
+            Caption = 'Billing Period';
             DataClassification = CustomerContent;
         }
         field(5; "Reserve Value"; Decimal)
         {
-            Caption = 'Reserve Value', comment = 'DEU="Rückstellungswert"';
+            Caption = 'Reserve Value';
             DataClassification = CustomerContent;
         }
         field(6; "Reserve Type"; Option)
         {
-            Caption = 'Reverse Type', comment = 'DEU="Rückstellungsart"';
+            Caption = 'Reverse Type';
             OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaption = '%,Amount (LCY),Amount per Unit', comment = 'DEU="%,Festbetrag (MW),Betrag je Einheit"';
+            OptionCaption = '%,Amount (LCY),Amount per Unit';
             DataClassification = CustomerContent;
 
             trigger OnValidate()
@@ -54,21 +54,21 @@ table 5266052 "lbt Bonus Contract"
         }
         field(7; "Reserve Unit"; Code[10])
         {
-            Caption = 'Reserve Unit', comment = 'DEU="Rückstellungseinheit"';
+            Caption = 'Reserve Unit';
             DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
         }
         field(8; "Last Reserve at"; Date)
         {
-            Caption = 'Last Reserve at', comment = 'DEU="letzte Rückstellung am"';
+            Caption = 'Last Reserve at';
             DataClassification = CustomerContent;
         }
         field(9; "Bonus Billing Type"; Option)
         {
-            Caption = 'Bonus Billing Type', comment = 'DEU="Bonusabrechnungsart"';
+            Caption = 'Bonus Billing Type';
             DataClassification = CustomerContent;
             OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaption = '%,Amount (LCY),Amount per Unit', comment = 'DEU="%,Festbetrag (MW),Betrag je Einheit"';
+            OptionCaption = '%,Amount (LCY),Amount per Unit';
 
             trigger OnValidate()
             begin
@@ -80,13 +80,13 @@ table 5266052 "lbt Bonus Contract"
         }
         field(10; "Bonus Billing Unit"; Code[10])
         {
-            Caption = 'Bonus Billing Unit', comment = 'DEU="Bonusabrechnungseinheit"';
+            Caption = 'Bonus Billing Unit';
             DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
         }
         field(11; "Last Billing at"; Date)
         {
-            Caption = 'Last Billing at', comment = 'DEU="letzte Abrechnung am"';
+            Caption = 'Last Billing at';
             DataClassification = CustomerContent;
 
             trigger OnValidate()
@@ -104,10 +104,10 @@ table 5266052 "lbt Bonus Contract"
         }
         field(12; "Bonus Scale Type"; Option)
         {
-            Caption = 'Bonus Scale Type', comment = 'DEU="Bonusstaffelart"';
+            Caption = 'Bonus Scale Type';
             DataClassification = CustomerContent;
             OptionMembers = "Sales Qty.","Sales (LCY)";
-            OptionCaption = 'Sales Qty.,Sales (LCY)', comment = 'DEU="Absatz,Umsatz"';
+            OptionCaption = 'Sales Qty.,Sales (LCY)';
 
             trigger OnValidate()
             begin
@@ -127,101 +127,101 @@ table 5266052 "lbt Bonus Contract"
         }
         field(13; "Bonus Recipient"; Code[20])
         {
-            Caption = 'Bonus Recipient', comment = 'DEU="Bonusempfänger"';
+            Caption = 'Bonus Recipient';
             DataClassification = CustomerContent;
             TableRelation = Customer."No.";
         }
         field(14; "Bonus Group"; Code[20])
         {
-            Caption = 'Bonus Group', comment = 'DEU="Bonusgruppe"';
+            Caption = 'Bonus Group';
             DataClassification = CustomerContent;
             TableRelation = "lbt Bonus Group"."Code";
         }
         field(16; "No. of Customers"; Integer)
         {
-            Caption = 'No. of Customers', comment = 'DEU="Anzahl Debitoren"';
+            Caption = 'No. of Customers';
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = count("lbt Bonus Customer" where(Contract = field("No.")));
         }
         field(17; "Balance of Bonus"; Decimal)
         {
-            Caption = 'Balance of Bonus', comment = 'DEU="Saldo Bonus"';
+            Caption = 'Balance of Bonus';
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Bonus)));
         }
         field(18; "Balance of Reserve"; Decimal)
         {
-            Caption = 'Balance of Reserve', comment = 'DEU="Saldo Rückstellungen"';
+            Caption = 'Balance of Reserve';
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Reserve)));
         }
         field(19; "Balance of Liquid Reserves"; Decimal)
         {
-            Caption = 'Balance of Liquidation Reserve', comment = 'DEU="Saldo Rückstellungsauflösung"';
+            Caption = 'Balance of Liquidation Reserve';
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const("Liquidation of Reserves")));
         }
         field(20; "No. of Dimensions"; Integer)
         {
-            Caption = 'No. of Dimensions', comment = 'DEU="Anzahl der Dimensionen"';
+            Caption = 'No. of Dimensions';
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = count("lbt Bonus Contract Dimension" where(Contract = field("No.")));
         }
         field(21; "No. of Attribute"; Integer)
         {
-            Caption = 'No. of Attribute', comment = 'DEU="Anzahl der Attribute"';
+            Caption = 'No. of Attribute';
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = count("lbt BonusContractAttribute" where(Contract = field("No.")));
         }
         field(22; "Reserve Item Charge"; Code[20])
         {
-            Caption = 'Reserve Item Charge', comment = 'DEU="Rückstellungszuschlag"';
+            Caption = 'Reserve Item Charge';
             DataClassification = CustomerContent;
             TableRelation = "Item Charge"."No.";
         }
         field(23; "Accounting Item Charge"; Code[20])
         {
-            Caption = 'Accounting Item Charge', comment = 'DEU="Abrechnungszuschlag"';
+            Caption = 'Accounting Item Charge';
             DataClassification = CustomerContent;
             TableRelation = "Item Charge"."No.";
         }
         field(24; "Pmt. Discount %"; Decimal)
         {
-            Caption = 'Payment Discount %', comment = 'DEU="Skonto %"';
+            Caption = 'Payment Discount %';
             DataClassification = CustomerContent;
         }
         field(25; "Discount %"; Decimal)
         {
-            Caption = 'Discount %', comment = 'DEU="Rabatt %"';
+            Caption = 'Discount %';
             DataClassification = CustomerContent;
         }
         field(26; "Process No."; Code[20])
         {
-            Caption = 'Process No.', comment = 'DEU="Prozessnr."';
+            Caption = 'Process No.';
             DataClassification = CustomerContent;
             TableRelation = "lbt Process";
         }
         field(27; Description; Text[50])
         {
-            Caption = 'Description', comment = 'DEU="Beschreibung"';
+            Caption = 'Description';
             DataClassification = CustomerContent;
         }
         field(28; "No. Series"; Code[20])
         {
-            Caption = 'No. Series', comment = 'DEU="Nummernserie"';
+            Caption = 'No. Series';
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
             Editable = false;
         }
         field(29; "Customer Reserve Cr.Memo"; Code[20])
         {
-            Caption = 'Customer Reserve Cr.Memo', comment = 'DEU="Debitor Rückstellungsgutschrift"';
+            Caption = 'Customer Reserve Cr.Memo';
             DataClassification = CustomerContent;
             TableRelation = Customer;
         }

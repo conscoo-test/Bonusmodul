@@ -2,7 +2,7 @@ page 5266058 "lbt Bonus Group"
 {
     PageType = List;
     SourceTable = "lbt Bonus Group";
-    Caption = 'Bonus Group', comment = 'DEU="Bonusgruppe"';
+    Caption = 'Bonus Group';
     UsageCategory = None;
 
     layout
@@ -13,12 +13,12 @@ page 5266058 "lbt Bonus Group"
             {
                 field("Code"; Rec."Code")
                 {
-                    ToolTip = 'Here you can group bonus contracts by code.', comment = 'DEU="Hier können Sie Bonusverträge nach Codes gruppieren."';
+                    ToolTip = 'Here you can group bonus contracts by code.';
                     ApplicationArea = All;
                 }
                 field(Description; Rec."Description")
                 {
-                    ToolTip = 'Here you can enter a description of the group.', comment = 'DEU="Hier können Sie eine Beschreibung der Gruppe hinterlegen."';
+                    ToolTip = 'Here you can enter a description of the group.';
                     ApplicationArea = All;
                 }
             }

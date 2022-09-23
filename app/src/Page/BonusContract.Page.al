@@ -1,6 +1,6 @@
 page 5266053 "lbt Bonus Contract"
 {
-    Caption = 'Bonus Contract Card', Comment = 'DEU="Bonusvertragskarte"';
+    Caption = 'Bonus Contract Card';
     PageType = Card;
     SourceTable = "lbt Bonus Contract";
     UsageCategory = none;
@@ -11,11 +11,11 @@ page 5266053 "lbt Bonus Contract"
         {
             group(General)
             {
-                Caption = 'General', Comment = 'DEU="Allgemein"';
+                Caption = 'General';
 
                 field(Contract; Rec."No.")
                 {
-                    ToolTip = 'This field is filled with the contract number of the bonus agreement.', Comment = 'DEU="Dieses Feld wird mit der Vertragsnummer der Bonusvereinbarung gefüllt"';
+                    ToolTip = 'This field is filled with the contract number of the bonus agreement.';
                     ApplicationArea = All;
 
                     trigger OnAssistEdit()
@@ -31,22 +31,22 @@ page 5266053 "lbt Bonus Contract"
                 }
                 field("Bonus Group"; Rec."Bonus Group")
                 {
-                    ToolTip = 'This field is filled with the Bonus group.', Comment = 'DEU="Dieses Feld wird mit der Bonusgruppe gefüllt"';
+                    ToolTip = 'This field is filled with the Bonus group.';
                     ApplicationArea = All;
                 }
                 field("Billing Period"; Rec."Billing Period")
                 {
-                    ToolTip = 'This field specifies the interval in which billing takes place.', Comment = 'DEU="Dieses Feld gibt den Abrechnungsintervall an."';
+                    ToolTip = 'This field specifies the interval in which billing takes place.';
                     ApplicationArea = All;
                 }
                 field("Valid from"; Rec."Valid from")
                 {
-                    ToolTip = 'Specifies from when the bonus contract is valid.', Comment = 'DEU="Gibt an, ab wann der Bonusvertrag gültig ist."';
+                    ToolTip = 'Specifies from when the bonus contract is valid.';
                     ApplicationArea = All;
                 }
                 field("Valid to"; Rec."Valid to")
                 {
-                    ToolTip = 'Specifies the expiry date of the bonus contract.', Comment = 'DEU="Gibt an, wann der Bonusvertrag abläuft."';
+                    ToolTip = 'Specifies the expiry date of the bonus contract.';
                     ApplicationArea = All;
                 }
                 field("Process No."; Rec."Process No.")
@@ -56,10 +56,10 @@ page 5266053 "lbt Bonus Contract"
                 }
                 group(Billing)
                 {
-                    Caption = 'Billing', Comment = 'DEU="Abrechnung"';
+                    Caption = 'Billing';
                     field("Bonus Billing Type"; Rec."Bonus Billing Type")
                     {
-                        ToolTip = 'Here you select the specification of settlement type.', Comment = 'DEU="Hier wählt man die Abrechnungsart aus."';
+                        ToolTip = 'Here you select the specification of settlement type.';
                         ApplicationArea = All;
 
                         trigger OnValidate()
@@ -69,28 +69,28 @@ page 5266053 "lbt Bonus Contract"
                     }
                     field("Bonus Billing Unit"; Rec."Bonus Billing Unit")
                     {
-                        ToolTip = 'If it is specified in the contract that the settlement type is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.', Comment = 'DEU="Ist im Vertrag hinterlegt, dass die Bonusabrechnungsart anhand der Option „Betrag je Einheit“ durchgeführt wird, muss eine Artikeleinheit zur Berechnung hinterlegt werden."';
+                        ToolTip = 'If it is specified in the contract that the settlement type is carried out using the "Amount per unit" option, an article unit must be specified for the calculation.';
                         ApplicationArea = All;
                         Enabled = BonusBillingType_Enable;
                     }
                     field("Bonus Scale Type"; Rec."Bonus Scale Type")
                     {
-                        ToolTip = 'Indicates whether the bonus calculation is based on sales or turnover.', Comment = 'DEU="Gibt an, ob die Bonusberechnung auf Grundlage des Absatzes oder des Umsatzes erfolgt"';
+                        ToolTip = 'Indicates whether the bonus calculation is based on sales or turnover.';
                         ApplicationArea = All;
                     }
                     field("Last Billing at"; Rec."Last Billing at")
                     {
-                        ToolTip = 'Is filled by the system after bonus settlement.', Comment = 'DEU="Wird nach der Bonusabrechnung vom System gefüllt."';
+                        ToolTip = 'Is filled by the system after bonus settlement.';
                         ApplicationArea = All;
                     }
                     field("Bonus Recipient"; Rec."Bonus Recipient")
                     {
-                        ToolTip = 'Here you enter the customer who receives the bonus and is used to create the sales credit memo.', Comment = 'DEU="Hier wird der Debitor eingetragen, der den Bonus empfängt und bei der Erstellung der Verkaufsgutschrift verwendet wird."';
+                        ToolTip = 'Here you enter the customer who receives the bonus and is used to create the sales credit memo.';
                         ApplicationArea = All;
                     }
                     field("Accounting Item Charge"; Rec."Accounting Item Charge")
                     {
-                        ToolTip = 'Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.', Comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der bei der Erstellung der Abrechnungsgutschrift verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus ‚Gutschrift‘ gewählt ist."';
+                        ToolTip = 'Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.';
                         ApplicationArea = All;
                     }
                 }
@@ -98,7 +98,7 @@ page 5266053 "lbt Bonus Contract"
             group(Reserve)
 
             {
-                Caption = 'Reserve', Comment = 'DEU="Rückstellung"';
+                Caption = 'Reserve';
                 field("Customer Reserve Cr.Memo"; Rec."Customer Reserve Cr.Memo")
                 {
                     ToolTip = 'Customer Reserve Cr.Memo';
@@ -106,7 +106,7 @@ page 5266053 "lbt Bonus Contract"
                 }
                 field("Reserve Value"; Rec."Reserve Value")
                 {
-                    ToolTip = 'Specification of a reserve value.', Comment = 'DEU="Angabe eines Rückstellungswertes."';
+                    ToolTip = 'Specification of a reserve value.';
                     ApplicationArea = All;
                 }
                 field("Reserve Type"; Rec."Reserve Type")
@@ -129,7 +129,7 @@ page 5266053 "lbt Bonus Contract"
                 }
                 field("last Reserve at"; Rec."Last Reserve at")
                 {
-                    ToolTip = 'Is filled by the system after the bonus reserve.', Comment = 'DEU="Wird nach der Bonusrückstellung vom System gefüllt."';
+                    ToolTip = 'Is filled by the system after the bonus reserve.';
                     ApplicationArea = All;
                 }
                 field("Reserve Item Charge"; Rec."Reserve Item Charge")
@@ -147,7 +147,7 @@ page 5266053 "lbt Bonus Contract"
             }
             group(Discounts)
             {
-                Caption = 'Discounts', Comment = 'DEU="Rabatte/Skonto"';
+                Caption = 'Discounts';
                 field("Discount %"; Rec."Discount %")
                 {
                     ToolTip = 'Here you can enter a percentage value to calculate an additional discount.',
@@ -181,8 +181,8 @@ page 5266053 "lbt Bonus Contract"
         {
             action("Create Reserves")
             {
-                Caption = 'Create Reserves', Comment = 'DEU="Rückstellungen erzeugen"';
-                ToolTip = 'This function starts the reset run.', Comment = 'DEU="Mit dieser Funktion wird der Rückstellungslauf gestartet."';
+                Caption = 'Create Reserves';
+                ToolTip = 'This function starts the reset run.';
                 ApplicationArea = all;
                 Image = CashReceiptJournal;
 
@@ -199,8 +199,8 @@ page 5266053 "lbt Bonus Contract"
 
             action("Exlode Reservation")
             {
-                Caption = 'Exlode Reservation', Comment = 'DEU="Rückstellungen auflösen"';
-                ToolTip = 'You use this function to cancel a reserve.', Comment = 'DEU="Mit dieser Funktion lösen Sie eine Rückstellung auf."';
+                Caption = 'Exlode Reservation';
+                ToolTip = 'You use this function to cancel a reserve.';
                 ApplicationArea = All;
                 Image = CashFlow;
 
@@ -229,7 +229,7 @@ page 5266053 "lbt Bonus Contract"
 
             action("Bonus Run")
             {
-                Caption = 'Bonus Run', Comment = 'DEU="Bonuslauf"';
+                Caption = 'Bonus Run';
                 ToolTip = 'This triggers the report for settling bonus contracts. The screen opens prefiltered for the respective contract.',
                     Comment = 'DEU="Hiermit wird  der  Report  zum  Abrechnen  der Bonusverträge angestoßen. Die Maske öffnet sich dabei vorgefiltert auf den jeweiligen Vertrag."';
                 ApplicationArea = All;
@@ -248,8 +248,8 @@ page 5266053 "lbt Bonus Contract"
 
             action(Reservation)
             {
-                Caption = 'Reservation', Comment = 'DEU="Rückstellungen"';
-                ToolTip = 'Prints a report, listing all the accrual items created for this contract.', Comment = 'DEU="Druckt einen Bericht an, in dem alle für diesen Vertrag erzeugten Rückstellungsposten aufgelistet werden."';
+                Caption = 'Reservation';
+                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
                 ApplicationArea = All;
                 Image = Print;
 
@@ -261,8 +261,8 @@ page 5266053 "lbt Bonus Contract"
 
             action("Bonus Cr. Memo")
             {
-                Caption = 'Bonus Cr. Memo', Comment = 'DEU="Bonusgutschriften"';
-                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.', Comment = 'DEU="Druckt einen Bericht, in dem alle für diesen Vertrag verbuchten Bonusabrechnungsposten aufgelistet werden."';
+                Caption = 'Bonus Cr. Memo';
+                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
                 ApplicationArea = All;
                 Image = Print;
 
@@ -276,8 +276,8 @@ page 5266053 "lbt Bonus Contract"
         {
             action(Customer)
             {
-                Caption = 'Customer', Comment = 'DEU="Debitoren"';
-                ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.', Comment = 'DEU="Öffnet die Übersicht der zum Bonusvertrag hinterlegten Kunden. Die Übersicht  ist  dabei dieselbe, wie  die, die  in den Bonusverträgen unter ‚Anzahl Kunden‘ befindet."';
+                Caption = 'Customer';
+                ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.';
                 ApplicationArea = All;
                 Image = Customer;
                 RunObject = page "lbt Bonus Customers";
@@ -290,8 +290,8 @@ page 5266053 "lbt Bonus Contract"
 
             action(Dimension)
             {
-                Caption = 'Dimension', Comment = 'DEU="Dimensionen"';
-                ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.', Comment = 'DEU="Hier können je Vertrag Vorgabedimensionen für die Rückstellung hinterlegt werden. Die hier angelegten Dimensionen werden beim Rückstellungslauf in die Buchungszeilen geschrieben."';
+                Caption = 'Dimension';
+                ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.';
                 ApplicationArea = All;
                 Image = Dimensions;
                 RunObject = page "lbt Bonus Contract Dimension";
@@ -303,8 +303,8 @@ page 5266053 "lbt Bonus Contract"
             }
             action("Bonus Contract Attribute")
             {
-                Caption = 'Attribute Filter', Comment = 'DEU="Attribute Filter"';
-                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.', Comment = 'DEU="Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen."';
+                Caption = 'Attribute Filter';
+                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.';
                 ApplicationArea = All;
                 Image = "Filter";
                 RunObject = page "lbt BonusContrAttributeFilter";
@@ -317,8 +317,8 @@ page 5266053 "lbt Bonus Contract"
 
             action(BonusGroup)
             {
-                Caption = 'Bonus Group', Comment = 'DEU="Bonusgruppe"';
-                ToolTip = 'Here you can group bonus contracts.', Comment = 'DEU="Hier können Sie Bonusverträge gruppieren."';
+                Caption = 'Bonus Group';
+                ToolTip = 'Here you can group bonus contracts.';
                 ApplicationArea = All;
                 Image = Group;
                 RunObject = page "lbt Bonus Group";
@@ -328,8 +328,8 @@ page 5266053 "lbt Bonus Contract"
             }
             action("Bonus Entry")
             {
-                Caption = 'Bonus Entry', Comment = 'DEU="Bonusposten"';
-                ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.', Comment = 'DEU="Bei jeder Erzeugung von Rückstellungen oder Bonusabrechnungen werden im Hintergrund Bonusposten geschrieben. Diese Bonusposten können über diese Schaltfläche je Bonusvertrag aufgerufen werden."';
+                Caption = 'Bonus Entry';
+                ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.';
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbt Bonus Entry";
@@ -341,8 +341,8 @@ page 5266053 "lbt Bonus Contract"
             }
             action(Navigate)
             {
-                Caption = 'Navigate', Comment = 'DEU="Navigate"';
-                ToolTip = 'This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).', Comment = 'DEU="Über diesen Button werden alle Datensätze angezeigt, die mit der Vorgangsnummer des Bonusvertrages gekennzeichnet sind. Dazu gehören gebuchte und ungebuchte Belege (Rechnung, Gutschrift), sowie die verschiedenen Posten (Sachposten, Debitorenposten, Bonusposten)."';
+                Caption = 'Navigate';
+                ToolTip = 'This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).';
                 ApplicationArea = All;
                 Image = Navigate;
 

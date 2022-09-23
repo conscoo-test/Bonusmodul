@@ -4,7 +4,7 @@ page 5266063 "lbt Explode Bonus Reservation"
     PageType = Worksheet;
     SourceTable = "lbt Bonus Entry";
     SourceTableView = where("Entry Type" = const(Reserve));
-    Caption = 'Explode Bonus Reservation', Comment = 'DEU="Bonusrückstellungen auflösen"';
+    Caption = 'Explode Bonus Reservation';
     UsageCategory = None;
 
     layout
@@ -76,7 +76,7 @@ page 5266063 "lbt Explode Bonus Reservation"
         {
             action("Explode Reservation")
             {
-                Caption = 'Explode Reservation', Comment = 'DEU="Rückstellungen auflösen"';
+                Caption = 'Explode Reservation';
                 ApplicationArea = All;
                 Image = CashFlow;
                 ToolTip = 'explode reservation';

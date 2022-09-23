@@ -2,7 +2,7 @@ report 5266052 "lbt Bonus Run"
 {
     UsageCategory = Tasks;
     ApplicationArea = All;
-    Caption = 'Bonus Run', Comment = 'DEU="Bonuslauf"';
+    Caption = 'Bonus Run';
 
     dataset
     {
@@ -122,14 +122,14 @@ report 5266052 "lbt Bonus Run"
                     field("Date From"; DateFrom)
                     {
                         ApplicationArea = All;
-                        Caption = 'Date from', Comment = 'DEU="Datum von"';
+                        Caption = 'Date from';
                         ToolTip = 'Specifies Date from';
                     }
 
                     field("Date To"; DateTo)
                     {
                         ApplicationArea = All;
-                        Caption = 'Date to', Comment = 'DEU="Datum bis"';
+                        Caption = 'Date to';
                         ToolTip = 'Specifies Date to';
                         trigger OnValidate()
                         begin
@@ -140,7 +140,7 @@ report 5266052 "lbt Bonus Run"
                     field("Reverse Posting Date"; ReversePostingDate)
                     {
                         ApplicationArea = All;
-                        Caption = 'Posting date of exploding bonus reserves', Comment = 'DEU="Buchungsdatum für Rückstellungsauflösung"';
+                        Caption = 'Posting date of exploding bonus reserves';
                         ToolTip = 'Specifies date of exploding bonus reserves';
                     }
                 }
@@ -270,11 +270,11 @@ report 5266052 "lbt Bonus Run"
         BonusAmount: Decimal;
 
 
-        AccountingPeriodMissingErr: Label 'Please input the accounting period.', Comment = 'DEU="Geben Sie den Abrechnungszeitraum ein."';
-        CustomerProgressTxt: Label 'Customer    #1##############\', Comment = 'DEU="Debitor        #1##############\"';
-        ContractProgressTxt: Label 'Bonus Contract #2##############\', Comment = 'DEU="Bonusvertrag   #2##############\"';
-        SalesDocProgressTxt: Label 'Sales Document #3##############', Comment = 'DEU="Verkaufsbeleg  #3##############"';
-        BonusCreditMemoLbl: Label 'Bonus Credit Memo', Comment = 'DEU="Bonusgutschrift"';
-        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1', Comment = 'DEU="Bonusabrchn. gem. Vertrag %1"';
-        AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = 'DEU="Abrechnungszeitraum %1 bis %2"';
+        AccountingPeriodMissingErr: Label 'Please input the accounting period.';
+        CustomerProgressTxt: Label 'Customer    #1##############\';
+        ContractProgressTxt: Label 'Bonus Contract #2##############\';
+        SalesDocProgressTxt: Label 'Sales Document #3##############';
+        BonusCreditMemoLbl: Label 'Bonus Credit Memo';
+        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1';
+        AccountingPeriodTxt: Label 'Accounting Period %1 to %2';
 }

@@ -1,12 +1,12 @@
 codeunit 5266053 "lbt Bonus Assisted Setup"
 {
     var
-        SetupLbl: Label 'Setup LeBit Bonus', Comment = 'DEU="LeBit Bonus einrichten"';
+        SetupLbl: Label 'Setup LeBit Bonus';
         NotificationIdTxt: Label '9c975145-0d59-400f-8eaa-dd087f421cb8';
-        NotificationMsg: Label 'The setup for LeBit Bonus is incomplete', Comment = 'DEU="Die Einrichtung für LeBit Bonus ist unvollständig."';
-        ActionMsg: Label 'To Wizard...', Comment = 'DEU="Zum Wizard..."';
+        NotificationMsg: Label 'The setup for LeBit Bonus is incomplete';
+        ActionMsg: Label 'To Wizard...';
         ExtensionGuidTxt: Label '1716d377-7e43-42d6-ae75-ad9977f24a69';
-    // AppLbl: Label 'LeBit Bonus', Comment = 'DEU="LeBit Bonus"';
+    // AppLbl: Label 'LeBit Bonus';
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Guided Experience", 'OnRegisterAssistedSetup', '', false, false)]
     local procedure OnRegisterAssistedSetup();

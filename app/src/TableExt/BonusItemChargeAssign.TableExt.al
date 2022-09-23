@@ -122,6 +122,6 @@ tableextension 5266062 "lbt Bonus Item Charge Assign." extends "Item Charge Assi
 
     var
         Text001Msg: Label 'You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.'
-                  , Comment = 'DEU="Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen."';
+                  ;
 
 }

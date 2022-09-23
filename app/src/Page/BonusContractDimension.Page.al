@@ -1,6 +1,6 @@
 page 5266055 "lbt Bonus Contract Dimension"
 {
-    Caption = 'Bonus Contract Dimensions', comment = 'DEU="Bonusvertrag Dimensionen"';
+    Caption = 'Bonus Contract Dimensions';
     PageType = List;
     SourceTable = "lbt Bonus Contract Dimension";
     UsageCategory = None;
@@ -11,15 +11,15 @@ page 5266055 "lbt Bonus Contract Dimension"
         {
             repeater(General)
             {
-                Caption = 'General', comment = 'DEU="Allgemein"';
+                Caption = 'General';
                 field("Dimension Code"; Rec."Dimension Code")
                 {
-                    ToolTip = 'You can define default dimensions for the provision for each contract.', comment = 'DEU=" Je Vertrag können Vorgabedimensionen für die Rückstellung hinterlegt werden. "';
+                    ToolTip = 'You can define default dimensions for the provision for each contract.';
                     ApplicationArea = All;
                 }
                 field("Dimension Value"; Rec."Dimension Value")
                 {
-                    ToolTip = 'Here you can define the departments or the Value of the dimensions.', comment = 'DEU="Hier können Sie den Wert der Dimension oder Abteilung angeben."';
+                    ToolTip = 'Here you can define the departments or the Value of the dimensions.';
                     ApplicationArea = All;
                 }
             }

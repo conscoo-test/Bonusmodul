@@ -3,7 +3,7 @@ page 5266059 "lbt Bonus Customers"
 
     PageType = List;
     SourceTable = "lbt Bonus Customer";
-    Caption = 'Bonus Customers', comment = 'DEU="Bonus Debitoren"';
+    Caption = 'Bonus Customers';
     UsageCategory = None;
 
     layout
@@ -15,22 +15,22 @@ page 5266059 "lbt Bonus Customers"
 
                 field(Customer; Rec."Customer No.")
                 {
-                    ToolTip = 'This field is filled with the customer from the bonus contract.', comment = 'DEU="Dieses Feld wird mit dem Debitor aus dem Bonusvertrag gefüllt."';
+                    ToolTip = 'This field is filled with the customer from the bonus contract.';
                     ApplicationArea = All;
                 }
                 field("Ship-to Code"; Rec."Ship-to Code")
                 {
-                    ToolTip = 'This field is filled with the delivery contact from the bonus contract.', comment = 'DEU="Dieses Feld wird mit dem Lieferkontakt aus dem Bonusvertrag gefüllt."';
+                    ToolTip = 'This field is filled with the delivery contact from the bonus contract.';
                     ApplicationArea = All;
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
-                    ToolTip = 'This field is filled with the customer name from the bonus contract.', comment = 'DEU="Dieses Feld wird mit dem Debitornamen aus dem Bonusvertrag gefüllt."';
+                    ToolTip = 'This field is filled with the customer name from the bonus contract.';
                     ApplicationArea = All;
                 }
                 field("Ship-to Name"; Rec."Ship-to Name")
                 {
-                    ToolTip = 'This field is filled with the delivery contact name from the bonus contract.', comment = 'DEU="Dieses Feld wird mit dem Lieferkontaktnamen aus dem Bonusvertrag gefüllt."';
+                    ToolTip = 'This field is filled with the delivery contact name from the bonus contract.';
                     ApplicationArea = All;
                 }
             }

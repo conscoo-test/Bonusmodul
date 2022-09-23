@@ -3,20 +3,20 @@ table 5266058 "lbt Bonus Customer"
     DataClassification = CustomerContent;
     LookupPageId = "lbt Bonus Customers";
     DrillDownPageId = "lbt Bonus Customers";
-    Caption = 'Bonus Customer', Comment = 'DEU="Bonusdebitor"';
+    Caption = 'Bonus Customer';
 
     fields
     {
         field(1; Contract; Code[20])
         {
-            Caption = 'Contract', comment = 'DEU="Vertrag"';
+            Caption = 'Contract';
             DataClassification = CustomerContent;
             TableRelation = "lbt Bonus Contract"."No.";
         }
 
         field(2; "Customer No."; Code[20])
         {
-            Caption = 'Customer', comment = 'DEU="Debitor"';
+            Caption = 'Customer';
             DataClassification = CustomerContent;
             TableRelation = Customer."No.";
 
@@ -31,7 +31,7 @@ table 5266058 "lbt Bonus Customer"
 
         field(3; "Ship-to Code"; Code[10])
         {
-            Caption = 'Ship-to Code', comment = 'DEU="Lief. an Code"';
+            Caption = 'Ship-to Code';
             DataClassification = CustomerContent;
             TableRelation = "Ship-to Address".Code where("Customer No." = field("Customer No."));
 
@@ -46,13 +46,13 @@ table 5266058 "lbt Bonus Customer"
         }
         field(4; "Customer Name"; Text[100])
         {
-            Caption = 'Customer Name', comment = 'DEU="Debitorname"';
+            Caption = 'Customer Name';
             DataClassification = CustomerContent;
         }
 
         field(5; "Ship-to Name"; Text[100])
         {
-            Caption = 'Ship-to Name', comment = 'DEU="Lieferung an Name"';
+            Caption = 'Ship-to Name';
             DataClassification = CustomerContent;
         }
     }

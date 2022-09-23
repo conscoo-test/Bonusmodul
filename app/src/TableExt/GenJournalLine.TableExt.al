@@ -4,7 +4,7 @@ tableextension 5266052 "lbt Gen. Journal Line" extends "Gen. Journal Line" //81
     {
         field(5266051; "lbt Bonus Entry No"; Integer)
         {
-            Caption = 'Bonus Entry No.', comment = 'DEU="Bonusposten Lfd. Nr."';
+            Caption = 'Bonus Entry No.';
             DataClassification = CustomerContent;
         }
     }

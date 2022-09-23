@@ -3,7 +3,7 @@ page 5266056 "lbt BonusContrAttributeFilter"
 
     PageType = List;
     SourceTable = "lbt BonusContractAttribute";
-    Caption = 'Bonus Contract Attribute Filter', comment = 'DEU="Bonusvertrag Attribute Filter"';
+    Caption = 'Bonus Contract Attribute Filter';
     UsageCategory = None;
 
     layout
@@ -12,30 +12,30 @@ page 5266056 "lbt BonusContrAttributeFilter"
         {
             repeater(General)
             {
-                Caption = 'General', comment = 'DEU="Allgemein"';
+                Caption = 'General';
                 field("Attribute ID"; Rec."Attribute ID")
                 {
-                    ToolTip = 'Specifies which attributes the article has.', comment = 'DEU="Gibt an, welche Attribute der Artikel besitzt."';
+                    ToolTip = 'Specifies which attributes the article has.';
                     ApplicationArea = All;
                 }
                 field("Attribute Name"; Rec."Attribute Name")
                 {
-                    ToolTip = 'Specifies the Name of the article.This field will be filled automatically, if a attribute ID is defined.', comment = 'DEU="Gibt den Namen der Attribute an. Wird automatisch befüllt, sobald eine Attribute ID angegeben wird."';
+                    ToolTip = 'Specifies the Name of the article.This field will be filled automatically, if a attribute ID is defined.';
                     ApplicationArea = All;
                 }
                 field("Attribute Type"; Rec."Attribute Type")
                 {
-                    ToolTip = 'Specifies the type of attribute value.This field will be filled automatically, if a attribute ID is defined.', comment = 'DEU="Gibt an, um welche Art von Attributwert es sich handelt.Wird automatisch befüllt, sobald eine Attribute ID angegeben wird."';
+                    ToolTip = 'Specifies the type of attribute value.This field will be filled automatically, if a attribute ID is defined.';
                     ApplicationArea = All;
                 }
                 field("Attribute Value ID"; Rec."Attribute Value ID")
                 {
-                    ToolTip = 'Specifies the item attribute value.', comment = 'DEU="Gibt den Artikelattributwert an."';
+                    ToolTip = 'Specifies the item attribute value.';
                     ApplicationArea = All;
                 }
                 field("Attribute Value Name"; Rec."Attribute Value Name")
                 {
-                    ToolTip = 'Indicates which attribute is involved. This field will be filled automatically, if a attribute Value ID is defined.', comment = 'DEU="Gibt an, um welches Attribut es sich handelt. Wird automatisch befüllt, sobald ein Attributwert angegeben wird."';
+                    ToolTip = 'Indicates which attribute is involved. This field will be filled automatically, if a attribute Value ID is defined.';
                     ApplicationArea = All;
                 }
 

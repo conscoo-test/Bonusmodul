@@ -1,7 +1,7 @@
 page 5266062 "lbt Bonus Assisted Setup"
 {
     PageType = NavigatePage;
-    Caption = 'LeBit Bonus Setup', Comment = 'DEU="LeBit Bonus Einrichtung"';
+    Caption = 'LeBit Bonus Setup';
     SourceTable = "lbt Bonus Setup";
 
     layout
@@ -38,7 +38,7 @@ page 5266062 "lbt Bonus Assisted Setup"
                 Visible = CurrentStep = 1;
                 group(Welcome)
                 {
-                    Caption = 'Welcome', Comment = 'DEU="Willkommen bei der Einrichtung von LeBit Bonus"'; //TODO: 
+                    Caption = 'Welcome'; //TODO: 
 
 
                     group(Introduction)
@@ -52,7 +52,7 @@ page 5266062 "lbt Bonus Assisted Setup"
 
                 group(LetsGo)
                 {
-                    Caption = 'Lets go', Comment = 'DEU="Los gehts"';
+                    Caption = 'Lets go';
 
                     group("Next")
                     {
@@ -76,7 +76,7 @@ page 5266062 "lbt Bonus Assisted Setup"
                 // field("lbt No. Series Commission"; "lbt No. Series Commission")
                 // {
                 //     ApplicationArea = All;
-                //     ToolTip = 'english', Comment = 'DEU="deutsch"'; //TODO:
+                //     ToolTip = 'english'; //TODO:
                 // }
             }
             group(Step3)
@@ -86,12 +86,12 @@ page 5266062 "lbt Bonus Assisted Setup"
                 // field("lbt Journal Template"; "lbt Journal Template")
                 // {
                 //     ApplicationArea = All;
-                //     ToolTip = 'english', Comment = 'DEU="deutsch"'; //TODO:
+                //     ToolTip = 'english'; //TODO:
                 // }
                 // field("lbt Journal Batch"; "lbt Journal Batch")
                 // {
                 //     ApplicationArea = All;
-                //     ToolTip = 'english', Comment = 'DEU="deutsch"'; //TODO:
+                //     ToolTip = 'english'; //TODO:
                 // }
             }
         }
@@ -105,8 +105,8 @@ page 5266062 "lbt Bonus Assisted Setup"
             action(ActionBack)
             {
                 ApplicationArea = All;
-                ToolTip = 'One record back', comment = 'DEU="Einen Datensatz zurück"';
-                Caption = 'Back', Comment = 'DEU="Zurück"';
+                ToolTip = 'One record back';
+                Caption = 'Back';
                 Enabled = BackEnabled;
                 Visible = BackEnabled;
                 Image = PreviousRecord;
@@ -120,8 +120,8 @@ page 5266062 "lbt Bonus Assisted Setup"
             action(ActionNext)
             {
                 ApplicationArea = All;
-                ToolTip = 'One record forward', comment = 'DEU="Einen Datensatz vor"';
-                Caption = 'Next', Comment = 'DEU="Weiter"';
+                ToolTip = 'One record forward';
+                Caption = 'Next';
                 Enabled = NextEnabled;
                 Image = NextRecord;
                 InFooterBar = true;
@@ -133,8 +133,8 @@ page 5266062 "lbt Bonus Assisted Setup"
             action(ActionFinish)
             {
                 ApplicationArea = All;
-                ToolTip = 'Complete the configuration', comment = 'DEU="Konfiguration abschließen"';
-                Caption = 'Finish', Comment = 'DEU="Fertig stellen"';
+                ToolTip = 'Complete the configuration';
+                Caption = 'Finish';
                 Enabled = FinishEnabled;
                 Image = Approve;
                 InFooterBar = true;

@@ -1,25 +1,25 @@
 table 5266051 "lbt Bonus Setup"
 {
     DataClassification = ToBeClassified;
-    Caption = 'Bonus Setup', comment = 'DEU="Bonus Einrichtung"';
+    Caption = 'Bonus Setup';
     fields
     {
         field(1; "Primary Key"; Code[10])
         {
-            Caption = 'Primary Key', comment = 'DEU="Primärschlüssel"';
+            Caption = 'Primary Key';
             DataClassification = CustomerContent;
         }
 
         field(2; "Reserve Mode"; Option)
         {
-            Caption = 'Reserve Mode', comment = 'DEU="Rückstellungsmodus"';
+            Caption = 'Reserve Mode';
             DataClassification = CustomerContent;
             OptionMembers = Journal,CreditMemo;
-            OptionCaption = 'Journal,CreditMemo', comment = 'DEU="Buchblatt,Gutschrift"';
+            OptionCaption = 'Journal,CreditMemo';
         }
         field(3; "Gen.Jnl.Templ.BonusReserve"; Code[10])
         {
-            Caption = 'Gen. Jnl. Templ. Bonus Reserve', comment = 'DEU="BuchblVorl. Bonusrückstellung"';
+            Caption = 'Gen. Jnl. Templ. Bonus Reserve';
             DataClassification = CustomerContent;
             TableRelation = "Gen. Journal Template";
             #region OnLookup
@@ -40,33 +40,33 @@ table 5266051 "lbt Bonus Setup"
 
         field(4; "Gen. Jnl. Bonus Reserve"; Code[10])
         {
-            Caption = 'Gen. Jnl. Bonus Reserve', comment = 'DEU="Buchblatt Bonusrückstellung"';
+            Caption = 'Gen. Jnl. Bonus Reserve';
             TableRelation = "Gen. Journal Batch".Name where("Journal Template Name" = field("Gen.Jnl.Templ.BonusReserve"));
             DataClassification = CustomerContent;
         }
         field(5; "Revers Reserve Mode"; Option)
         {
-            Caption = 'Revers Reserve Mode', Comment = 'DEU="Rückstellungsauflösung Modus"';
+            Caption = 'Revers Reserve Mode';
             DataClassification = CustomerContent;
             OptionMembers = automatic,"Journal Batch";
-            OptionCaption = 'automatic,Journal Batch', Comment = 'DEU="automatisch,Buchblatt"';
+            OptionCaption = 'automatic,Journal Batch';
         }
         field(6; GenJnlBonusReversReserve; Code[20])
         {
-            Caption = ' Gen. Jnl. Bonus Revers Reserve', Comment = 'DEU="Buchblatt Bonusrückstellungsauflösung"';
+            Caption = ' Gen. Jnl. Bonus Revers Reserve';
             DataClassification = CustomerContent;
             TableRelation = "Gen. Journal Batch".Name where("Journal Template Name" = field("Gen.Jnl.Templ.BonusReserve"));
         }
         field(7; "Cust Gr. Reserve Cr. Memo"; Code[20])
         {
-            Caption = 'Cust Gr. Reserve Cr. Memo', comment = 'DEU="Debitor-Buch.gr. für Rückstell-Gutschr."';
+            Caption = 'Cust Gr. Reserve Cr. Memo';
             DataClassification = CustomerContent;
             TableRelation = "Customer Posting Group".Code;
         }
 
         field(8; "Bus.Post.Gr.f.Res.Cr.Memo"; Code[20])
         {
-            Caption = 'Bus. Post. Group for Reserve Credit Memo', comment = 'DEU="Gesch.bu.gr. f. Rückstell-Gutschrift"';
+            Caption = 'Bus. Post. Group for Reserve Credit Memo';
 
             DataClassification = CustomerContent;
             TableRelation = "Gen. Business Posting Group".Code;
@@ -74,34 +74,34 @@ table 5266051 "lbt Bonus Setup"
 
         field(9; "Bonus Contract Nos."; Code[20])
         {
-            Caption = 'Bonus Contract Nos.', comment = 'DEU="Bonusnummern"';
+            Caption = 'Bonus Contract Nos.';
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
 
         field(10; "Reason Code"; Code[10])
         {
-            Caption = 'Reason Code', comment = 'DEU="Ursachencode"';
+            Caption = 'Reason Code';
             DataClassification = CustomerContent;
             TableRelation = "Reason Code";
         }
 
         // field(11; "Customer Reserve Cr.Memo"; Code[20])
         // {
-        //     Caption = 'Customer Reserve Cr.Memo', comment = 'DEU="Debitor Rückstellungsgutschrift"';
+        //     Caption = 'Customer Reserve Cr.Memo';
         //     DataClassification = CustomerContent;
         //     TableRelation = Customer;
         // }
 
         field(12; "Reserve Cr.Memo Nos."; Code[20])
         {
-            Caption = 'Reserve Cr.Memo Nos.', comment = 'DEU="Rückstellungsgutschriftnummern"';
+            Caption = 'Reserve Cr.Memo Nos.';
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
         field(13; "Billing Cr.Memo Nos."; Code[20])
         {
-            Caption = 'Billing Cr.Memo Nos.', comment = 'DEU="Abrechnungssgutschriftnummern"';
+            Caption = 'Billing Cr.Memo Nos.';
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
