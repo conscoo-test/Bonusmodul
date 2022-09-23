@@ -11,7 +11,7 @@ table 5266054 "lbt Bonus Contract Dimension"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            TableRelation = "lbt Bonus Contract"."No.";
         }
         field(2; "Dimension Code"; Code[20])
         {

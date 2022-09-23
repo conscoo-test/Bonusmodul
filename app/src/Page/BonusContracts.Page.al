@@ -1,11 +1,11 @@
-page 5266052 "lbt Bonus Contract List"
+page 5266052 "lbt Bonus Contracts"
 {
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "lbt Bonus Contract";
-    CardPageId = "lbt Bonus Contract Card";
-    Caption = 'Bonus Contract', comment = 'DEU="Bonusverträge"';
+    CardPageId = "lbt Bonus Contract";
+    Caption = 'Bonus Contracts', comment = 'DEU="Bonusverträge"';
 
     layout
     {
@@ -13,7 +13,7 @@ page 5266052 "lbt Bonus Contract List"
         {
             repeater(General)
             {
-                field(Contract; Rec."Contract")
+                field(Contract; Rec."No.")
                 {
                     ToolTip = 'This field contains the name of the bonus contract.', comment = 'DEU="In diesem Feld befindet sich der Name des bonusvertrags. "';
                     ApplicationArea = All;
@@ -45,7 +45,7 @@ page 5266052 "lbt Bonus Contract List"
             part("Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
             {
                 ApplicationArea = all;
-                SubPageLink = Contract = field(Contract);
+                SubPageLink = "No." = field("No.");
                 Visible = true;
             }
         }
@@ -65,8 +65,8 @@ page 5266052 "lbt Bonus Contract List"
                 trigger OnAction();
                 begin
                     BonusContractRec.Reset();
-                    BonusContractRec.SetCurrentKey("Contract");
-                    BonusContractRec.SetRange("Contract", Rec."Contract");
+                    BonusContractRec.SetCurrentKey("No.");
+                    BonusContractRec.SetRange("No.", Rec."No.");
                     Clear(BonusReserves);
                     BonusReserves.SetTableView(BonusContractRec);
                     BonusReserves.RunModal();
@@ -130,7 +130,7 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = Customer;
                 RunObject = Page "lbt Bonus Customers";
-                RunPageLink = "Customer No." = field("Contract");
+                RunPageLink = "Customer No." = field("No.");
 
                 trigger OnAction();
                 begin
@@ -144,7 +144,7 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = Dimensions;
                 RunObject = Page "lbt Bonus Contract Dimension";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
                 begin
@@ -157,7 +157,7 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = "Filter";
                 RunObject = Page "lbt BonusContrAttributeFilter";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
                 begin
@@ -182,7 +182,7 @@ page 5266052 "lbt Bonus Contract List"
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = Page "lbt Bonus Entry";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
                 begin

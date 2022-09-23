@@ -8,13 +8,13 @@ report 5266051 "lbt Bonus Reserves"
     {
         dataitem("Bonus Contract"; "lbt Bonus Contract")
         {
-            DataItemTableView = sorting(Contract);
-            RequestFilterFields = Contract, "Billing Period";
+            DataItemTableView = sorting("No.");
+            RequestFilterFields = "No.", "Billing Period";
 
             dataitem("Bonus Customers"; "lbt Bonus Customer")
             {
                 DataItemTableView = sorting(Contract, "Customer No.", "Ship-to Code");
-                DataItemLink = Contract = field(Contract);
+                DataItemLink = Contract = field("No.");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
@@ -83,7 +83,7 @@ report 5266051 "lbt Bonus Reserves"
                                     CreateBonusEntryForFixedAmount(SalesLine);
                                 end;
                             BonusSetup."Reserve Mode"::Journal:
-                                CreateJournalLine(0, "Bonus Contract".Contract, 0, "Bonus Customers"."Customer No.", "Bonus Contract"."Reserve Value", 0,
+                                CreateJournalLine(0, "Bonus Contract"."No.", 0, "Bonus Customers"."Customer No.", "Bonus Contract"."Reserve Value", 0,
                                   0, 0);
                         end;
                     end;
@@ -100,7 +100,7 @@ report 5266051 "lbt Bonus Reserves"
             trigger OnAfterGetRecord()
             begin
                 Dialog.Update(1, "No. of Customers");
-                Dialog.Update(2, Contract);
+                Dialog.Update(2, "No.");
 
                 if not CheckDates() then
                     CurrReport.Skip();
@@ -298,7 +298,7 @@ report 5266051 "lbt Bonus Reserves"
         ItemAttributeValueMapping: Record "Item Attribute Value Mapping";
     begin
         exit(true);
-        BonusContractAttribute.SetRange(Contract, "Bonus Contract".Contract);
+        BonusContractAttribute.SetRange(Contract, "Bonus Contract"."No.");
         if BonusContractAttribute.FindSet() then
             repeat
                 if ItemAttributeValueMapping.Get(Database::Item, ItemNo, BonusContractAttribute."Attribute ID") then begin
@@ -593,7 +593,7 @@ report 5266051 "lbt Bonus Reserves"
         SalesLine."Document Type" := SalesHeader."Document Type";
         SalesLine."Document No." := SalesHeader."No.";
         SalesLine."Line No." := SalesLineNo;
-        SalesLine.Description := StrSubstNo(BonusAccountingLbl, "Bonus Contract".Contract);
+        SalesLine.Description := StrSubstNo(BonusAccountingLbl, "Bonus Contract"."No.");
         SalesLine.Insert();
 
         SalesLineNo += 10000;
@@ -659,7 +659,7 @@ report 5266051 "lbt Bonus Reserves"
                 GenJournalLine.Validate("Bal. Account No.", CustomerPostingGroup."lbt Bonus Reserve Bal. Account");
                 GenJournalLine."Gen. Bus. Posting Group" := '';
                 GenJournalLine."Gen. Prod. Posting Group" := '';
-                GenJournalLine.Description := BonusReserveForLbl + Format("Bonus Contract".Contract);
+                GenJournalLine.Description := BonusReserveForLbl + Format("Bonus Contract"."No.");
                 GenJournalLine.Validate(Amount, Amt * vz);
                 GenJournalLine."lbt Process No." := "Bonus Contract"."Process No.";
                 GenJournalLine."lbt Bonus Entry No" := BonusEntryNo;
@@ -697,7 +697,7 @@ report 5266051 "lbt Bonus Reserves"
         TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
         DimensionManagement: Codeunit DimensionManagement;
     begin
-        BonusContractDimensions.SetRange(Contract, "Bonus Contract".Contract);
+        BonusContractDimensions.SetRange(Contract, "Bonus Contract"."No.");
         if BonusContractDimensions.FindSet() then
             repeat
                 TempDimensionSetEntry.Init();

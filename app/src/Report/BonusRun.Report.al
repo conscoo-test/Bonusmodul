@@ -11,7 +11,7 @@ report 5266052 "lbt Bonus Run"
 
             dataitem("Bonus Customer"; "lbt Bonus Customer")
             {
-                DataItemLink = "Contract" = field("Contract");
+                DataItemLink = "Contract" = field("No.");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
@@ -225,7 +225,7 @@ report 5266052 "lbt Bonus Run"
         SalesHeader.SetRange("Posting Description", BonusCreditMemoLbl);
         if not SalesHeader.FindFirst() then begin
             InitSalesHeader(SalesHeader);
-            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."Contract"));
+            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."No."));
             CreateTextLine(SalesHeader, 20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
         end;
     end;

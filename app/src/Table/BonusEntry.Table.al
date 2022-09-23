@@ -25,12 +25,11 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract".Contract;
+            TableRelation = "lbt Bonus Contract"."No.";
         }
         field(4; "Bonus Contract Line"; Integer)
         {
-            Caption = 'Bonus Contract Line', comment = 'DEU="Bonusvetragszeilen"';
-            ;
+            Caption = 'Bonus Contract Line', comment = 'DEU="Bonusvertragszeilen"';
             DataClassification = CustomerContent;
             TableRelation = "lbt Bonus Contract Line" where(Contract = field(Contract));
         }

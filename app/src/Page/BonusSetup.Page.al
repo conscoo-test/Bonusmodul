@@ -110,7 +110,7 @@ page 5266051 "lbt Bonus Setup"
                 ToolTip = 'Here you can open the bonus contract list.', comment = 'DEU="Hier öffnen Sie die Liste der Bonusverträge."';
                 ApplicationArea = All;
                 Image = ContractPayment;
-                RunObject = page "lbt Bonus Contract List";
+                RunObject = page "lbt Bonus Contracts";
             }
         }
     }

@@ -1,4 +1,4 @@
-page 5266053 "lbt Bonus Contract Card"
+page 5266053 "lbt Bonus Contract"
 {
     Caption = 'Bonus Contract Card', Comment = 'DEU="Bonusvertragskarte"';
     PageType = Card;
@@ -13,7 +13,7 @@ page 5266053 "lbt Bonus Contract Card"
             {
                 Caption = 'General', Comment = 'DEU="Allgemein"';
 
-                field(Contract; Rec."Contract")
+                field(Contract; Rec."No.")
                 {
                     ToolTip = 'This field is filled with the contract number of the bonus agreement.', Comment = 'DEU="Dieses Feld wird mit der Vertragsnummer der Bonusvereinbarung gefüllt"';
                     ApplicationArea = All;
@@ -29,7 +29,6 @@ page 5266053 "lbt Bonus Contract Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the description';
                 }
-
                 field("Bonus Group"; Rec."Bonus Group")
                 {
                     ToolTip = 'This field is filled with the Bonus group.', Comment = 'DEU="Dieses Feld wird mit der Bonusgruppe gefüllt"';
@@ -50,18 +49,11 @@ page 5266053 "lbt Bonus Contract Card"
                     ToolTip = 'Specifies the expiry date of the bonus contract.', Comment = 'DEU="Gibt an, wann der Bonusvertrag abläuft."';
                     ApplicationArea = All;
                 }
-                field("Contract Type"; Rec."Contract Type")
-                {
-                    ToolTip = 'Here you can choose whether the bonus item is a bonus or an advertising subsidy.', Comment = 'DEU="Hier kann man wählen, ob es sich bei dem Bonusposten um einen Bonus oder einen Werbekostenzuschuss handelt. "';
-                    ApplicationArea = All;
-                }
-
                 field("Process No."; Rec."Process No.")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the process no.';
                 }
-
                 group(Billing)
                 {
                     Caption = 'Billing', Comment = 'DEU="Abrechnung"';
@@ -81,7 +73,6 @@ page 5266053 "lbt Bonus Contract Card"
                         ApplicationArea = All;
                         Enabled = BonusBillingType_Enable;
                     }
-
                     field("Bonus Scale Type"; Rec."Bonus Scale Type")
                     {
                         ToolTip = 'Indicates whether the bonus calculation is based on sales or turnover.', Comment = 'DEU="Gibt an, ob die Bonusberechnung auf Grundlage des Absatzes oder des Umsatzes erfolgt"';
@@ -102,9 +93,7 @@ page 5266053 "lbt Bonus Contract Card"
                         ToolTip = 'Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.', Comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der bei der Erstellung der Abrechnungsgutschrift verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus ‚Gutschrift‘ gewählt ist."';
                         ApplicationArea = All;
                     }
-
                 }
-
             }
             group(Reserve)
 
@@ -119,7 +108,6 @@ page 5266053 "lbt Bonus Contract Card"
                 {
                     ToolTip = 'Specification of a reserve value.', Comment = 'DEU="Angabe eines Rückstellungswertes."';
                     ApplicationArea = All;
-
                 }
                 field("Reserve Type"; Rec."Reserve Type")
                 {
@@ -150,14 +138,12 @@ page 5266053 "lbt Bonus Contract Card"
                         Comment = 'DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist"';
                     ApplicationArea = All;
                     Enabled = ItemChargeEnabled;
-
                 }
-
             }
             part(Bonusstaffeln; "lbt Bonus Contract Line")
             {
                 ApplicationArea = All;
-                SubPageLink = "Contract" = field("Contract");
+                SubPageLink = "Contract" = field("No.");
             }
             group(Discounts)
             {
@@ -179,20 +165,18 @@ page 5266053 "lbt Bonus Contract Card"
             }
         }
 
-
         area(Factboxes)
         {
             part("Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
             {
                 ApplicationArea = all;
-                SubPageLink = Contract = field(Contract);
+                SubPageLink = "No." = field("No.");
             }
         }
     }
 
     actions
     {
-
         area(Processing)
         {
             action("Create Reserves")
@@ -207,7 +191,7 @@ page 5266053 "lbt Bonus Contract Card"
                     BonusContract: Record "lbt Bonus Contract";
                     BonusReserves: Report "lbt Bonus Reserves";
                 begin
-                    BonusContract.SetRange(Contract, Rec.Contract);
+                    BonusContract.SetRange("No.", Rec."No.");
                     BonusReserves.SetTableView(BonusContract);
                     BonusReserves.RunModal();
                 end;
@@ -228,7 +212,7 @@ page 5266053 "lbt Bonus Contract Card"
                 begin
                     BonusSetup.Get();
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
-                        BonusEntry.SetRange(Contract, Rec.Contract);
+                        BonusEntry.SetRange(Contract, Rec."No.");
                         BonusEntry.SetRange("Entry Type", BonusEntry."Entry Type"::Reserve);
                         //TODO: BonusEntry.SetRange(Reversed, false);
                         BonusEntry.SetFilter("Posted Amount", '<>%1', 0);
@@ -243,7 +227,6 @@ page 5266053 "lbt Bonus Contract Card"
                 end;
             }
 
-
             action("Bonus Run")
             {
                 Caption = 'Bonus Run', Comment = 'DEU="Bonuslauf"';
@@ -257,7 +240,7 @@ page 5266053 "lbt Bonus Contract Card"
                     BonusContract: Record "lbt Bonus Contract";
                     BonusRun: Report "lbt Bonus Run";
                 begin
-                    BonusContract.SetRange(Contract, Rec.Contract);
+                    BonusContract.SetRange("No.", Rec."No.");
                     BonusRun.SetTableView(BonusContract);
                     BonusRun.RunModal();
                 end;
@@ -298,11 +281,10 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = Customer;
                 RunObject = page "lbt Bonus Customers";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction();
                 begin
-
                 end;
             }
 
@@ -313,11 +295,10 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = Dimensions;
                 RunObject = page "lbt Bonus Contract Dimension";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
                 begin
-
                 end;
             }
             action("Bonus Contract Attribute")
@@ -327,11 +308,10 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = "Filter";
                 RunObject = page "lbt BonusContrAttributeFilter";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
                 begin
-
                 end;
             }
 
@@ -344,7 +324,6 @@ page 5266053 "lbt Bonus Contract Card"
                 RunObject = page "lbt Bonus Group";
                 trigger OnAction()
                 begin
-
                 end;
             }
             action("Bonus Entry")
@@ -354,11 +333,10 @@ page 5266053 "lbt Bonus Contract Card"
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbt Bonus Entry";
-                RunPageLink = "Contract" = field("Contract");
+                RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
                 begin
-
                 end;
             }
             action(Navigate)
@@ -404,8 +382,5 @@ page 5266053 "lbt Bonus Contract Card"
         BonusReserveType_Enable := Rec."Reserve Type" = Rec."Reserve Type"::"Amount per Unit";
         BonusSetup.Get();
         ItemChargeEnabled := (BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo);
-
     end;
-
-
 }

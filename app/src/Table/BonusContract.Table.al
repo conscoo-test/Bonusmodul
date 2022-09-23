@@ -2,24 +2,26 @@ table 5266052 "lbt Bonus Contract"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contract', comment = 'DEU="Bonusvertrag"';
-    LookupPageId = "lbt Bonus Contract List";
-    DrillDownPageId = "lbt Bonus Contract List";
+    LookupPageId = "lbt Bonus Contracts";
+    DrillDownPageId = "lbt Bonus Contracts";
 
     fields
     {
-        field(1; Contract; Code[20])
+        field(1; "No."; Code[20])
         {
-            Caption = 'Contract', comment = 'DEU="Vertrag"';
+            Caption = 'No.';
             DataClassification = CustomerContent;
-            NotBlank = true;
-        }
 
+            trigger OnValidate()
+            begin
+                TestNoSeries();
+            end;
+        }
         field(2; "Valid from"; Date)
         {
             Caption = 'Valid from', comment = 'DEU="Gültig von"';
             DataClassification = CustomerContent;
         }
-
         field(3; "Valid to"; Date)
         {
             Caption = 'Valid to', comment = 'DEU="Gültig bis"';
@@ -56,13 +58,11 @@ table 5266052 "lbt Bonus Contract"
             DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
         }
-
         field(8; "Last Reserve at"; Date)
         {
             Caption = 'Last Reserve at', comment = 'DEU="letzte Rückstellung am"';
             DataClassification = CustomerContent;
         }
-
         field(9; "Bonus Billing Type"; Option)
         {
             Caption = 'Bonus Billing Type', comment = 'DEU="Bonusabrechnungsart"';
@@ -78,7 +78,6 @@ table 5266052 "lbt Bonus Contract"
                 end;
             end;
         }
-
         field(10; "Bonus Billing Unit"; Code[10])
         {
             Caption = 'Bonus Billing Unit', comment = 'DEU="Bonusabrechnungseinheit"';
@@ -99,14 +98,10 @@ table 5266052 "lbt Bonus Contract"
                 SalesHeaderRec.SetRange("Document Type", SalesHeaderRec."Document Type"::"Credit Memo");
                 SalesHeaderRec.SetRange("Sell-to Customer No.", "Bonus Recipient");
                 SalesHeaderRec.SetRange("Posting Description", 'Bonusgutschrift');
-                ///LBIS02
                 if not SalesHeaderRec.IsEmpty() then
                     Error(Text001Msg);
-
-
             end;
         }
-
         field(12; "Bonus Scale Type"; Option)
         {
             Caption = 'Bonus Scale Type', comment = 'DEU="Bonusstaffelart"';
@@ -117,10 +112,10 @@ table 5266052 "lbt Bonus Contract"
             trigger OnValidate()
             begin
                 if "Bonus Scale Type" <> xRec."Bonus Scale Type" then
-                    BonusEntry.SetRange(Contract, Contract);
+                    BonusEntry.SetRange(Contract, "No.");
                 if not BonusEntry.IsEmpty() then
                     Error(Text005Msg);
-                BonusContractLineRec.SetRange(Contract, Contract);
+                BonusContractLineRec.SetRange(Contract, "No.");
 
                 if not BonusContractLineRec.IsEmpty() then
                     Error(Text004Msg);
@@ -128,11 +123,8 @@ table 5266052 "lbt Bonus Contract"
                 if "Bonus Scale Type" = "Bonus Scale Type"::"Sales (LCY)" then
                     if "Bonus Billing Type" <> "Bonus Billing Type"::"%" then
                         FieldError("Bonus Billing Type");
-
             end;
-
         }
-
         field(13; "Bonus Recipient"; Code[20])
         {
             Caption = 'Bonus Recipient', comment = 'DEU="Bonusempfänger"';
@@ -145,82 +137,65 @@ table 5266052 "lbt Bonus Contract"
             DataClassification = CustomerContent;
             TableRelation = "lbt Bonus Group"."Code";
         }
-
-        field(15; "Contract Type"; Option)
-        {
-            Caption = 'Contract Type', comment = 'DEU="Vertragsart"';
-            DataClassification = CustomerContent;
-            OptionMembers = Bonus,"Advertising Costs";
-            OptionCaption = 'Bonus,Advertising Costs', comment = 'DEU="Bonus,Werbekosten"';
-        }
-
         field(16; "No. of Customers"; Integer)
         {
             Caption = 'No. of Customers', comment = 'DEU="Anzahl Debitoren"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt Bonus Customer" where(Contract = field(Contract)));
-
+            CalcFormula = count("lbt Bonus Customer" where(Contract = field("No.")));
         }
         field(17; "Balance of Bonus"; Decimal)
         {
             Caption = 'Balance of Bonus', comment = 'DEU="Saldo Bonus"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field(Contract), "Entry Type" = const(Bonus)));
-
+            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Bonus)));
         }
         field(18; "Balance of Reserve"; Decimal)
         {
             Caption = 'Balance of Reserve', comment = 'DEU="Saldo Rückstellungen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field(Contract), "Entry Type" = const(Reserve)));
+            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Reserve)));
         }
-
-
         field(19; "Balance of Liquid Reserves"; Decimal)
         {
             Caption = 'Balance of Liquidation Reserve', comment = 'DEU="Saldo Rückstellungsauflösung"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field(Contract), "Entry Type" = const("Liquidation of Reserves")));
+            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const("Liquidation of Reserves")));
         }
         field(20; "No. of Dimensions"; Integer)
         {
             Caption = 'No. of Dimensions', comment = 'DEU="Anzahl der Dimensionen"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt Bonus Contract Dimension" where(Contract = field(Contract)));
+            CalcFormula = count("lbt Bonus Contract Dimension" where(Contract = field("No.")));
         }
         field(21; "No. of Attribute"; Integer)
         {
             Caption = 'No. of Attribute', comment = 'DEU="Anzahl der Attribute"';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt BonusContractAttribute" where(Contract = field(Contract)));
+            CalcFormula = count("lbt BonusContractAttribute" where(Contract = field("No.")));
         }
-
         field(22; "Reserve Item Charge"; Code[20])
         {
             Caption = 'Reserve Item Charge', comment = 'DEU="Rückstellungszuschlag"';
             DataClassification = CustomerContent;
             TableRelation = "Item Charge"."No.";
         }
-
         field(23; "Accounting Item Charge"; Code[20])
         {
             Caption = 'Accounting Item Charge', comment = 'DEU="Abrechnungszuschlag"';
             DataClassification = CustomerContent;
             TableRelation = "Item Charge"."No.";
         }
-
         field(24; "Pmt. Discount %"; Decimal)
         {
             Caption = 'Payment Discount %', comment = 'DEU="Skonto %"';
             DataClassification = CustomerContent;
         }
-
         field(25; "Discount %"; Decimal)
         {
             Caption = 'Discount %', comment = 'DEU="Rabatt %"';
@@ -237,24 +212,23 @@ table 5266052 "lbt Bonus Contract"
             Caption = 'Description', comment = 'DEU="Beschreibung"';
             DataClassification = CustomerContent;
         }
-
         field(28; "No. Series"; Code[20])
         {
             Caption = 'No. Series', comment = 'DEU="Nummernserie"';
             DataClassification = CustomerContent;
+            TableRelation = "No. Series";
+            Editable = false;
         }
-
         field(29; "Customer Reserve Cr.Memo"; Code[20])
         {
             Caption = 'Customer Reserve Cr.Memo', comment = 'DEU="Debitor Rückstellungsgutschrift"';
             DataClassification = CustomerContent;
             TableRelation = Customer;
         }
-
     }
     keys
     {
-        key(PK; Contract)
+        key(PK; "No.")
         {
             Clustered = true;
         }
@@ -265,30 +239,30 @@ table 5266052 "lbt Bonus Contract"
         BonusSetup: Record "lbt Bonus Setup";
         NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
-        if Contract = '' then begin
+        if "No." = '' then begin
             BonusSetup.Get();
             BonusSetup.TestField("Bonus Contract Nos.");
-            NoSeriesManagement.InitSeries(BonusSetup."Bonus Contract Nos.", xRec."No. Series", 0D, Contract, "No. Series");
-            SetProcessNo();
+            NoSeriesManagement.InitSeries(BonusSetup."Bonus Contract Nos.", xRec."No. Series", 0D, "No.", "No. Series");
         end;
+        SetProcessNo();
     end;
 
     trigger OnDelete()
     begin
-        if Contract <> '' then begin
-            BonusEntry.SetRange(Contract, Contract);
+        if "No." <> '' then begin
+            BonusEntry.SetRange(Contract, "No.");
             if not BonusEntry.IsEmpty() then
-                Error(Text002Msg, Contract);
-            BonusContractLineRec.SetRange(Contract, Contract);
+                Error(Text002Msg, "No.");
+            BonusContractLineRec.SetRange(Contract, "No.");
             if not BonusContractLineRec.IsEmpty() then
                 BonusContractLineRec.DeleteAll();
-            BonusContractDimension.SetRange(Contract, Contract);
+            BonusContractDimension.SetRange(Contract, "No.");
             if not BonusContractDimension.IsEmpty() then
                 BonusContractDimension.DeleteAll();
-            BonusContractAttribute.SetRange(Contract, Contract);
+            BonusContractAttribute.SetRange(Contract, "No.");
             if not BonusContractAttribute.IsEmpty() then
                 BonusContractAttribute.DeleteAll();
-            BonusCustomer.SetRange(Contract, Contract);
+            BonusCustomer.SetRange(Contract, "No.");
             if not BonusCustomer.IsEmpty() then
                 BonusCustomer.DeleteAll();
         end;
@@ -298,7 +272,7 @@ table 5266052 "lbt Bonus Contract"
     var
         Process: Record "lbt Process";
     begin
-        "Process No." := Contract;
+        "Process No." := "No.";
         if not Process.Get("Process No.") then begin
             Process.Init();
             Process."No." := "Process No.";
@@ -306,7 +280,7 @@ table 5266052 "lbt Bonus Contract"
         end;
     end;
 
-    procedure AssistEdit(OldBonusContract: Record "lbt Bonus Contract"): Boolean
+    procedure AssistEdit(xBonusContract: Record "lbt Bonus Contract"): Boolean
     var
         BonusContract: Record "lbt Bonus Contract";
         BonusSetup: Record "lbt Bonus Setup";
@@ -315,13 +289,30 @@ table 5266052 "lbt Bonus Contract"
         BonusContract := Rec;
         BonusSetup.Get();
         BonusSetup.TestField("Bonus Contract Nos.");
-        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", OldBonusContract."No. Series", "No. Series") then begin
-            NoSeriesManagement.SetSeries(Contract);
+        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", xBonusContract."No. Series", "No. Series") then begin
+            NoSeriesManagement.SetSeries("No.");
             Rec := BonusContract;
-            SetProcessNo();
+            // SetProcessNo();
             exit(true);
         end;
+    end;
 
+    local procedure TestNoSeries()
+    var
+        BonusSetup: Record "lbt Bonus Setup";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+        IsHandled: Boolean;
+    begin
+        IsHandled := false;
+        OnBeforeTestNoSeries(Rec, xRec, IsHandled);
+        if IsHandled then
+            exit;
+
+        if "No." <> xRec."No." then begin
+            BonusSetup.Get();
+            NoSeriesManagement.TestManual(BonusSetup."Bonus Contract Nos.");
+            "No. Series" := '';
+        end;
     end;
 
     var
@@ -342,4 +333,8 @@ table 5266052 "lbt Bonus Contract"
         Text005Msg: Label 'There are already Bonus Contract Entries. You cannot modify the contract.',
         Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden."';
 
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeTestNoSeries(BonusContract: Record "lbt Bonus Contract"; xBonusContract: Record "lbt Bonus Contract"; var IsHandled: Boolean)
+    begin
+    end;
 }

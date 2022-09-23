@@ -47,7 +47,7 @@ codeunit 5266052 "lbt Bonus Management"
         BonusEntry.Init();
         BonusEntry."Entry No." := EntryNo + 1;
         BonusEntry."Entry Type" := EntryType;
-        BonusEntry."Contract" := BonusContract."Contract";
+        BonusEntry."Contract" := BonusContract."No.";
         BonusEntry."Customer" := BonusCustomer."Customer No.";
         BonusEntry."Ship-to Code" := BonusCustomer."Ship-to Code";
         BonusEntry."Process No." := BonusContract."Process No.";

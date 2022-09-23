@@ -11,7 +11,7 @@ table 5266055 "lbt BonusContractAttribute"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            TableRelation = "lbt Bonus Contract"."No.";
         }
         field(2; ID; Integer)
         {

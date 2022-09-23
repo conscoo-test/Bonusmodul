@@ -11,7 +11,7 @@ table 5266053 "lbt Bonus Contract Line"
         {
             Caption = 'Contract', comment = 'DEU="Vertrag"';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            TableRelation = "lbt Bonus Contract"."No.";
         }
 
         field(2; "Line No."; Integer)
