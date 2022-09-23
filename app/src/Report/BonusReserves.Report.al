@@ -1,7 +1,8 @@
 report 5266051 "lbt Bonus Reserves"
 {
     Caption = 'Bonus Reserves';
-    UsageCategory = None;
+    UsageCategory = Tasks;
+    ApplicationArea = All;
     ProcessingOnly = true;
 
     dataset
@@ -39,7 +40,6 @@ report 5266051 "lbt Bonus Reserves"
                         CalcFromSalesInvoice();
                     end;
                 }
-
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
                     DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
@@ -140,7 +140,6 @@ report 5266051 "lbt Bonus Reserves"
                         ToolTip = 'In Consideration of the end date, all invoice and credit memo lines of the period are used, which are also checked for relevance of the corresponding contract conditions (calculation rules).';
                         ApplicationArea = All;
                     }
-
                 }
             }
         }
@@ -148,7 +147,6 @@ report 5266051 "lbt Bonus Reserves"
 
     trigger OnInitReport()
     begin
-
     end;
 
     trigger OnPreReport()
@@ -177,7 +175,6 @@ report 5266051 "lbt Bonus Reserves"
             LineNo := GenJournalLine."Line No."
         else
             LineNo := 0;
-
     end;
 
     local procedure CreateBonusEntryForFixedAmount(var SalesLine: Record "Sales Line")
@@ -198,20 +195,15 @@ report 5266051 "lbt Bonus Reserves"
     local procedure OpenPage()
     var
         GenJournalLine: Record "Gen. Journal Line";
-        SalesHeader: Record "Sales Header";
-        SalesCreditMemoPage: Page "Sales Credit Memo";
+        PageManagement: Codeunit "Page Management";
         GeneralJournal: Page "General Journal";
-
     begin
         case BonusSetup."Reserve Mode" of
             BonusSetup."Reserve Mode"::CreditMemo:
                 begin
                     if not CrMemoHeaderCreated then
                         exit;
-                    SalesHeader.SetRange("Document Type", SalesHeader."Document Type");
-                    SalesHeader.SetRange("No.", SalesHeader."No.");
-                    SalesCreditMemoPage.SetTableView(SalesHeader);
-                    SalesCreditMemoPage.Run();
+                    PageManagement.PageRun(SalesHeader);
                 end;
             BonusSetup."Reserve Mode"::Journal:
                 begin
@@ -221,7 +213,6 @@ report 5266051 "lbt Bonus Reserves"
                     GeneralJournal.Run();
                 end;
         end;
-
     end;
 
     local procedure CheckDates(): Boolean
@@ -286,7 +277,7 @@ report 5266051 "lbt Bonus Reserves"
     //     // PostDocItemUnitRec.SetRange("Document Line No.", PostedSalesInvLineRec."Line No.");
     //     // PostDocItemUnitRec.SetRange("Item Unit", "Bonus Contract"."Unit Reserves Base");
 
-    //     // if PostDocItemUnitRec.FindFirst() then 
+    //     // if PostDocItemUnitRec.FindFirst() then
     //     //   exit(PostDocItemUnitRec.Quantity)
     //     exit(quantity);
     // end;
@@ -398,7 +389,6 @@ report 5266051 "lbt Bonus Reserves"
                     ValueEntry.SetRange("Document No.", "Sales Cr.Memo Header"."No.");
                     l_Sign := -1;
                 end;
-
         end;
         ValueEntry.SetRange("Document Line No.", p_LineNo);
         if ValueEntry.FindSet() then
@@ -417,12 +407,9 @@ report 5266051 "lbt Bonus Reserves"
                             if SalesInvoiceLine.Get(ValueEntry2."Document No.", ValueEntry2."Document Line No.") then
                                 DocAmtInclVAT += l_Sign * Round(ValueEntry2."Sales Amount (Actual)" *
                                           (100 + SalesInvoiceLine."VAT %") / 100, 0.0001)
-
                         until ValueEntry2.Next() = 0;
                 end;
-
             until ValueEntry.Next() = 0;
-
     end;
 
     local procedure CreateForReserveMode_CreditMemo(TableNo: Integer; DocNo: Code[20]; p_LineNo: Integer; Qty: Decimal; BonusAmt: Decimal; PmtDiscAmt: Decimal; DocAmount: Decimal; DiscAmt: Decimal)
@@ -473,14 +460,11 @@ report 5266051 "lbt Bonus Reserves"
                 SalesLine.Modify();
             end;
         end;
-
     end;
 
     local procedure CreateBonusCrMemoLine(TableNo: Integer; DocNoP: Code[20]; BonusAmt: Decimal; var SalesLineRec: Record "Sales Line")
-    var
-        SalesHeader: Record "Sales Header";
     begin
-        CreateCrMemoHeader(SalesHeader);
+        CreateCrMemoHeader();
 
         SalesLineRec.Init();
         SalesLineRec."Document Type" := SalesHeader."Document Type";
@@ -503,7 +487,7 @@ report 5266051 "lbt Bonus Reserves"
                 SalesLineRec."Description 2" := FixedAmountLbl;
         end;
         SalesLineRec."lbt Process No." := "Bonus Contract"."Process No.";
-        //TODO: 
+        //TODO:
         // if Sign = 1 then begin
         //     SalesLine."Shortcut Dimension 1 Code" := PostedSalesInvLineRec."Shortcut Dimension 1 Code";
         //     SalesLine."Shortcut Dimension 2 Code" := PostedSalesInvLineRec."Shortcut Dimension 2 Code";
@@ -536,7 +520,7 @@ report 5266051 "lbt Bonus Reserves"
                 // ItemChargeAssignmentSales."Item No." := PostedSalesInvLineRec."No.";
                 // ItemChargeAssignmentSales.Description := PostedSalesInvLineRec.Description;
                 ItemChargeAssignmentSales."Applies-to Doc. Type" := ItemChargeAssignmentSales."Applies-to Doc. Type"::Shipment;
-            //end 
+            //end
             Database::"Sales Cr.Memo Line":
                 //begin
                 // ItemChargeAssignmentSales."Item No." := PostedCrMemoLineRec."No.";
@@ -552,8 +536,7 @@ report 5266051 "lbt Bonus Reserves"
         ItemChargeAssignmentSales.Insert();
     end;
 
-
-    local procedure CreateCrMemoHeader(var SalesHeader: Record "Sales Header")
+    local procedure CreateCrMemoHeader()
     var
         SalesLine: Record "Sales Line";
         NoSeriesManagement: Codeunit NoSeriesManagement;
@@ -709,7 +692,6 @@ report 5266051 "lbt Bonus Reserves"
         exit(DimensionManagement.GetDimensionSetID(TempDimensionSetEntry));
     end;
 
-
     local procedure CalcFromCrMemo()
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
@@ -771,8 +753,6 @@ report 5266051 "lbt Bonus Reserves"
             CreateJournalLine(TableNo, DocNo, DocLineNo, "Bonus Customers"."Customer No.", BonusAmt, 0, 0, 0);
     end;
 
-
-
     local procedure CalcPercentage(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; Amount: Decimal; AmtInclVat: Decimal)
     var
         DocAmtInclVAT: Decimal;
@@ -808,9 +788,9 @@ report 5266051 "lbt Bonus Reserves"
                             -DiscAmt, -PmtDiscAmt);
     end;
 
-
     var
         BonusSetup: Record "lbt Bonus Setup";
+        SalesHeader: Record "Sales Header";
         BonusManagement: Codeunit "lbt Bonus Management";
         Dialog: Dialog;
         LineNo: Integer;
@@ -834,6 +814,3 @@ report 5266051 "lbt Bonus Reserves"
         BonusAccountingLbl: Label 'Bonus Accounting accordingly Bonus Contract %1.';
         AccountingPeriodLbl: Label 'Accounting Period %1 to %2';
 }
-
-
-

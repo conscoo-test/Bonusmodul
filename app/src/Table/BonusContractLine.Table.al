@@ -3,8 +3,6 @@ table 5266053 "lbt Bonus Contract Line"
     Caption = 'bonus scales';
     DataClassification = ToBeClassified;
 
-
-
     fields
     {
         field(1; Contract; Code[20])
@@ -13,7 +11,6 @@ table 5266053 "lbt Bonus Contract Line"
             DataClassification = CustomerContent;
             TableRelation = "lbt Bonus Contract"."No.";
         }
-
         field(2; "Line No."; Integer)
         {
             Caption = 'Line No.';
@@ -45,7 +42,6 @@ table 5266053 "lbt Bonus Contract Line"
             Caption = 'Bonus Scale Type';
             OptionMembers = "Sales Qty.","Sales (LCY)'";
             OptionCaption = 'Sales Qty.,Sales (LCY)';
-
             DataClassification = CustomerContent;
         }
     }
@@ -69,6 +65,4 @@ table 5266053 "lbt Bonus Contract Line"
         if "Bonus Scale Type" = "Bonus Scale Type"::"Sales Qty." then
             TestField("Item Unit of Measure");
     end;
-
-
 }

@@ -5,7 +5,6 @@ table 5266056 "lbt Bonus Entry"
     LookupPageId = "lbt Bonus Entry";
     DrillDownPageId = "lbt Bonus Entry";
 
-
     fields
     {
         field(1; "Entry No."; Integer)
@@ -13,7 +12,6 @@ table 5266056 "lbt Bonus Entry"
             Caption = 'Entry No.';
             DataClassification = CustomerContent;
         }
-
         field(2; "Entry Type"; Option)
         {
             Caption = 'Entry Type';
@@ -75,12 +73,9 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Bonus Document Type';
             DataClassification = CustomerContent;
-
-
             OptionMembers = ,"Sales Invoice","Sales Credit Memo";
             OptionCaption = ',Sales Invoice,Sales Credit Memo';
         }
-
         field(13; "Bonus Document No."; Code[20])
         {
             Caption = 'Bonus Document No.';
@@ -95,12 +90,9 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'From Document Type';
             DataClassification = CustomerContent;
-
-
             OptionMembers = ,"Sales Invoice","Sales Credit Memo";
             OptionCaption = ',Sales Invoice,Sales Credit Memo';
         }
-
         field(16; "From Document No."; Code[20])
         {
             Caption = 'From Document No.';
@@ -159,7 +151,6 @@ table 5266056 "lbt Bonus Entry"
             DataClassification = CustomerContent;
             TableRelation = "lbt Process";
         }
-
     }
 
     keys
@@ -170,4 +161,11 @@ table 5266056 "lbt Bonus Entry"
         }
     }
 
+    trigger OnDelete()
+    var
+        DeleteErr: Label 'Bonus entries can''t be deleted when a General Ledger Entry No. is assigned.';
+    begin
+        if Rec."General Ledger Entry No." <> 0 then
+            Error(DeleteErr);
+    end;
 }

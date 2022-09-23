@@ -278,6 +278,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4171831453 - Method 3152277940 - NamedType 1458864712" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus entries can't be deleted when a General Ledger Entry No. is assigned.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbt Bonus Entry - Method OnDelete - NamedType DeleteErr</note>
+        </trans-unit>
         <trans-unit id="Table 4171831453 - Field 1577329712 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assignment Doc. Line No.</source>
           <note from="Developer" annotates="general" priority="2"></note>

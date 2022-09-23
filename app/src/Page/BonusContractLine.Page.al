@@ -17,6 +17,7 @@ page 5266054 "lbt Bonus Contract Line"
                 {
                     ToolTip = 'Indicates whether the rebate calculation is based on sales or turnover.';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Item Unit of Measure"; Rec."Item Unit of Measure")
                 {
@@ -36,13 +37,4 @@ page 5266054 "lbt Bonus Contract Line"
             }
         }
     }
-
-    trigger OnNewRecord(BelowxRec: Boolean)
-    begin
-        if BonusContractRec.Get(Rec."Contract") then
-            Rec."Bonus Scale Type" := BonusContractRec."Bonus Scale Type"
-    end;
-
-    var
-        BonusContractRec: Record "lbt Bonus Contract";
 }

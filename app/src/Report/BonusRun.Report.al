@@ -3,6 +3,7 @@ report 5266052 "lbt Bonus Run"
     UsageCategory = Tasks;
     ApplicationArea = All;
     Caption = 'Bonus Run';
+    ProcessingOnly = true;
 
     dataset
     {

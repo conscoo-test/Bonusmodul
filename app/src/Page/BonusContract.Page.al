@@ -143,7 +143,7 @@ page 5266053 "lbt Bonus Contract"
             part(Bonusstaffeln; "lbt Bonus Contract Line")
             {
                 ApplicationArea = All;
-                SubPageLink = "Contract" = field("No.");
+                SubPageLink = "Contract" = field("No."), "Bonus Scale Type" = field("Bonus Scale Type");
             }
             group(Discounts)
             {

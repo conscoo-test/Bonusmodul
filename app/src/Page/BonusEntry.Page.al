@@ -1,10 +1,10 @@
 page 5266057 "lbt Bonus Entry"
 {
-
     PageType = List;
     SourceTable = "lbt Bonus Entry";
     Caption = 'Bonus Entry';
     UsageCategory = None;
+    Editable = false;
 
     layout
     {
@@ -57,7 +57,6 @@ page 5266057 "lbt Bonus Entry"
                     ToolTip = 'The quantity of the individual document line of the settlement credit memo is entered here.';
                     ApplicationArea = All;
                 }
-
                 field("Base Amount"; Rec."Base Amount")
                 {
                     ToolTip = 'The base amount of the source document is entered in this field.';
@@ -93,7 +92,6 @@ page 5266057 "lbt Bonus Entry"
                     ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field.';
                     ApplicationArea = All;
                 }
-
                 field("From Document No."; Rec."From Document No.")
                 {
                     ToolTip = 'If it is a bonus item with the item type Bonus, the document number of the bonus credit memo is entered in this field.';
@@ -104,13 +102,11 @@ page 5266057 "lbt Bonus Entry"
                     ToolTip = 'You can use the Document line field to identify the credit line in which this bonus item is located in the bonus credit memo.';
                     ApplicationArea = All;
                 }
-
                 field("Bonus Document Type"; Rec."Bonus Document Type")
                 {
                     ToolTip = 'If it is a bonus item with the item type "Bonus", the document type "Sales credit memo" is stored in this field. ';
                     ApplicationArea = All;
                 }
-
                 field("Bonus Document No."; Rec."Bonus Document No.")
                 {
                     ToolTip = 'If it is a bonus item with the item type Bonus, the bonus document number is entered in this field.';
@@ -146,19 +142,7 @@ page 5266057 "lbt Bonus Entry"
                     ToolTip = 'This field is filled with the invoice recipient of the bonus agreement.  An alternative customer can also be defined as the bill-to party.';
                     ApplicationArea = All;
                 }
-
-
-
-
-
-
-
-
-
-
-
             }
         }
     }
-
 }
