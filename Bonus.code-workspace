@@ -16,7 +16,7 @@
 		"CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
 		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
 		"CRS.RemovePrefixFromFilename": true,
-		"CRS.ObjectNamePrefix": "lbt ",
+		"CRS.ObjectNamePrefix": "lbtbn ",
 		"CRS.OnSaveAlFileAction": "DoNothing",
 		"al.codeAnalyzers": [
 			"${CodeCop}",

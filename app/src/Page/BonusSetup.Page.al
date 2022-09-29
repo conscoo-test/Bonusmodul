@@ -1,9 +1,9 @@
-page 5266051 "lbt Bonus Setup"
+page 5266051 "lbtbn Bonus Setup"
 {
     UsageCategory = Administration;
     ApplicationArea = All;
     PageType = Card;
-    SourceTable = "lbt Bonus Setup";
+    SourceTable = "lbtbn Bonus Setup";
     Caption = 'Bonus Setup';
 
     layout
@@ -110,7 +110,7 @@ page 5266051 "lbt Bonus Setup"
                 ToolTip = 'Here you can open the bonus contract list.';
                 ApplicationArea = All;
                 Image = ContractPayment;
-                RunObject = page "lbt Bonus Contracts";
+                RunObject = page "lbtbn Bonus Contracts";
             }
         }
     }

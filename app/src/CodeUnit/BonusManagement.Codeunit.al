@@ -1,4 +1,4 @@
-codeunit 5266052 "lbt Bonus Management"
+codeunit 5266052 "lbtbn Bonus Management"
 {
     procedure SetAssignmentDoc(AssignmentDocTypeP: Option " ","Sales Shipment","Sales Return Receipt";
                                AssignmentDocNoP: Code[20];
@@ -23,8 +23,8 @@ codeunit 5266052 "lbt Bonus Management"
         BonusDocLineNo := BonusDocLineNoP;
     end;
 
-    procedure CreateBonusContractEntry(var BonusContract: Record "lbt Bonus Contract";
-                                        var BonusCustomer: Record "lbt Bonus Customer";
+    procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
+                                        var BonusCustomer: Record "lbtbn Bonus Customer";
                                         EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
                                         EntryDate: Date;
                                         BonusRule: Integer;
@@ -79,7 +79,7 @@ codeunit 5266052 "lbt Bonus Management"
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             exit;
-        if BonusEntry.Get(GLEntry."lbt Bonus Entry No") then begin
+        if BonusEntry.Get(GLEntry."lbtbn Bonus Entry No") then begin
             BonusEntry."General Ledger Entry No." := GLEntry."Entry No.";
             if BonusEntry."Posted Amount" = 0 then
                 if BonusEntry."Entry Type" <> BonusEntry."Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
@@ -97,16 +97,16 @@ codeunit 5266052 "lbt Bonus Management"
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
     var
-        BonusContract: Record "lbt Bonus Contract";
+        BonusContract: Record "lbtbn Bonus Contract";
         Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbt Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
     end;
 
     var
-        BonusEntry: Record "lbt Bonus Entry";
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusSetup: Record "lbtbn Bonus Setup";
 
         AssignmentDocType: Option;
         AssignmentDocNo: Code[20];

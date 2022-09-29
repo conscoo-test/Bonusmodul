@@ -1,9 +1,9 @@
-table 5266052 "lbt Bonus Contract"
+table 5266052 "lbtbn Bonus Contract"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contract';
-    LookupPageId = "lbt Bonus Contracts";
-    DrillDownPageId = "lbt Bonus Contracts";
+    LookupPageId = "lbtbn Bonus Contracts";
+    DrillDownPageId = "lbtbn Bonus Contracts";
 
     fields
     {
@@ -135,49 +135,49 @@ table 5266052 "lbt Bonus Contract"
         {
             Caption = 'Bonus Group';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Group"."Code";
+            TableRelation = "lbtbn Bonus Group"."Code";
         }
         field(16; "No. of Customers"; Integer)
         {
             Caption = 'No. of Customers';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt Bonus Customer" where(Contract = field("No.")));
+            CalcFormula = count("lbtbn Bonus Customer" where(Contract = field("No.")));
         }
         field(17; "Balance of Bonus"; Decimal)
         {
             Caption = 'Balance of Bonus';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Bonus)));
+            CalcFormula = sum("lbtbn Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Bonus)));
         }
         field(18; "Balance of Reserve"; Decimal)
         {
             Caption = 'Balance of Reserve';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Reserve)));
+            CalcFormula = sum("lbtbn Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const(Reserve)));
         }
         field(19; "Balance of Liquid Reserves"; Decimal)
         {
             Caption = 'Balance of Liquidation Reserve';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("lbt Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const("Liquidation of Reserves")));
+            CalcFormula = sum("lbtbn Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const("Liquidation of Reserves")));
         }
         field(20; "No. of Dimensions"; Integer)
         {
             Caption = 'No. of Dimensions';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt Bonus Contract Dimension" where(Contract = field("No.")));
+            CalcFormula = count("lbtbn Bonus Contract Dimension" where(Contract = field("No.")));
         }
         field(21; "No. of Attribute"; Integer)
         {
             Caption = 'No. of Attribute';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("lbt BonusContractAttribute" where(Contract = field("No.")));
+            CalcFormula = count("lbtbn BonusContractAttribute" where(Contract = field("No.")));
         }
         field(22; "Reserve Item Charge"; Code[20])
         {
@@ -236,7 +236,7 @@ table 5266052 "lbt Bonus Contract"
 
     trigger OnInsert()
     var
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusSetup: Record "lbtbn Bonus Setup";
         NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
         if "No." = '' then begin
@@ -280,10 +280,10 @@ table 5266052 "lbt Bonus Contract"
         end;
     end;
 
-    procedure AssistEdit(xBonusContract: Record "lbt Bonus Contract"): Boolean
+    procedure AssistEdit(xBonusContract: Record "lbtbn Bonus Contract"): Boolean
     var
-        BonusContract: Record "lbt Bonus Contract";
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusContract: Record "lbtbn Bonus Contract";
+        BonusSetup: Record "lbtbn Bonus Setup";
         NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
         BonusContract := Rec;
@@ -299,7 +299,7 @@ table 5266052 "lbt Bonus Contract"
 
     local procedure TestNoSeries()
     var
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusSetup: Record "lbtbn Bonus Setup";
         NoSeriesManagement: Codeunit NoSeriesManagement;
         IsHandled: Boolean;
     begin
@@ -316,11 +316,11 @@ table 5266052 "lbt Bonus Contract"
     end;
 
     var
-        BonusEntry: Record "lbt Bonus Entry";
-        BonusContractLineRec: Record "lbt Bonus Contract Line";
-        BonusContractDimension: Record "lbt Bonus Contract Dimension";
-        BonusContractAttribute: Record "lbt BonusContractAttribute";
-        BonusCustomer: Record "lbt Bonus Customer";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusContractLineRec: Record "lbtbn Bonus Contract Line";
+        BonusContractDimension: Record "lbtbn Bonus Contract Dimension";
+        BonusContractAttribute: Record "lbtbn BonusContractAttribute";
+        BonusCustomer: Record "lbtbn Bonus Customer";
         SalesHeaderRec: Record "Sales Header";
         Text001Msg: Label 'You can not reset the date, while there are unposted bonus credit memos.',
         Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"';
@@ -334,7 +334,7 @@ table 5266052 "lbt Bonus Contract"
         Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden."';
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeTestNoSeries(BonusContract: Record "lbt Bonus Contract"; xBonusContract: Record "lbt Bonus Contract"; var IsHandled: Boolean)
+    local procedure OnBeforeTestNoSeries(BonusContract: Record "lbtbn Bonus Contract"; xBonusContract: Record "lbtbn Bonus Contract"; var IsHandled: Boolean)
     begin
     end;
 }

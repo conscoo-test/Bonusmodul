@@ -1,7 +1,7 @@
-page 5266058 "lbt Bonus Group"
+page 5266058 "lbtbn Bonus Group"
 {
     PageType = List;
-    SourceTable = "lbt Bonus Group";
+    SourceTable = "lbtbn Bonus Group";
     Caption = 'Bonus Group';
     UsageCategory = None;
 

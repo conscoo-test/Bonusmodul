@@ -1,4 +1,4 @@
-page 5266061 "lbt Explode Reservation"
+page 5266061 "lbtbn Explode Reservation"
 {
     Caption = 'Explode Reservation';
     UsageCategory = None;
@@ -9,7 +9,7 @@ page 5266061 "lbt Explode Reservation"
     {
         area(content)
         {
-            field("lbt Posting Date"; Rec."Posting Date")
+            field("lbtbn Posting Date"; Rec."Posting Date")
             {
                 ToolTip = 'This date field refers to the posting date of the respective reserve items.';
                 ApplicationArea = All;

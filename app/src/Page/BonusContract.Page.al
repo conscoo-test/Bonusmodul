@@ -1,8 +1,8 @@
-page 5266053 "lbt Bonus Contract"
+page 5266053 "lbtbn Bonus Contract"
 {
     Caption = 'Bonus Contract Card';
     PageType = Card;
-    SourceTable = "lbt Bonus Contract";
+    SourceTable = "lbtbn Bonus Contract";
     UsageCategory = none;
 
     layout
@@ -140,7 +140,7 @@ page 5266053 "lbt Bonus Contract"
                     Enabled = ItemChargeEnabled;
                 }
             }
-            part(Bonusstaffeln; "lbt Bonus Contract Line")
+            part(Bonusstaffeln; "lbtbn Bonus Contract Line")
             {
                 ApplicationArea = All;
                 SubPageLink = "Contract" = field("No."), "Bonus Scale Type" = field("Bonus Scale Type");
@@ -167,7 +167,7 @@ page 5266053 "lbt Bonus Contract"
 
         area(Factboxes)
         {
-            part("Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
+            part("Bonus Contract Factbox"; "lbtbn Bonus Contract Factbox")
             {
                 ApplicationArea = all;
                 SubPageLink = "No." = field("No.");
@@ -188,8 +188,8 @@ page 5266053 "lbt Bonus Contract"
 
                 trigger OnAction();
                 var
-                    BonusContract: Record "lbt Bonus Contract";
-                    BonusReserves: Report "lbt Bonus Reserves";
+                    BonusContract: Record "lbtbn Bonus Contract";
+                    BonusReserves: Report "lbtbn Bonus Reserves";
                 begin
                     BonusContract.SetRange("No.", Rec."No.");
                     BonusReserves.SetTableView(BonusContract);
@@ -206,9 +206,9 @@ page 5266053 "lbt Bonus Contract"
 
                 trigger OnAction()
                 var
-                    BonusSetup: Record "lbt Bonus Setup";
-                    BonusEntry: Record "lbt Bonus Entry";
-                    ExplodeReservation: Page "lbt Explode Reservation";
+                    BonusSetup: Record "lbtbn Bonus Setup";
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                    ExplodeReservation: Page "lbtbn Explode Reservation";
                 begin
                     BonusSetup.Get();
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
@@ -237,8 +237,8 @@ page 5266053 "lbt Bonus Contract"
 
                 trigger OnAction()
                 var
-                    BonusContract: Record "lbt Bonus Contract";
-                    BonusRun: Report "lbt Bonus Run";
+                    BonusContract: Record "lbtbn Bonus Contract";
+                    BonusRun: Report "lbtbn Bonus Run";
                 begin
                     BonusContract.SetRange("No.", Rec."No.");
                     BonusRun.SetTableView(BonusContract);
@@ -280,7 +280,7 @@ page 5266053 "lbt Bonus Contract"
                 ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.';
                 ApplicationArea = All;
                 Image = Customer;
-                RunObject = page "lbt Bonus Customers";
+                RunObject = page "lbtbn Bonus Customers";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction();
@@ -294,7 +294,7 @@ page 5266053 "lbt Bonus Contract"
                 ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.';
                 ApplicationArea = All;
                 Image = Dimensions;
-                RunObject = page "lbt Bonus Contract Dimension";
+                RunObject = page "lbtbn Bonus Contract Dimension";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
@@ -307,7 +307,7 @@ page 5266053 "lbt Bonus Contract"
                 ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.';
                 ApplicationArea = All;
                 Image = "Filter";
-                RunObject = page "lbt BonusContrAttributeFilter";
+                RunObject = page "lbtbn Contract Attr. Filter";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
@@ -321,7 +321,7 @@ page 5266053 "lbt Bonus Contract"
                 ToolTip = 'Here you can group bonus contracts.';
                 ApplicationArea = All;
                 Image = Group;
-                RunObject = page "lbt Bonus Group";
+                RunObject = page "lbtbn Bonus Group";
                 trigger OnAction()
                 begin
                 end;
@@ -332,7 +332,7 @@ page 5266053 "lbt Bonus Contract"
                 ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.';
                 ApplicationArea = All;
                 Image = LedgerEntries;
-                RunObject = page "lbt Bonus Entry";
+                RunObject = page "lbtbn Bonus Entry";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
@@ -376,7 +376,7 @@ page 5266053 "lbt Bonus Contract"
 
     local procedure EnableFields()
     var
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusSetup: Record "lbtbn Bonus Setup";
     begin
         BonusBillingType_Enable := Rec."Bonus Billing Type" = Rec."Bonus Billing Type"::"Amount per Unit";
         BonusReserveType_Enable := Rec."Reserve Type" = Rec."Reserve Type"::"Amount per Unit";

@@ -1,8 +1,8 @@
-page 5266054 "lbt Bonus Contract Line"
+page 5266054 "lbtbn Bonus Contract Line"
 {
     Caption = 'Bonus Contract Line';
     PageType = ListPart;
-    SourceTable = "lbt Bonus Contract Line";
+    SourceTable = "lbtbn Bonus Contract Line";
     AutoSplitKey = true;
     DelayedInsert = true;
 

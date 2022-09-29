@@ -1,4 +1,4 @@
-table 5266051 "lbt Bonus Setup"
+table 5266051 "lbtbn Bonus Setup"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Setup';

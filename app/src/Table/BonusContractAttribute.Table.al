@@ -1,9 +1,9 @@
-table 5266055 "lbt BonusContractAttribute"
+table 5266055 "lbtbn BonusContractAttribute"
 {
     Caption = 'Bonus Contract Attribute';
     DataClassification = CustomerContent;
-    LookupPageId = "lbt BonusContrAttributeFilter";
-    DrillDownPageId = "lbt BonusContrAttributeFilter";
+    LookupPageId = "lbtbn Contract Attr. Filter";
+    DrillDownPageId = "lbtbn Contract Attr. Filter";
 
     fields
     {
@@ -11,7 +11,7 @@ table 5266055 "lbt BonusContractAttribute"
         {
             Caption = 'Contract';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."No.";
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
         field(2; ID; Integer)
         {
@@ -80,7 +80,7 @@ table 5266055 "lbt BonusContractAttribute"
 
     trigger OnInsert()
     var
-        ContractAttribut: Record "lbt BonusContractAttribute";
+        ContractAttribut: Record "lbtbn BonusContractAttribute";
         NewID: Integer;
     begin
         if "ID" = 0 then

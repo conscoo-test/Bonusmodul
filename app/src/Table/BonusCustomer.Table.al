@@ -1,8 +1,8 @@
-table 5266058 "lbt Bonus Customer"
+table 5266058 "lbtbn Bonus Customer"
 {
     DataClassification = CustomerContent;
-    LookupPageId = "lbt Bonus Customers";
-    DrillDownPageId = "lbt Bonus Customers";
+    LookupPageId = "lbtbn Bonus Customers";
+    DrillDownPageId = "lbtbn Bonus Customers";
     Caption = 'Bonus Customer';
 
     fields
@@ -11,7 +11,7 @@ table 5266058 "lbt Bonus Customer"
         {
             Caption = 'Contract';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."No.";
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
 
         field(2; "Customer No."; Code[20])

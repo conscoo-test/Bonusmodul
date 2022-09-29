@@ -1,8 +1,8 @@
-page 5266055 "lbt Bonus Contract Dimension"
+page 5266055 "lbtbn Bonus Contract Dimension"
 {
     Caption = 'Bonus Contract Dimensions';
     PageType = List;
-    SourceTable = "lbt Bonus Contract Dimension";
+    SourceTable = "lbtbn Bonus Contract Dimension";
     UsageCategory = None;
 
     layout

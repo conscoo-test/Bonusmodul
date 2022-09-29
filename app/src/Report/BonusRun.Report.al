@@ -1,4 +1,4 @@
-report 5266052 "lbt Bonus Run"
+report 5266052 "lbtbn Bonus Run"
 {
     UsageCategory = Tasks;
     ApplicationArea = All;
@@ -7,10 +7,10 @@ report 5266052 "lbt Bonus Run"
 
     dataset
     {
-        dataitem("Bonus Contract"; "lbt Bonus Contract")
+        dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
 
-            dataitem("Bonus Customer"; "lbt Bonus Customer")
+            dataitem("Bonus Customer"; "lbtbn Bonus Customer")
             {
                 DataItemLink = "Contract" = field("No.");
 
@@ -258,8 +258,8 @@ report 5266052 "lbt Bonus Run"
     end;
 
     var
-        BonusSetup: Record "lbt Bonus Setup";
-        BonusContractLine: Record "lbt Bonus Contract Line";
+        BonusSetup: Record "lbtbn Bonus Setup";
+        BonusContractLine: Record "lbtbn Bonus Contract Line";
         CustomerPostingGroup: Record "Customer Posting Group";
         GenBusinessPostingGroup: Record "Gen. Business Posting Group";
         DateFrom: Date;

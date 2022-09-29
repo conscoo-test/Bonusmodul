@@ -1,8 +1,8 @@
-page 5266063 "lbt Explode Bonus Reservation"
+page 5266063 "lbtbn Explode Bonus Reserv."
 {
 
     PageType = Worksheet;
-    SourceTable = "lbt Bonus Entry";
+    SourceTable = "lbtbn Bonus Entry";
     SourceTableView = where("Entry Type" = const(Reserve));
     Caption = 'Explode Bonus Reservation';
     UsageCategory = None;
@@ -83,7 +83,7 @@ page 5266063 "lbt Explode Bonus Reservation"
 
                 trigger OnAction()
                 var
-                    BonusEntry: Record "lbt Bonus Entry";
+                    BonusEntry: Record "lbtbn Bonus Entry";
                 begin
                     GetSumAmount();
                     CurrPage.SetSelectionFilter(BonusEntry);
@@ -96,7 +96,7 @@ page 5266063 "lbt Explode Bonus Reservation"
 
     trigger OnOpenPage()
     var
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusSetup: Record "lbtbn Bonus Setup";
         CustomerPostingGroup: Record "Customer Posting Group";
         GenBusinessPostingGroup: Record "Gen. Business Posting Group";
     begin
@@ -111,7 +111,7 @@ page 5266063 "lbt Explode Bonus Reservation"
 
     local procedure GetSumAmount()
     var
-        BonusEntry: Record "lbt Bonus Entry";
+        BonusEntry: Record "lbtbn Bonus Entry";
     begin
         CurrPage.SetSelectionFilter(BonusEntry);
         BonusEntry.CalcSums("Posted Amount");

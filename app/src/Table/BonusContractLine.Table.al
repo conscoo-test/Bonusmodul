@@ -1,4 +1,4 @@
-table 5266053 "lbt Bonus Contract Line"
+table 5266053 "lbtbn Bonus Contract Line"
 {
     Caption = 'bonus scales';
     DataClassification = ToBeClassified;
@@ -9,7 +9,7 @@ table 5266053 "lbt Bonus Contract Line"
         {
             Caption = 'Contract';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."No.";
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
         field(2; "Line No."; Integer)
         {
@@ -57,7 +57,7 @@ table 5266053 "lbt Bonus Contract Line"
     trigger OnInsert()
 
     var
-        BonusContractRec: Record "lbt Bonus Contract";
+        BonusContractRec: Record "lbtbn Bonus Contract";
     begin
         if BonusContractRec.Get("Contract") then
             "Bonus Scale Type" := BonusContractRec."Bonus Scale Type";

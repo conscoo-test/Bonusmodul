@@ -1,9 +1,9 @@
-table 5266056 "lbt Bonus Entry"
+table 5266056 "lbtbn Bonus Entry"
 {
     Caption = 'Bonus Entry';
     DataClassification = CustomerContent;
-    LookupPageId = "lbt Bonus Entry";
-    DrillDownPageId = "lbt Bonus Entry";
+    LookupPageId = "lbtbn Bonus Entry";
+    DrillDownPageId = "lbtbn Bonus Entry";
 
     fields
     {
@@ -23,13 +23,13 @@ table 5266056 "lbt Bonus Entry"
         {
             Caption = 'Contract';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."No.";
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
         field(4; "Bonus Contract Line"; Integer)
         {
             Caption = 'Bonus Contract Line';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract Line" where(Contract = field(Contract));
+            TableRelation = "lbtbn Bonus Contract Line" where(Contract = field(Contract));
         }
         field(5; "Entry Date"; Date)
         {

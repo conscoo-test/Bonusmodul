@@ -1,4 +1,4 @@
-report 5266051 "lbt Bonus Reserves"
+report 5266051 "lbtbn Bonus Reserves"
 {
     Caption = 'Bonus Reserves';
     UsageCategory = Tasks;
@@ -7,12 +7,12 @@ report 5266051 "lbt Bonus Reserves"
 
     dataset
     {
-        dataitem("Bonus Contract"; "lbt Bonus Contract")
+        dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
             DataItemTableView = sorting("No.");
             RequestFilterFields = "No.", "Billing Period";
 
-            dataitem("Bonus Customers"; "lbt Bonus Customer")
+            dataitem("Bonus Customers"; "lbtbn Bonus Customer")
             {
                 DataItemTableView = sorting(Contract, "Customer No.", "Ship-to Code");
                 DataItemLink = Contract = field("No.");
@@ -188,7 +188,7 @@ report 5266051 "lbt Bonus Reserves"
                                    SalesLine.Amount,
                                    0, 0);
         SalesLine."lbt Process No." := "Bonus Contract"."Process No.";
-        SalesLine."lbt Bonus Entry No." := BonusEntryNo;
+        SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
         SalesLine.Modify();
     end;
 
@@ -227,7 +227,7 @@ report 5266051 "lbt Bonus Reserves"
 
     // local procedure getTotalAmount(): Decimal
     // var
-    //     BonusCust: Record "lbt Bonus Customers";
+    //     BonusCust: Record "lbtbn Bonus Customers";
     //     ContractTotalAmt: Decimal;
     // begin
     //     ContractTotalAmt := 0;
@@ -284,7 +284,7 @@ report 5266051 "lbt Bonus Reserves"
 
     local procedure CheckAttributes(ItemNo: Code[20]): Boolean
     var
-        BonusContractAttribute: Record "lbt BonusContractAttribute";
+        BonusContractAttribute: Record "lbtbn BonusContractAttribute";
         ItemAttributeValue: Record "Item Attribute Value";
         ItemAttributeValueMapping: Record "Item Attribute Value Mapping";
     begin
@@ -402,7 +402,7 @@ report 5266051 "lbt Bonus Reserves"
                     if ValueEntry2.FindSet() then
                         repeat
                             ItemCharge.Get(ValueEntry2."Item Charge No.");
-                            if ItemCharge."lbt Bonus consider" then
+                            if ItemCharge."lbtbn Bonus consider" then
                                 DocAmount += l_Sign * ValueEntry2."Sales Amount (Actual)";
                             if SalesInvoiceLine.Get(ValueEntry2."Document No.", ValueEntry2."Document Line No.") then
                                 DocAmtInclVAT += l_Sign * Round(ValueEntry2."Sales Amount (Actual)" *
@@ -456,7 +456,7 @@ report 5266051 "lbt Bonus Reserves"
                                     DocAmount,
                                     -DiscAmt,
                                     -PmtDiscAmt);
-                SalesLine."lbt Bonus Entry No." := BonusEntryNo;
+                SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
                 SalesLine.Modify();
             end;
         end;
@@ -599,8 +599,8 @@ report 5266051 "lbt Bonus Reserves"
     begin
         if Customer.Get(CustNo) then
             if CustomerPostingGroup.Get(Customer."Customer Posting Group") then begin
-                CustomerPostingGroup.TestField("lbt Bonus Reserve Account");
-                CustomerPostingGroup.TestField("lbt Bonus Reserve Bal. Account");
+                CustomerPostingGroup.TestField("lbtbn Bonus Reserve Account");
+                CustomerPostingGroup.TestField("lbtbn Bonus Reserve Bal. Account");
                 DocType := 0;
                 vz := 1;
                 case TableID of
@@ -638,14 +638,14 @@ report 5266051 "lbt Bonus Reserves"
                 GenJournalLine."Document No." := DocNo;
                 GenJournalLine."Account Type" := GenJournalLine."Account Type"::"G/L Account";
                 GenJournalLine."Bal. Account Type" := GenJournalLine."Bal. Account Type"::"G/L Account";
-                GenJournalLine.Validate("Account No.", CustomerPostingGroup."lbt Bonus Reserve Account");
-                GenJournalLine.Validate("Bal. Account No.", CustomerPostingGroup."lbt Bonus Reserve Bal. Account");
+                GenJournalLine.Validate("Account No.", CustomerPostingGroup."lbtbn Bonus Reserve Account");
+                GenJournalLine.Validate("Bal. Account No.", CustomerPostingGroup."lbtbn Bonus Reserve Bal. Account");
                 GenJournalLine."Gen. Bus. Posting Group" := '';
                 GenJournalLine."Gen. Prod. Posting Group" := '';
                 GenJournalLine.Description := BonusReserveForLbl + Format("Bonus Contract"."No.");
                 GenJournalLine.Validate(Amount, Amt * vz);
                 GenJournalLine."lbt Process No." := "Bonus Contract"."Process No.";
-                GenJournalLine."lbt Bonus Entry No" := BonusEntryNo;
+                GenJournalLine."lbtbn Bonus Entry No" := BonusEntryNo;
                 GenJournalLine."Reason Code" := BonusSetup."Reason Code";
                 if (TableID <> 0) then
                     case TableID of
@@ -676,7 +676,7 @@ report 5266051 "lbt Bonus Reserves"
 
     local procedure CreateDimSetID(): Integer
     var
-        BonusContractDimensions: Record "lbt Bonus Contract Dimension";
+        BonusContractDimensions: Record "lbtbn Bonus Contract Dimension";
         TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
         DimensionManagement: Codeunit DimensionManagement;
     begin
@@ -789,9 +789,9 @@ report 5266051 "lbt Bonus Reserves"
     end;
 
     var
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusSetup: Record "lbtbn Bonus Setup";
         SalesHeader: Record "Sales Header";
-        BonusManagement: Codeunit "lbt Bonus Management";
+        BonusManagement: Codeunit "lbtbn Bonus Management";
         Dialog: Dialog;
         LineNo: Integer;
         DateFrom: Date;

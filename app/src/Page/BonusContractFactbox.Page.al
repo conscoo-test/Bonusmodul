@@ -1,7 +1,7 @@
-page 5266060 "lbt Bonus Contract Factbox"
+page 5266060 "lbtbn Bonus Contract Factbox"
 {
     PageType = CardPart;
-    SourceTable = "lbt Bonus Contract";
+    SourceTable = "lbtbn Bonus Contract";
     Caption = 'Bonus Contract Details';
 
     layout

@@ -1,8 +1,8 @@
-page 5266059 "lbt Bonus Customers"
+page 5266059 "lbtbn Bonus Customers"
 {
 
     PageType = List;
-    SourceTable = "lbt Bonus Customer";
+    SourceTable = "lbtbn Bonus Customer";
     Caption = 'Bonus Customers';
     UsageCategory = None;
 

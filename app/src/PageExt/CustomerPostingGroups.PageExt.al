@@ -1,4 +1,4 @@
-pageextension 5266051 "lbt Customer Posting Groups" extends "Customer Posting Groups" //110
+pageextension 5266051 "lbtbn Customer Posting Groups" extends "Customer Posting Groups" //110
 {
     layout
     {
@@ -6,12 +6,12 @@ pageextension 5266051 "lbt Customer Posting Groups" extends "Customer Posting Gr
         {
 
 
-            field("lbt Bonus Reserve Account"; Rec."lbt Bonus Reserve Account")
+            field("lbtbn Bonus Reserve Account"; Rec."lbtbn Bonus Reserve Account")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the bonus reserve account';
             }
-            field("lbt Bonus Reserve Bal. Account"; Rec."lbt Bonus Reserve Bal. Account")
+            field("lbtbn Bonus Reserve Bal. Account"; Rec."lbtbn Bonus Reserve Bal. Account")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the bonus reserve bal. account';

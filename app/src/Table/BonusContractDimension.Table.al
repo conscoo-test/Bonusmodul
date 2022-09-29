@@ -1,9 +1,9 @@
-table 5266054 "lbt Bonus Contract Dimension"
+table 5266054 "lbtbn Bonus Contract Dimension"
 {
     DataClassification = ToBeClassified;
     Caption = 'Bonus Contract Dimensions';
-    LookupPageId = "lbt Bonus Contract Dimension";
-    DrillDownPageId = "lbt Bonus Contract Dimension";
+    LookupPageId = "lbtbn Bonus Contract Dimension";
+    DrillDownPageId = "lbtbn Bonus Contract Dimension";
 
     fields
     {
@@ -11,7 +11,7 @@ table 5266054 "lbt Bonus Contract Dimension"
         {
             Caption = 'Contract';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."No.";
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
         field(2; "Dimension Code"; Code[20])
         {

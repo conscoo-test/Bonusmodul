@@ -1,4 +1,4 @@
-pageextension 5266062 "lbt Item Charges" extends "Item Charges" //5800
+pageextension 5266062 "lbtbn Item Charges" extends "Item Charges" //5800
 {
     layout
     {
@@ -6,7 +6,7 @@ pageextension 5266062 "lbt Item Charges" extends "Item Charges" //5800
         {
 
 
-            field("lbt LBT lbt Bonus consider"; Rec."lbt Bonus consider")
+            field("lbtbn Bonus consider"; Rec."lbtbn Bonus consider")
             {
                 ToolTip = 'Indicate which surcharges and discounts are relevant for bonus.';
                 ApplicationArea = All;

@@ -1,6 +1,6 @@
-tableextension 5266062 "lbt Bonus Item Charge Assign." extends "Item Charge Assignment (Sales)" //5809
+tableextension 5266062 "lbtbn Item Charge Assign." extends "Item Charge Assignment (Sales)" //5809
 {
-    procedure "lbt CreateSeparateLines"(var SalesLineRecPar: Record "Sales Line")
+    procedure "lbtbn CreateSeparateLines"(var SalesLineRecPar: Record "Sales Line")
     var
         ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
         ItemChargeAssignmentSales2: Record "Item Charge Assignment (Sales)";

@@ -1,10 +1,10 @@
-page 5266052 "lbt Bonus Contracts"
+page 5266052 "lbtbn Bonus Contracts"
 {
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = "lbt Bonus Contract";
-    CardPageId = "lbt Bonus Contract";
+    SourceTable = "lbtbn Bonus Contract";
+    CardPageId = "lbtbn Bonus Contract";
     Caption = 'Bonus Contracts';
 
     layout
@@ -42,7 +42,7 @@ page 5266052 "lbt Bonus Contracts"
         }
         area(Factboxes)
         {
-            part("Bonus Contract Factbox"; "lbt Bonus Contract Factbox")
+            part("Bonus Contract Factbox"; "lbtbn Bonus Contract Factbox")
             {
                 ApplicationArea = all;
                 SubPageLink = "No." = field("No.");
@@ -79,7 +79,7 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'You use this function to cancel a reserve.';
                 ApplicationArea = All;
                 Image = CashFlow;
-                RunObject = Page "lbt Explode Reservation";
+                RunObject = Page "lbtbn Explode Reservation";
             }
 
             action("Bonus Run")
@@ -129,7 +129,7 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.';
                 ApplicationArea = All;
                 Image = Customer;
-                RunObject = Page "lbt Bonus Customers";
+                RunObject = Page "lbtbn Bonus Customers";
                 RunPageLink = "Customer No." = field("No.");
 
                 trigger OnAction();
@@ -143,7 +143,7 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.';
                 ApplicationArea = All;
                 Image = Dimensions;
-                RunObject = Page "lbt Bonus Contract Dimension";
+                RunObject = Page "lbtbn Bonus Contract Dimension";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
@@ -156,7 +156,7 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.';
                 ApplicationArea = All;
                 Image = "Filter";
-                RunObject = Page "lbt BonusContrAttributeFilter";
+                RunObject = Page "lbtbn Contract Attr. Filter";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
@@ -170,7 +170,7 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'Here you can group bonus contracts.';
                 ApplicationArea = All;
                 Image = Group;
-                RunObject = Page "lbt Bonus Group";
+                RunObject = Page "lbtbn Bonus Group";
                 trigger OnAction()
                 begin
                 end;
@@ -181,7 +181,7 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.';
                 ApplicationArea = All;
                 Image = LedgerEntries;
-                RunObject = Page "lbt Bonus Entry";
+                RunObject = Page "lbtbn Bonus Entry";
                 RunPageLink = "Contract" = field("No.");
 
                 trigger OnAction()
@@ -208,13 +208,13 @@ page 5266052 "lbt Bonus Contracts"
                 ToolTip = 'This takes you to the Bonus Setup screen where you can set up reserves and reverse reserves.';
                 ApplicationArea = All;
                 Image = Setup;
-                RunObject = Page "lbt Bonus Setup";
+                RunObject = Page "lbtbn Bonus Setup";
             }
         }
     }
 
     var
-        BonusContractRec: Record "lbt Bonus Contract";
-        BonusReserves: Report "lbt Bonus Reserves";
+        BonusContractRec: Record "lbtbn Bonus Contract";
+        BonusReserves: Report "lbtbn Bonus Reserves";
         NavigatePage: Page Navigate;
 }

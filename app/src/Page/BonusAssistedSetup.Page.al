@@ -1,8 +1,8 @@
-page 5266062 "lbt Bonus Assisted Setup"
+page 5266062 "lbtbn Bonus Assisted Setup"
 {
     PageType = NavigatePage;
     Caption = 'LeBit Bonus Setup';
-    SourceTable = "lbt Bonus Setup";
+    SourceTable = "lbtbn Bonus Setup";
 
     layout
     {
@@ -73,7 +73,7 @@ page 5266062 "lbt Bonus Assisted Setup"
                     InstructionalText = 'englisch', //TODO:
                         Comment = 'DEU="Bei "weiter" werden in der Debitoren & Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"';
                 }
-                // field("lbt No. Series Commission"; "lbt No. Series Commission")
+                // field("lbtbn No. Series Commission"; "lbtbn No. Series Commission")
                 // {
                 //     ApplicationArea = All;
                 //     ToolTip = 'english'; //TODO:
@@ -83,12 +83,12 @@ page 5266062 "lbt Bonus Assisted Setup"
             {
                 Caption = '', Locked = true;
                 Visible = CurrentStep = 3;
-                // field("lbt Journal Template"; "lbt Journal Template")
+                // field("lbtbn Journal Template"; "lbtbn Journal Template")
                 // {
                 //     ApplicationArea = All;
                 //     ToolTip = 'english'; //TODO:
                 // }
-                // field("lbt Journal Batch"; "lbt Journal Batch")
+                // field("lbtbn Journal Batch"; "lbtbn Journal Batch")
                 // {
                 //     ApplicationArea = All;
                 //     ToolTip = 'english'; //TODO:
@@ -159,7 +159,7 @@ page 5266062 "lbt Bonus Assisted Setup"
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     var
         GuidedExperience: Codeunit "Guided Experience";
-        BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
+        BonusAssistedSetup: Codeunit "lbtbn Bonus Assisted Setup";
     begin
         if CloseAction = Action::OK then
             if not GuidedExperience.IsAssistedSetupComplete(ObjectType::Page, BonusAssistedSetup.GetPageId()) then
@@ -170,7 +170,7 @@ page 5266062 "lbt Bonus Assisted Setup"
     local procedure Finish()
     var
         GuidedExperience: Codeunit "Guided Experience";
-        BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
+        BonusAssistedSetup: Codeunit "lbtbn Bonus Assisted Setup";
     begin
         GuidedExperience.CompleteAssistedSetup(ObjectType::Page, BonusAssistedSetup.GetPageId());
         CurrPage.Close();

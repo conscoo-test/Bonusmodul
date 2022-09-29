@@ -1,9 +1,9 @@
-table 5266057 "lbt Bonus Group"
+table 5266057 "lbtbn Bonus Group"
 {
     Caption = 'Bonus Group';
     DataClassification = CustomerContent;
-    LookupPageId = "lbt Bonus Group";
-    DrillDownPageId = "lbt Bonus Group";
+    LookupPageId = "lbtbn Bonus Group";
+    DrillDownPageId = "lbtbn Bonus Group";
 
     fields
     {

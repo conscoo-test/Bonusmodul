@@ -1,7 +1,7 @@
-page 5266057 "lbt Bonus Entry"
+page 5266057 "lbtbn Bonus Entry"
 {
     PageType = List;
-    SourceTable = "lbt Bonus Entry";
+    SourceTable = "lbtbn Bonus Entry";
     Caption = 'Bonus Entry';
     UsageCategory = None;
     Editable = false;

@@ -1,8 +1,8 @@
-page 5266056 "lbt BonusContrAttributeFilter"
+page 5266056 "lbtbn Contract Attr. Filter"
 {
 
     PageType = List;
-    SourceTable = "lbt BonusContractAttribute";
+    SourceTable = "lbtbn BonusContractAttribute";
     Caption = 'Bonus Contract Attribute Filter';
     UsageCategory = None;
 

@@ -1,4 +1,4 @@
-codeunit 5266053 "lbt Bonus Assisted Setup"
+codeunit 5266053 "lbtbn Bonus Assisted Setup"
 {
     var
         SetupLbl: Label 'Setup LeBit Bonus';
@@ -32,7 +32,7 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
             SetupLbl, //Description
             3, //ExpectedDuration
             ObjectType::Page, //ObjectTypeToRun 
-            Page::"lbt Bonus Setup", //ObjectIDToRun 
+            Page::"lbtbn Bonus Setup", //ObjectIDToRun 
             Enum::"Manual Setup Category"::Uncategorized, //ManualSetupCategory 
             '' //Keywords 
             );
@@ -45,7 +45,7 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
         Note.Id := GetNotificationId();
         Note.Message(NotificationMsg);
         Note.Scope := NotificationScope::LocalScope;
-        Note.AddAction(ActionMsg, Codeunit::"LBT Bonus Assisted Setup", 'HandleNotification');
+        Note.AddAction(ActionMsg, Codeunit::"lbtbn Bonus Assisted Setup", 'HandleNotification');
         Note.Send();
     end;
 
@@ -67,7 +67,7 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
             SetupLbl, //Description
             3, //ExpectedDuration
             ObjectType::Page, //ObjectTypeToRun 
-            Page::"lbt Bonus Assisted Setup", //ObjectIDToRun 
+            Page::"lbtbn Bonus Assisted Setup", //ObjectIDToRun 
             Enum::"Assisted Setup Group"::Uncategorized, //AssistedSetupGroup
             '', // VideoUrl 
             Enum::"Video Category"::Uncategorized,
@@ -90,7 +90,7 @@ codeunit 5266053 "lbt Bonus Assisted Setup"
 
     procedure GetPageId(): Integer;
     begin
-        exit(Page::"lbt Bonus Assisted Setup")
+        exit(Page::"lbtbn Bonus Assisted Setup")
     end;
 
 
