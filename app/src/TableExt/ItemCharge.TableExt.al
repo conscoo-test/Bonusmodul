@@ -7,7 +7,5 @@ tableextension 5266059 "lbtbn Item Charge" extends "Item Charge" //5800
             Caption = 'Bonus consider';
             DataClassification = CustomerContent;
         }
-
     }
-
 }

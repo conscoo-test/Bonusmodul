@@ -5,16 +5,16 @@ tableextension 5266062 "lbtbn Item Charge Assign." extends "Item Charge Assignme
         ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
         ItemChargeAssignmentSales2: Record "Item Charge Assignment (Sales)";
         TempItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)" temporary;
-        SalesLineRec: Record "Sales Line";
         ReturnReceiptLine: Record "Return Receipt Line";
+        SalesLine: Record "Sales Line";
         SalesLineDimRec: Record "Sales Line";
         SalesShipmentLine: Record "Sales Shipment Line";
 
         DimensionManagement: Codeunit DimensionManagement;
+        DimSetID: Integer;
 
         LineSpacing: Integer;
         NextLineNo: Integer;
-        DimSetID: Integer;
 
     begin
         ItemChargeAssignmentSales.Reset();
@@ -23,16 +23,16 @@ tableextension 5266062 "lbtbn Item Charge Assign." extends "Item Charge Assignme
         ItemChargeAssignmentSales.SetRange("Document Line No.", SalesLineRecPar."Line No.");
         ItemChargeAssignmentSales.SetFilter("Qty. to Assign", '<>%1', 0);
 
-        SalesLineRec.Reset();
-        SalesLineRec.SetRange("Document Type", SalesLineRecPar."Document Type");
-        SalesLineRec.SetRange("Document No.", SalesLineRecPar."Document No.");
-        SalesLineRec := SalesLineRecPar;
-        if SalesLineRec.Find('>') then begin
+        SalesLine.Reset();
+        SalesLine.SetRange("Document Type", SalesLineRecPar."Document Type");
+        SalesLine.SetRange("Document No.", SalesLineRecPar."Document No.");
+        SalesLine := SalesLineRecPar;
+        if SalesLine.Find('>') then begin
             LineSpacing :=
-              (SalesLineRec."Line No." - SalesLineRecPar."Line No.") div
+              (SalesLine."Line No." - SalesLineRecPar."Line No.") div
               (1 + ItemChargeAssignmentSales.Count());
             if LineSpacing = 0 then
-                Error(Text001Msg);
+                Error(Text001Msg, Rec.TableCaption());
         end else
             LineSpacing := 10000;
         TempItemChargeAssignmentSales.DeleteAll();
@@ -88,40 +88,35 @@ tableextension 5266062 "lbtbn Item Charge Assign." extends "Item Charge Assignme
 
                         if SalesLineDimRec.Get(SalesLineDimRec."Document Type"::"Return Order", TempItemChargeAssignmentSales."Applies-to Doc. No.", TempItemChargeAssignmentSales."Applies-to Doc. Line No.") then
                             DimSetID := SalesLineDimRec."Dimension Set ID";
-
                 end;
-                SalesLineRec := SalesLineRecPar;
-                SalesLineRec."Document Type" := SalesLineRecPar."Document Type";
-                SalesLineRec."Document No." := SalesLineRecPar."Document No.";
+                SalesLine := SalesLineRecPar;
+                SalesLine."Document Type" := SalesLineRecPar."Document Type";
+                SalesLine."Document No." := SalesLineRecPar."Document No.";
 
-                SalesLineRec."Line No." := NextLineNo;
+                SalesLine."Line No." := NextLineNo;
                 NextLineNo := NextLineNo + LineSpacing;
-                SalesLineRec.Validate(Quantity, TempItemChargeAssignmentSales."Qty. to Assign");
-                SalesLineRec.Validate(Amount, TempItemChargeAssignmentSales."Amount to Assign");
+                SalesLine.Validate(Quantity, TempItemChargeAssignmentSales."Qty. to Assign");
+                SalesLine.Validate(Amount, TempItemChargeAssignmentSales."Amount to Assign");
 
                 //TODO: muss noch umgestellt werden!!!!
                 //  SalesLineRec."Process No." := "TempItemChAss(Sales)Rec"."Process No.";
                 //  SalesLineRec."Billing Code" := "TempItemChAss(Sales)Rec"."Billing Code";
                 //  SalesLineRec."Billing Entry No." := "TempItemChAss(Sales)Rec"."Billing Entry No.";
-                SalesLineRec."Dimension Set ID" := DimSetID;
-                DimensionManagement.UpdateGlobalDimFromDimSetID(SalesLineRec."Dimension Set ID", SalesLineRec."Shortcut Dimension 1 Code", SalesLineRec."Shortcut Dimension 2 Code");
+                SalesLine."Dimension Set ID" := DimSetID;
+                DimensionManagement.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID", SalesLine."Shortcut Dimension 1 Code", SalesLine."Shortcut Dimension 2 Code");
 
-                if not SalesLineRec.Insert(true) then
-                    SalesLineRec.Modify(true);
+                if not SalesLine.Insert(true) then
+                    SalesLine.Modify(true);
 
                 // neue Zuweisung anlegen
                 ItemChargeAssignmentSales2 := TempItemChargeAssignmentSales;
-                ItemChargeAssignmentSales2."Document Type" := SalesLineRec."Document Type";
-                ItemChargeAssignmentSales2."Document No." := SalesLineRec."Document No.";
-                ItemChargeAssignmentSales2."Document Line No." := SalesLineRec."Line No.";
+                ItemChargeAssignmentSales2."Document Type" := SalesLine."Document Type";
+                ItemChargeAssignmentSales2."Document No." := SalesLine."Document No.";
+                ItemChargeAssignmentSales2."Document Line No." := SalesLine."Line No.";
                 ItemChargeAssignmentSales2.Insert();
             until TempItemChargeAssignmentSales.Next() = 0;
     end;
 
-
-
     var
-        Text001Msg: Label 'You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.'
-                  ;
-
+        Text001Msg: Label 'You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.', Comment = '%1 - Tablecaption';
 }

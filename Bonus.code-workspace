@@ -24,7 +24,19 @@
 			"${AppSourceCop}",
 			"${analyzerFolder}BusinessCentral.LinterCop.dll"
 		],
-		"al.ruleSetPath": "../scripts/lebit.ruleset.json"
+		"al.ruleSetPath": "../scripts/lebit.ruleset.json",
+		"alOutline.codeCleanupActions": [
+			"FixIdentifiersCase",
+			"FixKeywordsCase",
+			"ConvertObjectIdsToNames",
+			"AddMissingParentheses",
+			"RemoveUnusedVariables", 
+			"SortProperties",
+			"SortVariables",
+			"TrimTrailingWhitespace", 
+			"RemoveEmptyLines",
+			"RemoveEmptySections",
+		]
 
 	}
 }
