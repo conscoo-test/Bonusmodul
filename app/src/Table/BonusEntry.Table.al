@@ -168,4 +168,24 @@ table 5266056 "lbtbn Bonus Entry"
         if Rec."General Ledger Entry No." <> 0 then
             Error(DeleteErr);
     end;
+
+    procedure OpenSourceDocument()
+    var
+        SalesInvoiceHeader: Record "Sales Invoice Header";
+        SalesCrMemoHeader: Record "Sales Cr.Memo Header";
+        PageManagement: Codeunit "Page Management";
+    begin
+        case Rec."From Document Type" of
+            Rec."From Document Type"::"Sales Invoice":
+                begin
+                    SalesInvoiceHeader.Get(Rec."From Document No.");
+                    PageManagement.PageRun(SalesInvoiceHeader);
+                end;
+            Rec."From Document Type"::"Sales Credit Memo":
+                begin
+                    SalesCrMemoHeader.Get(Rec."From Document No.");
+                    PageManagement.PageRun(SalesCrMemoHeader);
+                end;
+        end;
+    end;
 }

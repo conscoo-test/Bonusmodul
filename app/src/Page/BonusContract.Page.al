@@ -18,11 +18,13 @@ page 5266053 "lbtbn Bonus Contract"
                     ToolTip = 'This field is filled with the contract number of the bonus agreement.';
                     ApplicationArea = All;
 
+                    #region OnAssistEdit
                     trigger OnAssistEdit()
                     begin
                         if Rec.AssistEdit(xRec) then
                             CurrPage.Update();
                     end;
+                    #endregion OnAssistEdit
                 }
                 field(Description; Rec.Description)
                 {
@@ -62,10 +64,12 @@ page 5266053 "lbtbn Bonus Contract"
                         ToolTip = 'Here you select the specification of settlement type.';
                         ApplicationArea = All;
 
+                        #region OnValidate
                         trigger OnValidate()
                         begin
                             TypeOnAfterValidate();
                         end;
+                        #endregion OnValidate
                     }
                     field("Bonus Billing Unit"; Rec."Bonus Billing Unit")
                     {
@@ -103,6 +107,7 @@ page 5266053 "lbtbn Bonus Contract"
                 {
                     ToolTip = 'Customer Reserve Cr.Memo';
                     ApplicationArea = All;
+                    Editable = CustomerCreditMemoEnabled;
                 }
                 field("Reserve Value"; Rec."Reserve Value")
                 {
@@ -115,10 +120,12 @@ page 5266053 "lbtbn Bonus Contract"
                         Comment = 'DEU="Es gibt drei verschiedene Arten um Rückstellungen zu bilden:Rückstellung in %:Der Rückstellungslauf bildet prozentual anhand derBelege Rückstellungen. Für jede Rechnungs-bzw. Gutschriftszeile wird eine Buchungszeile im Rückstellungsbuchblatt erzeugt.Betrag (MW):Ein Festbetrag wird je nach Abrechnungszeitraumzurückgestellt(festgelegter Betrag teilt sich dabei anteilig auf die einbezogenen Belegzeilen auf). Betrag je Einheit: Rückstellungen bezogen auf die Menge der Artikeleinheiten aus den Verträgen. Für jede Rechnungs-bzw. Gutschriftszeile wird eine Buchungszeile im Rückstellungsbuchblatt erzeugt"';
                     ApplicationArea = All;
 
+                    #region OnValidate
                     trigger OnValidate()
                     begin
                         TypeOnAfterValidate();
                     end;
+                    #endregion OnValidate
                 }
                 field("Reserve Unit"; Rec."Reserve Unit")
                 {
@@ -186,6 +193,7 @@ page 5266053 "lbtbn Bonus Contract"
                 ApplicationArea = all;
                 Image = CashReceiptJournal;
 
+                #region OnAction
                 trigger OnAction();
                 var
                     BonusContract: Record "lbtbn Bonus Contract";
@@ -195,6 +203,7 @@ page 5266053 "lbtbn Bonus Contract"
                     BonusReserves.SetTableView(BonusContract);
                     BonusReserves.RunModal();
                 end;
+                #endregion OnAction
             }
 
             action("Exlode Reservation")
@@ -204,6 +213,7 @@ page 5266053 "lbtbn Bonus Contract"
                 ApplicationArea = All;
                 Image = CashFlow;
 
+                #region OnAction
                 trigger OnAction()
                 var
                     BonusSetup: Record "lbtbn Bonus Setup";
@@ -225,6 +235,7 @@ page 5266053 "lbtbn Bonus Contract"
                     end;
                     //TODO: "Reserve Mode"::Journal
                 end;
+                #endregion OnAction
             }
 
             action("Bonus Run")
@@ -235,6 +246,7 @@ page 5266053 "lbtbn Bonus Contract"
                 ApplicationArea = All;
                 Image = AccountingPeriods;
 
+                #region OnAction
                 trigger OnAction()
                 var
                     BonusContract: Record "lbtbn Bonus Contract";
@@ -244,6 +256,7 @@ page 5266053 "lbtbn Bonus Contract"
                     BonusRun.SetTableView(BonusContract);
                     BonusRun.RunModal();
                 end;
+                #endregion OnAction
             }
 
             action(Reservation)
@@ -253,10 +266,12 @@ page 5266053 "lbtbn Bonus Contract"
                 ApplicationArea = All;
                 Image = Print;
 
+                #region OnAction
                 trigger OnAction()
                 begin
                     Message('not implemented'); //TODO:
                 end;
+                #endregion OnAction
             }
 
             action("Bonus Cr. Memo")
@@ -266,10 +281,12 @@ page 5266053 "lbtbn Bonus Contract"
                 ApplicationArea = All;
                 Image = Print;
 
+                #region OnAction
                 trigger OnAction()
                 begin
                     Message('not implemented'); //TODO:
                 end;
+                #endregion OnAction
             }
         }
         area(Navigation)
@@ -283,9 +300,11 @@ page 5266053 "lbtbn Bonus Contract"
                 RunObject = page "lbtbn Bonus Customers";
                 RunPageLink = "Contract" = field("No.");
 
+                #region OnAction
                 trigger OnAction();
                 begin
                 end;
+                #endregion OnAction
             }
 
             action(Dimension)
@@ -297,9 +316,11 @@ page 5266053 "lbtbn Bonus Contract"
                 RunObject = page "lbtbn Bonus Contract Dimension";
                 RunPageLink = "Contract" = field("No.");
 
+                #region OnAction
                 trigger OnAction()
                 begin
                 end;
+                #endregion OnAction
             }
             action("Bonus Contract Attribute")
             {
@@ -310,9 +331,11 @@ page 5266053 "lbtbn Bonus Contract"
                 RunObject = page "lbtbn Contract Attr. Filter";
                 RunPageLink = "Contract" = field("No.");
 
+                #region OnAction
                 trigger OnAction()
                 begin
                 end;
+                #endregion OnAction
             }
 
             action(BonusGroup)
@@ -322,9 +345,11 @@ page 5266053 "lbtbn Bonus Contract"
                 ApplicationArea = All;
                 Image = Group;
                 RunObject = page "lbtbn Bonus Group";
+                #region OnAction
                 trigger OnAction()
                 begin
                 end;
+                #endregion OnAction
             }
             action("Bonus Entry")
             {
@@ -335,45 +360,55 @@ page 5266053 "lbtbn Bonus Contract"
                 RunObject = page "lbtbn Bonus Entry";
                 RunPageLink = "Contract" = field("No.");
 
+                #region OnAction
                 trigger OnAction()
                 begin
                 end;
+                #endregion OnAction
             }
             action(Navigate)
             {
-                Caption = 'Navigate';
+                Caption = 'Search in Entries';
                 ToolTip = 'This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).';
                 ApplicationArea = All;
                 Image = Navigate;
 
+                #region OnAction
                 trigger OnAction()
                 begin
                     NavigatePage.SetProcessNo(Rec."Process No.");
                     // Navigate.FindProcess();
                     NavigatePage.Run();
                 end;
+                #endregion OnAction
             }
         }
     }
 
+    #region OnAfterGetRecord
     trigger OnAfterGetRecord()
     begin
         EnableFields();
     end;
+    #endregion OnAfterGetRecord
 
     var
         NavigatePage: Page Navigate;
         BonusBillingType_Enable: Boolean;
         BonusReserveType_Enable: Boolean;
         ItemChargeEnabled: Boolean;
+        CustomerCreditMemoEnabled: Boolean;
         NoPostedReservesErr: Label 'There are no posted reserves for Reversing.',
             Comment = 'DEU="Es gibt zu diesem Vertrag keine gebuchten Rückstellungen zur Auflösung."';
 
+    #region TypeOnAfterValidate
     local procedure TypeOnAfterValidate()
     begin
         EnableFields();
     end;
+    #endregion TypeOnAfterValidate
 
+    #region EnableFields
     local procedure EnableFields()
     var
         BonusSetup: Record "lbtbn Bonus Setup";
@@ -381,6 +416,8 @@ page 5266053 "lbtbn Bonus Contract"
         BonusBillingType_Enable := Rec."Bonus Billing Type" = Rec."Bonus Billing Type"::"Amount per Unit";
         BonusReserveType_Enable := Rec."Reserve Type" = Rec."Reserve Type"::"Amount per Unit";
         BonusSetup.Get();
-        ItemChargeEnabled := (BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo);
+        ItemChargeEnabled := BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo;
+        CustomerCreditMemoEnabled := BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::Journal;
     end;
+    #endregion EnableFields
 }

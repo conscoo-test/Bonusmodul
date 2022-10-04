@@ -10,19 +10,16 @@ table 5266055 "lbtbn BonusContractAttribute"
         field(1; Contract; Code[20])
         {
             Caption = 'Contract';
-            DataClassification = CustomerContent;
             TableRelation = "lbtbn Bonus Contract"."No.";
         }
         field(2; ID; Integer)
         {
             Caption = 'ID';
-            DataClassification = CustomerContent;
         }
 
         field(3; "Attribute ID"; Integer)
         {
             Caption = 'Attribute ID';
-            DataClassification = CustomerContent;
             TableRelation = "Item Attribute".ID;
 
             trigger OnValidate()
@@ -38,13 +35,11 @@ table 5266055 "lbtbn BonusContractAttribute"
         field(4; "Attribute Name"; Text[250])
         {
             Caption = 'Attribute Name';
-            DataClassification = CustomerContent;
             TableRelation = "Item Attribute".Name;
         }
         field(5; "Attribute Type"; Option)
         {
             Caption = 'Type';
-            DataClassification = CustomerContent;
             OptionMembers = "Option","Text","Integer","Decimal";
             OptionCaption = 'Option,Text,Integer,Decimal';
             Editable = false;
@@ -52,7 +47,6 @@ table 5266055 "lbtbn BonusContractAttribute"
         field(6; "Attribute Value ID"; Integer)
         {
             Caption = 'Value ID';
-            DataClassification = CustomerContent;
             TableRelation = "Item Attribute Value".ID where("Attribute ID" = field("Attribute ID"));
             trigger OnValidate()
             var
@@ -67,7 +61,6 @@ table 5266055 "lbtbn BonusContractAttribute"
         field(7; "Attribute Value Name"; Text[250])
         {
             Caption = 'Value Name';
-            DataClassification = CustomerContent;
         }
     }
     keys

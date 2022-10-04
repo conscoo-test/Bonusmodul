@@ -538,8 +538,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Field Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1573773400 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Setup</source>
-          <target>Bonus Einrichtung</target>
+          <source>LeBit Bonus Setup</source>
+          <target>LeBit Bonus Einrichtung</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Property Caption</note>
         </trans-unit>
@@ -1018,8 +1018,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Navigate - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 3538210097 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Navigate</source>
-          <target>Navigate</target>
+          <source>Search in Entries</source>
+          <target>In Posten suchen</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Navigate - Property Caption</note>
         </trans-unit>
@@ -1569,6 +1569,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Ship-to Code - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3741211377 - Action 1045917230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Source Document</source>
+          <target>Herkunftsbeleg</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Source Document - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3293732488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Group</source>
           <target>Bonusgruppe</target>
@@ -1588,8 +1594,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Control Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Setup</source>
-          <target>Bonus Einrichtung</target>
+          <source>LeBit Bonus Setup</source>
+          <target>LeBit Bonus Einrichtung</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Property Caption</note>
         </trans-unit>
@@ -1908,13 +1914,13 @@
         <trans-unit id="Report 510169692 - NamedType 2761214586" size-unit="char" translate="yes" xml:space="preserve">
           <source>Accounting Period %1 to %2</source>
           <target>Abrechnungszeitraum %1 bis %2</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType AccountingPeriodLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 170287482" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Accounting accordingly Bonus Contract %1.</source>
           <target>Rückstellungen gem. Vertrag %1</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusAccountingLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3545756256" size-unit="char" translate="yes" xml:space="preserve">
@@ -1938,7 +1944,7 @@
         <trans-unit id="Report 510169692 - NamedType 3491330105" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contract   #2##############</source>
           <target>Vertrag  #2##############</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType ContractProgressTxt</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
@@ -1950,7 +1956,7 @@
         <trans-unit id="Report 510169692 - NamedType 2162482411" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer #1##############\</source>
           <target>Debitor  #1##############\</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType CustomerProgressTxt</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 2437958988" size-unit="char" translate="yes" xml:space="preserve">
@@ -2022,7 +2028,7 @@
         <trans-unit id="Report 3491407518 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
           <source>Accounting Period %1 to %2</source>
           <target>Abrechnungszeitraum %1 bis %2</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType AccountingPeriodTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
@@ -2034,25 +2040,25 @@
         <trans-unit id="Report 3491407518 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Settlement according to Bonus Contract %1</source>
           <target>Bonusabrchn. gem. Vertrag %1</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType BonusSettlementTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 3491330105" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract #2##############\</source>
           <target>Bonusvertrag  #2##############\</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType ContractProgressTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 2162482411" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer    #1##############\</source>
           <target>Debitor    #1##############\</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType CustomerProgressTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 565641615" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Document #3##############</source>
           <target>Verkaufsbeleg #3##############</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType SalesDocProgressTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -2115,17 +2121,17 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Charges - Control lbtbn Bonus consider - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="TableExtension 2890724663 - Field 3377816526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
+        <trans-unit id="TableExtension 2890724663 - Field 698587409 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
           <source>Bonus Reserve Account</source>
           <target>Bonusrückstellungskonto</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Customer Posting Group - Field lbtbn Bonus Reserve Account - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Customer Posting Group - Field lbtbn Reserve Account - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 2890724663 - Field 2862626789 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
+        <trans-unit id="TableExtension 2890724663 - Field 1185744114 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
           <source>Bonus Reserve Bal. Account</source>
           <target>Bonusrückstellungsgegenkonto</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Customer Posting Group - Field lbtbn Bonus Reserve Bal. Account - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Customer Posting Group - Field lbtbn Reserve Bal. Account - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4054959661 - Field 1160090714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
           <source>Bonus Entry No.</source>
@@ -2148,7 +2154,7 @@
         <trans-unit id="TableExtension 268913786 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 268913786">
           <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
           <target>Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">%1 - Tablecaption</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item Charge Assign. - NamedType Text001Msg</note>
         </trans-unit>
         <trans-unit id="TableExtension 167010268 - Field 3423839740 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">

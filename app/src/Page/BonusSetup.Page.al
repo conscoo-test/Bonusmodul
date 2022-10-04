@@ -4,7 +4,7 @@ page 5266051 "lbtbn Bonus Setup"
     ApplicationArea = All;
     PageType = Card;
     SourceTable = "lbtbn Bonus Setup";
-    Caption = 'Bonus Setup';
+    Caption = 'LeBit Bonus Setup';
 
     layout
     {

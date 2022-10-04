@@ -37,7 +37,7 @@ report 5266052 "lbtbn Bonus Run"
                             PmtDiscAmt: Decimal;
                             DiscAmt: Decimal;
                         begin
-                            //GetDocAmount();
+                            DocAmount := GetDocAmount("Sales Invoice Line".Amount);
                             //UpdateDocAmountFromValueEntry();
                             case "Bonus Contract"."Bonus Billing Type" of
                                 "Bonus Contract"."Bonus Billing Type"::"%":
@@ -257,6 +257,14 @@ report 5266052 "lbtbn Bonus Run"
 
     end;
 
+    local procedure GetDocAmount(Amount: Decimal) DocAmount: Decimal
+    begin
+        if "Sales Invoice Header"."Currency Code" = '' then
+            DocAmount := Amount
+        else
+            DocAmount := Round(Amount / "Sales Invoice Header"."Currency Factor", 0.01);
+    end;
+
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         BonusContractLine: Record "lbtbn Bonus Contract Line";
@@ -272,10 +280,10 @@ report 5266052 "lbtbn Bonus Run"
 
 
         AccountingPeriodMissingErr: Label 'Please input the accounting period.';
-        CustomerProgressTxt: Label 'Customer    #1##############\';
-        ContractProgressTxt: Label 'Bonus Contract #2##############\';
-        SalesDocProgressTxt: Label 'Sales Document #3##############';
+        CustomerProgressTxt: Label 'Customer    #1##############\', Comment = '%1 No.';
+        ContractProgressTxt: Label 'Bonus Contract #2##############\', Comment = '%1 No.';
+        SalesDocProgressTxt: Label 'Sales Document #3##############', Comment = '%1 No.';
         BonusCreditMemoLbl: Label 'Bonus Credit Memo';
-        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1';
-        AccountingPeriodTxt: Label 'Accounting Period %1 to %2';
+        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1', Comment = '%1 No.';
+        AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = '%1 from %2 to';
 }
