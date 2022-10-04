@@ -1,8 +1,8 @@
-page 5266060 "lbt Bonus Contract Factbox"
+page 5266060 "lbtbn Bonus Contract Factbox"
 {
     PageType = CardPart;
-    SourceTable = "lbt Bonus Contract";
-    Caption = 'Bonus Contract Details', comment = 'DEU="Bonusvertrag Details"';
+    SourceTable = "lbtbn Bonus Contract";
+    Caption = 'Bonus Contract Details';
 
     layout
     {
@@ -11,44 +11,44 @@ page 5266060 "lbt Bonus Contract Factbox"
 
             field("Last Reserve at"; Rec."Last Reserve at")
             {
-                ToolTip = 'Displays the last reset performed.', comment = 'DEU="Zeigt die letzte durchgeführte Rückstellung an."';
+                ToolTip = 'Displays the last reset performed.';
                 ApplicationArea = All;
             }
             field("Last Billing at"; Rec."Last Billing at")
             {
-                ToolTip = 'Displays when the last settlement was performed.', comment = 'DEU="Zeigt an, wann die letzte Abrechnung durchgeführt wurde."';
+                ToolTip = 'Displays when the last settlement was performed.';
                 ApplicationArea = All;
             }
 
             field("No. of Customer"; Rec."No. of Customers")
             {
-                ToolTip = 'Indicates the number of customers.', comment = 'DEU="Gibt die Anzahl der Debitoren an."';
+                ToolTip = 'Indicates the number of customers.';
                 ApplicationArea = All;
             }
             field("No. of Attribute"; Rec."No. of Attribute")
             {
-                ToolTip = 'Indicates the number of existing attributes.', comment = 'DEU="Gibt die Anzahl der vorhandenen Attribute an."';
+                ToolTip = 'Indicates the number of existing attributes.';
                 ApplicationArea = All;
             }
             field("No. of Dimensions"; Rec."No. of Dimensions")
             {
-                ToolTip = 'Indicates the number of dimensions.', comment = 'DEU="Gibt die Anzahl der Dimensionen an."';
+                ToolTip = 'Indicates the number of dimensions.';
                 ApplicationArea = All;
             }
 
             field("Balance of Reserve"; Rec."Balance of Reserve")
             {
-                ToolTip = 'Indicates the balance of provisions.', comment = 'DEU="Gibt den Saldo der Rückstellungen an."';
+                ToolTip = 'Indicates the balance of provisions.';
                 ApplicationArea = All;
             }
             field("Balance of Liquid Reserves"; Rec."Balance of Liquid Reserves")
             {
-                ToolTip = 'Indicates the balance of the reversal of reserves.', comment = 'DEU="Gibt den Saldo der Rückstellungsauflösungen an."';
+                ToolTip = 'Indicates the balance of the reversal of reserves.';
                 ApplicationArea = All;
             }
             field("Balance of Bonus"; Rec."Balance of Bonus")
             {
-                ToolTip = 'Indicates the balance of the bonus.', comment = 'DEU="Gibt den Saldo vom Bonus an."';
+                ToolTip = 'Indicates the balance of the bonus.';
                 ApplicationArea = All;
             }
 

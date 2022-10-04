@@ -1,26 +1,24 @@
-table 5266053 "lbt Bonus Contract Line"
+table 5266053 "lbtbn Bonus Contract Line"
 {
-    Caption = 'bonus scales', comment = 'DEU="Bonusstaffeln"';
+    Caption = 'bonus scales';
     DataClassification = ToBeClassified;
-
 
     fields
     {
         field(1; Contract; Code[20])
         {
-            Caption = 'Contract', comment = 'DEU="Vertrag"';
+            Caption = 'Contract';
             DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
-
         field(2; "Line No."; Integer)
         {
-            Caption = 'Line No.', comment = 'DEU="Zeilennummer"';
+            Caption = 'Line No.';
             DataClassification = CustomerContent;
         }
         field(3; "Item Unit of Measure"; Code[10])
         {
-            Caption = 'Item Unit of Measure', comment = 'DEU="Artikeleinheit"';
+            Caption = 'Item Unit of Measure';
             DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
 
@@ -31,20 +29,19 @@ table 5266053 "lbt Bonus Contract Line"
         }
         field(4; "From Quantity"; Decimal)
         {
-            Caption = 'From Quantity', comment = 'DEU="ab Menge"';
+            Caption = 'From Quantity';
             DataClassification = CustomerContent;
         }
         field(5; Value; Decimal)
         {
-            Caption = 'Value', comment = 'DEU="Wert"';
+            Caption = 'Value';
             DataClassification = CustomerContent;
         }
         field(6; "Bonus Scale Type"; Option)
         {
-            Caption = 'Bonus Scale Type', comment = 'DEU="Bonusstaffelart"';
+            Caption = 'Bonus Scale Type';
             OptionMembers = "Sales Qty.","Sales (LCY)'";
-            OptionCaption = 'Sales Qty.,Sales (LCY)', comment = 'DEU="Absatz,Umsatz"';
-
+            OptionCaption = 'Sales Qty.,Sales (LCY)';
             DataClassification = CustomerContent;
         }
     }
@@ -60,11 +57,12 @@ table 5266053 "lbt Bonus Contract Line"
     trigger OnInsert()
 
     var
-        BonusContractRec: Record "lbt Bonus Contract";
+        BonusContractRec: Record "lbtbn Bonus Contract";
     begin
         if BonusContractRec.Get("Contract") then
             "Bonus Scale Type" := BonusContractRec."Bonus Scale Type";
+
+        if "Bonus Scale Type" = "Bonus Scale Type"::"Sales Qty." then
+            TestField("Item Unit of Measure");
     end;
-
-
 }

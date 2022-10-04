@@ -1,0 +1,41 @@
+permissionset 5266051 "lbtbn Bonus"
+{
+    Access = Internal;
+    Assignable = true;
+    Caption = 'Bonus permissions', Locked = true;
+    Permissions = codeunit "lbtbn Bonus Assisted Setup" = X,
+        codeunit "lbtbn Bonus Install Logic" = X,
+        codeunit "lbtbn Bonus Management" = X,
+        codeunit "lbtbn Bonus Triggers" = X,
+        page "lbtbn Bonus Assisted Setup" = X,
+        page "lbtbn Bonus Contract" = X,
+        page "lbtbn Bonus Contract Dimension" = X,
+        page "lbtbn Bonus Contract Factbox" = X,
+        page "lbtbn Bonus Contract Line" = X,
+        page "lbtbn Bonus Contracts" = X,
+        page "lbtbn Bonus Customers" = X,
+        page "lbtbn Bonus Entry" = X,
+        page "lbtbn Bonus Group" = X,
+        page "lbtbn Bonus Setup" = X,
+        page "lbtbn Contract Attr. Filter" = X,
+        page "lbtbn Explode Bonus Reserv." = X,
+        page "lbtbn Explode Reservation" = X,
+        report "lbtbn Bonus Reserves" = X,
+        report "lbtbn Bonus Run" = X,
+        table "lbtbn Bonus Contract" = X,
+        table "lbtbn Bonus Contract Dimension" = X,
+        table "lbtbn Bonus Contract Line" = X,
+        table "lbtbn Bonus Customer" = X,
+        table "lbtbn Bonus Entry" = X,
+        table "lbtbn Bonus Group" = X,
+        table "lbtbn Bonus Setup" = X,
+        table "lbtbn BonusContractAttribute" = X,
+        tabledata "lbtbn Bonus Contract" = RIMD,
+        tabledata "lbtbn Bonus Contract Dimension" = RIMD,
+        tabledata "lbtbn Bonus Contract Line" = RIMD,
+        tabledata "lbtbn Bonus Customer" = RIMD,
+        tabledata "lbtbn Bonus Entry" = RIMD,
+        tabledata "lbtbn Bonus Group" = RIMD,
+        tabledata "lbtbn Bonus Setup" = RIMD,
+        tabledata "lbtbn BonusContractAttribute" = RIMD;
+}

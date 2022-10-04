@@ -1,21 +1,22 @@
-report 5266052 "lbt Bonus Run"
+report 5266052 "lbtbn Bonus Run"
 {
     UsageCategory = Tasks;
     ApplicationArea = All;
-    Caption = 'Bonus Run', Comment = 'DEU="Bonuslauf"';
+    Caption = 'Bonus Run';
+    ProcessingOnly = true;
 
     dataset
     {
-        dataitem("Bonus Contract"; "lbt Bonus Contract")
+        dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
 
-            dataitem("Bonus Customer"; "lbt Bonus Customers")
+            dataitem("Bonus Customer"; "lbtbn Bonus Customer")
             {
-                DataItemLink = "Contract" = field("Contract");
+                DataItemLink = "Contract" = field("No.");
 
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
-                    DataItemLink = "Sell-to Customer No." = field("Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
                     dataitem("Sales Invoice Line"; "Sales Invoice Line")
                     {
@@ -36,7 +37,7 @@ report 5266052 "lbt Bonus Run"
                             PmtDiscAmt: Decimal;
                             DiscAmt: Decimal;
                         begin
-                            //GetDocAmount();
+                            DocAmount := GetDocAmount("Sales Invoice Line".Amount);
                             //UpdateDocAmountFromValueEntry();
                             case "Bonus Contract"."Bonus Billing Type" of
                                 "Bonus Contract"."Bonus Billing Type"::"%":
@@ -56,7 +57,7 @@ report 5266052 "lbt Bonus Run"
                                                 if ValueEntry.FindFirst() then
                                                     if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
                                                         if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
-                                                            CreateSalesCreditMemo2(Database::"Sales Invoice Line", "Document No.", "Line No.", DocAmount, BonusAmount, -DiscAmt, -PmtDiscAmt);
+                                                            CreateSalesCreditMemo2();
                                             end;
                                     end;
                                 "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
@@ -80,7 +81,7 @@ report 5266052 "lbt Bonus Run"
                     var
                         Customer: Record Customer;
                     begin
-                        dia.Update(3, "No.");
+                        Dialog.Update(3, "No.");
                         SalesPersonCode := '';
                         //TODO: 
                         // if "Bonus Contract"."Agent From Document" then 
@@ -92,7 +93,7 @@ report 5266052 "lbt Bonus Run"
                 }
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
-                    DataItemLink = "Sell-to Customer No." = field("Customer");
+                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
@@ -102,7 +103,7 @@ report 5266052 "lbt Bonus Run"
             }
             trigger OnPreDataItem()
             begin
-                dia.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
+                Dialog.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
             end;
 
 
@@ -118,17 +119,18 @@ report 5266052 "lbt Bonus Run"
             {
                 group(Options)
                 {
+                    Caption = 'Options';
                     field("Date From"; DateFrom)
                     {
                         ApplicationArea = All;
-                        Caption = 'Date from', Comment = 'DEU="Datum von"';
+                        Caption = 'Date from';
                         ToolTip = 'Specifies Date from';
                     }
 
                     field("Date To"; DateTo)
                     {
                         ApplicationArea = All;
-                        Caption = 'Date to', Comment = 'DEU="Datum bis"';
+                        Caption = 'Date to';
                         ToolTip = 'Specifies Date to';
                         trigger OnValidate()
                         begin
@@ -139,7 +141,7 @@ report 5266052 "lbt Bonus Run"
                     field("Reverse Posting Date"; ReversePostingDate)
                     {
                         ApplicationArea = All;
-                        Caption = 'Posting date of exploding bonus reserves', Comment = 'DEU="Buchungsdatum für Rückstellungsauflösung"';
+                        Caption = 'Posting date of exploding bonus reserves';
                         ToolTip = 'Specifies date of exploding bonus reserves';
                     }
                 }
@@ -224,7 +226,7 @@ report 5266052 "lbt Bonus Run"
         SalesHeader.SetRange("Posting Description", BonusCreditMemoLbl);
         if not SalesHeader.FindFirst() then begin
             InitSalesHeader(SalesHeader);
-            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."Contract"));
+            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."No."));
             CreateTextLine(SalesHeader, 20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
         end;
     end;
@@ -245,7 +247,7 @@ report 5266052 "lbt Bonus Run"
 
     end;
 
-    local procedure CreateSalesCreditMemo2(TableId: Integer; DocNo: Code[20]; DocLineNo: Integer; DocAmount: Decimal; BonusAmount: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Amount: Decimal
+    local procedure CreateSalesCreditMemo2()
     var
         SalesHeader: Record "Sales Header";
     begin
@@ -255,9 +257,17 @@ report 5266052 "lbt Bonus Run"
 
     end;
 
+    local procedure GetDocAmount(Amount: Decimal) DocAmount: Decimal
+    begin
+        if "Sales Invoice Header"."Currency Code" = '' then
+            DocAmount := Amount
+        else
+            DocAmount := Round(Amount / "Sales Invoice Header"."Currency Factor", 0.01);
+    end;
+
     var
-        BonusSetup: Record "lbt Bonus Setup";
-        BonusContractLine: Record "lbt Bonus Contract Line";
+        BonusSetup: Record "lbtbn Bonus Setup";
+        BonusContractLine: Record "lbtbn Bonus Contract Line";
         CustomerPostingGroup: Record "Customer Posting Group";
         GenBusinessPostingGroup: Record "Gen. Business Posting Group";
         DateFrom: Date;
@@ -265,15 +275,15 @@ report 5266052 "lbt Bonus Run"
         ReversePostingDate: Date;
         PostingDate: Date;
         SalesPersonCode: Code[20];
-        dia: Dialog;
+        Dialog: Dialog;
         BonusAmount: Decimal;
 
 
-        AccountingPeriodMissingErr: Label 'Please input the accounting period.', Comment = 'DEU="Geben Sie den Abrechnungszeitraum ein."';
-        CustomerProgressTxt: Label 'Customer    #1##############\', Comment = 'DEU="Debitor        #1##############\"';
-        ContractProgressTxt: Label 'Bonus Contract #2##############\', Comment = 'DEU="Bonusvertrag   #2##############\"';
-        SalesDocProgressTxt: Label 'Sales Document #3##############', Comment = 'DEU="Verkaufsbeleg  #3##############"';
-        BonusCreditMemoLbl: Label 'Bonus Credit Memo', Comment = 'DEU="Bonusgutschrift"';
-        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1', Comment = 'DEU="Bonusabrchn. gem. Vertrag %1"';
-        AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = 'DEU="Abrechnungszeitraum %1 bis %2"';
+        AccountingPeriodMissingErr: Label 'Please input the accounting period.';
+        CustomerProgressTxt: Label 'Customer    #1##############\', Comment = '%1 No.';
+        ContractProgressTxt: Label 'Bonus Contract #2##############\', Comment = '%1 No.';
+        SalesDocProgressTxt: Label 'Sales Document #3##############', Comment = '%1 No.';
+        BonusCreditMemoLbl: Label 'Bonus Credit Memo';
+        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1', Comment = '%1 No.';
+        AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = '%1 from %2 to';
 }

@@ -1,4 +1,4 @@
-codeunit 5266052 "lbt Bonus Management"
+codeunit 5266052 "lbtbn Bonus Management"
 {
     procedure SetAssignmentDoc(AssignmentDocTypeP: Option " ","Sales Shipment","Sales Return Receipt";
                                AssignmentDocNoP: Code[20];
@@ -23,10 +23,10 @@ codeunit 5266052 "lbt Bonus Management"
         BonusDocLineNo := BonusDocLineNoP;
     end;
 
-    procedure CreateBonusContractEntry(var ContractRec: Record "lbt Bonus Contract";
-                                        var BonusCustRec: Record "lbt Bonus Customers";
+    procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
+                                        var BonusCustomer: Record "lbtbn Bonus Customer";
                                         EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
-                                        var EntryDate: Date;
+                                        EntryDate: Date;
                                         BonusRule: Integer;
                                         Qty: Decimal;
                                         Amt: Decimal;
@@ -36,43 +36,42 @@ codeunit 5266052 "lbt Bonus Management"
                                         PmtDiscAmt: Decimal
     ): Integer
     var
-        BonusContractEntryRec: Record "lbt Bonus Entry";
         EntryNo: Integer;
     begin
 
-        if BonusContractEntryRec.FindLast() then
-            EntryNo := BonusContractEntryRec."Entry No."
+        if BonusEntry.FindLast() then
+            EntryNo := BonusEntry."Entry No."
         else
             EntryNo := 0;
-        CLEAR(BonusContractEntryRec);
-        BonusContractEntryRec.Init();
-        BonusContractEntryRec."Entry No." := EntryNo + 1;
-        BonusContractEntryRec."Entry Type" := EntryType;
-        BonusContractEntryRec."Contract" := ContractRec."Contract";
-        BonusContractEntryRec."Customer" := BonusCustRec."Customer";
-        BonusContractEntryRec."Ship-to Code" := BonusCustRec."Ship-to Code";
-        BonusContractEntryRec."Process No." := ContractRec."Process No.";
-        BonusContractEntryRec."Invoice Customer No." := ContractRec."Bonus Recipient";
-        BonusContractEntryRec."Entry Date" := EntryDate;
-        BonusContractEntryRec."Bonus Contract Line" := BonusRule;
-        BonusContractEntryRec."Bonus Document Type" := BonusDocType;
-        BonusContractEntryRec."Bonus Document No." := BonusDocNo;
-        BonusContractEntryRec."Bonus Document Line" := BonusDocLineNo;
-        BonusContractEntryRec."From Document Type" := SourceDocType;
-        BonusContractEntryRec."From Document No." := SourceDocNo;
-        BonusContractEntryRec."From Document Line" := SourceDocLineNo;
-        BonusContractEntryRec."Sales Quantity" := Qty;
-        BonusContractEntryRec."Calculated Amount" := Amt;
-        BonusContractEntryRec."calc. Amount incl. VAT" := AmtIncVAT;
-        BonusContractEntryRec."Base Amount" := DocAmt;
-        BonusContractEntryRec."Assignment Document Type" := AssignmentDocType;
-        BonusContractEntryRec."Assignment Document No." := AssignmentDocNo;
-        BonusContractEntryRec."Assignment Doc. Line No." := AssignmentDocLineNo;
-        BonusContractEntryRec."Pmt. Discount Amount" := PmtDiscAmt;
-        BonusContractEntryRec."Discount Amount" := DiscAmt;
-        BonusContractEntryRec.Insert();
+        Clear(BonusEntry);
+        BonusEntry.Init();
+        BonusEntry."Entry No." := EntryNo + 1;
+        BonusEntry."Entry Type" := EntryType;
+        BonusEntry."Contract" := BonusContract."No.";
+        BonusEntry."Customer" := BonusCustomer."Customer No.";
+        BonusEntry."Ship-to Code" := BonusCustomer."Ship-to Code";
+        BonusEntry."Process No." := BonusContract."Process No.";
+        BonusEntry."Invoice Customer No." := BonusContract."Bonus Recipient";
+        BonusEntry."Entry Date" := EntryDate;
+        BonusEntry."Bonus Contract Line" := BonusRule;
+        BonusEntry."Bonus Document Type" := BonusDocType;
+        BonusEntry."Bonus Document No." := BonusDocNo;
+        BonusEntry."Bonus Document Line" := BonusDocLineNo;
+        BonusEntry."From Document Type" := SourceDocType;
+        BonusEntry."From Document No." := SourceDocNo;
+        BonusEntry."From Document Line" := SourceDocLineNo;
+        BonusEntry."Sales Quantity" := Qty;
+        BonusEntry."Calculated Amount" := Amt;
+        BonusEntry."calc. Amount incl. VAT" := AmtIncVAT;
+        BonusEntry."Base Amount" := DocAmt;
+        BonusEntry."Assignment Document Type" := AssignmentDocType;
+        BonusEntry."Assignment Document No." := AssignmentDocNo;
+        BonusEntry."Assignment Doc. Line No." := AssignmentDocLineNo;
+        BonusEntry."Pmt. Discount Amount" := PmtDiscAmt;
+        BonusEntry."Discount Amount" := DiscAmt;
+        BonusEntry.Insert();
 
-        exit(BonusContractEntryRec."Entry No.");
+        exit(BonusEntry."Entry No.");
     end;
 
     procedure UpdateFromGenLedgEntry(var GLEntry: Record "G/L Entry")
@@ -80,7 +79,7 @@ codeunit 5266052 "lbt Bonus Management"
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             exit;
-        if BonusEntry.Get(GLEntry."lbt Bonus Entry No") then begin
+        if BonusEntry.Get(GLEntry."lbtbn Bonus Entry No") then begin
             BonusEntry."General Ledger Entry No." := GLEntry."Entry No.";
             if BonusEntry."Posted Amount" = 0 then
                 if BonusEntry."Entry Type" <> BonusEntry."Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
@@ -95,41 +94,26 @@ codeunit 5266052 "lbt Bonus Management"
         end;
     end;
 
-    local procedure UpdateFromSalesLine(var SalesLineRec: Record "Sales Line")
-    begin
-        if BonusEntry.GET(SalesLineRec."lbt Bonus Entry No.") then begin
-
-            CASE SalesLineRec."Document Type" OF
-                SalesLineRec."Document Type"::Invoice:
-                    BonusEntry."Posted Amount" := -SalesLineRec."Line Amount";
-                SalesLineRec."Document Type"::"Credit Memo":
-                    BonusEntry."Posted Amount" := SalesLineRec."Line Amount";
-            end;
-
-            BonusEntry.Modify();
-        end;
-    end;
-
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
     var
-        BonusContract: Record "lbt Bonus Contract";
+        BonusContract: Record "lbtbn Bonus Contract";
         Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbt Bonus Contract", 0, CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
     end;
 
     var
-        BonusEntry: Record "lbt Bonus Entry";
-        BonusSetup: Record "lbt Bonus Setup";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusSetup: Record "lbtbn Bonus Setup";
 
         AssignmentDocType: Option;
         AssignmentDocNo: Code[20];
         AssignmentDocLineNo: Integer;
 
         SourceDocType: Integer;
-        SourceDocNo: code[20];
+        SourceDocNo: Code[20];
         SourceDocLineNo: Integer;
 
         BonusDocType: Integer;

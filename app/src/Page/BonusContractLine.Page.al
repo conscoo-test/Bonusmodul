@@ -1,8 +1,10 @@
-page 5266054 "lbt Bonus Contract Line"
+page 5266054 "lbtbn Bonus Contract Line"
 {
-    Caption = 'Bonus Contract Line', comment = 'DEU="Bonusstaffeln"';
-    PageType = CardPart;
-    SourceTable = "lbt Bonus Contract Line";
+    Caption = 'Bonus Contract Line';
+    PageType = ListPart;
+    SourceTable = "lbtbn Bonus Contract Line";
+    AutoSplitKey = true;
+    DelayedInsert = true;
 
     layout
     {
@@ -10,77 +12,29 @@ page 5266054 "lbt Bonus Contract Line"
         {
             repeater(General)
             {
-                Caption = 'General', comment = 'DEU="Allgemein"';
-
-                /* 
-                field(Contract; "Contract")
-                {
-                    ApplicationArea = All;
-                }
-                field("Line No."; "Line No.")
-                {
-                    ApplicationArea = All;
-                } */
+                Caption = 'General';
                 field("Bonus Scale Type"; Rec."Bonus Scale Type")
                 {
-                    ToolTip = 'Indicates whether the rebate calculation is based on sales or turnover.', comment = 'DEU="Gibt an, ob die Bonusberechnung auf Grundlage des Absatzes oder des Umsatzes erfolgt."';
+                    ToolTip = 'Indicates whether the rebate calculation is based on sales or turnover.';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Item Unit of Measure"; Rec."Item Unit of Measure")
                 {
-                    ToolTip = 'Specifies the unit of the article.', comment = 'DEU="Gibt an, welche Einheit der Artikel hat."';
+                    ToolTip = 'Specifies the unit of the article.';
                     ApplicationArea = All;
-                    Visible = UoMVsbl;
                 }
                 field("From Quantity"; Rec."From Quantity")
                 {
-                    ToolTip = 'For each contract, you define a staggering of the bonus amount depending on the sales volume or the sales quantity.', comment = 'DEU="Je Vertrag wird eine Staffelung des Bonusbetrags in Abhängigkeit des Umsatzes oder der Absatzmenge hinterlegt."';
+                    ToolTip = 'For each contract, you define a staggering of the bonus amount depending on the sales volume or the sales quantity.';
                     ApplicationArea = All;
-
                 }
-
                 field(Value; Rec."Value")
                 {
-                    ToolTip = 'The value of the scale is used for bonus calculation depending on the value unit of the contract.', comment = 'DEU="Der Wert der Staffel wird in Abhängigkeit von der Werteinheit des Vertrages für die Bonusberechnung verwendet."';
+                    ToolTip = 'The value of the scale is used for bonus calculation depending on the value unit of the contract.';
                     ApplicationArea = All;
                 }
-
-
             }
         }
     }
-
-
-    trigger OnNewRecord(BelowxRec: Boolean)
-
-    begin
-        IF BonusContractRec.GET(Rec."Contract") THEN
-            Rec."Bonus Scale Type" := BonusContractRec."Bonus Scale Type"
-    end;
-
-    trigger OnInsertRecord(BelowxRec: Boolean): Boolean
-    begin
-        IF Rec."Bonus Scale Type" = Rec."Bonus Scale Type"::"Sales Qty." THEN
-            IF Rec."Item Unit of Measure" = '' THEN
-                EXIT(FALSE);
-    end;
-
-    trigger OnAfterGetCurrRecord()
-    begin
-        UoMVsbl := (Rec."Bonus Scale Type" = Rec."Bonus Scale Type"::"Sales Qty.");
-    end;
-
-    // local procedure PageUpdate(VAR ContractNo: Code[20])
-    // var
-    //     BonusContractLRec: Record "lbt Bonus Contract Line";
-    // begin
-    //     IF BonusContractLRec.GET(ContractNo) THEN
-    //         UoMVsbl := (BonusContractLRec."Bonus Scale Type" = BonusContractLRec."Bonus Scale Type"::"Sales Qty.");
-    //     CurrPage.UPDATE();
-    // end;
-
-    var
-        BonusContractRec: Record "lbt Bonus Contract";
-        UoMVsbl: Boolean;
-
 }

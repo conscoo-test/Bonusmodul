@@ -1,10 +1,10 @@
-tableextension 5266060 "lbt SalesLine" extends "Sales Line" //37
+tableextension 5266060 "lbtbn SalesLine" extends "Sales Line" //37
 {
     fields
     {
-        field(5266060; "lbt Bonus Entry No."; Integer)
+        field(5266060; "lbtbn Bonus Entry No."; Integer)
         {
-            Caption = 'Bonus Entry No.', comment = 'DEU="Bonus Postennr."';
+            Caption = 'Bonus Entry No.';
             DataClassification = CustomerContent;
         }
 

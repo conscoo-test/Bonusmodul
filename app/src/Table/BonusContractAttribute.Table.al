@@ -1,28 +1,25 @@
-table 5266055 "lbt BonusContractAttribute"
+table 5266055 "lbtbn BonusContractAttribute"
 {
-    Caption = 'Bonus Contract Attribute', comment = 'DEU="Bonusvertrag Attribute"';
+    Caption = 'Bonus Contract Attribute';
     DataClassification = CustomerContent;
-    LookupPageId = "lbt BonusContrAttributeFilter";
-    DrillDownPageId = "lbt BonusContrAttributeFilter";
+    LookupPageId = "lbtbn Contract Attr. Filter";
+    DrillDownPageId = "lbtbn Contract Attr. Filter";
 
     fields
     {
         field(1; Contract; Code[20])
         {
-            Caption = 'Contract', comment = 'DEU="Vertrag"';
-            DataClassification = CustomerContent;
-            TableRelation = "lbt Bonus Contract"."Contract";
+            Caption = 'Contract';
+            TableRelation = "lbtbn Bonus Contract"."No.";
         }
         field(2; ID; Integer)
         {
-            Caption = 'ID', comment = 'DEU="ID"';
-            DataClassification = CustomerContent;
+            Caption = 'ID';
         }
 
         field(3; "Attribute ID"; Integer)
         {
-            Caption = 'Attribute ID', comment = 'DEU="Attribute ID"';
-            DataClassification = CustomerContent;
+            Caption = 'Attribute ID';
             TableRelation = "Item Attribute".ID;
 
             trigger OnValidate()
@@ -37,22 +34,19 @@ table 5266055 "lbt BonusContractAttribute"
         }
         field(4; "Attribute Name"; Text[250])
         {
-            Caption = 'Attribute Name', comment = 'DEU="Attribute Name"';
-            DataClassification = CustomerContent;
+            Caption = 'Attribute Name';
             TableRelation = "Item Attribute".Name;
         }
         field(5; "Attribute Type"; Option)
         {
-            Caption = 'Type', comment = 'DEU="Art"';
-            DataClassification = CustomerContent;
+            Caption = 'Type';
             OptionMembers = "Option","Text","Integer","Decimal";
-            OptionCaption = 'Option,Text,Integer,Decimal', comment = 'DEU="Option,Text,Ganzzahl,Dezimalzahl"';
+            OptionCaption = 'Option,Text,Integer,Decimal';
             Editable = false;
         }
         field(6; "Attribute Value ID"; Integer)
         {
-            Caption = 'Value ID', comment = 'DEU="Wert"';
-            DataClassification = CustomerContent;
+            Caption = 'Value ID';
             TableRelation = "Item Attribute Value".ID where("Attribute ID" = field("Attribute ID"));
             trigger OnValidate()
             var
@@ -66,8 +60,7 @@ table 5266055 "lbt BonusContractAttribute"
         }
         field(7; "Attribute Value Name"; Text[250])
         {
-            Caption = 'Value Name', comment = 'DEU="Wertname"';
-            DataClassification = CustomerContent;
+            Caption = 'Value Name';
         }
     }
     keys
@@ -80,7 +73,7 @@ table 5266055 "lbt BonusContractAttribute"
 
     trigger OnInsert()
     var
-        ContractAttribut: Record "lbt BonusContractAttribute";
+        ContractAttribut: Record "lbtbn BonusContractAttribute";
         NewID: Integer;
     begin
         if "ID" = 0 then

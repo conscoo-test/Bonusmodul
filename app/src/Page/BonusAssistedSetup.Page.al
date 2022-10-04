@@ -1,8 +1,8 @@
-page 5266062 "lbt Bonus Assisted Setup"
+page 5266062 "lbtbn Bonus Assisted Setup"
 {
     PageType = NavigatePage;
-    Caption = 'LeBit Bonus Setup', Comment = 'DEU="LeBit Bonus Einrichtung"';
-    SourceTable = "lbt Bonus Setup";
+    Caption = 'LeBit Bonus Setup';
+    SourceTable = "lbtbn Bonus Setup";
 
     layout
     {
@@ -10,6 +10,7 @@ page 5266062 "lbt Bonus Assisted Setup"
         {
             group(StandardBanner)
             {
+                Caption = '', Locked = true;
                 Editable = false;
                 Visible = TopBannerVisible and (CurrentStep < 3);
                 field("Media Resources"; MediaResources."Media Reference")
@@ -21,6 +22,7 @@ page 5266062 "lbt Bonus Assisted Setup"
 
             group(FinishedBanner)
             {
+                Caption = '', Locked = true;
                 Editable = false;
                 Visible = TopBannerVisible and (CurrentStep = 3);
                 field("MediaResources Done"; MediaResourcesDone."Media Reference")
@@ -32,15 +34,16 @@ page 5266062 "lbt Bonus Assisted Setup"
 
             group(Step1)
             {
+                Caption = '', Locked = true;
                 Visible = CurrentStep = 1;
                 group(Welcome)
                 {
-                    Caption = 'Welcome', Comment = 'DEU="Willkommen bei der Einrichtung von LeBit Bonus"'; //TODO: 
+                    Caption = 'Welcome'; //TODO: 
 
 
                     group(Introduction)
                     {
-                        Caption = '';
+                        Caption = '', Locked = true;
                         InstructionalText = 'english text', //TODO:
                             Comment = 'DEU="german text"';
 
@@ -49,11 +52,11 @@ page 5266062 "lbt Bonus Assisted Setup"
 
                 group(LetsGo)
                 {
-                    Caption = 'Lets go', Comment = 'DEU="Los gehts"';
+                    Caption = 'Lets go';
 
                     group("Next")
                     {
-                        Caption = '';
+                        Caption = '', Locked = true;
                         InstructionalText = 'Choose Next so you can set up.',
                             Comment = 'DEU="Wählen Sie "Weiter" damit Sie den Bonus einrichten können."';
                     }
@@ -62,31 +65,33 @@ page 5266062 "lbt Bonus Assisted Setup"
 
             group(Step2)
             {
+                Caption = '', Locked = true;
                 Visible = CurrentStep = 2;
                 group("Sales Receivables Setup")
                 {
-                    Caption = '';
+                    Caption = '', Locked = true;
                     InstructionalText = 'englisch', //TODO:
                         Comment = 'DEU="Bei "weiter" werden in der Debitoren & Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"';
                 }
-                // field("lbt No. Series Commission"; "lbt No. Series Commission")
+                // field("lbtbn No. Series Commission"; "lbtbn No. Series Commission")
                 // {
                 //     ApplicationArea = All;
-                //     ToolTip = 'english', Comment = 'DEU="deutsch"'; //TODO:
+                //     ToolTip = 'english'; //TODO:
                 // }
             }
             group(Step3)
             {
+                Caption = '', Locked = true;
                 Visible = CurrentStep = 3;
-                // field("lbt Journal Template"; "lbt Journal Template")
+                // field("lbtbn Journal Template"; "lbtbn Journal Template")
                 // {
                 //     ApplicationArea = All;
-                //     ToolTip = 'english', Comment = 'DEU="deutsch"'; //TODO:
+                //     ToolTip = 'english'; //TODO:
                 // }
-                // field("lbt Journal Batch"; "lbt Journal Batch")
+                // field("lbtbn Journal Batch"; "lbtbn Journal Batch")
                 // {
                 //     ApplicationArea = All;
-                //     ToolTip = 'english', Comment = 'DEU="deutsch"'; //TODO:
+                //     ToolTip = 'english'; //TODO:
                 // }
             }
         }
@@ -100,8 +105,8 @@ page 5266062 "lbt Bonus Assisted Setup"
             action(ActionBack)
             {
                 ApplicationArea = All;
-                ToolTip = 'One record back', comment = 'DEU="Einen Datensatz zurück"';
-                Caption = 'Back', Comment = 'DEU="Zurück"';
+                ToolTip = 'One record back';
+                Caption = 'Back';
                 Enabled = BackEnabled;
                 Visible = BackEnabled;
                 Image = PreviousRecord;
@@ -115,8 +120,8 @@ page 5266062 "lbt Bonus Assisted Setup"
             action(ActionNext)
             {
                 ApplicationArea = All;
-                ToolTip = 'One record forward', comment = 'DEU="Einen Datensatz vor"';
-                Caption = 'Next', Comment = 'DEU="Weiter"';
+                ToolTip = 'One record forward';
+                Caption = 'Next';
                 Enabled = NextEnabled;
                 Image = NextRecord;
                 InFooterBar = true;
@@ -128,8 +133,8 @@ page 5266062 "lbt Bonus Assisted Setup"
             action(ActionFinish)
             {
                 ApplicationArea = All;
-                ToolTip = 'Complete the configuration', comment = 'DEU="Konfiguration abschließen"';
-                Caption = 'Finish', Comment = 'DEU="Fertig stellen"';
+                ToolTip = 'Complete the configuration';
+                Caption = 'Finish';
                 Enabled = FinishEnabled;
                 Image = Approve;
                 InFooterBar = true;
@@ -153,21 +158,21 @@ page 5266062 "lbt Bonus Assisted Setup"
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     var
-        AssistedSetup: Codeunit "Assisted Setup";
-        BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
+        GuidedExperience: Codeunit "Guided Experience";
+        BonusAssistedSetup: Codeunit "lbtbn Bonus Assisted Setup";
     begin
         if CloseAction = Action::OK then
-            if not AssistedSetup.IsComplete(BonusAssistedSetup.GetPageId()) then
+            if not GuidedExperience.IsAssistedSetupComplete(ObjectType::Page, BonusAssistedSetup.GetPageId()) then
                 if not Confirm(FinishWhenNotCompleteQst, false) then
                     Error('');
     end;
 
     local procedure Finish()
     var
-        AssistedSetup: Codeunit "Assisted Setup";
-        BonusAssistedSetup: Codeunit "lbt Bonus Assisted Setup";
+        GuidedExperience: Codeunit "Guided Experience";
+        BonusAssistedSetup: Codeunit "lbtbn Bonus Assisted Setup";
     begin
-        AssistedSetup.Complete(BonusAssistedSetup.GetPageId());
+        GuidedExperience.CompleteAssistedSetup(ObjectType::Page, BonusAssistedSetup.GetPageId());
         CurrPage.Close();
     end;
 
@@ -203,8 +208,8 @@ page 5266062 "lbt Bonus Assisted Setup"
 
     local procedure LoadTopBanners();
     begin
-        if MediaRepository.GET('AssistedSetup-NoText-400px.png', Format(CurrentClientType())) then
-            if MediaResources.GET(MediaRepository."Media Resources Ref") then
+        if MediaRepository.Get('AssistedSetup-NoText-400px.png', Format(CurrentClientType())) then
+            if MediaResources.Get(MediaRepository."Media Resources Ref") then
                 TopBannerVisible := MediaResources."Media Reference".HasValue();
         if MediaRepositoryDone.Get('AssistedSetupDone-NoText-400px.png', Format(CurrentClientType())) then
             if MediaResourcesDone.Get(MediaRepositoryDone."Media Resources Ref") then
