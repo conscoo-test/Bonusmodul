@@ -52,7 +52,7 @@
       "to": 5266099
     }
   ],
-  "runtime": "6.0",
+  "runtime": "10.0",
   "target": "Cloud",
   "features": [
     "TranslationFile"
