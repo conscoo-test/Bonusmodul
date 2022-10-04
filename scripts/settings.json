@@ -3,7 +3,7 @@
     "appFolders": "app",
     "testFolders": "test",
     "installApps": [
-        "\\\\lbserver20\\Software_Business\\apps\\LeBit365_Vorgangsmanagement\\latest.zip"
+        "\\\\192.168.244.16\\Software_Business\\apps\\product\\Vorgangsmanagement\\latest.zip"
     ],
     "previousApps": "\\\\lbserver20\\Software_Business\\apps\\LeBit365_Bonusmodul\\latest.zip",
     "installTestRunner": true,
