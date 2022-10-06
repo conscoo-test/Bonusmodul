@@ -7,28 +7,35 @@ report 5266052 "lbtbn Bonus Run"
 
     dataset
     {
+        #region dataitem
         dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
 
+            #region dataitem
             dataitem("Bonus Customer"; "lbtbn Bonus Customer")
             {
                 DataItemLink = "Contract" = field("No.");
 
+                #region dataitems
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
                     DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
+                    #region dataitem
                     dataitem("Sales Invoice Line"; "Sales Invoice Line")
                     {
                         DataItemLink = "Document No." = field("No.");
 
+                        #region OnPreDataItem
                         trigger OnPreDataItem()
                         begin
                             //TODO:
                             //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
                             BonusAmount := 0;
                         end;
+                        #endregion OnPreDataItem
 
+                        #region OnAfterGetRecord
                         trigger OnAfterGetRecord()
                         var
                             ValueEntry: Record "Value Entry";
@@ -66,8 +73,11 @@ report 5266052 "lbtbn Bonus Run"
                                     ;
                             end;
                         end;
+                        #endregion OnAfterGetRecord
                     }
+                    #endregion dataitem
 
+                    #region OnPreDataItem
                     trigger OnPreDataItem()
                     begin
                         SetRange("Posting Date", DateFrom, DateTo);
@@ -76,7 +86,9 @@ report 5266052 "lbtbn Bonus Run"
                         else
                             SetRange("Ship-to Code");
                     end;
+                    #endregion OnPreDataItem
 
+                    #region OnAfterGetRecord
                     trigger OnAfterGetRecord()
                     var
                         Customer: Record Customer;
@@ -90,22 +102,30 @@ report 5266052 "lbtbn Bonus Run"
                         if Customer.Get("Bonus Contract"."Bonus Recipient") then
                             SalesPersonCode := Customer."Salesperson Code";
                     end;
+                    #endregion OnAfterGetRecord
                 }
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
                     DataItemLink = "Sell-to Customer No." = field("Customer No.");
 
+                    #region dataitem
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
                         DataItemLink = "Document No." = field("No.");
                     }
+                    #endregion dataitem
                 }
+                #endregion dataitems
             }
+            #endregion dataitem
+            #region OnPreDataItem
             trigger OnPreDataItem()
             begin
                 Dialog.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
             end;
+            #endregion OnPreDataItem
 
+            #region OnAfterGetRecord
             trigger OnAfterGetRecord()
             var
                 BonusCustomer: Record "lbtbn Bonus Customer";
@@ -125,8 +145,10 @@ report 5266052 "lbtbn Bonus Run"
                 //ReverseBonusEntry
                 // or ReverseGenLedgEntry
             end;
+            #endregion OnAfterGetRecord
 
         }
+        #endregion dataitem
     }
 
     requestpage
@@ -150,11 +172,13 @@ report 5266052 "lbtbn Bonus Run"
                         ApplicationArea = All;
                         Caption = 'Date to';
                         ToolTip = 'Specifies Date to';
+                        #region OnValidate
                         trigger OnValidate()
                         begin
                             if ReversePostingDate = 0D then
                                 ReversePostingDate := DateTo;
                         end;
+                        #endregion OnValidate
                     }
                     field("Reverse Posting Date"; ReversePostingDate)
                     {
@@ -167,6 +191,7 @@ report 5266052 "lbtbn Bonus Run"
         }
     }
 
+    #region OnPreReport
     trigger OnPreReport()
     begin
         if (DateFrom = 0D) or (DateTo = 0D) or (ReversePostingDate = 0D) then
@@ -186,13 +211,17 @@ report 5266052 "lbtbn Bonus Run"
             GenBusinessPostingGroup.Get(BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo");
         end;
     end;
+    #endregion OnPreReport
 
+    #region OnPostReport
     trigger OnPostReport()
     begin
         //TODO: 
         //GlobVarCU.s_date(0D,9);
     end;
+    #endregion OnPostReport
 
+    #region GetCustCode
     local procedure GetCustCode(): Code[20]
     begin
         // TODO: ?
@@ -200,7 +229,9 @@ report 5266052 "lbtbn Bonus Run"
         //     exit("Bonus Contract".Customer);
         exit("Bonus Contract"."Bonus Recipient");
     end;
+    #endregion GetCustCode
 
+    #region InitSalesHeader
     local procedure InitSalesHeader(var SalesHeader: Record "Sales Header")
     begin
         SalesHeader.Init();
@@ -219,7 +250,9 @@ report 5266052 "lbtbn Bonus Run"
         SalesHeader."lbt Process No." := "Bonus Contract"."Process No.";
         SalesHeader.Modify();
     end;
+    #endregion InitSalesHeader
 
+    #region CreateTextLine
     local procedure CreateTextLine(SalesHeader: Record "Sales Header"; LineNo: Integer; Description: Text[100])
     var
         SalesLine: Record "Sales Line";
@@ -232,7 +265,9 @@ report 5266052 "lbtbn Bonus Run"
         SalesLine.Description := Description;
         SalesLine.Insert();
     end;
+    #endregion CreateTextLine
 
+    #region GetSalesHeader
     local procedure GetSalesHeader(var SalesHeader: Record "Sales Header")
     begin
         SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.", "Salesperson Code", "Shortcut Dimension 1 Code", "Shortcut Dimension 1 Code");
@@ -248,7 +283,9 @@ report 5266052 "lbtbn Bonus Run"
             CreateTextLine(SalesHeader, 20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
         end;
     end;
+    #endregion GetSalesHeader
 
+    #region IsFixedAmountAndAlreadyCreated
     local procedure IsFixedAmountAndAlreadyCreated(): Boolean
 
     begin
@@ -264,7 +301,9 @@ report 5266052 "lbtbn Bonus Run"
         //     EXIT;
 
     end;
+    #endregion IsFixedAmountAndAlreadyCreated
 
+    #region CreateSalesCreditMemo2
     local procedure CreateSalesCreditMemo2()
     var
         SalesHeader: Record "Sales Header";
@@ -274,7 +313,9 @@ report 5266052 "lbtbn Bonus Run"
             exit;
 
     end;
+    #endregion CreateSalesCreditMemo2
 
+    #region GetDocAmount
     local procedure GetDocAmount(Amount: Decimal) DocAmount: Decimal
     begin
         if "Sales Invoice Header"."Currency Code" = '' then
@@ -282,7 +323,9 @@ report 5266052 "lbtbn Bonus Run"
         else
             DocAmount := Round(Amount / "Sales Invoice Header"."Currency Factor", 0.01);
     end;
+    #endregion GetDocAmount
 
+    #region AddQuantityAndAmountBonusCustomer
     local procedure AddQuantityAndAmountBonusCustomer(var Quantity: Decimal; var Amount: Decimal; BonusCustomer: Record "lbtbn Bonus Customer")
     var
         SalesInvoiceHeader: Record "Sales Invoice Header";
@@ -304,7 +347,9 @@ report 5266052 "lbtbn Bonus Run"
                 GetQuantityAndAmountCrMemo(Quantity, Amount, SalesCrMemoHeader."No.");
             until SalesCrMemoHeader.Next() = 0;
     end;
+    #endregion AddQuantityAndAmountBonusCustomer
 
+    #region GetQuantityAndAmountInvoice
     local procedure GetQuantityAndAmountInvoice(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
@@ -319,7 +364,9 @@ report 5266052 "lbtbn Bonus Run"
                 end;
             until SalesInvoiceLine.Next() = 0;
     end;
+    #endregion GetQuantityAndAmountInvoice
 
+    #region GetQuantityAndAmountCrMemo
     local procedure GetQuantityAndAmountCrMemo(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
@@ -334,6 +381,7 @@ report 5266052 "lbtbn Bonus Run"
                 end;
             until SalesCrMemoLine.Next() = 0;
     end;
+    #endregion GetQuantityAndAmountCrMemo
 
     var
         BonusSetup: Record "lbtbn Bonus Setup";
