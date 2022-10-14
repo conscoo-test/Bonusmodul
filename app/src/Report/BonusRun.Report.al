@@ -50,7 +50,7 @@ report 5266052 "lbtbn Bonus Run"
                                 "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
                                     ;
                                 "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
-                                    ;
+                                    CreateBonusForBillingTypeAmountPerUnit("Sales Invoice Line", DocAmount);
                             end;
                         end;
                         #endregion OnAfterGetRecord
@@ -75,10 +75,6 @@ report 5266052 "lbtbn Bonus Run"
                     begin
                         Dialog.Update(3, "No.");
                         SalesPersonCode := '';
-                        //TODO: 
-                        // if "Bonus Contract"."Agent From Document" then 
-                        //     SalesPersonCode := "Salesperson Code"
-                        // else
                         if Customer.Get("Bonus Contract"."Bonus Recipient") then
                             SalesPersonCode := Customer."Salesperson Code";
                     end;
@@ -92,6 +88,35 @@ report 5266052 "lbtbn Bonus Run"
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
                         DataItemLink = "Document No." = field("No.");
+
+                        #region OnPreDataItem
+                        trigger OnPreDataItem()
+                        begin
+                            //TODO:
+                            //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
+                            BonusAmount := 0;
+                        end;
+                        #endregion OnPreDataItem
+
+                        #region OnAfterGetRecord
+                        trigger OnAfterGetRecord()
+                        var
+                            DocAmount: Decimal;
+                        begin
+                            if not "Bonus Contract".CheckAttributes("Sales Cr.Memo Line"."No.") then
+                                CurrReport.Skip();
+                            DocAmount := GetDocAmount("Sales Cr.Memo Line".Amount);
+                            //UpdateDocAmountFromValueEntry();
+                            case "Bonus Contract"."Bonus Billing Type" of
+                                "Bonus Contract"."Bonus Billing Type"::"%":
+                                    CreateBonusForBillingTypePercent("Sales Cr.Memo Line", DocAmount);
+                                "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
+                                    ;
+                                "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
+                                    CreateBonusForBillingTypeAmountPerUnit("Sales Cr.Memo Line", DocAmount);
+                            end;
+                        end;
+                        #endregion OnAfterGetRecord
                     }
                     #endregion dataitem
                 }
@@ -253,20 +278,9 @@ report 5266052 "lbtbn Bonus Run"
     end;
     #endregion OnPreReport
 
-    #region OnPostReport
-    trigger OnPostReport()
-    begin
-        //TODO: 
-        //GlobVarCU.s_date(0D,9);
-    end;
-    #endregion OnPostReport
-
     #region GetCustCode
     local procedure GetCustCode(): Code[20]
     begin
-        // TODO: ?
-        // if "Bonus Contract"."Bonus Recipient" = '' then 
-        //     exit("Bonus Contract".Customer);
         exit("Bonus Contract"."Bonus Recipient");
     end;
     #endregion GetCustCode
@@ -281,8 +295,6 @@ report 5266052 "lbtbn Bonus Run"
         SalesHeader.Correction := false;
         SalesHeader.SetHideValidationDialog(true);
         SalesHeader.Validate("Sell-to Customer No.", GetCustCode());
-        // TODO: ?
-        // SalesHeader.Validate("Shortcut Dimension 1 Code", "Bonus Contract"."Allocation Group");
         SalesHeader."Salesperson Code" := SalesPersonCode;
         SalesHeader."Document Date" := PostingDate;
         SalesHeader."Posting Description" := BonusCreditMemoLbl;
@@ -695,6 +707,7 @@ report 5266052 "lbtbn Bonus Run"
         end;
     end;
     #endregion CreateItemCharge
+
     #region CreateBonusForBillingTypePercent
     local procedure CreateBonusForBillingTypePercent(SalesInvoiceLine: Record "Sales Invoice Line"; DocAmount: Decimal)
     var
@@ -716,13 +729,118 @@ report 5266052 "lbtbn Bonus Run"
             if ValueEntry.FindFirst() then
                 if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
                     if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
-                        CreateSalesCreditMemo3("Bonus Contract", Database::"Sales Invoice Line", "Sales Invoice Header"."No.", "Sales Invoice Line"."Line No.", DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
+                        CreateSalesCreditMemo3("Bonus Contract", Database::"Sales Invoice Line", SalesInvoiceLine."Document No.", SalesInvoiceLine."Line No.", DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
         end;
     end;
-
     #endregion CreateBonusForBillingTypePercent
 
+    #region CreateBonusForBillingTypePercent
+    local procedure CreateBonusForBillingTypePercent(SalesCrMemoLine: Record "Sales Cr.Memo Line"; DocAmount: Decimal)
+    var
+        ValueEntry: Record "Value Entry";
+        DiscAmt: Decimal;
+        PmtDiscAmt: Decimal;
+    begin
+        PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
+        DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
+        BonusAmount := -Round((DocAmount - PmtDiscAmt - DiscAmt) * BonusContractLine."Value" / 100, 0.01);
 
+        if BonusAmount = 0 then
+            exit;
+        if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
+            ValueEntry.SetCurrentKey("Document No.");
+            ValueEntry.SetRange("Document No.", SalesCrMemoLine."Document No.");
+            ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+            ValueEntry.SetRange("Document Line No.", SalesCrMemoLine."Line No.");
+            if ValueEntry.FindFirst() then
+                if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
+                    if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
+                        CreateSalesCreditMemo3("Bonus Contract", Database::"Sales Cr.Memo Line", SalesCrMemoLine."Document No.", SalesCrMemoLine."Line No.", DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
+        end;
+    end;
+    #endregion CreateBonusForBillingTypePercent
+
+    #region CreateBonusForBillingTypeAmountPerUnit
+    local procedure CreateBonusForBillingTypeAmountPerUnit(SalesInvoiceLine: Record "Sales Invoice Line"; DocAmount: Decimal)
+    var
+        ValueEntry: Record "Value Entry";
+        ItemLedgEntry: Record "Item Ledger Entry";
+        Amount: Decimal;
+    begin
+        begin
+            AmountCust := BonusContractLine.Value;
+            // if CustRec."Currency Code" <> '' then
+            //     if Currency.Get(CustRec."Currency Code") then begin
+            //         Currency.TestField("Unit-Amount Rounding Precision");
+            //         AmountCust :=
+            //           Round(
+            //            CurrExchRate.ExchangeAmtLCYToFCY(
+            //             PostingDate, CustRec."Currency Code", BonusContractLine.Value,
+            //              CurrExchRate.ExchangeRate(PostingDate, CustRec."Currency Code")),
+            //               Currency."Unit-Amount Rounding Precision");
+            //     end;
+            Amount := Round(SalesInvoiceLine.Quantity * AmountCust, 0.01);
+            if Amount <> 0 then
+                if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
+                    ValueEntry.Reset();
+                    ValueEntry.SetCurrentKey("Document No.");
+                    ValueEntry.SetRange("Document No.", SalesInvoiceLine."Document No.");
+                    ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+                    ValueEntry.SetRange("Document Line No.", SalesInvoiceLine."Line No.");
+                    if ValueEntry.FindFirst() then
+                        if ItemLedgEntry.Get(ValueEntry."Item Ledger Entry No.") and
+                          (ItemLedgEntry."Document Type" = ItemLedgEntry."Document Type"::"Sales Shipment")
+                        then
+                            CreateSalesCreditMemo3("Bonus Contract", Database::"Sales Invoice Line", SalesInvoiceLine."Document No.", SalesInvoiceLine."Line No.", DocAmount, BonusAmount, 0, 0);
+                    // end else
+                    //     CreateSalesCreditMemo("Bonus Contract", SalesPersonCode, Database::"Sales Invoice Line",
+                    //       "Sales Invoice Header"."No.", "Line No.", DocAmount, PostDocItemUnitRec.Quantity, Amount,
+                    //       0, 0);
+                end;
+        end;
+    end;
+    #endregion CreateBonusForBillingTypeAmountPerUnit
+
+    #region CreateBonusForBillingTypeAmountPerUnit
+    local procedure CreateBonusForBillingTypeAmountPerUnit(SalesCrMemoLine: Record "Sales Cr.Memo Line"; DocAmount: Decimal)
+    var
+        ValueEntry: Record "Value Entry";
+        ItemLedgEntry: Record "Item Ledger Entry";
+        Amount: Decimal;
+    begin
+        begin
+            AmountCust := BonusContractLine.Value;
+            // if CustRec."Currency Code" <> '' then
+            //     if Currency.Get(CustRec."Currency Code") then begin
+            //         Currency.TestField("Unit-Amount Rounding Precision");
+            //         AmountCust :=
+            //           Round(
+            //            CurrExchRate.ExchangeAmtLCYToFCY(
+            //             PostingDate, CustRec."Currency Code", BonusContractLine.Value,
+            //              CurrExchRate.ExchangeRate(PostingDate, CustRec."Currency Code")),
+            //               Currency."Unit-Amount Rounding Precision");
+            //     end;
+            Amount := -Round(SalesCrMemoLine.Quantity * AmountCust, 0.01);
+            if Amount <> 0 then
+                if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
+                    ValueEntry.Reset();
+                    ValueEntry.SetCurrentKey("Document No.");
+                    ValueEntry.SetRange("Document No.", SalesCrMemoLine."Document No.");
+                    ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+                    ValueEntry.SetRange("Document Line No.", SalesCrMemoLine."Line No.");
+                    if ValueEntry.FindFirst() then
+                        if ItemLedgEntry.Get(ValueEntry."Item Ledger Entry No.") and
+                          (ItemLedgEntry."Document Type" = ItemLedgEntry."Document Type"::"Sales Shipment")
+                        then
+                            CreateSalesCreditMemo3("Bonus Contract", Database::"Sales Cr.Memo Line", SalesCrMemoLine."Document No.", SalesCrMemoLine."Line No.", DocAmount, BonusAmount, 0, 0);
+                    // end else
+                    //     CreateSalesCreditMemo("Bonus Contract", SalesPersonCode, Database::"Sales Invoice Line",
+                    //       "Sales Invoice Header"."No.", "Line No.", DocAmount, PostDocItemUnitRec.Quantity, Amount,
+                    //       0, 0);
+                end;
+        end;
+    end;
+    #endregion CreateBonusForBillingTypeAmountPerUnit
 
 
     var
@@ -748,4 +866,6 @@ report 5266052 "lbtbn Bonus Run"
 
 
 
+        AmountCust: Decimal;
+        DocumentBonusAmt: Decimal;
 }
