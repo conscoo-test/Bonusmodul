@@ -125,7 +125,7 @@ report 5266052 "lbtbn Bonus Run"
                 if not BonusContractLine.FindLast() then
                     CurrReport.Skip();
                 ReverseReserve.ReverseBonusEntries("Bonus Contract", DateFrom, DateTo);
-                // or ReverseGenLedgEntry
+                ReverseReserve.ReverseGenLedgEntry("Bonus Contract", DateFrom, DateTo, ReversePostingDate);
             end;
             #endregion OnAfterGetRecord
 
@@ -719,6 +719,7 @@ report 5266052 "lbtbn Bonus Run"
                         CreateSalesCreditMemo3("Bonus Contract", Database::"Sales Invoice Line", "Sales Invoice Header"."No.", "Sales Invoice Line"."Line No.", DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
         end;
     end;
+
     #endregion CreateBonusForBillingTypePercent
 
 
@@ -727,8 +728,6 @@ report 5266052 "lbtbn Bonus Run"
     var
         BonusContractLine: Record "lbtbn Bonus Contract Line";
         BonusSetup: Record "lbtbn Bonus Setup";
-        CustomerPostingGroup: Record "Customer Posting Group";
-        GenBusinessPostingGroup: Record "Gen. Business Posting Group";
         ItemLedgerEntry: Record "Item Ledger Entry";
         Dialog: Dialog;
         SalesPersonCode: Code[20];

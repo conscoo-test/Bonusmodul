@@ -20,6 +20,82 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     end;
     #endregion ReverseBonusEntries
 
+    #region ReverseBonusReserve
+    procedure ReverseBonusReserve(var GLEntry: Record "G/L Entry"; PostingDate: Date)
+    var
+        BonusSetup: Record "lbtbn Bonus Setup";
+        ReversalEntry: Record "Reversal Entry";
+        GenJnlLineRec: Record "Gen. Journal Line";
+        BillingCode: Code[20];
+        BillingEntry: Integer;
+        LineNo: Integer;
+        LBText001: Label 'Reverse', Comment = 'Auflösung';
+    begin
+        BonusSetup.Get();
+        // BonusSetup.TestField("Billing Code");
+
+        case BonusSetup."Reverse Reserve Mode" of
+            BonusSetup."Reverse Reserve Mode"::automatic:
+                if GLEntry.FindSet() then
+                    repeat
+                        GLEntry.TestField("Transaction No.");
+                        GLEntry.TestField(Reversed, false);
+                        // BillingCode := BonusSetup."Billing Code";
+                        BillingCode := '';
+                        BillingEntry := BonusEntryReserveExploding(GLEntry."Entry No.", PostingDate);
+                        Clear(ReversalEntry);
+                        ReversalEntry.ReverseTransaction(GLEntry."Transaction No.");
+                    until GLEntry.Next() = 0;
+            // GlobVarCU.Reset(9);
+            BonusSetup."Reverse Reserve Mode"::"Journal Batch":
+                begin
+                    BonusSetup.TestField("Gen.Jnl.Templ.BonusReserve");
+                    BonusSetup.TestField("Gen. Jnl. Bonus Reserve");
+
+                    GenJnlLineRec.Reset();
+                    GenJnlLineRec.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
+                    GenJnlLineRec.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
+                    if GenJnlLineRec.FindLast() then
+                        LineNo := GenJnlLineRec."Line No."
+                    else
+                        LineNo := 0;
+
+                    if GLEntry.FindSet() then
+                        repeat
+                            GLEntry.TestField("Transaction No.");
+                            GLEntry.TestField(Reversed, false);
+
+                            GenJnlLineRec.Init();
+                            GenJnlLineRec."Journal Template Name" := BonusSetup."Gen.Jnl.Templ.BonusReserve";
+                            GenJnlLineRec."Journal Batch Name" := BonusSetup.GenJnlBonusReversReserve;
+                            GenJnlLineRec."Line No." := LineNo + 10000;
+                            LineNo := GenJnlLineRec."Line No.";
+                            GenJnlLineRec.Validate("Posting Date", PostingDate);
+                            GenJnlLineRec."Document No." := GLEntry."Document No.";
+                            GenJnlLineRec."Account Type" := GenJnlLineRec."Account Type"::"G/L Account";
+                            GenJnlLineRec."Bal. Account Type" := GenJnlLineRec."Bal. Account Type"::"G/L Account";
+                            GenJnlLineRec.Validate("Account No.", GLEntry."G/L Account No.");
+                            GenJnlLineRec.Validate("Bal. Account No.", GLEntry."Bal. Account No.");
+                            GenJnlLineRec."Gen. Bus. Posting Group" := '';
+                            GenJnlLineRec."Gen. Prod. Posting Group" := '';
+                            GenJnlLineRec.Description := CopyStr(LBText001 + ' ' + GLEntry.Description, 1, 50);
+                            GenJnlLineRec.Validate(Amount, -GLEntry.Amount);
+                            GenJnlLineRec."lbt Process No." := GLEntry."lbt Process No.";
+                            GenJnlLineRec."Reason Code" := BonusSetup."Reason Code";
+                            // GenJnlLineRec."Billing Code" := BonusSetup."Billing Code";
+                            GenJnlLineRec.Correction := true;
+                            GenJnlLineRec."lbtbn Bonus Entry No" := GLEntry."Entry No.";
+                            GenJnlLineRec."lbtbn Reserve Transaction No." := GLEntry."Transaction No.";
+                            GenJnlLineRec."Dimension Set ID" := GLEntry."Dimension Set ID";
+                            GenJnlLineRec.Insert();
+                        //Bonusposten werden beim Buchen des Buchblattes aktualisiert
+                        until GLEntry.Next() = 0;
+
+                end;
+        end;
+    end;
+    #endregion ReverseBonusReserve
+
     #region AddItemChargeInvoiceLine
     local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date)
     var
@@ -249,6 +325,154 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BonusEntry2.Modify();
     end;
     #endregion ReverseBonusEntry
+
+    #region BonusEntryReserveExploding
+    procedure BonusEntryReserveExploding(EntryNo: Integer; PostingDate: Date): Integer
+    var
+        BonusSetup: Record "lbtbn Bonus Setup";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusEntry2: Record "lbtbn Bonus Entry";
+    begin
+        BonusEntry.Reset();
+        BonusSetup.Get();
+        case BonusSetup."Reserve Mode" of
+            BonusSetup."Reserve Mode"::CreditMemo:
+                begin
+                    BonusEntry.SetCurrentKey("Entry No.");
+                    BonusEntry.SetRange("Entry No.", EntryNo);
+                end;
+            BonusSetup."Reserve Mode"::Journal:
+                begin
+                    BonusEntry.SetCurrentKey("General Ledger Entry No.");
+                    BonusEntry.SetRange("General Ledger Entry No.", EntryNo);
+                end;
+        end;
+        if BonusEntry.FindFirst() then begin
+            BonusEntry.TestField(Reversed, false);
+            if BonusEntry2.FindLast() then
+                EntryNo := BonusEntry2."Entry No."
+            else
+                EntryNo := 0;
+
+            BonusEntry2.Init();
+            BonusEntry2 := BonusEntry;
+            BonusEntry2."Entry Type" := BonusEntry2."Entry Type"::"Liquidation of Reserves";
+            BonusEntry2."Entry No." := EntryNo + 1;
+            BonusEntry2."General Ledger Entry No." := 0;
+            BonusEntry2."Entry Date" := PostingDate;
+            BonusEntry2."Calculated Amount" := -BonusEntry."Calculated Amount";
+            BonusEntry2."calc. Amount incl. VAT" := -BonusEntry."calc. Amount incl. VAT";
+            BonusEntry2."Posted Amount" := 0;
+            if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::Journal then
+                BonusEntry2."Posted Amount" := -BonusEntry."Posted Amount";
+            BonusEntry2."Base Amount" := -BonusEntry."Base Amount";
+            BonusEntry2."Pmt. Discount Amount" := -BonusEntry."Pmt. Discount Amount";
+            BonusEntry2."Discount Amount" := -BonusEntry."Discount Amount";
+            BonusEntry2.Insert();
+            BonusEntry.Reversed := true;
+            BonusEntry."Reversed by Entry No." := BonusEntry2."Entry No.";
+            BonusEntry.Modify();
+            exit(BonusEntry2."Entry No.");
+        end;
+    end;
+    #endregion BonusEntryReserveExploding
+
+    #region BonusReverseReserve
+    procedure BonusReverseReserve(var GlobalGLEntry: Record "G/L Entry"; var GenJournalLine: Record "Gen. Journal Line")
+    var
+        GLEntry: Record "G/L Entry";
+        NewGLEntry: Record "G/L Entry";
+        VATEntry: Record "VAT Entry";
+        NewVATEntry: Record "VAT Entry";
+    begin
+        GLEntry.Reset();
+        NewGLEntry.Reset();
+        GLEntry.SetCurrentKey("Transaction No.");
+        NewGLEntry.SetCurrentKey("Transaction No.");
+        GLEntry.SetRange("Transaction No.", GenJournalLine."lbtbn Reserve Transaction No.");
+        if GLEntry.FindSet(true) then
+            repeat
+                NewGLEntry.SetRange("Transaction No.", GlobalGLEntry."Transaction No.");
+                NewGLEntry.SetRange("G/L Account No.", GLEntry."G/L Account No.");
+                NewGLEntry.SetRange("Document No.", GLEntry."Document No.");
+                NewGLEntry.SetRange(Amount, -GLEntry.Amount);
+                if NewGLEntry.FindFirst() then begin
+                    GLEntry.Reversed := true;
+                    GLEntry."Reversed by Entry No." := NewGLEntry."Entry No.";
+                    GLEntry.Modify();
+                    NewGLEntry.Reversed := true;
+                    NewGLEntry."Reversed Entry No." := GLEntry."Entry No.";
+                    NewGLEntry.Modify();
+                end;
+            until GLEntry.Next() = 0;
+
+        VATEntry.Reset();
+        NewVATEntry.Reset();
+        VATEntry.SetCurrentKey("Transaction No.");
+        NewVATEntry.SetCurrentKey("Transaction No.");
+        VATEntry.SetRange("Transaction No.", GenJournalLine."lbtbn Reserve Transaction No.");
+        if VATEntry.FindSet(true) then
+            repeat
+                NewVATEntry.SetRange("Transaction No.", GlobalGLEntry."Transaction No.");
+                NewVATEntry.SetRange("Gen. Bus. Posting Group", VATEntry."Gen. Bus. Posting Group");
+                NewVATEntry.SetRange("Gen. Prod. Posting Group", VATEntry."Gen. Prod. Posting Group");
+                NewVATEntry.SetRange("Document No.", VATEntry."Document No.");
+                NewVATEntry.SetRange(Amount, -VATEntry.Amount);
+                if NewVATEntry.FindFirst() then begin
+                    VATEntry.Reversed := true;
+                    VATEntry."Reversed by Entry No." := NewVATEntry."Entry No.";
+                    VATEntry.Modify();
+                    NewVATEntry.Reversed := true;
+                    NewVATEntry."Reversed Entry No." := VATEntry."Entry No.";
+                    NewVATEntry.Modify();
+                end;
+            until VATEntry.Next() = 0;
+    end;
+    #endregion BonusReverseReserve
+
+    procedure ReverseGenLedgEntry(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date; ReversePostingDate: Date)
+    var
+        BonusCustomer: Record "lbtbn Bonus Customer";
+        BonusSetup: Record "lbtbn Bonus Setup";
+    begin
+        BonusSetup.Get();
+        if BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::Journal then
+            exit;
+        BonusCustomer.SetRange(Contract, BonusContract."No.");
+        if BonusCustomer.FindSet() then
+            repeat
+                ReverseGenLedgEntry(BonusCustomer."Customer No.", BonusContract."Process No.", DateFrom, DateTo, ReversePostingDate);
+            until BonusCustomer.Next() = 0;
+    end;
+
+    local procedure ReverseGenLedgEntry(CustomerNo: Code[20]; ProcessNo: Code[20]; DateFrom: Date; DateTo: Date; ReversePostingDate: Date)
+    var
+        Customer: Record Customer;
+        CustomerPostingGroup: Record "Customer Posting Group";
+        GLEntry: Record "G/L Entry";
+        UserSetupManagement: Codeunit "User Setup Management";
+        ReverseReserve: Codeunit "lbtbn Reverse Reserve";
+        Text005: Label 'The posting date of exploding bonus reserves is not in the permitted posting period.',
+            Comment = 'Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.';
+    begin
+        if not Customer.Get(CustomerNo) then
+            exit;
+
+        CustomerPostingGroup.SetRange(Code, Customer."Customer Posting Group");
+        if CustomerPostingGroup.FindFirst() then begin
+            GLEntry.Reset();
+            GLEntry.SetCurrentKey(GLEntry."G/L Account No.", "lbt Process No.", "Posting Date");
+            GLEntry.SetRange("G/L Account No.", CustomerPostingGroup."lbtbn Reserve Account");
+            GLEntry.SetRange("lbt Process No.", ProcessNo);
+            GLEntry.SetRange("Posting Date", DateFrom, DateTo);
+            GLEntry.SetRange(Reversed, false);
+            if GLEntry.IsEmpty() then
+                exit;
+            if not UserSetupManagement.IsPostingDateValid(ReversePostingDate) then
+                Error(Text005);
+            ReverseReserve.ReverseBonusReserve(GLEntry, ReversePostingDate);
+        end;
+    end;
 
     var
         InvoiceHeaderCreated: Boolean;

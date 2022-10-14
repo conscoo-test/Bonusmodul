@@ -40,13 +40,13 @@ table 5266051 "lbtbn Bonus Setup"
             Caption = 'Gen. Jnl. Bonus Reserve';
             TableRelation = "Gen. Journal Batch".Name where("Journal Template Name" = field("Gen.Jnl.Templ.BonusReserve"));
         }
-        field(5; "Revers Reserve Mode"; Option)
+        field(5; "Reverse Reserve Mode"; Option)
         {
-            Caption = 'Revers Reserve Mode';
+            Caption = 'Reverse Reserve Mode';
             OptionMembers = automatic,"Journal Batch";
             OptionCaption = 'automatic,Journal Batch';
         }
-        field(6; GenJnlBonusReversReserve; Code[20])
+        field(6; GenJnlBonusReversReserve; Code[10])
         {
             Caption = ' Gen. Jnl. Bonus Revers Reserve';
             TableRelation = "Gen. Journal Batch".Name where("Journal Template Name" = field("Gen.Jnl.Templ.BonusReserve"));

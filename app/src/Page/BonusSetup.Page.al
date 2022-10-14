@@ -85,7 +85,7 @@ page 5266051 "lbtbn Bonus Setup"
             group("Revers Reserve")
             {
                 Caption = 'Revers Reserve';
-                field("Revers Reserve Mode"; Rec."Revers Reserve Mode")
+                field("Revers Reserve Mode"; Rec."Reverse Reserve Mode")
                 {
                     ToolTip = 'Here you specify whether reserves are to be reversed manually or automatically. If you have selected the automatic reversal mode, there is no need to post an extra book page.';
                     ApplicationArea = All;

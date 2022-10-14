@@ -639,17 +639,17 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Reserve Mode - Property OptionCaption</note>
         </trans-unit>
-        <trans-unit id="Table 1573773400 - Field 4116527690 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Revers Reserve Mode</source>
-          <target>Rückstellungsauflösung Modus</target>
+        <trans-unit id="Table 1573773400 - Field 1818893357 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse Reserve Mode</source>
+          <target>Rückstellungsauflösungmodus</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Revers Reserve Mode - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Reverse Reserve Mode - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1573773400 - Field 4116527690 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 1573773400 - Field 1818893357 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
           <source>automatic,Journal Batch</source>
           <target>automatisch,Buchblatt</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Revers Reserve Mode - Property OptionCaption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Reverse Reserve Mode - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 2263892135 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Attribute</source>
@@ -812,6 +812,18 @@
           <target>Rücksendung</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType Text019</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1468311926" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse</source>
+          <target>Auflösung</target>
+          <note from="Developer" annotates="general" priority="2">Auflösung</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusReserve - NamedType LBText001</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 569513246 - NamedType 1370456556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The posting date of exploding bonus reserves is not in the permitted posting period.</source>
+          <target>Das Buchungsdatum der Rückstellungsauflösung liegt nicht im zugelassenen Buchungszeitraum.</target>
+          <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType Text005</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
@@ -2264,6 +2276,18 @@
           <target>Bonusposten Lfd. Nr.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Gen. Journal Line - Field lbtbn Bonus Entry No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4054959661 - Field 495873533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Reserve Entry No.</source>
+          <target>Rückstellung Lfd. Nr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Gen. Journal Line - Field lbtbn Reserve Entry No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4054959661 - Field 1349881439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Reserve Transaction No.</source>
+          <target>Rückstellung Transaktionsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Gen. Journal Line - Field lbtbn Reserve Transaction No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2427736203 - Field 1160090714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2825951060">
           <source>Bonus Entry No.</source>
