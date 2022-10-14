@@ -4,16 +4,6 @@
         {
             "id": "LC0015",
             "action": "Error"
-        },
-        {
-            "id": "LC0010",
-            "action": "None",
-            "justification": "doesn't work"
-        },
-        {
-            "id": "LC0004",
-            "action": "None",
-            "justification": "doesn't work"
         }
 
     ]

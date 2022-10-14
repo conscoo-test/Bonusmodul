@@ -91,6 +91,7 @@ codeunit 5266055 "lbtbn CheckAttributes Meth"
         //         Continue := false;
         #endregion commented code
         until (BonusContractAttribute.Next() = 0);
+        exit(true);
     end;
 
     [IntegrationEvent(false, false)]
