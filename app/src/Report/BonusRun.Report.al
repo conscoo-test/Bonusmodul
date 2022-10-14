@@ -124,7 +124,7 @@ report 5266052 "lbtbn Bonus Run"
                 BonusContractLine.SetFilter("From Quantity", '<=%1', Amount);
                 if not BonusContractLine.FindLast() then
                     CurrReport.Skip();
-                ReverseReserve.ReverseBonusEntry("Bonus Contract", DateFrom, DateTo);
+                ReverseReserve.ReverseBonusEntries("Bonus Contract", DateFrom, DateTo);
                 // or ReverseGenLedgEntry
             end;
             #endregion OnAfterGetRecord

@@ -1,28 +1,14 @@
 codeunit 5266056 "lbtbn Reverse Reserve"
 {
-    #region ReverseBonusEntry
-    procedure ReverseBonusEntry(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date)
+    #region ReverseBonusEntries
+    procedure ReverseBonusEntries(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date)
     var
         BonusEntry: Record "lbtbn Bonus Entry";
-        SalesInvoiceLine: Record "Sales Invoice Line";
-        SalesShipmentLine: Record "Sales Shipment Line";
-        SalesCrMemoLine: Record "Sales Cr.Memo Line";
-        ReturnReceiptLine: Record "Return Receipt Line";
-        SalesLine: Record "Sales Line";
-        SalesHeader: Record "Sales Header";
-        BonusEntry2: Record "lbtbn Bonus Entry";
         BonusSetup: Record "lbtbn Bonus Setup";
-        BonusMgt: Codeunit "lbtbn Bonus Management";
-        Text007: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
-        Text016: Label 'Invoice';
-        Text017: Label 'Shipment';
-        Sign: Integer;
-        Text018: Label 'Credit Memo';
-        Text019: Label 'Return Receipt';
-        BillingEntry: Integer;
     begin
         if BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::CreditMemo then
             exit;
+
         BonusEntry.Reset();
         BonusEntry.SetCurrentKey("Process No.", "Entry Type", "Entry Date", Reversed);
         BonusEntry.SetRange("Entry Type", BonusEntry."Entry Type"::Reserve);
@@ -30,59 +16,24 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BonusEntry.SetRange(Reversed, false);
         BonusEntry.SetFilter("Posted Amount", '<>0');
         BonusEntry.SetRange("Entry Date", DateFrom, DateTo);
-        if BonusEntry.FindSet() then
-            repeat
-                case BonusEntry."Assignment Document Type" of
-                    BonusEntry."Assignment Document Type"::"Sales Shipment":
-                        begin
-                            if not SalesInvoiceLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
-                                Error(Text007, BonusEntry."From Document No.", Text016, BonusEntry."From Document Line");
-                            if not SalesShipmentLine.Get(BonusEntry."Assignment Document No.",
-                                   BonusEntry."Assignment Doc. Line No.")
-                            then
-                                Error(Text007, BonusEntry."Assignment Document No.", Text017,
-                                      BonusEntry."Assignment Doc. Line No.");
-                            Sign := 1;
-                        end;
-                    BonusEntry."Assignment Document Type"::"Sales Return Receipt":
-                        begin
-                            if not SalesCrMemoLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
-                                Error(Text007, BonusEntry."From Document No.", Text018, BonusEntry."From Document Line");
-                            if not ReturnReceiptLine.Get(BonusEntry."Assignment Document No.",
-                                   BonusEntry."Assignment Doc. Line No.")
-                            then
-                                Error(Text007, BonusEntry."Assignment Document No.", Text019,
-                                      BonusEntry."Assignment Doc. Line No.");
-                            Sign := -1;
-                        end;
-                end;
-                AddItemChargeInvoiceLine(BonusEntry, BonusContract, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, DateFrom, DateTo);
-                BillingEntry := BonusMgt.BonusEntryReserveExploding(BonusEntry."Entry No.", WorkDate());
-                SalesLine."lbtbn Bonus Entry No." := BillingEntry;
-                if SalesHeader."Shortcut Dimension 1 Code" <> '' then
-                    SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
-                SalesLine.Modify();
-                BonusEntry2.Get(BillingEntry);
-                BonusEntry2."Bonus Document Type" := 1;
-                BonusEntry2."Bonus Document No." := SalesHeader."No.";
-                BonusEntry2."Bonus Document Line" := SalesLine."Line No.";
-                BonusEntry2.Modify();
-            until BonusEntry.Next() = 0;
+        ReverseBonusEntries(BonusEntry, DateFrom, DateTo);
     end;
-    #endregion ReverseBonusEntry
+    #endregion ReverseBonusEntries
 
     #region AddItemChargeInvoiceLine
-    local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; BonusContract: Record "lbtbn Bonus Contract"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date)
+    local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date)
     var
         SalesLine: Record "Sales Line";
         SalesHeader: Record "Sales Header";
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
+        BonusContract: Record "lbtbn Bonus Contract";
         LineNo: Integer;
         Text021: Label 'Exploding Bonus Reserve for', Comment = 'Auflösung Bonusrückstellung für';
         Text022: Label 'Invoice ';
         Text023: Label 'Credit Memo ';
         Text024: Label 'Bonus Fixed Amount Contract ';
     begin
+        BonusContract.Get(BonusEntry.Contract);
         CreateInvoiceHeader(SalesHeader, BonusContract, LineNo, DateFrom, DateTo);// TODO: Statistics 
 
         SalesLine.Init();
@@ -231,6 +182,74 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesLine.Insert();
     end;
     #endregion CreateInvoiceHeader
+
+    #region ReverseBonusEntries
+    local procedure ReverseBonusEntries(var BonusEntry: Record "lbtbn Bonus Entry"; DateFrom: Date; DateTo: Date)
+    begin
+        if BonusEntry.FindSet() then
+            repeat
+                ReverseBonusEntry(DateFrom, DateTo, BonusEntry);
+            until BonusEntry.Next() = 0;
+    end;
+    #endregion ReverseBonusEntries
+
+    #region ReverseBonusEntry
+    local procedure ReverseBonusEntry(DateFrom: Date; DateTo: Date; var BonusEntry: Record "lbtbn Bonus Entry")
+    var
+        SalesInvoiceLine: Record "Sales Invoice Line";
+        SalesShipmentLine: Record "Sales Shipment Line";
+        SalesCrMemoLine: Record "Sales Cr.Memo Line";
+        ReturnReceiptLine: Record "Return Receipt Line";
+        SalesLine: Record "Sales Line";
+        SalesHeader: Record "Sales Header";
+        BonusEntry2: Record "lbtbn Bonus Entry";
+        BonusMgt: Codeunit "lbtbn Bonus Management";
+        Text007: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
+        Text016: Label 'Invoice';
+        Text017: Label 'Shipment';
+        Sign: Integer;
+        Text018: Label 'Credit Memo';
+        Text019: Label 'Return Receipt';
+        BillingEntry: Integer;
+    begin
+        case BonusEntry."Assignment Document Type" of
+            BonusEntry."Assignment Document Type"::"Sales Shipment":
+                begin
+                    if not SalesInvoiceLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
+                        Error(Text007, BonusEntry."From Document No.", Text016, BonusEntry."From Document Line");
+                    if not SalesShipmentLine.Get(BonusEntry."Assignment Document No.",
+                           BonusEntry."Assignment Doc. Line No.")
+                    then
+                        Error(Text007, BonusEntry."Assignment Document No.", Text017,
+                              BonusEntry."Assignment Doc. Line No.");
+                    Sign := 1;
+                end;
+            BonusEntry."Assignment Document Type"::"Sales Return Receipt":
+                begin
+                    if not SalesCrMemoLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
+                        Error(Text007, BonusEntry."From Document No.", Text018, BonusEntry."From Document Line");
+                    if not ReturnReceiptLine.Get(BonusEntry."Assignment Document No.",
+                           BonusEntry."Assignment Doc. Line No.")
+                    then
+                        Error(Text007, BonusEntry."Assignment Document No.", Text019,
+                              BonusEntry."Assignment Doc. Line No.");
+                    Sign := -1;
+                end;
+        end;
+        AddItemChargeInvoiceLine(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, DateFrom, DateTo);
+        BillingEntry := BonusMgt.BonusEntryReserveExploding(BonusEntry."Entry No.", WorkDate());
+        SalesLine."lbtbn Bonus Entry No." := BillingEntry;
+        if SalesHeader."Shortcut Dimension 1 Code" <> '' then
+            SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
+        SalesLine.Modify();
+        BonusEntry2.Get(BillingEntry);
+        BonusEntry2."Bonus Document Type" := 1;
+        BonusEntry2."Bonus Document No." := SalesHeader."No.";
+        BonusEntry2."Bonus Document Line" := SalesLine."Line No.";
+        BonusEntry2.Modify();
+    end;
+    #endregion ReverseBonusEntry
+
     var
         InvoiceHeaderCreated: Boolean;
 }
