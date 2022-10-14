@@ -109,6 +109,7 @@ report 5266052 "lbtbn Bonus Run"
             trigger OnAfterGetRecord()
             var
                 BonusCustomer: Record "lbtbn Bonus Customer";
+                ReverseReserve: Codeunit "lbtbn Reverse Reserve";
                 Amount: Decimal;
                 Quantity: Decimal;
             begin
@@ -123,7 +124,7 @@ report 5266052 "lbtbn Bonus Run"
                 BonusContractLine.SetFilter("From Quantity", '<=%1', Amount);
                 if not BonusContractLine.FindLast() then
                     CurrReport.Skip();
-                //ReverseBonusEntry
+                ReverseReserve.ReverseBonusEntry("Bonus Contract", DateFrom, DateTo);
                 // or ReverseGenLedgEntry
             end;
             #endregion OnAfterGetRecord
@@ -719,6 +720,8 @@ report 5266052 "lbtbn Bonus Run"
         end;
     end;
     #endregion CreateBonusForBillingTypePercent
+
+
 
 
     var

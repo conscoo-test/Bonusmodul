@@ -93,6 +93,17 @@ table 5266051 "lbtbn Bonus Setup"
             Caption = 'Billing Cr.Memo Nos.';
             TableRelation = "No. Series";
         }
+        field(11; "Customer Statistic Postings"; Code[20])
+        {
+            Caption = 'Customer Statistic Postings';
+            TableRelation = Customer;
+        }
+        field(14; "Internal Statistic Postings"; Code[20])
+        {
+            Caption = 'Internal Statistic Postings';
+            TableRelation = "No. Series";
+        }
+
     }
 
     keys

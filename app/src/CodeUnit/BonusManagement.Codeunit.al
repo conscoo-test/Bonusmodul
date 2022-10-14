@@ -1,5 +1,6 @@
 codeunit 5266052 "lbtbn Bonus Management"
 {
+    #region SetAssignmentDoc
     procedure SetAssignmentDoc(AssignmentDocTypeP: Option " ","Sales Shipment","Sales Return Receipt";
                                AssignmentDocNoP: Code[20];
                                AssignmentDocLineNoP: Integer)
@@ -8,21 +9,27 @@ codeunit 5266052 "lbtbn Bonus Management"
         AssignmentDocNo := AssignmentDocNoP;
         AssignmentDocLineNo := AssignmentDocLineNoP;
     end;
+    #endregion SetAssignmentDoc
 
+    #region SetSourceDoc
     procedure SetSourceDoc(SourceDocTypeP: Integer; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
     begin
         SourceDocType := SourceDocTypeP;
         SourceDocNo := SourceDocNoP;
         SourceDocLineNo := SourceDocLineNoP;
     end;
+    #endregion SetSourceDoc
 
+    #region SetBonusDoc
     procedure SetBonusDoc(BonusDocTypeP: Integer; BonusDocNoP: Code[20]; BonusDocLineNoP: Integer)
     begin
         BonusDocType := BonusDocTypeP;
         BonusDocNo := BonusDocNoP;
         BonusDocLineNo := BonusDocLineNoP;
     end;
+    #endregion SetBonusDoc
 
+    #region CreateBonusContractEntry
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
                                         var BonusCustomer: Record "lbtbn Bonus Customer";
                                         EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
@@ -73,7 +80,9 @@ codeunit 5266052 "lbtbn Bonus Management"
 
         exit(BonusEntry."Entry No.");
     end;
+    #endregion CreateBonusContractEntry
 
+    #region UpdateFromGenLedgEntry
     procedure UpdateFromGenLedgEntry(var GLEntry: Record "G/L Entry")
     begin
         BonusSetup.Get();
@@ -93,7 +102,16 @@ codeunit 5266052 "lbtbn Bonus Management"
             BonusEntry.Modify();
         end;
     end;
+    #endregion UpdateFromGenLedgEntry
 
+    #region BonusEntryReserveExploding
+    internal procedure BonusEntryReserveExploding(EntryNo: Integer; WorkDate: Date): Integer
+    begin
+        Error('Procedure BonusEntryReserveExploding not implemented.');
+    end;
+    #endregion BonusEntryReserveExploding
+
+    #region EventSubscriber Page Navigate onAfterInsertDocEntries 
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
     var
@@ -103,6 +121,7 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusContract.SetRange("Process No.", ProcessNo);
         Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
     end;
+    #endregion EventSubscriber Page Navigate onAfterInsertDocEntries 
 
     var
         BonusEntry: Record "lbtbn Bonus Entry";
