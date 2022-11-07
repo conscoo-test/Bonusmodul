@@ -10,6 +10,7 @@ report 5266052 "lbtbn Bonus Run"
         #region dataitem
         dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
+            RequestFilterFields = "No.", "Bonus Group";
 
             #region dataitem
             dataitem("Bonus Customer"; "lbtbn Bonus Customer")
@@ -766,6 +767,7 @@ report 5266052 "lbtbn Bonus Run"
         ValueEntry: Record "Value Entry";
         ItemLedgEntry: Record "Item Ledger Entry";
         Amount: Decimal;
+        AmountCust: Decimal;
     begin
         begin
             AmountCust := BonusContractLine.Value;
@@ -807,6 +809,7 @@ report 5266052 "lbtbn Bonus Run"
         ValueEntry: Record "Value Entry";
         ItemLedgEntry: Record "Item Ledger Entry";
         Amount: Decimal;
+        AmountCust: Decimal;
     begin
         begin
             AmountCust := BonusContractLine.Value;
@@ -863,9 +866,4 @@ report 5266052 "lbtbn Bonus Run"
         CustomerProgressTxt: Label 'Customer    #1##############\', Comment = '%1 No.';
         SalesDocProgressTxt: Label 'Sales Document #3##############', Comment = '%1 No.';
         ContractTxt: Label 'Contract';
-
-
-
-        AmountCust: Decimal;
-        DocumentBonusAmt: Decimal;
 }

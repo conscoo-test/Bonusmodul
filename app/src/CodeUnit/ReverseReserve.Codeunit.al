@@ -24,8 +24,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     procedure ReverseBonusReserve(var GLEntry: Record "G/L Entry"; PostingDate: Date)
     var
         BonusSetup: Record "lbtbn Bonus Setup";
-        ReversalEntry: Record "Reversal Entry";
         GenJnlLineRec: Record "Gen. Journal Line";
+        ReversalEntry: Record "Reversal Entry";
         BillingCode: Code[20];
         BillingEntry: Integer;
         LineNo: Integer;
@@ -99,18 +99,18 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #region AddItemChargeInvoiceLine
     local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date)
     var
-        SalesLine: Record "Sales Line";
-        SalesHeader: Record "Sales Header";
-        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         BonusContract: Record "lbtbn Bonus Contract";
+        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
+        SalesHeader: Record "Sales Header";
+        SalesLine: Record "Sales Line";
         LineNo: Integer;
-        Text021: Label 'Exploding Bonus Reserve for', Comment = 'Auflösung Bonusrückstellung für';
-        Text022: Label 'Invoice ';
-        Text023: Label 'Credit Memo ';
-        Text024: Label 'Bonus Fixed Amount Contract ';
+        ReverseTxt: Label 'Reverse Bonus Reserve for', Comment = 'Auflösung Bonusrückstellung für';
+        InvoiceTxt: Label 'Invoice ';
+        CreditMemoTxt: Label 'Credit Memo ';
+        FixedAmountTxt: Label 'Bonus Fixed Amount Contract ';
     begin
         BonusContract.Get(BonusEntry.Contract);
-        CreateInvoiceHeader(SalesHeader, BonusContract, LineNo, DateFrom, DateTo);// TODO: Statistics 
+        CreateInvoiceHeader(SalesHeader, BonusContract, LineNo, DateFrom, DateTo);
 
         SalesLine.Init();
         SalesLine."Document Type" := SalesHeader."Document Type";
@@ -123,14 +123,14 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesLine.Validate(Quantity, BonusEntry."Posted Amount");
         SalesLine."Shipment Date" := WorkDate();
         SalesLine."Allow Invoice Disc." := true;
-        SalesLine.Description := Text021;
+        SalesLine.Description := ReverseTxt;
         case Sign of
             1:
-                SalesLine."Description 2" := Text022 + BonusEntry."From Document No.";
+                SalesLine."Description 2" := InvoiceTxt + BonusEntry."From Document No.";
             -1:
-                SalesLine."Description 2" := Text023 + BonusEntry."From Document No.";
+                SalesLine."Description 2" := CreditMemoTxt + BonusEntry."From Document No.";
             2:
-                SalesLine."Description 2" := Text024 + BonusEntry."From Document No.";
+                SalesLine."Description 2" := FixedAmountTxt + BonusEntry."From Document No.";
         end;
         SalesLine."lbt Process No." := BonusEntry."Process No.";
         // SalesLine."Billing Code" := BonusSetup."Billing Code";
@@ -198,14 +198,13 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #region CreateInvoiceHeader
     local procedure CreateInvoiceHeader(SalesHeader: Record "Sales Header"; BonusContract: Record "lbtbn Bonus Contract"; var LineNo: Integer; DateFrom: Date; DateTo: Date)
     var
-        Text020: Label 'Exploding Bonus reserve', Comment = 'Auflösung Bonusrückstellung';
-        Text006: Label 'There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.',
-            Comment = 'Es existiert eine ungebuchte Rechnung zur Auflösung von Bonusrückstellungen.\\Diese muss erst gebucht oder gelöscht werden.';
-        NoSeriesMgt: Codeunit NoSeriesManagement;
-        SalesLine: Record "Sales Line";
-        LBText002: Label 'Bonus Accounting accordingly Bonus Contract %1.', Comment = 'Rückstellungsauflösung gem. Vertrag %1';
-        LBText003: Label 'Accounting Period %1 to %2', Comment = 'Abrechnungszeitraum %1 bis %2';
         BonusSetup: Record "lbtbn Bonus Setup";
+        SalesLine: Record "Sales Line";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+        ReverseReservalTxt: Label 'Reserve according to Bonus Contract %1.', Comment = '%1 - Contract No.';
+        AccountingPeriodLTxt: Label 'Accounting Period %1 to %2', Comment = '%1 - from Date, %2 - to Date';
+        UnpostedInvoiceExistsErr: Label 'There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.';
+        PostingDescriptionTxt: Label 'Exploding Bonus reserve';
     begin
         if InvoiceHeaderCreated then
             exit;
@@ -214,12 +213,12 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader.Reset();
         SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.", "No.");
         SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Invoice);
-        // SalesHeader.SetRange("Sell-to Customer No.", BonusSetup."Customer Statistic Postings"); // TODO: 
+        SalesHeader.SetRange("Sell-to Customer No.", BonusSetup."Customer Statistic Postings");
         SalesHeader.SetRange("lbt Process No.", BonusContract."Process No.");
         if SalesHeader.FindSet() then
             repeat
-                if SalesHeader."Posting Description" = Text020 then
-                    Error(Text006);
+                if SalesHeader."Posting Description" = PostingDescriptionTxt then
+                    Error(UnpostedInvoiceExistsErr);
             until SalesHeader.Next() = 0;
 
         SalesHeader.Init();
@@ -234,7 +233,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader.Validate("Sell-to Customer No.", BonusSetup."Customer Statistic Postings");
         SalesHeader."Customer Posting Group" := BonusSetup."Cust Gr. Reserve Cr. Memo";
         SalesHeader."Gen. Bus. Posting Group" := BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo";
-        SalesHeader."Posting Description" := Text020;
+        SalesHeader."Posting Description" := PostingDescriptionTxt;
         SalesHeader."Posting Date" := 0D;
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader.Modify();
@@ -244,17 +243,17 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesLine.Init();
         SalesLine."Document Type" := SalesHeader."Document Type";
         SalesLine."Document No." := SalesHeader."No.";
-        SalesLine."Line No." := LineNo + 10000;
-        LineNo := SalesLine."Line No.";
-        SalesLine.Description := StrSubstNo(LBText002, BonusContract."No.");
+        LineNo += 10000;
+        SalesLine."Line No." := LineNo;
+        SalesLine.Description := StrSubstNo(ReverseReservalTxt, BonusContract."No.");
         SalesLine.Insert();
 
         SalesLine.Init();
         SalesLine."Document Type" := SalesHeader."Document Type";
         SalesLine."Document No." := SalesHeader."No.";
-        SalesLine."Line No." := LineNo + 10000;
-        LineNo := SalesLine."Line No.";
-        SalesLine.Description := StrSubstNo(LBText003, DateFrom, DateTo);
+        LineNo += 10000;
+        SalesLine."Line No." := LineNo;
+        SalesLine.Description := StrSubstNo(AccountingPeriodLTxt, DateFrom, DateTo);
         SalesLine.Insert();
     end;
     #endregion CreateInvoiceHeader
@@ -272,21 +271,21 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #region ReverseBonusEntry
     local procedure ReverseBonusEntry(DateFrom: Date; DateTo: Date; var BonusEntry: Record "lbtbn Bonus Entry")
     var
-        SalesInvoiceLine: Record "Sales Invoice Line";
-        SalesShipmentLine: Record "Sales Shipment Line";
-        SalesCrMemoLine: Record "Sales Cr.Memo Line";
-        ReturnReceiptLine: Record "Return Receipt Line";
-        SalesLine: Record "Sales Line";
-        SalesHeader: Record "Sales Header";
         BonusEntry2: Record "lbtbn Bonus Entry";
+        ReturnReceiptLine: Record "Return Receipt Line";
+        SalesCrMemoLine: Record "Sales Cr.Memo Line";
+        SalesHeader: Record "Sales Header";
+        SalesInvoiceLine: Record "Sales Invoice Line";
+        SalesLine: Record "Sales Line";
+        SalesShipmentLine: Record "Sales Shipment Line";
         BonusMgt: Codeunit "lbtbn Bonus Management";
+        BillingEntry: Integer;
+        Sign: Integer;
         Text007: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
         Text016: Label 'Invoice';
         Text017: Label 'Shipment';
-        Sign: Integer;
         Text018: Label 'Credit Memo';
         Text019: Label 'Return Receipt';
-        BillingEntry: Integer;
     begin
         case BonusEntry."Assignment Document Type" of
             BonusEntry."Assignment Document Type"::"Sales Shipment":
@@ -329,9 +328,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #region BonusEntryReserveExploding
     procedure BonusEntryReserveExploding(EntryNo: Integer; PostingDate: Date): Integer
     var
-        BonusSetup: Record "lbtbn Bonus Setup";
-        BonusEntry: Record "lbtbn Bonus Entry";
         BonusEntry2: Record "lbtbn Bonus Entry";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusSetup: Record "lbtbn Bonus Setup";
     begin
         BonusEntry.Reset();
         BonusSetup.Get();
@@ -382,8 +381,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     var
         GLEntry: Record "G/L Entry";
         NewGLEntry: Record "G/L Entry";
-        VATEntry: Record "VAT Entry";
         NewVATEntry: Record "VAT Entry";
+        VATEntry: Record "VAT Entry";
     begin
         GLEntry.Reset();
         NewGLEntry.Reset();
@@ -450,10 +449,10 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         Customer: Record Customer;
         CustomerPostingGroup: Record "Customer Posting Group";
         GLEntry: Record "G/L Entry";
-        UserSetupManagement: Codeunit "User Setup Management";
         ReverseReserve: Codeunit "lbtbn Reverse Reserve";
+        UserSetupManagement: Codeunit "User Setup Management";
         Text005: Label 'The posting date of exploding bonus reserves is not in the permitted posting period.',
-            Comment = 'Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.';
+Comment = 'Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.';
     begin
         if not Customer.Get(CustomerNo) then
             exit;
