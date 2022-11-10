@@ -303,6 +303,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Customer - Field Contract - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2836892049 - Field 475748445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Bonus Group</source>
+          <target>Debitorenbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Customer - Field Customer Group - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2836892049 - Field 1171137197 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Name</source>
           <target>Debitorname</target>
@@ -704,6 +710,24 @@
           <target>ID</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn BonusContractAttribute - Field ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2047387159 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Bonus Group</source>
+          <target>Debitorenbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2047387159 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target>Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2047387159 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beschreibung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Field Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Codeunit 3100616550 - NamedType 262960121" size-unit="char" translate="yes" xml:space="preserve">
           <source>To Wizard...</source>
@@ -1875,6 +1899,24 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Contract Attr. Filter - Control Attribute Value Name - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 1538342882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Bonus Groups</source>
+          <target>Debitorbuchungsgruppen</target>
+          <note from="Developer" annotates="general" priority="2">DEU="Debitorenbonusgruppen"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1538342882 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used to uniquely identify the customer bonus group.</source>
+          <target>Dient zur eindeutigen Identifikation der Debitorenbonusgruppe.</target>
+          <note from="Developer" annotates="general" priority="2">DEU="Dient zur eindeutigen Identifikation der Debitorenbonusgruppe."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Control Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1538342882 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Here you can type in the description of the customer bonus group.</source>
+          <target>Hier kann die Bezeichnung der Debitorenbonusgruppe stehen.</target>
+          <note from="Developer" annotates="general" priority="2">DEU="Hier kann die Bezeichnung der Debitorenbonusgruppe stehen."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Control Description - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3389654593 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Explode Bonus Reservation</source>
           <target>Bonusrückstellungen auflösen</target>
@@ -2241,6 +2283,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Control Reverse Posting Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3261694402 - Control 3499160770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
+          <source>Bonus</source>
+          <target>Bonus</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Card - Control lbtbn  - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3261694402 - Control 2047387159 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
+          <source>The customer bonus groups can be assigned to the customer.</source>
+          <target>Die Debitorbuchungsgruppe kann dem Debitor zugewiesen werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Card - Control lbtbn Customer Group - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1695308226 - Control 3377816526 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2866362260">
           <source>Specifies the bonus reserve account</source>
           <target>Gibt das Konto für die Bonusreserven an</target>
@@ -2258,6 +2312,12 @@
           <target>Kennzeichnen, welche ZU-/ABSCHLÄGE Bonusrelevant sind.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Charges - Control lbtbn Bonus consider - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1182399334 - Field 2047387159 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1994964448">
+          <source>Customer Bonus Group</source>
+          <target>Debitorenbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Customer - Field lbtbn Customer Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2890724663 - Field 698587409 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
           <source>Bonus Reserve Account</source>

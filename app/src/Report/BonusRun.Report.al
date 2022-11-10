@@ -18,108 +18,118 @@ report 5266052 "lbtbn Bonus Run"
                 DataItemLink = "Contract" = field("No.");
 
                 #region dataitems
-                dataitem("Sales Invoice Header"; "Sales Invoice Header")
+                dataitem(Customer; Customer)
                 {
-                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
-
-                    #region dataitem
-                    dataitem("Sales Invoice Line"; "Sales Invoice Line")
+                    dataitem("Sales Invoice Header"; "Sales Invoice Header")
                     {
-                        DataItemLink = "Document No." = field("No.");
+                        DataItemLink = "Sell-to Customer No." = field("No.");
+
+                        #region dataitem
+                        dataitem("Sales Invoice Line"; "Sales Invoice Line")
+                        {
+                            DataItemLink = "Document No." = field("No.");
+
+                            #region OnPreDataItem
+                            trigger OnPreDataItem()
+                            begin
+                                //TODO:
+                                //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
+                                BonusAmount := 0;
+                            end;
+                            #endregion OnPreDataItem
+
+                            #region OnAfterGetRecord
+                            trigger OnAfterGetRecord()
+                            var
+                                DocAmount: Decimal;
+                            begin
+                                if not "Bonus Contract".CheckAttributes("Sales Invoice Line"."No.") then
+                                    CurrReport.Skip();
+                                DocAmount := GetDocAmount("Sales Invoice Line".Amount);
+                                //UpdateDocAmountFromValueEntry();
+                                case "Bonus Contract"."Bonus Billing Type" of
+                                    "Bonus Contract"."Bonus Billing Type"::"%":
+                                        CreateBonusForBillingTypePercent("Sales Invoice Line", DocAmount);
+                                    "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
+                                        ;
+                                    "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
+                                        CreateBonusForBillingTypeAmountPerUnit("Sales Invoice Line", DocAmount);
+                                end;
+                            end;
+                            #endregion OnAfterGetRecord
+                        }
+                        #endregion dataitem
 
                         #region OnPreDataItem
                         trigger OnPreDataItem()
                         begin
-                            //TODO:
-                            //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
-                            BonusAmount := 0;
+                            SetRange("Posting Date", DateFrom, DateTo);
+                            if "Bonus Customer"."Ship-to Code" <> '' then
+                                SetRange("Ship-to Code", "Bonus Customer"."Ship-to Code")
+                            else
+                                SetRange("Ship-to Code");
                         end;
                         #endregion OnPreDataItem
 
                         #region OnAfterGetRecord
                         trigger OnAfterGetRecord()
                         var
-                            DocAmount: Decimal;
+                            Customer: Record Customer;
                         begin
-                            if not "Bonus Contract".CheckAttributes("Sales Invoice Line"."No.") then
-                                CurrReport.Skip();
-                            DocAmount := GetDocAmount("Sales Invoice Line".Amount);
-                            //UpdateDocAmountFromValueEntry();
-                            case "Bonus Contract"."Bonus Billing Type" of
-                                "Bonus Contract"."Bonus Billing Type"::"%":
-                                    CreateBonusForBillingTypePercent("Sales Invoice Line", DocAmount);
-                                "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
-                                    ;
-                                "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
-                                    CreateBonusForBillingTypeAmountPerUnit("Sales Invoice Line", DocAmount);
-                            end;
+                            Dialog.Update(3, "No.");
+                            SalesPersonCode := '';
+                            if Customer.Get("Bonus Contract"."Bonus Recipient") then
+                                SalesPersonCode := Customer."Salesperson Code";
                         end;
                         #endregion OnAfterGetRecord
                     }
-                    #endregion dataitem
+                    dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
+                    {
+                        DataItemLink = "Sell-to Customer No." = field("No.");
 
-                    #region OnPreDataItem
+                        #region dataitem
+                        dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
+                        {
+                            DataItemLink = "Document No." = field("No.");
+
+                            #region OnPreDataItem
+                            trigger OnPreDataItem()
+                            begin
+                                //TODO:
+                                //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
+                                BonusAmount := 0;
+                            end;
+                            #endregion OnPreDataItem
+
+                            #region OnAfterGetRecord
+                            trigger OnAfterGetRecord()
+                            var
+                                DocAmount: Decimal;
+                            begin
+                                if not "Bonus Contract".CheckAttributes("Sales Cr.Memo Line"."No.") then
+                                    CurrReport.Skip();
+                                DocAmount := GetDocAmount("Sales Cr.Memo Line".Amount);
+                                //UpdateDocAmountFromValueEntry();
+                                case "Bonus Contract"."Bonus Billing Type" of
+                                    "Bonus Contract"."Bonus Billing Type"::"%":
+                                        CreateBonusForBillingTypePercent("Sales Cr.Memo Line", DocAmount);
+                                    "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
+                                        ;
+                                    "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
+                                        CreateBonusForBillingTypeAmountPerUnit("Sales Cr.Memo Line", DocAmount);
+                                end;
+                            end;
+                            #endregion OnAfterGetRecord
+                        }
+                        #endregion dataitem
+                    }
                     trigger OnPreDataItem()
                     begin
-                        SetRange("Posting Date", DateFrom, DateTo);
-                        if "Bonus Customer"."Ship-to Code" <> '' then
-                            SetRange("Ship-to Code", "Bonus Customer"."Ship-to Code")
-                        else
-                            SetRange("Ship-to Code");
+                        if "Bonus Customer"."Customer Group" <> '' then
+                            Customer.SetRange("lbtbn Customer Group", "Bonus Customer"."Customer Group");
+                        if "Bonus Customer"."Customer No." <> '' then
+                            Customer.SetRange("No.", "Bonus Customer"."Customer Group");
                     end;
-                    #endregion OnPreDataItem
-
-                    #region OnAfterGetRecord
-                    trigger OnAfterGetRecord()
-                    var
-                        Customer: Record Customer;
-                    begin
-                        Dialog.Update(3, "No.");
-                        SalesPersonCode := '';
-                        if Customer.Get("Bonus Contract"."Bonus Recipient") then
-                            SalesPersonCode := Customer."Salesperson Code";
-                    end;
-                    #endregion OnAfterGetRecord
-                }
-                dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
-                {
-                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
-
-                    #region dataitem
-                    dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
-                    {
-                        DataItemLink = "Document No." = field("No.");
-
-                        #region OnPreDataItem
-                        trigger OnPreDataItem()
-                        begin
-                            //TODO:
-                            //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
-                            BonusAmount := 0;
-                        end;
-                        #endregion OnPreDataItem
-
-                        #region OnAfterGetRecord
-                        trigger OnAfterGetRecord()
-                        var
-                            DocAmount: Decimal;
-                        begin
-                            if not "Bonus Contract".CheckAttributes("Sales Cr.Memo Line"."No.") then
-                                CurrReport.Skip();
-                            DocAmount := GetDocAmount("Sales Cr.Memo Line".Amount);
-                            //UpdateDocAmountFromValueEntry();
-                            case "Bonus Contract"."Bonus Billing Type" of
-                                "Bonus Contract"."Bonus Billing Type"::"%":
-                                    CreateBonusForBillingTypePercent("Sales Cr.Memo Line", DocAmount);
-                                "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
-                                    ;
-                                "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
-                                    CreateBonusForBillingTypeAmountPerUnit("Sales Cr.Memo Line", DocAmount);
-                            end;
-                        end;
-                        #endregion OnAfterGetRecord
-                    }
-                    #endregion dataitem
                 }
                 #endregion dataitems
             }

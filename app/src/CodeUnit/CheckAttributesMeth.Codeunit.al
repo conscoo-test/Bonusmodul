@@ -21,18 +21,18 @@ codeunit 5266055 "lbtbn CheckAttributes Meth"
         repeat
             if ItemAttributeValueMapping.Get(Database::Item, ItemNo, BonusContractAttribute."Attribute ID") then begin
                 ItemAttributeValue.Get(ItemAttributeValueMapping."Item Attribute ID", ItemAttributeValueMapping."Item Attribute Value ID");
-                case BonusContractAttribute."Attribute Type" of
-                    BonusContractAttribute."Attribute Type"::Decimal:
-                        ;
-                    BonusContractAttribute."Attribute Type"::Integer:
-                        ;
-                    BonusContractAttribute."Attribute Type"::Text:
+                // case BonusContractAttribute."Attribute Type" of
+                //     BonusContractAttribute."Attribute Type"::Decimal:
+                //         ;
+                //     BonusContractAttribute."Attribute Type"::Integer:
+                //         ;
+                //     BonusContractAttribute."Attribute Type"::Text:
 
-                        ;
-                    BonusContractAttribute."Attribute Type"::Option:
-                        if ItemAttributeValue.ID <> BonusContractAttribute."Attribute Value ID" then
-                            exit(false);
-                end;
+                //         ;
+                //     BonusContractAttribute."Attribute Type"::Option:
+                if ItemAttributeValue.ID <> BonusContractAttribute."Attribute Value ID" then
+                    exit(false);
+                // end;
             end;
         #region commented code
         //     if PostParaDocLineRec.FindFirst then begin

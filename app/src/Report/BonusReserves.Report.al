@@ -7,71 +7,100 @@ report 5266051 "lbtbn Bonus Reserves"
 
     dataset
     {
+        #region dataitem
         dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
             DataItemTableView = sorting("No.");
             RequestFilterFields = "No.", "Billing Period";
 
-            dataitem("Bonus Customers"; "lbtbn Bonus Customer")
+            #region dataitem
+            dataitem("Bonus Customer"; "lbtbn Bonus Customer")
             {
                 DataItemLink = Contract = field("No.");
                 DataItemTableView = sorting(Contract, "Customer No.", "Ship-to Code");
 
-                dataitem("Sales Invoice Header"; "Sales Invoice Header")
+                #region dataitems
+                dataitem(Customer; Customer)
                 {
-                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
-                    DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
+                    #region dataitems
+                    dataitem("Sales Invoice Header"; "Sales Invoice Header")
+                    {
+                        DataItemLink = "Sell-to Customer No." = field("No.");
+                        DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
 
+                        #region OnPreDataItem
+                        trigger OnPreDataItem()
+                        begin
+                            if "Bonus Contract"."Reserve Type" = "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
+                                CurrReport.Break();
+
+                            SetRange("Posting Date", DateFrom, DateTo);
+                            PostingDate := DateTo;
+                            if "Bonus Customer"."Ship-to Code" <> '' then
+                                SetRange("Ship-to Code", "Bonus Customer"."Ship-to Code")
+                            else
+                                SetRange("Ship-to Code");
+                        end;
+                        #endregion OnPreDataItem
+
+                        #region OnAfterGetRecord
+                        trigger OnAfterGetRecord()
+                        begin
+                            CalcFromSalesInvoice();
+                        end;
+                        #endregion OnAfterGetRecord
+                    }
+                    dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
+                    {
+                        DataItemLink = "Sell-to Customer No." = field("No.");
+                        DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
+
+                        #region OnPreDataItem
+                        trigger OnPreDataItem()
+                        begin
+                            if "Bonus Contract"."Reserve Type" = "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
+                                CurrReport.Break();
+
+                            SetRange("Posting Date", DateFrom, DateTo);
+                            if "Bonus Customer"."Ship-to Code" <> '' then
+                                SetRange("Ship-to Code", "Bonus Customer"."Ship-to Code")
+                            else
+                                SetRange("Ship-to Code");
+                        end;
+                        #endregion OnPreDataItem
+
+                        #region OnAfterGetRecord
+                        trigger OnAfterGetRecord()
+                        begin
+                            CalcFromCrMemo();
+                        end;
+                        #endregion OnAfterGetRecord
+                    }
+                    #endregion dataitems
+
+                    #region OnPreDataItem
                     trigger OnPreDataItem()
                     begin
-                        if "Bonus Contract"."Reserve Type" = "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
-                            CurrReport.Break();
-
-                        SetRange("Posting Date", DateFrom, DateTo);
-                        PostingDate := DateTo;
-                        if "Bonus Customers"."Ship-to Code" <> '' then
-                            SetRange("Ship-to Code", "Bonus Customers"."Ship-to Code")
-                        else
-                            SetRange("Ship-to Code");
+                        if "Bonus Customer"."Customer Group" <> '' then
+                            Customer.SetRange("lbtbn Customer Group", "Bonus Customer"."Customer Group");
+                        if "Bonus Customer"."Customer No." <> '' then
+                            Customer.SetRange("No.", "Bonus Customer"."Customer Group");
                     end;
-
-                    trigger OnAfterGetRecord()
-                    begin
-                        CalcFromSalesInvoice();
-                    end;
-                }
-                dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
-                {
-                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
-                    DataItemTableView = sorting("Sell-to Customer No.", "Posting Date");
-
-                    trigger OnPreDataItem()
-                    begin
-                        if "Bonus Contract"."Reserve Type" = "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
-                            CurrReport.Break();
-
-                        SetRange("Posting Date", DateFrom, DateTo);
-                        if "Bonus Customers"."Ship-to Code" <> '' then
-                            SetRange("Ship-to Code", "Bonus Customers"."Ship-to Code")
-                        else
-                            SetRange("Ship-to Code");
-                    end;
-
-                    trigger OnAfterGetRecord()
-                    begin
-                        CalcFromCrMemo();
-                    end;
+                    #endregion OnPreDataItem
                 }
                 dataitem("Fixed Amount"; Integer)
                 {
                     DataItemTableView = sorting(Number) where(Number = const(1));
 
+                    #region OnPreDataItem
                     trigger OnPreDataItem()
                     begin
                         if "Bonus Contract"."Reserve Type" <> "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
                             CurrReport.Break();
                     end;
+                    #endregion OnPreDataItem
 
+                    #region OnAfterGetRecord
                     trigger OnAfterGetRecord()
                     var
                         SalesLine: Record "Sales Line";
@@ -83,20 +112,26 @@ report 5266051 "lbtbn Bonus Reserves"
                                     CreateBonusEntryForFixedAmount(SalesLine);
                                 end;
                             BonusSetup."Reserve Mode"::Journal:
-                                CreateJournalLine(0, "Bonus Contract"."No.", 0, "Bonus Customers"."Customer No.", "Bonus Contract"."Reserve Value", 0,
+                                CreateJournalLine(0, "Bonus Contract"."No.", 0, "Bonus Customer"."Customer No.", "Bonus Contract"."Reserve Value", 0,
                                   0, 0);
                         end;
                     end;
+                    #endregion OnAfterGetRecord
                 }
+                #endregion dataitems
             }
+            #endregion dataitem
 
             // DataItem "Bonus Contract"
+            #region OnPreDataItem
             trigger OnPreDataItem()
             begin
                 Dialog.Open(CustomerProgressTxt + ContractProgressTxt);
                 PostingDate := DateTo;
             end;
+            #endregion OnPreDataItem
 
+            #region OnAfterGetRecord
             trigger OnAfterGetRecord()
             begin
                 Dialog.Update(1, "No. of Customers");
@@ -108,7 +143,9 @@ report 5266051 "lbtbn Bonus Reserves"
                 "Last Reserve at" := PostingDate;
                 Modify();
             end;
+            #endregion OnAfterGetRecord
 
+            #region OnPostDataItem
             trigger OnPostDataItem()
             begin
                 Dialog.Close();
@@ -116,7 +153,9 @@ report 5266051 "lbtbn Bonus Reserves"
 
                 OpenPage();
             end;
+            #endregion OnPostDataItem
         }
+        #endregion dataitem
     }
 
     requestpage
@@ -145,6 +184,7 @@ report 5266051 "lbtbn Bonus Reserves"
         }
     }
 
+    #region OnPreReport
     trigger OnPreReport()
     var
         GenJournalLine: Record "Gen. Journal Line";
@@ -172,6 +212,7 @@ report 5266051 "lbtbn Bonus Reserves"
         else
             LineNo := 0;
     end;
+    #endregion OnPreReport
 
     var
         BonusSetup: Record "lbtbn Bonus Setup";
@@ -199,6 +240,7 @@ report 5266051 "lbtbn Bonus Reserves"
         UnpostedCreditMemoErr: Label 'There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.',
             Comment = 'DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."';
 
+    #region AddItemChargeToSalesLine
     local procedure AddItemChargeToSalesLine(var SalesLine: Record "Sales Line"; TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; DocAmount: Decimal; BonusAmount: Decimal)
     var
         ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
@@ -231,7 +273,9 @@ report 5266051 "lbtbn Bonus Reserves"
         ItemChargeAssignmentSales.Validate("Qty. to Assign", BonusAmount);
         ItemChargeAssignmentSales.Insert();
     end;
+    #endregion AddItemChargeToSalesLine
 
+    #region CalcFromCrMemo
     local procedure CalcFromCrMemo()
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
@@ -253,7 +297,9 @@ report 5266051 "lbtbn Bonus Reserves"
                     end;
             until SalesCrMemoLine.Next() = 0;
     end;
+    #endregion CalcFromCrMemo
 
+    #region CalcFromSalesInvoice
     local procedure CalcFromSalesInvoice()
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
@@ -276,7 +322,9 @@ report 5266051 "lbtbn Bonus Reserves"
                     end;
             until SalesInvoiceLine.Next() = 0;
     end;
+    #endregion CalcFromSalesInvoice
 
+    #region CalcItemCharge
     local procedure CalcItemCharge(TableNo: Integer; p_LineNo: Integer; var DocAmtInclVAT: Decimal; var DocAmount: Decimal)
     var
         ItemCharge: Record "Item Charge";
@@ -323,7 +371,9 @@ report 5266051 "lbtbn Bonus Reserves"
                 end;
             until ValueEntry.Next() = 0;
     end;
+    #endregion CalcItemCharge
 
+    #region CalcPercentage
     local procedure CalcPercentage(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; Amount: Decimal; AmtInclVat: Decimal)
     var
         BonusAmt: Decimal;
@@ -354,11 +404,13 @@ report 5266051 "lbtbn Bonus Reserves"
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, 0, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
         else
             CreateJournalLine(TableNo, DocNo, DocLineNo,
-                            "Bonus Customers"."Customer No.",
+                            "Bonus Customer"."Customer No.",
                             BonusAmt, DocAmount,
                             -DiscAmt, -PmtDiscAmt);
     end;
+    #endregion CalcPercentage
 
+    #region CalcPerUnit
     local procedure CalcPerUnit(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer)
     var
         BonusAmt: Decimal;
@@ -372,8 +424,9 @@ report 5266051 "lbtbn Bonus Reserves"
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, Quantity, BonusAmt, 0, 0, 0)
         else
-            CreateJournalLine(TableNo, DocNo, DocLineNo, "Bonus Customers"."Customer No.", BonusAmt, 0, 0, 0);
+            CreateJournalLine(TableNo, DocNo, DocLineNo, "Bonus Customer"."Customer No.", BonusAmt, 0, 0, 0);
     end;
+    #endregion CalcPerUnit
 
     // local procedure FindQuantity(quantity: decimal): Decimal
     // begin
@@ -389,6 +442,7 @@ report 5266051 "lbtbn Bonus Reserves"
     //     exit(quantity);
     // end;
 
+    #region CheckDates
     local procedure CheckDates(): Boolean
     begin
         if (PostingDate < "Bonus Contract"."Valid from") or (("Bonus Contract"."Valid to" <> 0D) and (PostingDate > "Bonus Contract"."Valid to")) then
@@ -398,7 +452,9 @@ report 5266051 "lbtbn Bonus Reserves"
             exit(false);
         exit(true);
     end;
+    #endregion CheckDates
 
+    #region CreateBonusCrMemoLine
     local procedure CreateBonusCrMemoLine(TableNo: Integer; DocNoP: Code[20]; BonusAmt: Decimal; var SalesLineRec: Record "Sales Line")
     begin
         CreateCrMemoHeader();
@@ -439,13 +495,15 @@ report 5266051 "lbtbn Bonus Reserves"
             SalesLineRec.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
         SalesLineRec.Insert();
     end;
+    #endregion CreateBonusCrMemoLine
 
+    #region CreateBonusEntryForFixedAmount
     local procedure CreateBonusEntryForFixedAmount(var SalesLine: Record "Sales Line")
     begin
         BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
         BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                                    "Bonus Contract",
-                                   "Bonus Customers",
+                                   "Bonus Customer",
                                    1, PostingDate, 0,
                                    0, SalesLine.Amount, 0,
                                    SalesLine.Amount,
@@ -454,7 +512,9 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
         SalesLine.Modify();
     end;
+    #endregion CreateBonusEntryForFixedAmount
 
+    #region CreateCrMemoHeader
     local procedure CreateCrMemoHeader()
     var
         SalesLine: Record "Sales Line";
@@ -503,7 +563,9 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesLine.Description := StrSubstNo(AccountingPeriodLbl, DateFrom, DateTo);
         SalesLine.Insert();
     end;
+    #endregion CreateCrMemoHeader
 
+    #region CreateDimSetID
     local procedure CreateDimSetID(): Integer
     var
         TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
@@ -521,7 +583,9 @@ report 5266051 "lbtbn Bonus Reserves"
 
         exit(DimensionManagement.GetDimensionSetID(TempDimensionSetEntry));
     end;
+    #endregion CreateDimSetID
 
+    #region CreateForReserveMode_CreditMemo
     local procedure CreateForReserveMode_CreditMemo(TableNo: Integer; DocNo: Code[20]; p_LineNo: Integer; Qty: Decimal; BonusAmt: Decimal; PmtDiscAmt: Decimal; DocAmount: Decimal; DiscAmt: Decimal)
     var
         ItemLedgerEntry: Record "Item Ledger Entry";
@@ -556,7 +620,7 @@ report 5266051 "lbtbn Bonus Reserves"
                 BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
                 BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                                     "Bonus Contract",
-                                    "Bonus Customers",
+                                    "Bonus Customer",
                                     1,
                                     PostingDate,
                                     0,
@@ -571,7 +635,9 @@ report 5266051 "lbtbn Bonus Reserves"
             end;
         end;
     end;
+    #endregion CreateForReserveMode_CreditMemo
 
+    #region CreateJournalLine
     local procedure CreateJournalLine(TableID: Integer; DocNo: Code[20]; DocLineNo: Integer; CustNo: Code[20]; Amt: Decimal; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal)
     var
         Customer: Record Customer;
@@ -605,7 +671,7 @@ report 5266051 "lbtbn Bonus Reserves"
                 BonusManagement.SetBonusDoc(0, '', 0);
                 BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                     "Bonus Contract",
-                    "Bonus Customers",
+                    "Bonus Customer",
                     1,                //Postenart Rückstellung
                     PostingDate,
                     0,                //Bonusregelzeile
@@ -660,6 +726,7 @@ report 5266051 "lbtbn Bonus Reserves"
                 GenJournalLine.Insert();
             end;
     end;
+    #endregion CreateJournalLine
 
     // local procedure getTotalAmount(): Decimal
     // var
@@ -689,6 +756,7 @@ report 5266051 "lbtbn Bonus Reserves"
     //     Exit(ContractTotalAmt);
     // end;
 
+    #region FindQuantity
     local procedure FindQuantity(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer): Decimal
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
@@ -703,7 +771,9 @@ report 5266051 "lbtbn Bonus Reserves"
                     exit(SalesCrMemoLine.Quantity);
         end;
     end;
+    #endregion FindQuantity
 
+    #region OpenPage
     local procedure OpenPage()
     var
         GenJournalLine: Record "Gen. Journal Line";
@@ -725,4 +795,5 @@ report 5266051 "lbtbn Bonus Reserves"
                 end;
         end;
     end;
+    #endregion OpenPage
 }
