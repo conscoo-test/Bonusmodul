@@ -43,7 +43,7 @@ report 5266052 "lbtbn Bonus Run"
                             var
                                 DocAmount: Decimal;
                             begin
-                                if not CheckAttributesMeth.CheckAttributes("Bonus Contract"."No.", "Sales Invoice Line"."No.") then
+                                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", "Sales Invoice Line"."No.") then
                                     CurrReport.Skip();
                                 DocAmount := GetDocAmount("Sales Invoice Line".Amount);
                                 //UpdateDocAmountFromValueEntry();
@@ -106,7 +106,7 @@ report 5266052 "lbtbn Bonus Run"
                             var
                                 DocAmount: Decimal;
                             begin
-                                if not CheckAttributesMeth.CheckAttributes("Bonus Contract"."No.", "Sales Cr.Memo Line"."No.") then
+                                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", "Sales Cr.Memo Line"."No.") then
                                     CurrReport.Skip();
                                 DocAmount := GetDocAmount("Sales Cr.Memo Line".Amount);
                                 //UpdateDocAmountFromValueEntry();
@@ -390,7 +390,7 @@ report 5266052 "lbtbn Bonus Run"
         SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
         if SalesInvoiceLine.FindSet() then
             repeat
-                if not CheckAttributesMeth.CheckAttributes("Bonus Contract"."No.", SalesInvoiceLine."No.") then begin
+                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesInvoiceLine."No.") then begin
                     Quantity += SalesInvoiceLine.Quantity;
                     Amount += SalesInvoiceLine.Amount;
                 end;
@@ -407,7 +407,7 @@ report 5266052 "lbtbn Bonus Run"
         SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
         if SalesCrMemoLine.FindSet() then
             repeat
-                if not CheckAttributesMeth.CheckAttributes("Bonus Contract"."No.", SalesCrMemoLine."No.") then begin
+                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesCrMemoLine."No.") then begin
                     Quantity -= SalesCrMemoLine.Quantity;
                     Amount -= SalesCrMemoLine.Amount;
                 end;
@@ -860,7 +860,7 @@ report 5266052 "lbtbn Bonus Run"
         BonusContractLine: Record "lbtbn Bonus Contract Line";
         BonusSetup: Record "lbtbn Bonus Setup";
         ItemLedgerEntry: Record "Item Ledger Entry";
-        CheckAttributesMeth: Codeunit "lbtbn CheckAttributes Meth";
+        CheckAttributesMeth: Codeunit "lbtbn CheckItem Meth";
         Dialog: Dialog;
         SalesPersonCode: Code[20];
         DateFrom: Date;

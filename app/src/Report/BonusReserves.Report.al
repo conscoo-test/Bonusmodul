@@ -218,7 +218,7 @@ report 5266051 "lbtbn Bonus Reserves"
         BonusSetup: Record "lbtbn Bonus Setup";
         SalesHeader: Record "Sales Header";
         BonusManagement: Codeunit "lbtbn Bonus Management";
-        CheckAttributesMeth: Codeunit "lbtbn CheckAttributes Meth";
+        CheckAttributesMeth: Codeunit "lbtbn CheckItem Meth";
         CrMemoHeaderCreated: Boolean;
         DateFrom: Date;
         DateTo: Date;
@@ -285,7 +285,7 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
         if SalesCrMemoLine.FindSet() then
             repeat
-                if not CheckAttributesMeth.CheckAttributes("Bonus Contract"."No.", SalesCrMemoLine."No.") then
+                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesCrMemoLine."No.") then
                     case "Bonus Contract"."Reserve Type" of
                         "Bonus Contract"."Reserve Type"::"%":
                             CalcPercentage(Database::"Sales Cr.Memo Line",
@@ -310,7 +310,7 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
         if SalesInvoiceLine.FindSet() then
             repeat
-                if not CheckAttributesMeth.CheckAttributes("Bonus Contract"."No.", SalesInvoiceLine."No.") then
+                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesInvoiceLine."No.") then
                     case "Bonus Contract"."Reserve Type" of
                         "Bonus Contract"."Reserve Type"::"%":
                             CalcPercentage(Database::"Sales Invoice Line",

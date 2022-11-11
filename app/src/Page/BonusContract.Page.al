@@ -322,20 +322,13 @@ page 5266053 "lbtbn Bonus Contract"
                 end;
                 #endregion OnAction
             }
-            action("Bonus Contract Attribute")
+            action("Bonus Items")
             {
-                Caption = 'Attribute Filter';
-                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.';
+                Caption = 'Bonus Items';
                 ApplicationArea = All;
-                Image = "Filter";
-                RunObject = page "lbtbn Contract Attr. Filter";
-                RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
+                Image = Item;
+                RunObject = page "lbtbn Bonus Items";
+                RunPageLink = "Contract No." = field("No.");
             }
 
             action(BonusGroup)
