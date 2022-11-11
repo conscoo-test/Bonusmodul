@@ -23,6 +23,8 @@ permissionset 5266051 "lbtbn Bonus"
         tabledata "lbtbn Bonus Setup" = RIMD,
         table "lbtbn Customer Group" = X,
         tabledata "lbtbn Customer Group" = RIMD,
+        table "lbtbn Item Group" = X,
+        tabledata "lbtbn Item Group" = RIMD,
         codeunit "lbtbn Bonus Assisted Setup" = X,
         codeunit "lbtbn Bonus Install Logic" = X,
         codeunit "lbtbn Bonus Management" = X,
@@ -44,6 +46,7 @@ permissionset 5266051 "lbtbn Bonus"
         page "lbtbn Customer Groups" = X,
         page "lbtbn Explode Bonus Reserv." = X,
         page "lbtbn Explode Reservation" = X,
+        page "lbtbn Item Groups" = X,
         report "lbtbn Bonus Reserves" = X,
         report "lbtbn Bonus Run" = X;
 }

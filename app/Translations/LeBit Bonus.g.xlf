@@ -638,6 +638,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Field Description - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2428278704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Bonus Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Item Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428278704 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Item Group - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428278704 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Item Group - Field Description - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3100616550 - NamedType 262960121" size-unit="char" translate="yes" xml:space="preserve">
           <source>To Wizard...</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1625,17 +1640,17 @@
         </trans-unit>
         <trans-unit id="Page 1538342882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Bonus Groups</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Debitorenbonusgruppen"</note>
+          <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1538342882 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Used to uniquely identify the customer bonus group.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Dient zur eindeutigen Identifikation der Debitorenbonusgruppe."</note>
+          <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Control Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1538342882 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you can type in the description of the customer bonus group.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Hier kann die Bezeichnung der Debitorenbonusgruppe stehen."</note>
+          <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Control Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3389654593 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1757,6 +1772,21 @@
           <source>This date field refers to the posting date of the respective reserve items.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control lbtbn Posting Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 959492753 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Bonus Groups</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 959492753 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used to uniquely identify the Item bonus group.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Control Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 959492753 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Here you can type in the description of the Item bonus group.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Control Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Reserves</source>
@@ -1962,6 +1992,16 @@
           <source>Specifies the bonus reserve bal. account</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Posting Groups - Control lbtbn Bonus Reserve Bal. Account - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 215031601 - Control 1763507580 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>Bonus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Card - Control lbtbn lbtbn - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 215031601 - Control 2428278704 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>The Item bonus groups can be assigned to the Item.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Card - Control lbtbn Item Group - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 1211669190 - Control 1809393980 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 200707616">
           <source>Indicate which surcharges and discounts are relevant for bonus.</source>

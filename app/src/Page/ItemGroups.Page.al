@@ -1,9 +1,9 @@
-page 5266064 "lbtbn Customer Groups"
+page 5266066 "lbtbn Item Groups"
 {
 
     PageType = List;
-    SourceTable = "lbtbn Customer Group";
-    Caption = 'Customer Bonus Groups';
+    SourceTable = "lbtbn Item Group";
+    Caption = 'Item Bonus Groups';
     ApplicationArea = All;
     UsageCategory = Lists;
 
@@ -15,12 +15,12 @@ page 5266064 "lbtbn Customer Groups"
             {
                 field("Code"; Rec.Code)
                 {
-                    ToolTip = 'Used to uniquely identify the customer bonus group.';
+                    ToolTip = 'Used to uniquely identify the Item bonus group.';
                     ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
-                    ToolTip = 'Here you can type in the description of the customer bonus group.';
+                    ToolTip = 'Here you can type in the description of the Item bonus group.';
                     ApplicationArea = All;
                 }
             }
