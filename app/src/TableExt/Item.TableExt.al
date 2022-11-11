@@ -6,7 +6,7 @@ tableextension 5266055 "lbtbn Item" extends Item
         {
             Caption = 'Item Group';
             DataClassification = CustomerContent;
-
+            TableRelation = "lbtbn Item Group";
         }
     }
 }

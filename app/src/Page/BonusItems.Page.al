@@ -53,7 +53,7 @@ page 5266065 "lbtbn Bonus Items"
                         PageManagement: Codeunit "Page Management";
                     begin
                         SetItemView(Item);
-                        Item."No." := '';
+                        Item."No." := ''; // Force PageManagement to open List
                         PageManagement.PageRun(Item);
                     end;
                 }
