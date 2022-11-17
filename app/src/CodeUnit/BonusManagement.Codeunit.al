@@ -107,7 +107,7 @@ codeunit 5266052 "lbtbn Bonus Management"
     #region BonusEntryReserveExploding
     internal procedure BonusEntryReserveExploding(EntryNo: Integer; WorkDate: Date): Integer
     begin
-        Error('Procedure BonusEntryReserveExploding not implemented.');
+        Error('Procedure BonusEntryReserveExploding not implemented.');//TODO: 
     end;
     #endregion BonusEntryReserveExploding
 
