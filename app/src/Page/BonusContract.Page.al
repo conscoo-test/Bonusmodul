@@ -31,11 +31,6 @@ page 5266053 "lbtbn Bonus Contract"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the description';
                 }
-                field("Bonus Group"; Rec."Bonus Group")
-                {
-                    ToolTip = 'This field is filled with the Bonus group.';
-                    ApplicationArea = All;
-                }
                 field("Billing Period"; Rec."Billing Period")
                 {
                     ToolTip = 'This field specifies the interval in which billing takes place.';
@@ -331,19 +326,6 @@ page 5266053 "lbtbn Bonus Contract"
                 RunPageLink = "Contract No." = field("No.");
             }
 
-            action(BonusGroup)
-            {
-                Caption = 'Bonus Group';
-                ToolTip = 'Here you can group bonus contracts.';
-                ApplicationArea = All;
-                Image = Group;
-                RunObject = page "lbtbn Bonus Group";
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
-            }
             action("Bonus Entry")
             {
                 Caption = 'Bonus Entry';

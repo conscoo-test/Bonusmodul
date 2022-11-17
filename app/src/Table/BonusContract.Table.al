@@ -131,12 +131,6 @@ table 5266052 "lbtbn Bonus Contract"
             DataClassification = CustomerContent;
             TableRelation = Customer."No.";
         }
-        field(14; "Bonus Group"; Code[20])
-        {
-            Caption = 'Bonus Group';
-            DataClassification = CustomerContent;
-            TableRelation = "lbtbn Bonus Group"."Code";
-        }
         field(16; "No. of Customers"; Integer)
         {
             Caption = 'No. of Customers';

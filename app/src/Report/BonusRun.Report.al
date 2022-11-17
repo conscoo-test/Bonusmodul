@@ -10,7 +10,7 @@ report 5266052 "lbtbn Bonus Run"
         #region dataitem
         dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
-            RequestFilterFields = "No.", "Bonus Group";
+            RequestFilterFields = "No.";
 
             #region dataitem
             dataitem("Bonus Customer"; "lbtbn Bonus Customer")

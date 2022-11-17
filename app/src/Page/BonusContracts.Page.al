@@ -160,17 +160,6 @@ page 5266052 "lbtbn Bonus Contracts"
                 RunPageLink = "Contract No." = field("No.");
             }
 
-            action("Bonus Group")
-            {
-                Caption = 'Bonus Group';
-                ToolTip = 'Here you can group bonus contracts.';
-                ApplicationArea = All;
-                Image = Group;
-                RunObject = Page "lbtbn Bonus Group";
-                trigger OnAction()
-                begin
-                end;
-            }
             action("Bonus Entry")
             {
                 Caption = 'Bonus Entry';
