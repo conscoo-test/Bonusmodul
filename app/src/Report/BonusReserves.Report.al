@@ -84,7 +84,7 @@ report 5266051 "lbtbn Bonus Reserves"
                         if "Bonus Customer"."Customer Group" <> '' then
                             Customer.SetRange("lbtbn Customer Group", "Bonus Customer"."Customer Group");
                         if "Bonus Customer"."Customer No." <> '' then
-                            Customer.SetRange("No.", "Bonus Customer"."Customer Group");
+                            Customer.SetRange("No.", "Bonus Customer"."Customer No.");
                     end;
                     #endregion OnPreDataItem
                 }
@@ -285,7 +285,7 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
         if SalesCrMemoLine.FindSet() then
             repeat
-                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesCrMemoLine."No.") then
+                if CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesCrMemoLine."No.") then
                     case "Bonus Contract"."Reserve Type" of
                         "Bonus Contract"."Reserve Type"::"%":
                             CalcPercentage(Database::"Sales Cr.Memo Line",
@@ -310,7 +310,7 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
         if SalesInvoiceLine.FindSet() then
             repeat
-                if not CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesInvoiceLine."No.") then
+                if CheckAttributesMeth.CheckItem("Bonus Contract"."No.", SalesInvoiceLine."No.") then
                     case "Bonus Contract"."Reserve Type" of
                         "Bonus Contract"."Reserve Type"::"%":
                             CalcPercentage(Database::"Sales Invoice Line",
