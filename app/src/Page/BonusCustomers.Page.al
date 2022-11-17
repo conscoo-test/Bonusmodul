@@ -33,6 +33,11 @@ page 5266059 "lbtbn Bonus Customers"
                     ToolTip = 'This field is filled with the delivery contact name from the bonus contract.';
                     ApplicationArea = All;
                 }
+                field("Customer Group"; Rec."Customer Group")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Customer Bonus Group field.';
+                }
             }
         }
     }
