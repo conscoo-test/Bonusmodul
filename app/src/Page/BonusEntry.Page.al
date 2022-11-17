@@ -147,6 +147,21 @@ page 5266057 "lbtbn Bonus Entry"
                     ApplicationArea = All;
                     ToolTip = 'This field is filled with the invoice recipient of the bonus agreement.  An alternative customer can also be defined as the bill-to party.';
                 }
+                field(Reversed; Rec.Reversed)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Reversed field.';
+                }
+                field("Reversed by Entry No."; Rec."Reversed by Entry No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Reversed by Entry No. field.';
+                }
+                field("Bonus Document Deleted"; Rec."Bonus Document Deleted")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Bonus Document Deleted field.';
+                }
             }
         }
     }

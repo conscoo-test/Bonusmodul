@@ -219,7 +219,7 @@ page 5266053 "lbtbn Bonus Contract"
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
                         BonusEntry.SetRange(Contract, Rec."No.");
                         BonusEntry.SetRange("Entry Type", BonusEntry."Entry Type"::Reserve);
-                        //TODO: BonusEntry.SetRange(Reversed, false);
+                        BonusEntry.SetRange(Reversed, false);
                         BonusEntry.SetFilter("Posted Amount", '<>%1', 0);
 
                         if BonusEntry.IsEmpty() then

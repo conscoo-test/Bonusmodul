@@ -3,7 +3,7 @@ page 5266063 "lbtbn Explode Bonus Reserv."
 
     PageType = Worksheet;
     SourceTable = "lbtbn Bonus Entry";
-    SourceTableView = where("Entry Type" = const(Reserve));
+    SourceTableView = where("Entry Type" = const(Reserve), Reversed = const(false));
     Caption = 'Explode Bonus Reservation';
     UsageCategory = None;
 

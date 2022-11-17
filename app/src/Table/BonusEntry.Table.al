@@ -136,6 +136,10 @@ table 5266056 "lbtbn Bonus Entry"
             BlankZero = true;
             TableRelation = "lbtbn Bonus Entry";
         }
+        field(29; "Bonus Document Deleted"; Boolean)
+        {
+            Caption = 'Bonus Document Deleted';
+        }
     }
 
     keys
