@@ -68,11 +68,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Billing Unit - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Group - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 2922830250 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Recipient</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -318,6 +313,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Bonus Contract Line - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 4272010729 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Document Deleted</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Bonus Document Deleted - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 3526372336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Document Line</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -447,21 +447,6 @@
           <source>Ship-to Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Ship-to Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3293732488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3293732488 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Code</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Field Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3293732488 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Description</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Field Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3956665642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Item</source>
@@ -888,11 +873,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Billing Period - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Control 3293458110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This field is filled with the Bonus group.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Bonus Group - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 4123040019 - Control 389783846 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is filled with the contract number of the bonus agreement.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -967,16 +947,6 @@
           <source>Bonus Items</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Items - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 2889083806 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can group bonus contracts.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action BonusGroup - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 2889083806 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action BonusGroup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 1994964448 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.</source>
@@ -1193,16 +1163,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Entry - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3293458110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can group bonus contracts.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Group - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Group - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 300417342 - Action 2912272269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Items</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1308,6 +1268,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Customers - Control Customer - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 203343688 - Control 475748445 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Customer Bonus Group field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Customers - Control Customer Group - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 203343688 - Control 1171137197 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is filled with the customer name from the bonus contract.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1352,6 +1317,11 @@
           <source>The bonus contract line of the respective contract is written to the bonus items.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Bonus Contract Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 4272010729 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Bonus Document Deleted field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Bonus Document Deleted - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 3526372336 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>You can use the bonus document lines field to identify the credit line in which this bonus item is located in the bonus credit memo.</source>
@@ -1448,6 +1418,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Process No. - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 3744289816 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Reversed field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Reversed - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 1027046424 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Reversed by Entry No. field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Reversed by Entry No. - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1086807421 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>The quantity of the individual document line of the settlement credit memo is entered here.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1462,21 +1442,6 @@
           <source>Source Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Source Document - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3293732488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3293732488 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can group bonus contracts by code.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Control Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3293732488 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can enter a description of the group.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Control Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2559199511 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Items</source>
