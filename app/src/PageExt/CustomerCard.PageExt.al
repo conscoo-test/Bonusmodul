@@ -6,7 +6,7 @@ pageextension 5266052 "lbtbn Customer Card" extends "Customer Card"
         {
             group("lbtbn ")
             {
-                Caption = 'Bonus';
+                Caption = 'LeBit Bonus';
                 field("lbtbn Customer Group"; Rec."lbtbn Customer Group")
                 {
                     ToolTip = 'The customer bonus groups can be assigned to the customer.';

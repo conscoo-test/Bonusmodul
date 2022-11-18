@@ -6,7 +6,7 @@ pageextension 5266053 "lbtbn Item Card" extends "Item Card"
         {
             group("lbtbn lbtbn")
             {
-                Caption = 'Bonus';
+                Caption = 'LeBit Bonus';
                 field("lbtbn Item Group"; Rec."lbtbn Item Group")
                 {
                     ToolTip = 'The Item bonus groups can be assigned to the Item.';

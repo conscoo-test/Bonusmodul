@@ -16,6 +16,7 @@ page 5266065 "lbtbn Bonus Items"
                 }
                 field("Item Filter"; SetItemFilterTxt)
                 {
+                    Caption = 'Item Filter';
                     ApplicationArea = All;
                     Editable = false;
 
@@ -27,6 +28,7 @@ page 5266065 "lbtbn Bonus Items"
                 }
                 field("Attribute Filter"; SetAttributeFilterTxt)
                 {
+                    Caption = 'Attribute Filter';
                     ApplicationArea = All;
                     Editable = false;
 

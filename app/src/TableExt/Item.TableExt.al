@@ -4,7 +4,7 @@ tableextension 5266055 "lbtbn Item" extends Item
     {
         field(5266051; "lbtbn Item Group"; Code[10])
         {
-            Caption = 'Item Group';
+            Caption = 'Item Bonus Group';
             DataClassification = CustomerContent;
             TableRelation = "lbtbn Item Group";
         }

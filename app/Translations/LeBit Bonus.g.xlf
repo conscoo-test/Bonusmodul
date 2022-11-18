@@ -1458,6 +1458,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - NamedType SetItemFilterTxt</note>
         </trans-unit>
+        <trans-unit id="Page 2559199511 - Control 287107392 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attribute Filter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Control Attribute Filter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2559199511 - Control 60453471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Filter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Control Item Filter - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2559199511 - Control 3437602538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Count</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1939,7 +1949,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Control Reverse Posting Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3261694402 - Control 3499160770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
-          <source>Bonus</source>
+          <source>LeBit Bonus</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Card - Control lbtbn  - Property Caption</note>
         </trans-unit>
@@ -1959,7 +1969,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Posting Groups - Control lbtbn Bonus Reserve Bal. Account - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 215031601 - Control 1763507580 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
-          <source>Bonus</source>
+          <source>LeBit Bonus</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Card - Control lbtbn lbtbn - Property Caption</note>
         </trans-unit>
@@ -2009,7 +2019,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn GLEntry - Field lbtbn Bonus Entry No - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3308150221 - Field 2428278704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
-          <source>Item Group</source>
+          <source>Item Bonus Group</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item - Field lbtbn Item Group - Property Caption</note>
         </trans-unit>

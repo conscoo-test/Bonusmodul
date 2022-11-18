@@ -2,6 +2,8 @@ table 5266060 "lbtbn Bonus Item"
 {
     Caption = 'Bonus Item';
     DataClassification = CustomerContent;
+    DrillDownPageId = "lbtbn Bonus Items";
+    LookupPageId = "lbtbn Bonus Items";
 
     fields
     {
