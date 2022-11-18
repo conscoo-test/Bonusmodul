@@ -29,9 +29,39 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
     #endregion SetBonusDoc
 
+    procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
+                                            var BonusCustomer: Record "lbtbn Bonus Customer";
+                                            EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
+                                            EntryDate: Date;
+                                            BonusRule: Integer;
+                                            Qty: Decimal;
+                                            Amt: Decimal;
+                                            AmtIncVAT: Decimal;
+                                            DocAmt: Decimal;
+                                            DiscAmt: Decimal;
+                                            PmtDiscAmt: Decimal
+        ): Integer
+    begin
+        CreateBonusContractEntry(BonusContract,
+            BonusCustomer."Customer No.",
+            BonusCustomer."Ship-to Code",
+            EntryType,
+            EntryDate,
+            BonusRule,
+            Qty,
+            Amt,
+            AmtIncVAT,
+            DocAmt,
+            DiscAmt,
+            PmtDiscAmt);
+    end;
+
+
+
     #region CreateBonusContractEntry
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
-                                        var BonusCustomer: Record "lbtbn Bonus Customer";
+                                        CustomerNo: Code[20];
+                                        ShipToCode: Code[10];
                                         EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
                                         EntryDate: Date;
                                         BonusRule: Integer;
@@ -55,8 +85,8 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Entry No." := EntryNo + 1;
         BonusEntry."Entry Type" := EntryType;
         BonusEntry."Contract" := BonusContract."No.";
-        BonusEntry."Customer" := BonusCustomer."Customer No.";
-        BonusEntry."Ship-to Code" := BonusCustomer."Ship-to Code";
+        BonusEntry."Customer" := CustomerNo;
+        BonusEntry."Ship-to Code" := ShipToCode;
         BonusEntry."Process No." := BonusContract."Process No.";
         BonusEntry."Invoice Customer No." := BonusContract."Bonus Recipient";
         BonusEntry."Entry Date" := EntryDate;
