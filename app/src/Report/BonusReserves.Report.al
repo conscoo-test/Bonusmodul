@@ -474,11 +474,11 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesLineRec.Description := BonusReserveForLbl;
         case TableNo of
             Database::"Sales Invoice Line":
-                SalesLineRec."Description 2" := InvoiceLbl + DocNoP;
+                SalesLineRec.Description += ' ' + InvoiceLbl + DocNoP;
             Database::"Sales Cr.Memo Line":
-                SalesLineRec."Description 2" := CrMemoLbl + DocNoP;
+                SalesLineRec.Description += ' ' + CrMemoLbl + DocNoP;
             0:
-                SalesLineRec."Description 2" := FixedAmountLbl;
+                SalesLineRec.Description += ' ' + FixedAmountLbl;
         end;
         SalesLineRec."lbt Process No." := "Bonus Contract"."Process No.";
         //TODO:
