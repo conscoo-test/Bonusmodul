@@ -351,9 +351,7 @@ page 5266053 "lbtbn Bonus Contract"
                 #region OnAction
                 trigger OnAction()
                 begin
-                    NavigatePage.SetProcessNo(Rec."Process No.");
-                    // Navigate.FindProcess();
-                    NavigatePage.Run();
+                    Rec.Navigate();
                 end;
                 #endregion OnAction
             }
@@ -368,7 +366,6 @@ page 5266053 "lbtbn Bonus Contract"
     #endregion OnAfterGetRecord
 
     var
-        NavigatePage: Page Navigate;
         BonusBillingType_Enable: Boolean;
         BonusReserveType_Enable: Boolean;
         ItemChargeEnabled: Boolean;

@@ -309,6 +309,14 @@ table 5266052 "lbtbn Bonus Contract"
         end;
     end;
 
+    procedure Navigate()
+    var
+        NavigatePage: Page Navigate;
+    begin
+        NavigatePage.SetProcessNo(Rec."Process No.");
+        NavigatePage.Run();
+    end;
+
     var
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusContractLineRec: Record "lbtbn Bonus Contract Line";

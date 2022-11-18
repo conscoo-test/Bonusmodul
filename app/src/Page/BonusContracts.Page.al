@@ -176,14 +176,14 @@ page 5266052 "lbtbn Bonus Contracts"
 
             action(Navigate)
             {
-                Caption = 'Navigate';
+                Caption = 'Search in Entries';
                 ToolTip = 'This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).';
                 ApplicationArea = All;
                 Image = Navigate;
 
                 trigger OnAction()
                 begin
-                    NavigatePage.Run();
+                    Rec.Navigate();
                 end;
             }
 
@@ -201,5 +201,6 @@ page 5266052 "lbtbn Bonus Contracts"
     var
         BonusContractRec: Record "lbtbn Bonus Contract";
         BonusReserves: Report "lbtbn Bonus Reserves";
-        NavigatePage: Page Navigate;
+
+
 }
