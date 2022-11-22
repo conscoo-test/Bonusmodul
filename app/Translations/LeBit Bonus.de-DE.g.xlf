@@ -795,6 +795,48 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Bonus Assisted Setup - NamedType SetupLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting Period %1 to %2</source>
+          <target>Abrechnungszeitraum %1 bis %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 from, %2 to</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType AccountingPeriodTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Credit Memo</source>
+          <target>Bonusgutschrift</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusCreditMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting according to Bonus Contract %1</source>
+          <target>Bonusabrchn. gem. Vertrag %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusSettlementTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2969456662" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <target>Vertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType ContractTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 1978345793 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fixed Amount</source>
+          <target>Festbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmount - NamedType FixedAmountTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2654139666 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
+          <source> per </source>
+          <target> je </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmountPerUnit - NamedType PerTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 104546620 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting</source>
+          <target>Bonusabrechnung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 1983660611 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reverse Bonus Reserve for</source>
           <target>Auflösung Bonusrückstellung für</target>
@@ -2235,35 +2277,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType AccountingPeriodMissingErr</note>
         </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Accounting Period %1 to %2</source>
-          <target>Abrechnungszeitraum %1 bis %2</target>
-          <note from="Developer" annotates="general" priority="2">%1 from, %2 to</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType AccountingPeriodTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Credit Memo</source>
-          <target>Bonusgutschrift</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType BonusCreditMemoLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Accounting according to Bonus Contract %1</source>
-          <target>Bonusabrchn. gem. Vertrag %1</target>
-          <note from="Developer" annotates="general" priority="2">%1 No.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType BonusSettlementTxt</note>
-        </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 3491330105" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract #2##############\</source>
           <target>Bonusvertrag  #2##############\</target>
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType ContractProgressTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 2969456662" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Contract</source>
-          <target>Vertrag</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType ContractTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 2162482411" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer    #1##############\</source>
@@ -2276,24 +2294,6 @@
           <target>Verkaufsbeleg #3##############</target>
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType SalesDocProgressTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - Method 1978345793 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fixed Amount</source>
-          <target>Festbetrag</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Method CreateItemChargeForBillingTypeAmount - NamedType FixedAmountTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - Method 2654139666 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
-          <source> per </source>
-          <target> je </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Method CreateItemChargeForBillingTypeAmountPerUnit - NamedType PerTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - Method 104546620 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Accounting</source>
-          <target>Bonusabrechnung</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
