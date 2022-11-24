@@ -22,6 +22,7 @@ report 5266052 "lbtbn Bonus Run"
                     dataitem("Sales Invoice Line"; "Sales Invoice Line")
                     {
                         DataItemLink = "Document No." = field("No.");
+                        DataItemTableView = where(Type = const(Item));
 
                         #region OnAfterGetRecord
                         trigger OnAfterGetRecord()
@@ -67,6 +68,7 @@ report 5266052 "lbtbn Bonus Run"
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
                         DataItemLink = "Document No." = field("No.");
+                        DataItemTableView = where(Type = const(Item));
 
                         #region OnAfterGetRecord
                         trigger OnAfterGetRecord()
@@ -123,6 +125,11 @@ report 5266052 "lbtbn Bonus Run"
             begin
                 Clear(Quantity);
                 Clear(Amount);
+
+                if "Bonus Contract"."Last Billing at" <> 0D then
+                    if (PostingDate < CalcDate('+' + Format("Bonus Contract"."Billing Period"), "Bonus Contract"."Last Billing at")) then
+                        CurrReport.Skip();
+
                 FindDocumentNos.FindDocumentNos("Bonus Contract"."No.", InvoiceNos, CrMemoNos, DateFrom, DateTo);
                 GetDocumentAmount.AddQuantityAndAmount(Quantity, Amount, InvoiceNos, CrMemoNos, CheckItemMeth, "Bonus Contract"."No.");
 
@@ -134,6 +141,8 @@ report 5266052 "lbtbn Bonus Run"
                 ReverseReserve.ReverseGenLedgEntry("Bonus Contract", DateFrom, DateTo, ReversePostingDate);
 
                 CreateBonus.SetBonusContract("Bonus Contract", BonusContractLine);
+                "Bonus Contract"."Last Billing at" := PostingDate;
+                "Bonus Contract".Modify();
             end;
             #endregion OnAfterGetRecord
 
