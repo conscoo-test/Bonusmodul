@@ -1,4 +1,4 @@
-codeunit 5266062 "lbtbn Bonus Reserve Test"
+codeunit 52051 "lbtbn Bonus Reserve Test"
 {
     Subtype = Test;
 

@@ -48,13 +48,9 @@
   "application": "17.0.0.0",
   "idRanges": [
     {
-      "from": 5266051,
-      "to": 5266099
+      "from": 52050,
+      "to": 53000
     }
   ],
-  "runtime": "10.0",
-  "target": "Cloud",
-  "features": [
-    "TranslationFile"
-  ]
+  "runtime": "10.0"
 }
