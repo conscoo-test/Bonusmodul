@@ -29,7 +29,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         //GIVEN
         Init(true);
         CreateSalesCrMemoAndPost();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -53,7 +52,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         Init(false);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount (LCY)";
         BonusContract.Modify();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -76,14 +74,12 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         Init(true);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount (LCY)";
         BonusContract.Modify();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
         BonusReserves.SetTableView(BonusContract);
         BonusReserves.Run();
 
-        Commit();
         //THEN
         ValidateBonusEntryCreated(0, 0);
         ValidateCrMemoCreated(BonusContract."Reserve Value", 0);
@@ -102,7 +98,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount per Unit";
         BonusContract.Modify();
         CreateSalesCrMemoAndPost();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -126,7 +121,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount per Unit";
         BonusContract.Modify();
         CreateSalesInvoiceAndPost();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -148,7 +142,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         //GIVEN
         Init(false);
         CreateSalesInvoiceAndPost();
-        Commit();
 
         //WHEN
         BonusContractCard.OpenView();
@@ -170,7 +163,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         //GIVEN
         Init(false);
         CreateSalesCrMemoAndPost();
-        Commit();
 
         //WHEN
         BonusContractCard.OpenView();
@@ -194,13 +186,12 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         //GIVEN
         Init(false);
         CreateSalesInvoiceAndPost();
-        Commit();
         BonusContractCard.OpenView();
         BonusContractCard.GoToRecord(BonusContract);
         BonusContractCard."Create Reserves".Invoke();
 
         //WHEN
-        GenJournalLine.setrange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
         GenJournalLine.FindFirst();
         LibraryERM.PostGeneralJnlLine(GenJournalLine);
@@ -239,7 +230,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     begin
         Expected := GetExpectedAmount(Amount, Quantity);
         BonusEntry.SetRange(Contract, BonusContract."No.");
-        Assert.AreEqual(1, BonusEntry.count(), 'one bonus entry created');
+        Assert.AreEqual(1, BonusEntry.Count(), 'one bonus entry created');
         BonusEntry.FindFirst();
         Assert.AreNearlyEqual(Expected, BonusEntry."Calculated Amount", 0.005, '');
         exit(BonusEntry."Calculated Amount");
@@ -274,7 +265,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         GenJournalLine: Record "Gen. Journal Line";
         Expected: Decimal;
     begin
-        GenJournalLine.setrange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
         Assert.AreEqual(1, GenJournalLine.Count(), 'One Line created');
         GenJournalLine.FindFirst();
@@ -295,8 +286,8 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     [RequestPageHandler]
     procedure HandleReserveRequestPage(var BonusReserves: TestRequestPage "lbtbn Bonus Reserves")
     begin
-        BonusReserves."Date From".Value := format(WorkDate());
-        BonusReserves."Date To".Value := format(WorkDate());
+        BonusReserves."Date From".Value := Format(WorkDate());
+        BonusReserves."Date To".Value := Format(WorkDate());
 
         BonusReserves.OK().Invoke();
     end;
@@ -347,10 +338,10 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     var
         ReserveCustomer: Record Customer;
     begin
-        LibrarySales.createcustomer(ReserveCustomer);
+        LibrarySales.CreateCustomer(ReserveCustomer);
 
         BonusContract.Init();
-        BonusContract."No." := LibraryUtility.GenerateRandomCode20(BonusContract.fieldno("No."), Database::"lbtbn Bonus Contract");
+        BonusContract."No." := LibraryUtility.GenerateRandomCode20(BonusContract.FieldNo("No."), Database::"lbtbn Bonus Contract");
         BonusContract."Reserve Value" := LibraryRandom.RandDecInDecimalRange(2.0, 12.0, 1);
         BonusContract."Reserve Item Charge" := ItemChargeNo;
         BonusContract."Customer Reserve Cr.Memo" := ReserveCustomer."No.";
