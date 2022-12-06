@@ -22,7 +22,7 @@
 		"al.codeAnalyzers": [
 			"${CodeCop}",
 			"${UICop}",
-			"${PerTenantExtensionCop}",
+			"${AppSourceCop}",
 			"${analyzerFolder}BusinessCentral.LinterCop.dll"
 		],
 		"al.ruleSetPath": "../scripts/lebit.ruleset.json",
