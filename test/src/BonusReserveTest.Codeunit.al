@@ -312,6 +312,7 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ItemChargeNo := CreateCustomerAndItemCharge();
         CreateBonusContract(ItemChargeNo);
         CreateBonusCustomer();
+        CreateBonusItems();
     end;
 
     local procedure CreateSalesInvoiceAndPost()
@@ -403,6 +404,7 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusSetup.Init();
         LibraryERM.CreateGenJournalTemplate(GenJournalTemplate);
         LibraryERM.CreateGenJournalBatch(GenJournalBatch, GenJournalTemplate.Name);
+        BonusSetup."Reserve Mode" := BonusSetup."Reserve Mode"::Journal;
         BonusSetup."Gen.Jnl.Templ.BonusReserve" := GenJournalTemplate.Name;
         BonusSetup."Gen. Jnl. Bonus Reserve" := GenJournalBatch.Name;
         BonusSetup.Modify();
@@ -414,5 +416,14 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusSetup."Reserve Mode" := BonusSetup."Reserve Mode"::CreditMemo;
         BonusSetup."Reserve Cr.Memo Nos." := CreateNoSeriesAndLine();
         BonusSetup.Modify();
+    end;
+
+    local procedure CreateBonusItems()
+    var
+        BonusItem: Record "lbtbn Bonus Item";
+    begin
+        BonusItem.Init();
+        BonusItem."Contract No." := BonusContract."No.";
+        BonusItem.Insert(true);
     end;
 }

@@ -42,7 +42,7 @@ codeunit 5266052 "lbtbn Bonus Management"
                                             PmtDiscAmt: Decimal
         ): Integer
     begin
-        CreateBonusContractEntry(BonusContract,
+        exit(CreateBonusContractEntry(BonusContract,
             BonusCustomer."Customer No.",
             BonusCustomer."Ship-to Code",
             EntryType,
@@ -53,7 +53,7 @@ codeunit 5266052 "lbtbn Bonus Management"
             AmtIncVAT,
             DocAmt,
             DiscAmt,
-            PmtDiscAmt);
+            PmtDiscAmt));
     end;
 
 
