@@ -52,7 +52,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         if not CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLine."No.") then
             exit;
         DocAmount := GetDocAmount(SalesInvoiceLine.Amount);
-        //UpdateDocAmountFromValueEntry();
+        UpdateDocAmountFromValueEntry(Database::"Sales Invoice Line", SalesInvoiceLine."Document No.", SalesInvoiceLine."Line No.", DocAmount);
         CalculateBonusAmount(DocAmount, DiscAmt, PmtDiscAmt, BonusAmount, SalesInvoiceLine.Quantity);
         CreateCreditMemo(DocAmount, DiscAmt, PmtDiscAmt, BonusAmount, Database::"Sales Invoice Line", SalesInvoiceLine."Document No.", SalesInvoiceLine."Line No.");
     end;
@@ -69,7 +69,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         if not CheckItemMeth.CheckItem(BonusContract."No.", SalesCrMemoLine."No.") then
             exit;
         DocAmount := -GetDocAmount(SalesCrMemoLine.Amount);
-        //UpdateDocAmountFromValueEntry();
+        UpdateDocAmountFromValueEntry(Database::"Sales Cr.Memo Line", SalesCrMemoLine."Document No.", SalesCrMemoLine."Line No.", DocAmount);
         CalculateBonusAmount(DocAmount, DiscAmt, PmtDiscAmt, BonusAmount, SalesCrMemoLine.Quantity);
         CreateCreditMemo(DocAmount, DiscAmt, PmtDiscAmt, BonusAmount, Database::"Sales Cr.Memo Line", SalesCrMemoLine."Document No.", SalesCrMemoLine."Line No.");
     end;
@@ -474,6 +474,47 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CheckValueEntry
 
+    #region UpdateDocAmountFromValueEntry
+    procedure UpdateDocAmountFromValueEntry(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; var DocAmount: Decimal)
+    var
+        ValueEntry: Record "Value Entry";
+    begin
+        ValueEntry.Reset();
+        ValueEntry.SetCurrentKey("Document No.");
+        case TableNo of
+            Database::"Sales Invoice Line":
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+            Database::"Sales Cr.Memo Line":
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+        end;
+        ValueEntry.SetRange("Document No.", DocNo);
+        ValueEntry.SetRange("Document Line No.", DocLineNo);
+        if ValueEntry.FindSet() then
+            repeat
+                if ValueEntry."Sales Amount (Actual)" <> 0 then
+                    DocAmount += AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
+            until ValueEntry.Next() = 0;
+    end;
+    #endregion UpdateDocAmountFromValueEntry
+
+    #region AddConsideredItemCharges
+    local procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
+    var
+        ItemCharge: Record "Item Charge";
+        ValueEntry: Record "Value Entry";
+    begin
+        ValueEntry.Reset();
+        ValueEntry.SetCurrentKey("Item Ledger Entry No.");
+        ValueEntry.SetRange("Item Ledger Entry No.", ItemLedgerEntryNo);
+        ValueEntry.SetFilter("Item Charge No.", '<>%1', '');
+        if ValueEntry.FindSet() then
+            repeat
+                ItemCharge.Get(ValueEntry."Item Charge No.");
+                if ItemCharge."lbtbn Bonus consider" then
+                    AmountFromItemCharge += ValueEntry."Sales Amount (Actual)";
+            until ValueEntry.Next() = 0;
+    end;
+    #endregion AddConsideredItemCharges
     var
         AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = '%1 from, %2 to';
         BonusCreditMemoLbl: Label 'Bonus Credit Memo';

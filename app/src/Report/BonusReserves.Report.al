@@ -16,13 +16,16 @@ report 5266051 "lbtbn Bonus Reserves"
             #region dataitems
             dataitem(Invoices; Integer)
             {
+                #region OnPreDataItem
                 trigger OnPreDataItem()
                 begin
                     if InvoiceNos.Count = 0 then
                         CurrReport.Break();
                     Invoices.SetRange(Number, 1, InvoiceNos.Count);
                 end;
+                #endregion OnPreDataItem
 
+                #region OnAfterGetRecord
                 trigger OnAfterGetRecord()
                 var
                     SalesInvoiceHeader: Record "Sales Invoice Header";
@@ -31,16 +34,20 @@ report 5266051 "lbtbn Bonus Reserves"
                     CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
                     CalcFromSalesInvoice(SalesInvoiceHeader);
                 end;
+                #endregion OnAfterGetRecord
             }
             dataitem(CrMemos; Integer)
             {
+                #region OnPreDataItem
                 trigger OnPreDataItem()
                 begin
                     if CrMemoNos.Count = 0 then
                         CurrReport.Break();
                     CrMemos.SetRange(Number, 1, CrMemoNos.Count);
                 end;
+                #endregion OnPreDataItem
 
+                #region OnAfterGetRecord
                 trigger OnAfterGetRecord()
                 var
                     SalesCrMemoHeader: Record "Sales Cr.Memo Header";
@@ -49,6 +56,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
                     CalcFromCrMemo(SalesCrMemoHeader);
                 end;
+                #endregion OnAfterGetRecord
             }
             dataitem("Bonus Customer"; "lbtbn Bonus Customer")
             {
@@ -266,7 +274,6 @@ report 5266051 "lbtbn Bonus Reserves"
                                             SalesCrMemoLine."Document No.",
                                             SalesCrMemoLine."Line No.",
                                             SalesCrMemoLine.Amount,
-                                            SalesCrMemoLine."Amount Including VAT",
                                             SalesCrMemoHeader."Currency Factor",
                                             SalesCrMemoHeader."Sell-to Customer No.");
                         "Bonus Contract"."Reserve Type"::"Amount per Unit":
@@ -293,7 +300,6 @@ report 5266051 "lbtbn Bonus Reserves"
                                             SalesInvoiceLine."Document No.",
                                             SalesInvoiceLine."Line No.",
                                             SalesInvoiceLine.Amount,
-                                            SalesInvoiceLine."Amount Including VAT",
                                             SalesInvoiceHeader."Currency Factor",
                                             SalesInvoiceHeader."Sell-to Customer No.");
                         "Bonus Contract"."Reserve Type"::"Amount per Unit":
@@ -303,71 +309,23 @@ report 5266051 "lbtbn Bonus Reserves"
     end;
     #endregion CalcFromSalesInvoice
 
-    #region CalcItemCharge
-    local procedure CalcItemCharge(TableNo: Integer; DocNo: Code[20]; p_LineNo: Integer; var DocAmtInclVAT: Decimal; var DocAmount: Decimal)
-    var
-        ItemCharge: Record "Item Charge";
-        ItemLedgerEntry: Record "Item Ledger Entry";
-        SalesInvoiceLine: Record "Sales Invoice Line";
-        ValueEntry: Record "Value Entry";
-        ValueEntry2: Record "Value Entry";
-        l_Sign: Integer;
-    begin
-        ValueEntry.Reset();
-        ValueEntry.SetCurrentKey("Document No.");
-        case TableNo of
-            Database::"Sales Invoice Line":
-                begin
-                    ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-                    l_Sign := 1;
-                end;
-            Database::"Sales Cr.Memo Line":
-                begin
-                    ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
-                    l_Sign := -1;
-                end;
-        end;
-        ValueEntry.SetRange("Document No.", DocNo);
-        ValueEntry.SetRange("Document Line No.", p_LineNo);
-        if ValueEntry.FindSet() then
-            repeat
-                if ValueEntry."Sales Amount (Actual)" <> 0 then begin
-                    if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
-                        ValueEntry2.Reset();
-                    ValueEntry2.SetCurrentKey("Item Ledger Entry No.");
-                    ValueEntry2.SetRange("Item Ledger Entry No.", ItemLedgerEntry."Entry No.");
-                    ValueEntry2.SetFilter("Item Charge No.", '<>%1', '');
-                    if ValueEntry2.FindSet() then
-                        repeat
-                            ItemCharge.Get(ValueEntry2."Item Charge No.");
-                            if ItemCharge."lbtbn Bonus consider" then
-                                DocAmount += l_Sign * ValueEntry2."Sales Amount (Actual)";
-                            if SalesInvoiceLine.Get(ValueEntry2."Document No.", ValueEntry2."Document Line No.") then
-                                DocAmtInclVAT += l_Sign * Round(ValueEntry2."Sales Amount (Actual)" *
-                                          (100 + SalesInvoiceLine."VAT %") / 100, 0.0001)
-                        until ValueEntry2.Next() = 0;
-                end;
-            until ValueEntry.Next() = 0;
-    end;
-    #endregion CalcItemCharge
-
     #region CalcPercentage
-    local procedure CalcPercentage(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; Amount: Decimal; AmtInclVat: Decimal; CurrencyFactor: Decimal; CustNo: Code[20])
+    local procedure CalcPercentage(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; Amount: Decimal; CurrencyFactor: Decimal; CustNo: Code[20])
     var
         BonusAmt: Decimal;
         DiscAmt: Decimal;
         DocAmount: Decimal;
-        DocAmtInclVAT: Decimal;
         PmtDiscAmt: Decimal;
     begin
-        if CurrencyFactor = 0 then begin
-            DocAmount := Amount;
-            DocAmtInclVAT := AmtInclVat;
-        end else begin
+        if CurrencyFactor = 0 then
+            DocAmount := Amount
+        else
             DocAmount := Round(Amount / CurrencyFactor, 0.01);
-            DocAmtInclVAT := Round(AmtInclVat / CurrencyFactor, 0.01);
-        end;
-        CalcItemCharge(TableNo, DocNo, DocLineNo, DocAmtInclVAT, DocAmount);
+
+        CreateBonus.UpdateDocAmountFromValueEntry(TableNo, DocNo, DocLineNo, DocAmount);
+
+        if TableNo = Database::"Sales Cr.Memo Line" then
+            DocAmount *= -1;
 
         PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
         DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
@@ -377,6 +335,8 @@ report 5266051 "lbtbn Bonus Reserves"
 
         if BonusAmt = 0 then
             exit;
+
+
 
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, 0, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
@@ -398,6 +358,9 @@ report 5266051 "lbtbn Bonus Reserves"
         BonusAmt := Round(Quantity * "Bonus Contract"."Reserve Value", 0.01);
         if BonusAmt = 0 then
             exit;
+
+        if TableNo = Database::"Sales Cr.Memo Line" then
+            BonusAmt *= -1;
 
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, Quantity, BonusAmt, 0, 0, 0)
@@ -625,26 +588,14 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         SalesInvoiceLine: Record "Sales Invoice Line";
         DimensionManagement: Codeunit DimensionManagement;
-
         DocType: Integer;
-        vz: Integer;
     begin
         if Customer.Get(CustNo) then
             if CustomerPostingGroup.Get(Customer."Customer Posting Group") then begin
                 CustomerPostingGroup.TestField("lbtbn Reserve Account");
                 CustomerPostingGroup.TestField("lbtbn Reserve Bal. Account");
                 DocType := 0;
-                vz := 1;
-                case TableID of
-                    Database::"Sales Invoice Header", Database::"Sales Invoice Line":
-                        DocType := 1;
 
-                    Database::"Sales Cr.Memo Header", Database::"Sales Cr.Memo Line":
-                        begin
-                            DocType := 2;
-                            vz := -1;
-                        end;
-                end;
                 Clear(BonusManagement);
                 BonusManagement.SetSourceDoc(DocType, DocNo, DocLineNo);
                 BonusManagement.SetBonusDoc(0, '', 0);
@@ -655,11 +606,11 @@ report 5266051 "lbtbn Bonus Reserves"
                     PostingDate,
                     0,                //Bonusregelzeile
                     0,                //Menge
-                    Amt * vz,              //Betrag
-                    Amt * vz,              //Betrag inkl. Vat
-                    DocAmt * vz,         //Belegbetrag
-                    DiscAmount * vz,
-                    PmtDiscAmount * vz);
+                    Amt,              //Betrag
+                    Amt,              //Betrag inkl. Vat
+                    DocAmt,         //Belegbetrag
+                    DiscAmount,
+                    PmtDiscAmount);
 
                 GenJournalLine.Init();
                 GenJournalLine."Journal Template Name" := BonusSetup."Gen.Jnl.Templ.BonusReserve";
@@ -675,7 +626,7 @@ report 5266051 "lbtbn Bonus Reserves"
                 GenJournalLine."Gen. Bus. Posting Group" := '';
                 GenJournalLine."Gen. Prod. Posting Group" := '';
                 GenJournalLine.Description := BonusReserveForLbl + Format("Bonus Contract"."No.");
-                GenJournalLine.Validate(Amount, Amt * vz);
+                GenJournalLine.Validate(Amount, Amt);
                 GenJournalLine."lbt Process No." := "Bonus Contract"."Process No.";
                 GenJournalLine."lbtbn Bonus Entry No" := BonusEntryNo;
                 GenJournalLine."Reason Code" := BonusSetup."Reason Code";
