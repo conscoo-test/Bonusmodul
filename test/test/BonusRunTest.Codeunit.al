@@ -1,4 +1,4 @@
-codeunit 52050 "lbtbn Bonus Run"
+codeunit 52050 "lbtbn Bonus Run Test"
 {
     Subtype = Test;
 
@@ -6,20 +6,33 @@ codeunit 52050 "lbtbn Bonus Run"
     #region CreditMemo_From_Invoice
     [HandlerFunctions('HandleBonusRequestPage')]
     procedure CreditMemo_From_Invoice()
-    var
-        BonusContractCard: TestPage "lbtbn Bonus Contract";
     begin
         //GIVEN
         Init(true);
         CreateSalesInvoiceAndPost();
 
         //WHEN
-        BonusContractCard.OpenView();
-        BonusContractCard.GoToRecord(BonusContract);
-        BonusContractCard."Bonus Run".Invoke();
+        ExecuteBonusRun();
 
         //THEN
         ValidateCreditMemoCreated(SalesInvoiceLine.Amount, SalesInvoiceLine.Quantity);
+    end;
+    #endregion CreditMemo_From_Invoice
+
+    [Test]
+    #region CreditMemo_From_Invoice
+    [HandlerFunctions('HandleBonusRequestPage')]
+    procedure CreditMemo_From_CrMemo()
+    begin
+        //GIVEN
+        Init(true);
+        CreateSalesCrMemoAndPost();
+
+        //WHEN
+        ExecuteBonusRun();
+
+        //THEN
+        ValidateNoCreditMemoCreated();
     end;
     #endregion CreditMemo_From_Invoice
 
@@ -50,6 +63,7 @@ codeunit 52050 "lbtbn Bonus Run"
         CreateBonusItems();
     end;
     #endregion Init
+
     #region SetPermissions
     local procedure SetPermissions()
     begin
@@ -194,6 +208,18 @@ codeunit 52050 "lbtbn Bonus Run"
         BonusItem.Insert(true);
     end;
     #endregion CreateBonusItems
+
+    #region ValidateNoCreditMemoCreated
+    local procedure ValidateNoCreditMemoCreated()
+    var
+        SalesHeader: Record "Sales Header";
+    begin
+        SalesHeader.SetRange("Sell-to Customer No.", BonusContract."Bonus Recipient");
+        Assert.AreEqual(0, SalesHeader.Count(), 'there should be no credit memo, because the bonus amount is <0');
+    end;
+    #endregion ValidateNoCreditMemoCreated
+
+    #region ValidateCreditMemoCreated
     local procedure ValidateCreditMemoCreated(Amount: Decimal; Quantity: Decimal)
     var
         SalesHeader: Record "Sales Header";
@@ -212,6 +238,7 @@ codeunit 52050 "lbtbn Bonus Run"
         Expected := GetExpectedAmount(Amount, Quantity);
         Assert.AreNearlyEqual(Expected, SalesLine.Amount, 0.005, 'The amount');
     end;
+    #endregion ValidateCreditMemoCreated
     #region GetExpectedAmount
     local procedure GetExpectedAmount(Amount: Decimal; Quantity: Decimal) Expected: Decimal
     begin
@@ -225,6 +252,18 @@ codeunit 52050 "lbtbn Bonus Run"
         end;
     end;
     #endregion GetExpectedAmount
+
+    #region ExecuteBonusRun
+    local procedure ExecuteBonusRun()
+    var
+        BonusRun: Report "lbtbn Bonus Run";
+    begin
+        BonusContract.SetRecFilter();
+        BonusRun.SetTableView(BonusContract);
+        BonusRun.Run();
+    end;
+    #endregion ExecuteBonusRun
+
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         Customer: Record Customer;
