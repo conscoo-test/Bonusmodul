@@ -33,7 +33,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         BonusReserves.Run();
 
         //THEN
-        ValidateCrMemoCreated(SalesCrMemoLine.Amount, 0);
+        ValidateCrMemoCreated(-SalesCrMemoLine.Amount, 0);
     end;
     #endregion ReserveToCreditMemo
 
