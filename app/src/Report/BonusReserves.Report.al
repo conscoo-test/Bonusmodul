@@ -780,6 +780,8 @@ report 5266051 "lbtbn Bonus Reserves"
         GenJournalLine: Record "Gen. Journal Line";
         PageManagement: Codeunit "Page Management";
     begin
+        if not GuiAllowed then
+            exit;
         case BonusSetup."Reserve Mode" of
             BonusSetup."Reserve Mode"::CreditMemo:
                 begin
@@ -791,8 +793,8 @@ report 5266051 "lbtbn Bonus Reserves"
                 begin
                     GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
                     GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
-                    if GenJournalLine.FindFirst() then;
-                    PageManagement.PageRun(GenJournalLine);
+                    if GenJournalLine.FindFirst() then
+                        PageManagement.PageRun(GenJournalLine);
                 end;
         end;
     end;
