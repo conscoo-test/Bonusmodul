@@ -541,6 +541,7 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesHeader."No." := NoSeriesManagement.GetNextNo(SalesHeader."No. Series", WorkDate(), true);
         SalesHeader.Insert(true);
         SalesHeader.SetHideValidationDialog(true);
+        "Bonus Contract".TestField("Customer Reserve Cr.Memo");
         SalesHeader.Validate("Sell-to Customer No.", "Bonus Contract"."Customer Reserve Cr.Memo");
         // Validate("Gen. Bus. Posting Group", BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
         // Validate("Customer Posting Group", BonusSetupRec."Cust Gr. Reserve Cr. Memo");
