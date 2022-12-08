@@ -738,40 +738,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType PostingDescriptionTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2645849790" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
           <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
           <note from="Developer" annotates="general" priority="2">Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType Text007</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType LineMissingErr</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 1195352358" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
           <source>Invoice</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType Text016</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType InvoiceLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 557655741" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2531235046" size-unit="char" translate="yes" xml:space="preserve">
           <source>Shipment</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType Text017</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType ShipmentLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 857534312" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType Text018</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType CreditMemoLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 219837695" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 1892566544" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return Receipt</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType Text019</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType ReturnReceiptLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1468311926" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reverse</source>
           <note from="Developer" annotates="general" priority="2">Auflösung</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusReserve - NamedType LBText001</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusReserve - NamedType ReverseTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 569513246 - NamedType 1370456556" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 3886786226 - Method 569513246 - NamedType 2932411483" size-unit="char" translate="yes" xml:space="preserve">
           <source>The posting date of exploding bonus reserves is not in the permitted posting period.</source>
           <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType Text005</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType PostingDateErr</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
@@ -969,7 +969,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Reserve Value - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 3454750851 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.</source>
+          <source>Bonus entries are written in the background each time reserves or rebate settlements are created. These bonus entries can be called up for each bonus contract using this button.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Entry - Property ToolTip</note>
         </trans-unit>

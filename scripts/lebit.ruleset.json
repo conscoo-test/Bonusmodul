@@ -3,9 +3,13 @@
     "rules": [
         {
             "id": "LC0015",
-            "action": "Error"
+            "action": "Error",
+            "justification": "Promoted to Error (All application objects should be covered by at least one permission set in the extension.)"
+        },
+        {
+            "id": "AA0218",
+            "action": "Info",
+            "justification": "Demoted to Info. Don't force Tooltips, only add them when they give additional value"
         }
-
     ]
-
 }

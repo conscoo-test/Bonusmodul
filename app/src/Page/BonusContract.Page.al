@@ -310,12 +310,6 @@ page 5266053 "lbtbn Bonus Contract"
                 Image = Dimensions;
                 RunObject = page "lbtbn Bonus Contract Dimension";
                 RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
             }
             action("Bonus Items")
             {
@@ -329,17 +323,11 @@ page 5266053 "lbtbn Bonus Contract"
             action("Bonus Entry")
             {
                 Caption = 'Bonus Entry';
-                ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.';
+                ToolTip = 'Bonus entries are written in the background each time reserves or rebate settlements are created. These bonus entries can be called up for each bonus contract using this button.';
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbtbn Bonus Entry";
                 RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
             }
             action(Navigate)
             {

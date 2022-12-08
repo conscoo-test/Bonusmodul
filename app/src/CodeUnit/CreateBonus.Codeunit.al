@@ -91,7 +91,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesHeader: Record "Sales Header";
         SalesLine: Record "Sales Line";
         LineNo: Integer;
-        OldLineNo: Integer;
         Zusatz: Text;
         AccountingTxt: Label 'Bonus Accounting';
     begin
@@ -105,17 +104,17 @@ codeunit 5266060 "lbtbn Create Bonus"
           (BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)")
         then
             exit;
-        OldLineNo := SalesLine."Line No.";
+
         LineNo := SalesLine."Line No." + 10000;
 
-        InitSalesLine(BonusContract, SalesHeader, SalesLine, LineNo);
+        InitSalesLine(SalesHeader, SalesLine, LineNo);
         SalesLine.Description := AccountingTxt;
         if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             SalesLine.Description += ' ' + Format(DocNo);
 
         SalesLine.Modify();
 
-        CreateItemCharge(BonusContract, TableID, DocNo, DocLineNo, DocAmt, BonusSumme, DiscAmount, PmtDiscAmount, SalesHeader, SalesLine, OldLineNo, Zusatz, Betrag);
+        CreateItemCharge(TableID, DocAmt, BonusSumme, SalesLine, Zusatz, Betrag);
 
         if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             exit;
@@ -123,11 +122,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine."Description 2" := ContractTxt + Format(BonusContract."No.") + ': ' + Zusatz;
         SalesLine.Modify(true);
 
-        // SalesHeader.Status := SalesHeader.Status::Released;
-        // SalesHeader.Modify();
         SalesLine.UpdateAmounts();
-        // SalesHeader.Status := SalesHeader.Status::Open;
-        // SalesHeader.Modify();
 
         CreateBonusEntry(BonusContract, DocNo, DocLineNo, DocAmt, DiscAmount, PmtDiscAmount, TableID, SalesLine);
 
@@ -177,7 +172,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion InitSalesHeader
 
     #region InitSalesLine
-    local procedure InitSalesLine(Contract: Record "lbtbn Bonus Contract"; SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; LineNo: Integer)
+    local procedure InitSalesLine(SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; LineNo: Integer)
     var
     begin
         SalesLine.Init();
@@ -189,30 +184,30 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Insert(true);
 
         SalesLine.Validate(Type, SalesLine.Type::"Charge (Item)");
-        SalesLine.Validate("No.", Contract."Accounting Item Charge");
+        SalesLine.Validate("No.", BonusContract."Accounting Item Charge");
         // SalesLine.VALIDATE("Location Code", VertriebEinrRec."Location Bonus Item");
         SalesLine.Validate("Unit Price", 1);
-        SalesLine."lbt Process No." := Contract."Process No.";
+        SalesLine."lbt Process No." := BonusContract."Process No.";
     end;
     #endregion InitSalesLine
 
     #region CreateItemCharge
-    local procedure CreateItemCharge(var Contract: Record "lbtbn Bonus Contract"; var TableID: Integer; var DocNo: Code[20]; var DocLineNo: Integer; var DocAmt: Decimal; var BonusSumme: Decimal; var DiscAmount: Decimal; var PmtDiscAmount: Decimal; var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; var OldLineNo: Integer; var Zusatz: Text; var Betrag: Decimal)
+    local procedure CreateItemCharge(TableID: Integer; DocAmt: Decimal; BonusSumme: Decimal; var SalesLine: Record "Sales Line"; var Zusatz: Text; var Betrag: Decimal)
     begin
 
-        case Contract."Bonus Billing Type" of
-            Contract."Bonus Billing Type"::"%":
+        case BonusContract."Bonus Billing Type" of
+            BonusContract."Bonus Billing Type"::"%":
                 Zusatz := CreateItemChargeForBillingTypePercent(DocAmt, BonusSumme, TableID, SalesLine);
-            Contract."Bonus Billing Type"::"Amount (LCY)":
-                CreateItemChargeForBillingTypeAmount(Contract, TableID, DocNo, DocLineNo, BonusSumme, DiscAmount, PmtDiscAmount, SalesHeader, SalesLine, OldLineNo, Betrag);
-            Contract."Bonus Billing Type"::"Amount per Unit":
+            BonusContract."Bonus Billing Type"::"Amount (LCY)":
+                CreateItemChargeForBillingTypeAmount(BonusSumme, SalesLine, Betrag);
+            BonusContract."Bonus Billing Type"::"Amount per Unit":
                 Zusatz := CreateItemChargeForBillingTypeAmountPerUnit(DocAmt, BonusSumme, SalesLine, TableID);
         end;
     end;
     #endregion CreateItemCharge
 
     #region CreateItemChargeForBillingTypeAmount
-    local procedure CreateItemChargeForBillingTypeAmount(var Contract: Record "lbtbn Bonus Contract"; TableID: Integer; DocNo: Code[20]; DocLineNo: Integer; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal; SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; OldLineNo: Integer; var Betrag: Decimal)
+    local procedure CreateItemChargeForBillingTypeAmount(BonusSumme: Decimal; var SalesLine: Record "Sales Line"; var Betrag: Decimal)
     var
         Currency: Record Currency;
         CurrExchRate: Record "Currency Exchange Rate";
@@ -222,16 +217,9 @@ codeunit 5266060 "lbtbn Create Bonus"
         AssignItemChargeSales: Codeunit "Item Charge Assgnt. (Sales)";
         AmountCust: Decimal;
         TotalQuantity: Decimal;
-        DocType: Integer;
         FixedAmountTxt: Label 'Fixed Amount';
         Zusatz: Text;
     begin
-        case TableID of
-            Database::"Sales Invoice Line":
-                DocType := 1;
-            Database::"Sales Cr.Memo Line":
-                DocType := 2;
-        end;
         if CustRec."Currency Code" = '' then
             AmountCust := BonusContractLine.Value
         else
@@ -264,8 +252,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemChargeAssRec.SetRange("Document Type", SalesLine."Document Type");
         ItemChargeAssRec.SetRange("Document No.", SalesLine."Document No.");
         ItemChargeAssRec.SetRange("Document Line No.", SalesLine."Line No.");
-        CreateSeparateLines(SalesLine, ItemChargeAssRec);
-        HandleSeparatedLines(Contract, TableID, DocNo, DocLineNo, DiscAmount, PmtDiscAmount, ItemChargeAssRec, SalesHeader, DocType, OldLineNo, Zusatz);
         Betrag := AmountCust * BonusSumme;
     end;
     #endregion CreateItemChargeForBillingTypeAmount
@@ -390,12 +376,14 @@ codeunit 5266060 "lbtbn Create Bonus"
                         SalesLine."Dimension Set ID" := SalesCrMemoLine."Dimension Set ID";
                     end;
             end
+#pragma warning disable AA0005 // TODO:
         else begin
             // SalesLine."Dimension Set ID" := CreateDimSetID("Bonus Contract".Contract);
             // DimMgt.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID",
             //                                      SalesLine."Shortcut Dimension 1 Code",
             //                                       SalesLine."Shortcut Dimension 2 Code");
         end;
+#pragma warning restore AA0005 // TODO:
         if SalesHeader."Shortcut Dimension 1 Code" <> '' then
             SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
     end;
@@ -434,69 +422,6 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CreateItemChargeForBillingTypePercent
 
-    #region CreateSeparateLines
-    local procedure CreateSeparateLines(var SalesLine: Record "Sales Line"; var ItemChargeAssRec: Record "Item Charge Assignment (Sales)")
-    begin
-        // IF NOT ItemChargeAssRec.ISEMPTY THEN
-        //     ItemChargeAssRec.CreateSeparateLines(SalesLine);
-    end;
-    #endregion CreateSeparateLines
-
-    #region HandleSeparatedLines
-    local procedure HandleSeparatedLines(var Contract: Record "lbtbn Bonus Contract"; TableID: Integer; DocNo: Code[20]; DocLineNo: Integer; DiscAmount: Decimal; PmtDiscAmount: Decimal; var ItemChargeAssRec: Record "Item Charge Assignment (Sales)"; var SalesHeader: Record "Sales Header"; DocType: Integer; OldLineNo: Integer; Zusatz: Text)
-    var
-        SalesLine: Record "Sales Line";
-        BonusMgt: Codeunit "lbtbn Bonus Management";
-    begin
-        SalesLine.Reset();
-        SalesLine.SetCurrentKey("Document Type", "Document No.", "lbt Process No.");
-        SalesLine.SetRange("Document Type", SalesLine."Document Type"::"Credit Memo");
-        SalesLine.SetRange("Document No.", SalesHeader."No.");
-        SalesLine.SetRange("lbt Process No.", Contract."Process No.");
-        SalesLine.SetFilter("Line No.", '>%1', OldLineNo);
-        if SalesLine.FindSet() then
-            repeat
-                ItemChargeAssRec.SetRange("Document Line No.", SalesLine."Line No.");
-                if ItemChargeAssRec.FindFirst() then begin
-                    SalesHeader.Status := SalesHeader.Status::Released;
-                    SalesHeader.Modify();
-                    SalesLine.UpdateAmounts();
-                    SalesHeader.Status := SalesHeader.Status::Open;
-                    SalesHeader.Modify();
-
-                    Clear(BonusMgt);
-                    //BonusMgt.SetSourceDoc(DocType,DocNo,DocLineNo);
-                    BonusMgt.SetSourceDoc(
-                      DocType,
-                      ItemChargeAssRec."Applies-to Doc. No.",
-                      ItemChargeAssRec."Applies-to Doc. Line No."
-                      );
-                    BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
-                    BillingEntry := BonusMgt.CreateBonusContractEntry(
-                      Contract,
-                      CustomerNo,
-                      ShipToCode,
-                      0,                                          //Postenart Bonus
-                      PostingDate,
-                      BonusContractLine."Line No.",           //Bonusregelzeile
-                      SalesLine.Quantity,                //Menge
-                      SalesLine.Amount,                  //Betrag
-                      SalesLine."Amount Including VAT",  //Betrag inkl. Vat
-                                                         //DocAmt * Sign,                             //Belegbetrag
-                      ItemChargeAssRec."Applies-to Doc. Line Amount",
-                      DiscAmount,
-                      PmtDiscAmount);
-
-                    SalesLine."Description 2" := ContractTxt + Format(Contract."No.") + ': ' + Zusatz;
-                    // SalesLine.Printoption := SalesLine.Printoption::"Line Invisible";
-                    // SalesLine."Billing Code" := VertriebEinrRec."Billing Code";
-                    SetDimensions(TableID, DocNo, DocLineNo, SalesHeader, SalesLine);
-                    SalesLine.Modify(true);
-                end;
-            until SalesLine.Next() = 0;
-    end;
-    #endregion HandleSeparatedLines
-
     #region CalculateBonusAmount
     local procedure CalculateBonusAmount(DocAmount: Decimal; var DiscAmt: Decimal; var PmtDiscAmt: Decimal; var BonusAmount: Decimal; Quantity: Decimal)
     begin
@@ -516,10 +441,9 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CalculateBonusAmount
 
     #region CreateCreditMemo
-    local procedure CreateCreditMemo(DocAmount: Decimal; DiscAmt: Decimal; PmtDiscAmt: Decimal; BonusAmount: Decimal; TableNo: Integer; DocNo: Code[20]; var LineNo: Integer)
+    local procedure CreateCreditMemo(DocAmount: Decimal; DiscAmt: Decimal; PmtDiscAmt: Decimal; BonusAmount: Decimal; TableNo: Integer; DocNo: Code[20]; LineNo: Integer)
     var
     begin
-
         if CheckValueEntry(TableNo, DocNo, LineNo) then
             CreateSalesCreditMemo3(TableNo, DocNo, LineNo, DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
     end;
@@ -549,7 +473,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         end;
     end;
     #endregion CheckValueEntry
-
 
     var
         AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = '%1 from, %2 to';

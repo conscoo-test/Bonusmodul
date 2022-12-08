@@ -149,7 +149,7 @@ report 5266051 "lbtbn Bonus Reserves"
             trigger OnPostDataItem()
             begin
                 Dialog.Close();
-                Commit();
+                Commit(); // after each Contract to not lose progress
 
                 OpenPage();
             end;

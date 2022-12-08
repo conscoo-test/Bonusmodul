@@ -29,7 +29,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BillingCode: Code[20];
         BillingEntry: Integer;
         LineNo: Integer;
-        LBText001: Label 'Reverse', Comment = 'Auflösung';
+        ReverseTxt: Label 'Reverse', Comment = 'Auflösung';
     begin
         BonusSetup.Get();
         // BonusSetup.TestField("Billing Code");
@@ -78,7 +78,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                             GenJnlLineRec.Validate("Bal. Account No.", GLEntry."Bal. Account No.");
                             GenJnlLineRec."Gen. Bus. Posting Group" := '';
                             GenJnlLineRec."Gen. Prod. Posting Group" := '';
-                            GenJnlLineRec.Description := CopyStr(LBText001 + ' ' + GLEntry.Description, 1, 50);
+                            GenJnlLineRec.Description := CopyStr(ReverseTxt + ' ' + GLEntry.Description, 1, 50);
                             GenJnlLineRec.Validate(Amount, -GLEntry.Amount);
                             GenJnlLineRec."lbt Process No." := GLEntry."lbt Process No.";
                             GenJnlLineRec."Reason Code" := BonusSetup."Reason Code";
@@ -281,32 +281,32 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BonusMgt: Codeunit "lbtbn Bonus Management";
         BillingEntry: Integer;
         Sign: Integer;
-        Text007: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
-        Text016: Label 'Invoice';
-        Text017: Label 'Shipment';
-        Text018: Label 'Credit Memo';
-        Text019: Label 'Return Receipt';
+        LineMissingErr: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
+        InvoiceLbl: Label 'Invoice';
+        ShipmentLbl: Label 'Shipment';
+        CreditMemoLbl: Label 'Credit Memo';
+        ReturnReceiptLbl: Label 'Return Receipt';
     begin
         case BonusEntry."Assignment Document Type" of
             BonusEntry."Assignment Document Type"::"Sales Shipment":
                 begin
                     if not SalesInvoiceLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
-                        Error(Text007, BonusEntry."From Document No.", Text016, BonusEntry."From Document Line");
+                        Error(LineMissingErr, BonusEntry."From Document No.", InvoiceLbl, BonusEntry."From Document Line");
                     if not SalesShipmentLine.Get(BonusEntry."Assignment Document No.",
                            BonusEntry."Assignment Doc. Line No.")
                     then
-                        Error(Text007, BonusEntry."Assignment Document No.", Text017,
+                        Error(LineMissingErr, BonusEntry."Assignment Document No.", ShipmentLbl,
                               BonusEntry."Assignment Doc. Line No.");
                     Sign := 1;
                 end;
             BonusEntry."Assignment Document Type"::"Sales Return Receipt":
                 begin
                     if not SalesCrMemoLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
-                        Error(Text007, BonusEntry."From Document No.", Text018, BonusEntry."From Document Line");
+                        Error(LineMissingErr, BonusEntry."From Document No.", CreditMemoLbl, BonusEntry."From Document Line");
                     if not ReturnReceiptLine.Get(BonusEntry."Assignment Document No.",
                            BonusEntry."Assignment Doc. Line No.")
                     then
-                        Error(Text007, BonusEntry."Assignment Document No.", Text019,
+                        Error(LineMissingErr, BonusEntry."Assignment Document No.", ReturnReceiptLbl,
                               BonusEntry."Assignment Doc. Line No.");
                     Sign := -1;
                 end;
@@ -451,8 +451,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         GLEntry: Record "G/L Entry";
         ReverseReserve: Codeunit "lbtbn Reverse Reserve";
         UserSetupManagement: Codeunit "User Setup Management";
-        Text005: Label 'The posting date of exploding bonus reserves is not in the permitted posting period.',
-Comment = 'Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.';
+        PostingDateErr: Label 'The posting date of exploding bonus reserves is not in the permitted posting period.',
+            Comment = 'Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.';
     begin
         if not Customer.Get(CustomerNo) then
             exit;
@@ -468,7 +468,7 @@ Comment = 'Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zu
             if GLEntry.IsEmpty() then
                 exit;
             if not UserSetupManagement.IsPostingDateValid(ReversePostingDate) then
-                Error(Text005);
+                Error(PostingDateErr);
             ReverseReserve.ReverseBonusReserve(GLEntry, ReversePostingDate);
         end;
     end;
