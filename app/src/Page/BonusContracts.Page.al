@@ -62,15 +62,17 @@ page 5266052 "lbtbn Bonus Contracts"
                 ApplicationArea = all;
                 Image = CashReceiptJournal;
 
+                #region OnAction
                 trigger OnAction();
+                var
+                    BonusContract: Record "lbtbn Bonus Contract";
+                    BonusReserves: Report "lbtbn Bonus Reserves";
                 begin
-                    BonusContractRec.Reset();
-                    BonusContractRec.SetCurrentKey("No.");
-                    BonusContractRec.SetRange("No.", Rec."No.");
-                    Clear(BonusReserves);
-                    BonusReserves.SetTableView(BonusContractRec);
+                    BonusContract.SetRange("No.", Rec."No.");
+                    BonusReserves.SetTableView(BonusContract);
                     BonusReserves.RunModal();
                 end;
+                #endregion OnAction
             }
 
             action("Exlode Reservation")
@@ -89,10 +91,17 @@ page 5266052 "lbtbn Bonus Contracts"
                 ApplicationArea = All;
                 Image = AccountingPeriods;
 
+                #region OnAction
                 trigger OnAction()
+                var
+                    BonusContract: Record "lbtbn Bonus Contract";
+                    BonusRun: Report "lbtbn Bonus Run";
                 begin
-                    Message('not implemented'); //TODO:
+                    BonusContract.SetRange("No.", Rec."No.");
+                    BonusRun.SetTableView(BonusContract);
+                    BonusRun.RunModal();
                 end;
+                #endregion OnAction
             }
 
             action(Reservation)
@@ -101,6 +110,7 @@ page 5266052 "lbtbn Bonus Contracts"
                 ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
                 ApplicationArea = All;
                 Image = Print;
+                Visible = false;
 
                 trigger OnAction()
                 begin
@@ -114,6 +124,7 @@ page 5266052 "lbtbn Bonus Contracts"
                 ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
                 ApplicationArea = All;
                 Image = Print;
+                Visible = false;
 
                 trigger OnAction()
                 begin
@@ -131,10 +142,6 @@ page 5266052 "lbtbn Bonus Contracts"
                 Image = Customer;
                 RunObject = Page "lbtbn Bonus Customers";
                 RunPageLink = "Customer No." = field("No.");
-
-                trigger OnAction();
-                begin
-                end;
             }
 
             action(Dimension)
@@ -145,10 +152,6 @@ page 5266052 "lbtbn Bonus Contracts"
                 Image = Dimensions;
                 RunObject = Page "lbtbn Bonus Contract Dimension";
                 RunPageLink = "Contract" = field("No.");
-
-                trigger OnAction()
-                begin
-                end;
             }
 
             action("Bonus Items")
@@ -168,10 +171,6 @@ page 5266052 "lbtbn Bonus Contracts"
                 Image = LedgerEntries;
                 RunObject = Page "lbtbn Bonus Entry";
                 RunPageLink = "Contract" = field("No.");
-
-                trigger OnAction()
-                begin
-                end;
             }
 
             action(Navigate)
@@ -197,10 +196,4 @@ page 5266052 "lbtbn Bonus Contracts"
             }
         }
     }
-
-    var
-        BonusContractRec: Record "lbtbn Bonus Contract";
-        BonusReserves: Report "lbtbn Bonus Reserves";
-
-
 }

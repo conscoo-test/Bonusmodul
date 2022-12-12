@@ -260,6 +260,7 @@ page 5266053 "lbtbn Bonus Contract"
                 ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
                 ApplicationArea = All;
                 Image = Print;
+                Visible = false;
 
                 #region OnAction
                 trigger OnAction()
@@ -275,6 +276,7 @@ page 5266053 "lbtbn Bonus Contract"
                 ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
                 ApplicationArea = All;
                 Image = Print;
+                Visible = false;
 
                 #region OnAction
                 trigger OnAction()
@@ -294,12 +296,6 @@ page 5266053 "lbtbn Bonus Contract"
                 Image = Customer;
                 RunObject = page "lbtbn Bonus Customers";
                 RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction();
-                begin
-                end;
-                #endregion OnAction
             }
 
             action(Dimension)
