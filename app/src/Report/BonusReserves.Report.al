@@ -227,6 +227,7 @@ report 5266051 "lbtbn Bonus Reserves"
     local procedure AddItemChargeToSalesLine(var SalesLine: Record "Sales Line"; TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; DocAmount: Decimal; BonusAmount: Decimal)
     var
         ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
+        ItemLedgerEntry: Record "Item Ledger Entry";
     begin
         ItemChargeAssignmentSales.Init();
         ItemChargeAssignmentSales."Document Type" := SalesLine."Document Type";
@@ -250,8 +251,9 @@ report 5266051 "lbtbn Bonus Reserves"
         //end;
         end;
         ItemChargeAssignmentSales."Applies-to Doc. Line Amount" := DocAmount;
-        ItemChargeAssignmentSales."Applies-to Doc. No." := DocNo;
-        ItemChargeAssignmentSales."Applies-to Doc. Line No." := DocLineNo;
+        ItemLedgerEntry := GetItemLedgerEntry(TableNo, DocNo, DocLineNo);
+        ItemChargeAssignmentSales."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
+        ItemChargeAssignmentSales."Applies-to Doc. Line No." := ItemLedgerEntry."Document Line No.";
         ItemChargeAssignmentSales."Unit Cost" := 1;
         ItemChargeAssignmentSales.Validate("Qty. to Assign", BonusAmount);
         ItemChargeAssignmentSales.Insert();
@@ -728,4 +730,20 @@ report 5266051 "lbtbn Bonus Reserves"
         end;
     end;
     #endregion OpenPage
+    local procedure GetItemLedgerEntry(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer) ItemLedgerEntry: Record "Item Ledger Entry"
+    var
+        ValueEntry: Record "Value Entry";
+    begin
+        ValueEntry.SetRange("Document No.", DocNo);
+        ValueEntry.SetRange("Document Line No.", DocLineNo);
+        case TableNo of
+            Database::"Sales Invoice Line":
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+            Database::"Sales Cr.Memo Line":
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+        end;
+        ValueEntry.FindFirst();
+        ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.");
+    end;
+
 }
