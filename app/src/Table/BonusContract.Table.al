@@ -37,11 +37,9 @@ table 5266052 "lbtbn Bonus Contract"
             Caption = 'Reserve Value';
             DataClassification = CustomerContent;
         }
-        field(6; "Reserve Type"; Option)
+        field(6; "Reserve Type"; Enum "lbtbn Billing Type")
         {
             Caption = 'Reverse Type';
-            OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaption = '%,Amount (LCY),Amount per Unit';
             DataClassification = CustomerContent;
 
             trigger OnValidate()
@@ -63,12 +61,10 @@ table 5266052 "lbtbn Bonus Contract"
             Caption = 'Last Reserve at';
             DataClassification = CustomerContent;
         }
-        field(9; "Bonus Billing Type"; Option)
+        field(9; "Bonus Billing Type"; Enum "lbtbn Billing Type")
         {
             Caption = 'Bonus Billing Type';
             DataClassification = CustomerContent;
-            OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaption = '%,Amount (LCY),Amount per Unit';
 
             trigger OnValidate()
             begin
@@ -195,7 +191,7 @@ table 5266052 "lbtbn Bonus Contract"
             Caption = 'Discount %';
             DataClassification = CustomerContent;
         }
-        field(26; "Process No."; Code[20])
+        field(5266500; "Process No."; Code[20])
         {
             Caption = 'Process No.';
             DataClassification = CustomerContent;

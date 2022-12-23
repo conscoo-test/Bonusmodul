@@ -321,19 +321,12 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateTextLine
 
     #region CreateBonusEntry
-    local procedure CreateBonusEntry(var Contract: Record "lbtbn Bonus Contract"; DocNo: Code[20]; DocLineNo: Integer; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal; Sign: Integer; var SalesLine: Record "Sales Line")
+    local procedure CreateBonusEntry(var Contract: Record "lbtbn Bonus Contract"; DocNo: Code[20]; DocLineNo: Integer; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal; TableId: Integer; var SalesLine: Record "Sales Line")
     var
         BonusMgt: Codeunit "lbtbn Bonus Management";
-        DocType: Integer;
     begin
-        case Sign of
-            1:
-                DocType := 1;
-            -1:
-                DocType := 2;
-        end;
         Clear(BonusMgt);
-        BonusMgt.SetSourceDoc(DocType, DocNo, DocLineNo);
+        BonusMgt.SetSourceDoc(TableId, DocNo, DocLineNo);
         BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
         BillingEntry := BonusMgt.CreateBonusContractEntry(
           Contract,
@@ -345,7 +338,7 @@ codeunit 5266060 "lbtbn Create Bonus"
           SalesLine.Quantity,                //Menge
           SalesLine.Amount,                  //Betrag
           SalesLine."Amount Including VAT",  //Betrag inkl. Vat
-          DocAmt * Sign,                             //Belegbetrag
+          DocAmt,                             //Belegbetrag
           DiscAmount,
           PmtDiscAmount);
     end;

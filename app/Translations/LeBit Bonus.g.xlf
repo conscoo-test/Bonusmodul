@@ -58,11 +58,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Billing Type - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 2573715434 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%,Amount (LCY),Amount per Unit</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Billing Type - Property OptionCaption</note>
-        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 707733428 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Billing Unit</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -152,11 +147,6 @@
           <source>Reverse Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Reserve Type - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 1502007340 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%,Amount (LCY),Amount per Unit</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Reserve Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 4123040019 - Field 692020562 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve Unit</source>
@@ -397,11 +387,6 @@
           <source>From Document Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field From Document Type - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3741211377 - Field 3281839723 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>,Sales Invoice,Sales Credit Memo</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field From Document Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 3391242172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General Ledger Entry No.</source>
@@ -698,26 +683,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 1983660611 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reverse Bonus Reserve for</source>
-          <note from="Developer" annotates="general" priority="2">Auflösung Bonusrückstellung für</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method AddItemChargeInvoiceLine - NamedType ReverseTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 1983660611 - NamedType 3804706331" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method AddItemChargeInvoiceLine - NamedType InvoiceTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 1983660611 - NamedType 3292298585" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Credit Memo </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method AddItemChargeInvoiceLine - NamedType CreditMemoTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 1983660611 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Fixed Amount Contract </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method AddItemChargeInvoiceLine - NamedType FixedAmountTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1947743116" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve according to Bonus Contract %1.</source>
           <note from="Developer" annotates="general" priority="2">%1 - Contract No.</note>
@@ -737,6 +702,26 @@
           <source>Exploding Bonus reserve</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType PostingDescriptionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse Bonus Reserve for</source>
+          <note from="Developer" annotates="general" priority="2">Auflösung Bonusrückstellung für</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType ReverseTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 3804706331" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType InvoiceTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 3292298585" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType CreditMemoTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Fixed Amount Contract </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType FixedAmountTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
           <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
@@ -2037,6 +2022,31 @@
           <source>Bonus Entry No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn SalesLine - Field lbtbn Bonus Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 348662871 - EnumValue 2478407903 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 348662871 - EnumValue 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 348662871 - EnumValue 125470167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount per Unit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount per Unit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3044551195 - EnumValue 1708100201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Document Type - EnumValue Sales Credit Memo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3044551195 - EnumValue 4034894651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Invoice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Document Type - EnumValue Sales Invoice - Property Caption</note>
         </trans-unit>
       </group>
     </body>

@@ -100,74 +100,15 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date)
     var
         BonusContract: Record "lbtbn Bonus Contract";
-        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         SalesHeader: Record "Sales Header";
         SalesLine: Record "Sales Line";
-        LineNo: Integer;
-        ReverseTxt: Label 'Reverse Bonus Reserve for', Comment = 'Auflösung Bonusrückstellung für';
-        InvoiceTxt: Label 'Invoice ';
-        CreditMemoTxt: Label 'Credit Memo ';
-        FixedAmountTxt: Label 'Bonus Fixed Amount Contract ';
     begin
         BonusContract.Get(BonusEntry.Contract);
-        CreateInvoiceHeader(SalesHeader, BonusContract, LineNo, DateFrom, DateTo);
+        SalesHeader := CreateInvoiceHeader(BonusContract, DateFrom, DateTo);
 
-        SalesLine.Init();
-        SalesLine."Document Type" := SalesHeader."Document Type";
-        SalesLine."Document No." := SalesHeader."No.";
-        LineNo += 10000;
-        SalesLine."Line No." := LineNo;
-        SalesLine.Validate(Type, SalesLine.Type::"Charge (Item)");
-        SalesLine.Validate("No.", BonusContract."Reserve Item Charge");
-        SalesLine.Validate("Unit Price", 1);
-        SalesLine.Validate(Quantity, BonusEntry."Posted Amount");
-        SalesLine."Shipment Date" := WorkDate();
-        SalesLine."Allow Invoice Disc." := true;
-        SalesLine.Description := ReverseTxt;
-        case Sign of
-            1:
-                SalesLine."Description 2" := InvoiceTxt + BonusEntry."From Document No.";
-            -1:
-                SalesLine."Description 2" := CreditMemoTxt + BonusEntry."From Document No.";
-            2:
-                SalesLine."Description 2" := FixedAmountTxt + BonusEntry."From Document No.";
-        end;
-        SalesLine."lbt Process No." := BonusEntry."Process No.";
-        // SalesLine."Billing Code" := BonusSetup."Billing Code";
-        SalesLine.Insert();
+        SalesLine := CreateSalesLine(BonusEntry, Sign, BonusContract, SalesHeader);
 
-        ItemChargeAssRec.Init();
-        ItemChargeAssRec."Document Type" := SalesLine."Document Type";
-        ItemChargeAssRec."Document No." := SalesLine."Document No.";
-        ItemChargeAssRec."Document Line No." := SalesLine."Line No.";
-        ItemChargeAssRec."Line No." := 10000;
-        ItemChargeAssRec."Item Charge No." := SalesLine."No.";
-        case Sign of
-            -1:
-                begin
-                    ItemChargeAssRec."Item No." := SalesCrMemoLine."No.";
-                    ItemChargeAssRec.Description := SalesCrMemoLine.Description;
-                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
-                end;
-            1:
-                begin
-                    ItemChargeAssRec."Item No." := SalesInvoiceLine."No.";
-                    ItemChargeAssRec.Description := SalesInvoiceLine.Description;
-                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
-                end;
-            2:
-                begin
-                    ItemChargeAssRec."Item No." := SalesShipmentLine."No.";
-                    ItemChargeAssRec.Description := SalesShipmentLine.Description;
-                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
-                end;
-        end;
-        ItemChargeAssRec."Applies-to Doc. Line Amount" := BonusEntry."Base Amount";
-        ItemChargeAssRec."Applies-to Doc. No." := BonusEntry."Assignment Document No.";
-        ItemChargeAssRec."Applies-to Doc. Line No." := BonusEntry."Assignment Doc. Line No.";
-        ItemChargeAssRec."Unit Cost" := 1;
-        ItemChargeAssRec.Validate("Qty. to Assign", BonusEntry."Posted Amount");
-        ItemChargeAssRec.Insert();
+        AssignItemCharge(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, SalesLine);
 
         case Sign of
             -1:
@@ -196,7 +137,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion AddItemChargeInvoiceLine
 
     #region CreateInvoiceHeader
-    local procedure CreateInvoiceHeader(SalesHeader: Record "Sales Header"; BonusContract: Record "lbtbn Bonus Contract"; var LineNo: Integer; DateFrom: Date; DateTo: Date)
+    local procedure CreateInvoiceHeader(BonusContract: Record "lbtbn Bonus Contract";  DateFrom: Date; DateTo: Date) SalesHeader: Record "Sales Header"
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         SalesLine: Record "Sales Line";
@@ -205,6 +146,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         AccountingPeriodLTxt: Label 'Accounting Period %1 to %2', Comment = '%1 - from Date, %2 - to Date';
         UnpostedInvoiceExistsErr: Label 'There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.';
         PostingDescriptionTxt: Label 'Exploding Bonus reserve';
+        LineNo: Integer;
     begin
         if InvoiceHeaderCreated then
             exit;
@@ -429,6 +371,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     end;
     #endregion BonusReverseReserve
 
+    #region ReverseGenLedgEntry
     procedure ReverseGenLedgEntry(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date; ReversePostingDate: Date)
     var
         BonusCustomer: Record "lbtbn Bonus Customer";
@@ -443,7 +386,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                 ReverseGenLedgEntry(BonusCustomer."Customer No.", BonusContract."Process No.", DateFrom, DateTo, ReversePostingDate);
             until BonusCustomer.Next() = 0;
     end;
+    #endregion ReverseGenLedgEntry
 
+    #region ReverseGenLedgEntry
     local procedure ReverseGenLedgEntry(CustomerNo: Code[20]; ProcessNo: Code[20]; DateFrom: Date; DateTo: Date; ReversePostingDate: Date)
     var
         Customer: Record Customer;
@@ -472,6 +417,88 @@ codeunit 5266056 "lbtbn Reverse Reserve"
             ReverseReserve.ReverseBonusReserve(GLEntry, ReversePostingDate);
         end;
     end;
+    #endregion ReverseGenLedgEntry
+
+    #region CreateSalesLine
+    local procedure CreateSalesLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; BonusContract: Record "lbtbn Bonus Contract"; SalesHeader: Record "Sales Header") SalesLine: Record "Sales Line";
+    var
+        ReverseTxt: Label 'Reverse Bonus Reserve for', Comment = 'Auflösung Bonusrückstellung für';
+        InvoiceTxt: Label 'Invoice ';
+        CreditMemoTxt: Label 'Credit Memo ';
+        FixedAmountTxt: Label 'Bonus Fixed Amount Contract ';
+        LineNo: Integer;
+    begin
+        SalesLine.SetRange("Document Type", SalesHeader."Document Type");
+        SalesLine.SetRange("Document No.", SalesHeader."No.");
+        if SalesLine.FindLast() then
+            LineNo := SalesLine."Line No.";
+        LineNo += 10000;
+
+        SalesLine.Init();
+        SalesLine."Document Type" := SalesHeader."Document Type";
+        SalesLine."Document No." := SalesHeader."No.";
+        SalesLine."Line No." := LineNo;
+        SalesLine.Validate(Type, SalesLine.Type::"Charge (Item)");
+        SalesLine.Validate("No.", BonusContract."Reserve Item Charge");
+        SalesLine.Validate("Unit Price", 1);
+        SalesLine.Validate(Quantity, BonusEntry."Posted Amount");
+        SalesLine."Shipment Date" := WorkDate();
+        SalesLine."Allow Invoice Disc." := true;
+        SalesLine.Description := ReverseTxt;
+        case Sign of
+            1:
+                SalesLine."Description 2" := InvoiceTxt + BonusEntry."From Document No.";
+            -1:
+                SalesLine."Description 2" := CreditMemoTxt + BonusEntry."From Document No.";
+            2:
+                SalesLine."Description 2" := FixedAmountTxt + BonusEntry."From Document No.";
+        end;
+        SalesLine."lbt Process No." := BonusEntry."Process No.";
+        // SalesLine."Billing Code" := BonusSetup."Billing Code";
+        SalesLine.Insert();
+    end;
+    #endregion CreateSalesLine
+    #region AssignItemCharge
+    local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesInvoiceLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var SalesShipmentLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line")
+    var
+        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
+    begin
+        ItemChargeAssRec.Init();
+        ItemChargeAssRec."Document Type" := SalesLine."Document Type";
+        ItemChargeAssRec."Document No." := SalesLine."Document No.";
+        ItemChargeAssRec."Document Line No." := SalesLine."Line No.";
+        ItemChargeAssRec."Line No." := 10000;
+        ItemChargeAssRec."Item Charge No." := SalesLine."No.";
+        case Sign of
+            -1:
+                begin
+                    ItemChargeAssRec."Item No." := SalesCrMemoLine."No.";
+                    ItemChargeAssRec.Description := SalesCrMemoLine.Description;
+                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
+                end;
+            1:
+                begin
+                    ItemChargeAssRec."Item No." := SalesInvoiceLine."No.";
+                    ItemChargeAssRec.Description := SalesInvoiceLine.Description;
+                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
+                end;
+            2:
+                begin
+                    ItemChargeAssRec."Item No." := SalesShipmentLine."No.";
+                    ItemChargeAssRec.Description := SalesShipmentLine.Description;
+                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
+                end;
+        end;
+        ItemChargeAssRec."Applies-to Doc. Line Amount" := BonusEntry."Base Amount";
+        ItemChargeAssRec."Applies-to Doc. No." := BonusEntry."Assignment Document No.";
+        ItemChargeAssRec."Applies-to Doc. Line No." := BonusEntry."Assignment Doc. Line No.";
+        ItemChargeAssRec."Unit Cost" := 1;
+        ItemChargeAssRec.Validate("Qty. to Assign", BonusEntry."Posted Amount");
+        ItemChargeAssRec.Insert();
+    end;
+    #endregion AssignItemCharge
+
+
 
     var
         InvoiceHeaderCreated: Boolean;

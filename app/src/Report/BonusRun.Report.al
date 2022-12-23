@@ -15,14 +15,18 @@ report 5266052 "lbtbn Bonus Run"
             #region dataitems
             dataitem(Invoices; Integer)
             {
+                DataItemTableView = sorting(Number);
+
                 #region dataitem
                 dataitem("Sales Invoice Header"; "Sales Invoice Header")
                 {
+                    DataItemTableView = sorting("No.");
+
                     #region dataitem
                     dataitem("Sales Invoice Line"; "Sales Invoice Line")
                     {
                         DataItemLink = "Document No." = field("No.");
-                        DataItemTableView = where(Type = const(Item));
+                        DataItemTableView = sorting("Document No.", "Line No.") where(Type = const(Item));
 
                         #region OnAfterGetRecord
                         trigger OnAfterGetRecord()
@@ -61,14 +65,18 @@ report 5266052 "lbtbn Bonus Run"
             }
             dataitem(CrMemos; Integer)
             {
+                DataItemTableView = sorting(Number);
+
                 #region dataitem
                 dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
                 {
+                    DataItemTableView = sorting("No.");
+
                     #region dataitem
                     dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
                     {
                         DataItemLink = "Document No." = field("No.");
-                        DataItemTableView = where(Type = const(Item));
+                        DataItemTableView = sorting("Document No.", "Line No.") where(Type = const(Item));
 
                         #region OnAfterGetRecord
                         trigger OnAfterGetRecord()

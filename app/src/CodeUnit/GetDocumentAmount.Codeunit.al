@@ -23,6 +23,8 @@ codeunit 5266059 "lbtbn Get Document Amount"
     local procedure GetQuantityAndAmountInvoice(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
+        CreateBonus: Codeunit "lbtbn Create Bonus";
+        LineAmount: Decimal;
     begin
         SalesInvoiceLine.SetRange("Document No.", No);
         SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
@@ -30,7 +32,13 @@ codeunit 5266059 "lbtbn Get Document Amount"
             repeat
                 if CheckItemMeth.CheckItem(BonusContractNo, SalesInvoiceLine."No.") then begin
                     Quantity += SalesInvoiceLine.Quantity;
-                    Amount += SalesInvoiceLine.Amount;
+                    LineAmount := SalesInvoiceLine.Amount;
+                    CreateBonus.UpdateDocAmountFromValueEntry(
+                                Database::"Sales Invoice Line",
+                                SalesInvoiceLine."Document No.",
+                                SalesInvoiceLine."Line No.",
+                                LineAmount);
+                    Amount += LineAmount;
                 end;
             until SalesInvoiceLine.Next() = 0;
     end;
@@ -40,6 +48,8 @@ codeunit 5266059 "lbtbn Get Document Amount"
     local procedure GetQuantityAndAmountCrMemo(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
+        CreateBonus: Codeunit "lbtbn Create Bonus";
+        LineAmount: Decimal;
     begin
         SalesCrMemoLine.SetRange("Document No.", No);
         SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
@@ -47,7 +57,13 @@ codeunit 5266059 "lbtbn Get Document Amount"
             repeat
                 if CheckItemMeth.CheckItem(BonusContractNo, SalesCrMemoLine."No.") then begin
                     Quantity -= SalesCrMemoLine.Quantity;
-                    Amount -= SalesCrMemoLine.Amount;
+                    LineAmount := -SalesCrMemoLine.Amount;
+                    CreateBonus.UpdateDocAmountFromValueEntry(
+                                Database::"Sales Cr.Memo Line",
+                                SalesCrMemoLine."Document No.",
+                                SalesCrMemoLine."Line No.",
+                                LineAmount);
+                    Amount += SalesCrMemoLine.Amount;
                 end;
             until SalesCrMemoLine.Next() = 0;
     end;

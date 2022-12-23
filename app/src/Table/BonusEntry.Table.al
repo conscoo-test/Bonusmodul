@@ -73,11 +73,9 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Bonus Document Line';
         }
-        field(15; "From Document Type"; Option)
+        field(15; "From Document Type"; Enum "lbtbn Document Type")
         {
             Caption = 'From Document Type';
-            OptionMembers = ,"Sales Invoice","Sales Credit Memo";
-            OptionCaption = ',Sales Invoice,Sales Credit Memo';
         }
         field(16; "From Document No."; Code[20])
         {
@@ -121,7 +119,7 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Assignment Doc. Line No.';
         }
-        field(26; "Process No."; Code[20])
+        field(5266500; "Process No."; Code[20]) // 
         {
             Caption = 'Process No.';
             TableRelation = "lbt Process";

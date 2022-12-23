@@ -254,8 +254,8 @@ report 5266051 "lbtbn Bonus Reserves"
         ItemLedgerEntry := GetItemLedgerEntry(TableNo, DocNo, DocLineNo);
         ItemChargeAssignmentSales."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
         ItemChargeAssignmentSales."Applies-to Doc. Line No." := ItemLedgerEntry."Document Line No.";
-        ItemChargeAssignmentSales."Unit Cost" := 1;
-        ItemChargeAssignmentSales.Validate("Qty. to Assign", BonusAmount);
+        ItemChargeAssignmentSales."Unit Cost" := BonusAmount;
+        ItemChargeAssignmentSales.Validate("Qty. to Assign", 1);
         ItemChargeAssignmentSales.Insert();
     end;
     #endregion AddItemChargeToSalesLine
@@ -324,10 +324,10 @@ report 5266051 "lbtbn Bonus Reserves"
         else
             DocAmount := Round(Amount / CurrencyFactor, 0.01);
 
-        CreateBonus.UpdateDocAmountFromValueEntry(TableNo, DocNo, DocLineNo, DocAmount);
-
         if TableNo = Database::"Sales Cr.Memo Line" then
             DocAmount *= -1;
+
+        CreateBonus.UpdateDocAmountFromValueEntry(TableNo, DocNo, DocLineNo, DocAmount);
 
         PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
         DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
@@ -337,8 +337,6 @@ report 5266051 "lbtbn Bonus Reserves"
 
         if BonusAmt = 0 then
             exit;
-
-
 
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             CreateForReserveMode_CreditMemo(TableNo, DocNo, DocLineNo, 0, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
@@ -488,7 +486,7 @@ report 5266051 "lbtbn Bonus Reserves"
         // Validate("Gen. Bus. Posting Group", BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
         // Validate("Customer Posting Group", BonusSetupRec."Cust Gr. Reserve Cr. Memo");
         SalesHeader."Posting Description" := BonusReserveLbl;
-        PostingDate := 0D;
+        PostingDate := DateTo;
         SalesHeader."lbt Process No." := "Bonus Contract"."Process No.";
         SalesHeader.Modify();
 
@@ -548,35 +546,37 @@ report 5266051 "lbtbn Bonus Reserves"
                 ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
         end;
         ValueEntry.SetRange("Document Line No.", p_LineNo);
-        if ValueEntry.FindFirst() then begin
-            case TableNo of
-                Database::"Sales Invoice Line":
-                    DocTypeMatches := (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment");
-                Database::"Sales Cr.Memo Line":
-                    DocTypeMatches := (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Return Receipt");
-            end;
-            CreateBonusCrMemoLine(TableNo, DocNo, BonusAmt, SalesLine);
-            AddItemChargeToSalesLine(SalesLine, TableNo, DocNo, p_LineNo, DocAmount, BonusAmt);
-            if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") and DocTypeMatches then begin
-                Clear(BonusManagement);
-                BonusManagement.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
-                BonusManagement.SetSourceDoc(1, DocNo, p_LineNo);
-                BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
-                BonusEntryNo := BonusManagement.CreateBonusContractEntry(
-                                    "Bonus Contract",
-                                    "Bonus Customer",
-                                    1,
-                                    PostingDate,
-                                    0,
-                                    Qty, ////PostDocItemUnitRec.Quantity,
-                                    BonusAmt,
-                                    BonusAmt,
-                                    DocAmount,
-                                    -DiscAmt,
-                                    -PmtDiscAmt);
-                SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
-                SalesLine.Modify();
-            end;
+        if not ValueEntry.FindFirst() then
+            exit;
+        if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
+            exit;
+        case TableNo of
+            Database::"Sales Invoice Line":
+                DocTypeMatches := (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment");
+            Database::"Sales Cr.Memo Line":
+                DocTypeMatches := (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Return Receipt");
+        end;
+        CreateBonusCrMemoLine(TableNo, DocNo, BonusAmt, SalesLine);
+        AddItemChargeToSalesLine(SalesLine, TableNo, DocNo, p_LineNo, DocAmount, BonusAmt);
+        if DocTypeMatches then begin
+            Clear(BonusManagement);
+            BonusManagement.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
+            BonusManagement.SetSourceDoc(TableNo, DocNo, p_LineNo);
+            BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
+            BonusEntryNo := BonusManagement.CreateBonusContractEntry(
+                                "Bonus Contract",
+                                "Bonus Customer",
+                                1,
+                                PostingDate,
+                                0,
+                                Qty, ////PostDocItemUnitRec.Quantity,
+                                BonusAmt,
+                                BonusAmt,
+                                DocAmount,
+                                -DiscAmt,
+                                -PmtDiscAmt);
+            SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
+            SalesLine.Modify();
         end;
     end;
     #endregion CreateForReserveMode_CreditMemo
@@ -590,16 +590,14 @@ report 5266051 "lbtbn Bonus Reserves"
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         SalesInvoiceLine: Record "Sales Invoice Line";
         DimensionManagement: Codeunit DimensionManagement;
-        DocType: Integer;
     begin
         if Customer.Get(CustNo) then
             if CustomerPostingGroup.Get(Customer."Customer Posting Group") then begin
                 CustomerPostingGroup.TestField("lbtbn Reserve Account");
                 CustomerPostingGroup.TestField("lbtbn Reserve Bal. Account");
-                DocType := 0;
 
                 Clear(BonusManagement);
-                BonusManagement.SetSourceDoc(DocType, DocNo, DocLineNo);
+                BonusManagement.SetSourceDoc(TableID, DocNo, DocLineNo);
                 BonusManagement.SetBonusDoc(0, '', 0);
                 BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                     "Bonus Contract",

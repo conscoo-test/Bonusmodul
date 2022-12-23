@@ -12,9 +12,25 @@ codeunit 5266052 "lbtbn Bonus Management"
     #endregion SetAssignmentDoc
 
     #region SetSourceDoc
-    procedure SetSourceDoc(SourceDocTypeP: Integer; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
+    procedure SetSourceDoc(SourceDocTypeP: Enum "lbtbn Document Type"; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
     begin
         SourceDocType := SourceDocTypeP;
+        SourceDocNo := SourceDocNoP;
+        SourceDocLineNo := SourceDocLineNoP;
+    end;
+    #endregion SetSourceDoc
+    #region SetSourceDoc
+    procedure SetSourceDoc(TableNo: Integer; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
+    begin
+        case TableNo of
+            0:
+                SourceDocType := SourceDocType::" ";
+            Database::"Sales Invoice Header", Database::"Sales Invoice Line":
+                SourceDocType := SourceDocType::"Sales Invoice";
+            Database::"Sales Cr.Memo Header", Database::"Sales Cr.Memo Line":
+                SourceDocType := SourceDocType::"Sales Credit Memo";
+        end;
+
         SourceDocNo := SourceDocNoP;
         SourceDocLineNo := SourceDocLineNoP;
     end;
@@ -146,12 +162,34 @@ codeunit 5266052 "lbtbn Bonus Management"
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
     var
         BonusContract: Record "lbtbn Bonus Contract";
+        BonusEntry: Record "lbtbn Bonus Entry";
         Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
         Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
+        BonusEntry.SetRange("Process No.", ProcessNo);
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntry.TableCaption, BonusEntry.Count);
     end;
     #endregion EventSubscriber Page Navigate onAfterInsertDocEntries 
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnPostSalesLineOnAfterTestUpdatedSalesLine', '', false, false)]
+    local procedure OnPostSalesLineOnAfterTestUpdatedSalesLine(var SalesLine: Record "Sales Line"; var EverythingInvoiced: Boolean; SalesHeader: Record "Sales Header");
+    var
+        BonusEntry: Record "lbtbn Bonus Entry";
+    begin
+        if SalesLine."lbtbn Bonus Entry No." = 0 then
+            exit;
+        if not BonusEntry.Get(SalesLine."lbtbn Bonus Entry No.") then
+            exit;
+
+        case SalesLine."Document Type" of
+            SalesLine."Document Type"::Invoice:
+                BonusEntry."Posted Amount" := -SalesLine."Line Amount";
+            SalesLine."Document Type"::"Credit Memo":
+                BonusEntry."Posted Amount" := SalesLine."Line Amount";
+        end;
+        BonusEntry.Modify();
+    end;
 
     var
         BonusEntry: Record "lbtbn Bonus Entry";
@@ -161,7 +199,7 @@ codeunit 5266052 "lbtbn Bonus Management"
         AssignmentDocNo: Code[20];
         AssignmentDocLineNo: Integer;
 
-        SourceDocType: Integer;
+        SourceDocType: Enum "lbtbn Document Type";
         SourceDocNo: Code[20];
         SourceDocLineNo: Integer;
 

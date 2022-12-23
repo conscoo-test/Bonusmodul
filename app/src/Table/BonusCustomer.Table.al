@@ -53,6 +53,7 @@ table 5266058 "lbtbn Bonus Customer"
         field(6; "Customer Group"; Code[10])
         {
             Caption = 'Customer Bonus Group';
+            TableRelation = "lbtbn Customer Group";
         }
     }
 
