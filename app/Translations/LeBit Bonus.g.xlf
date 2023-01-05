@@ -653,15 +653,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Bonus Assisted Setup - NamedType SetupLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2761214586" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting Period %1 to %2</source>
+          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType AccountingPeriodLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4178859433 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
           <source>Accounting Period %1 to %2</source>
           <note from="Developer" annotates="general" priority="2">%1 from, %2 to</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType AccountingPeriodTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 170287482" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting accordingly Bonus Contract %1.</source>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusAccountingLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4178859433 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Credit Memo</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusCreditMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 3545756256" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reserve for </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusReserveForLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2329545137" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reserve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusReserveLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4178859433 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Accounting according to Bonus Contract %1</source>
@@ -672,6 +692,11 @@
           <source>Contract</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType ContractTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 3250359956" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType UnpostedCreditMemoErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4178859433 - Method 1978345793 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fixed Amount</source>
@@ -1818,26 +1843,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2761214586" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Accounting Period %1 to %2</source>
-          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType AccountingPeriodLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 170287482" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Accounting accordingly Bonus Contract %1.</source>
-          <note from="Developer" annotates="general" priority="2">%1 No.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusAccountingLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 3545756256" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Reserve for </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusReserveForLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2329545137" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Reserve</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusReserveLbl</note>
-        </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3233932325" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please check the accounting period.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1857,11 +1862,6 @@
           <source>Please input the accounting period.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType InputAccountingPeriodMsg</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 3250359956" size-unit="char" translate="yes" xml:space="preserve">
-          <source>There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType UnpostedCreditMemoErr</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - Control 2653493796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Option</source>

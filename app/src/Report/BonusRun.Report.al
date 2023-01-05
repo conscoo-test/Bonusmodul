@@ -17,42 +17,23 @@ report 5266052 "lbtbn Bonus Run"
             {
                 DataItemTableView = sorting(Number);
 
-                #region dataitem
-                dataitem("Sales Invoice Header"; "Sales Invoice Header")
-                {
-                    DataItemTableView = sorting("No.");
-
-                    #region dataitem
-                    dataitem("Sales Invoice Line"; "Sales Invoice Line")
-                    {
-                        DataItemLink = "Document No." = field("No.");
-                        DataItemTableView = sorting("Document No.", "Line No.") where(Type = const(Item));
-
-                        #region OnAfterGetRecord
-                        trigger OnAfterGetRecord()
-                        begin
-                            CreateBonus.CreateBonus("Sales Invoice Line");
-                        end;
-                        #endregion OnAfterGetRecord
-                    }
-                    #endregion dataitem
-
-                    #region OnPreDataItem
-                    trigger OnPreDataItem()
-                    begin
-                        SetRange("No.", InvoiceNos.Get(Invoices.Number));
-                    end;
-                    #endregion OnPreDataItem
-
-                    #region OnAfterGetRecord
-                    trigger OnAfterGetRecord()
-                    begin
-                        Dialog.Update(3, "No.");
-                        CreateBonus.SetDocument("Sales Invoice Header"."Sell-to Customer No.", "Sales Invoice Header"."Ship-to Code", "Sales Invoice Header"."Currency Factor");
-                    end;
-                    #endregion OnAfterGetRecord
-                }
-                #endregion dataitem
+                #region OnAfterGetRecord
+                trigger OnAfterGetRecord()
+                var
+                    SalesInvoiceHeader: Record "Sales Invoice Header";
+                    SalesInvoiceLine: Record "Sales Invoice Line";
+                begin
+                    SalesInvoiceHeader.Get(InvoiceNos.Get(Number));
+                    Dialog.Update(3, SalesInvoiceHeader."No.");
+                    CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
+                    SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
+                    SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
+                    if SalesInvoiceLine.FindSet() then
+                        repeat
+                            CreateBonus.CreateBonus(SalesInvoiceLine);
+                        until SalesInvoiceLine.Next() = 0;
+                end;
+                #endregion OnAfterGetRecord
 
                 #region OnPreDataItem
                 trigger OnPreDataItem()
@@ -67,42 +48,24 @@ report 5266052 "lbtbn Bonus Run"
             {
                 DataItemTableView = sorting(Number);
 
-                #region dataitem
-                dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
-                {
-                    DataItemTableView = sorting("No.");
+                #region OnAfterGetRecord
+                trigger OnAfterGetRecord()
+                var
+                    SalesCrMemoHeader: Record "Sales Cr.Memo Header";
+                    SalesCrMemoLine: Record "Sales Cr.Memo Line";
+                begin
+                    SalesCrMemoHeader.Get(CrMemoNos.Get(Number));
+                    Dialog.Update(3, SalesCrMemoHeader."No.");
+                    CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
+                    SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
+                    SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
+                    if SalesCrMemoLine.FindSet() then
+                        repeat
+                            CreateBonus.CreateBonus(SalesCrMemoLine);
+                        until SalesCrMemoLine.Next() = 0;
+                end;
+                #endregion OnAfterGetRecord
 
-                    #region dataitem
-                    dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
-                    {
-                        DataItemLink = "Document No." = field("No.");
-                        DataItemTableView = sorting("Document No.", "Line No.") where(Type = const(Item));
-
-                        #region OnAfterGetRecord
-                        trigger OnAfterGetRecord()
-                        begin
-                            CreateBonus.CreateBonus("Sales Cr.Memo Line");
-                        end;
-                        #endregion OnAfterGetRecord
-                    }
-                    #endregion dataitem
-
-                    #region OnPreDataItem
-                    trigger OnPreDataItem()
-                    begin
-                        SetRange("No.", CrMemoNos.Get(CrMemos.Number));
-                    end;
-                    #endregion OnPreDataItem
-
-                    #region OnAfterGetRecord
-                    trigger OnAfterGetRecord()
-                    begin
-                        Dialog.Update(3, "No.");
-                        CreateBonus.SetDocument("Sales Cr.Memo Header"."Sell-to Customer No.", "Sales Cr.Memo Header"."Ship-to Code", "Sales Cr.Memo Header"."Currency Factor");
-                    end;
-                    #endregion OnAfterGetRecord
-                }
-                #endregion dataitem
                 #region OnPreDataItem
                 trigger OnPreDataItem()
                 begin
@@ -148,7 +111,8 @@ report 5266052 "lbtbn Bonus Run"
                 ReverseReserve.ReverseBonusEntries("Bonus Contract", DateFrom, DateTo);
                 ReverseReserve.ReverseGenLedgEntry("Bonus Contract", DateFrom, DateTo, ReversePostingDate);
 
-                CreateBonus.SetBonusContract("Bonus Contract", BonusContractLine);
+                CreateBonus.SetBonusContract("Bonus Contract");
+                CreateBonus.SetBonusContractLine(BonusContractLine);
                 "Bonus Contract"."Last Billing at" := PostingDate;
                 "Bonus Contract".Modify();
             end;
