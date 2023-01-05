@@ -138,6 +138,12 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Bonus Document Deleted';
         }
+        field(30; "Dimension Set ID"; Integer)
+        {
+            Caption = 'Dimension Set ID', comment = 'DEU="Dimensionssatz-ID"';
+            TableRelation = "Dimension Set Entry";
+            Editable = false;
+        }
     }
 
     keys
@@ -174,5 +180,15 @@ table 5266056 "lbtbn Bonus Entry"
                     PageManagement.PageRun(SalesCrMemoHeader);
                 end;
         end;
+    end;
+
+    procedure ShowDimensions()
+    var
+        DimensionManagement: Codeunit DimensionManagement;
+        "1_2_3_4_Lbl": Label '%1 %2 %3 %4', Locked = true;
+        Caption: Text;
+    begin
+        Caption := StrSubstNo("1_2_3_4_Lbl", TableCaption, "From Document Type", "From Document No.", "From Document Line");
+        DimensionManagement.ShowDimensionSet("Dimension Set ID", CopyStr(Caption, 1, 250));
     end;
 }

@@ -348,6 +348,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Customer - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 3322554545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Set ID</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionssatz-ID"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Dimension Set ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1267560475 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discount Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -683,6 +688,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3086667624 - Method 4077369804 - NamedType 2437958988" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Fixed Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Fixed Amount - Method GetDescription - NamedType FixedAmountLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1947743116" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve according to Bonus Contract %1.</source>
           <note from="Developer" annotates="general" priority="2">%1 - Contract No.</note>
@@ -757,6 +767,16 @@
           <source>The posting date of exploding bonus reserves is not in the permitted posting period.</source>
           <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType PostingDateErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 353387449 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Sales Cr.Line - Method GetDescription - NamedType CrMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3515037811 - Method 4077369804 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Sales Invoice Line - Method GetDescription - NamedType InvoiceLbl</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
@@ -1458,6 +1478,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Ship-to Code - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3741211377 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Dimensions - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimensions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Dimensions - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3741211377 - Action 1045917230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Source Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1818,30 +1848,15 @@
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType ContractProgressTxt</note>
         </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Credit Memo </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType CrMemoLbl</note>
-        </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 2162482411" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer #1##############\</source>
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType CustomerProgressTxt</note>
         </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2437958988" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Fixed Amount</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType FixedAmountLbl</note>
-        </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3677791141" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please input the accounting period.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType InputAccountingPeriodMsg</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType InvoiceLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3250359956" size-unit="char" translate="yes" xml:space="preserve">
           <source>There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.</source>

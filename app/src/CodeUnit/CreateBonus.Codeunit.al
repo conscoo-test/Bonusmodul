@@ -467,6 +467,20 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CheckValueEntry
 
+    procedure UpdateDocAmountFromValueEntry(I: Interface "lbtbn I"; var DocAmount: Decimal)
+    var
+        ValueEntry: Record "Value Entry";
+    begin
+        ValueEntry.Reset();
+        ValueEntry.SetCurrentKey("Document No.");
+        I.ValueEntrySetRangeDocumentType(ValueEntry);
+        if ValueEntry.FindSet() then
+            repeat
+                if ValueEntry."Sales Amount (Actual)" <> 0 then
+                    DocAmount += AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
+            until ValueEntry.Next() = 0;
+    end;
+
     #region UpdateDocAmountFromValueEntry
     procedure UpdateDocAmountFromValueEntry(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; var DocAmount: Decimal)
     var

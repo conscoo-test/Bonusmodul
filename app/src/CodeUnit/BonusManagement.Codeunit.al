@@ -19,6 +19,12 @@ codeunit 5266052 "lbtbn Bonus Management"
         SourceDocLineNo := SourceDocLineNoP;
     end;
     #endregion SetSourceDoc
+
+    procedure SetSourceDoc(I: Interface "lbtbn I")
+    begin
+        I.GetSourceDoc(SourceDocType, SourceDocNo, SourceDocLineNo);
+    end;
+
     #region SetSourceDoc
     procedure SetSourceDoc(TableNo: Integer; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
     begin

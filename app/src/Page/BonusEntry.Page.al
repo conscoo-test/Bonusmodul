@@ -181,6 +181,20 @@ page 5266057 "lbtbn Bonus Entry"
                     Rec.OpenSourceDocument();
                 end;
             }
+            action(Dimensions)
+            {
+                AccessByPermission = tabledata Dimension = R;
+                ApplicationArea = Dimensions;
+                Caption = 'Dimensions';
+                Image = Dimensions;
+                ShortCutKey = 'Alt+D';
+                ToolTip = 'View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
+
+                trigger OnAction()
+                begin
+                    Rec.ShowDimensions();
+                end;
+            }
         }
     }
 }
