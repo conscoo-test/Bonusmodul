@@ -1311,6 +1311,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Reservation - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4123040019 - Action 2390701205 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Credit Memo</source>
+          <target>Bonusgutschrift</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4123040019 - Action 2163604355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reservation</source>
+          <target>Rückstellungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Reservation - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1837915587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Dimensions</source>
           <target>Bonusvertrag Dimensionen</target>
@@ -2204,6 +2216,216 @@
           <target>Hier kann die Bezeichnung der Artikelbonusgruppe stehen.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Protocol</source>
+          <target>Bonusprotokoll</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2880216374" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Amount</source>
+          <target>Basisbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Base_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1972601055" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Qty.</source>
+          <target>Basis Menge</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Base_Qty_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1879772342" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Amount</source>
+          <target>Bonus- betrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Bonus_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2672751556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Protocol</source>
+          <target>Bonus Protokoll</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Bonus_ProtocolCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 717060633" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cash Discount</source>
+          <target>Skonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Cash_DiscountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3488564065" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract No.</source>
+          <target>Vertragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Contract_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1987762555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Seite</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType CurrReport_PAGENOCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1428681763" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No.</source>
+          <target>Debitorennr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Customer_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3406999958" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Amount</source>
+          <target>Rabattbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Discount_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2680280112" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice No.</source>
+          <target>Rechnungsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Invoice_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2041091924" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Code</source>
+          <target>Lief. an Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Ship_to_CodeCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1976394234" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Contract</source>
+          <target>Summe für Vertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_ContractCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3761711836" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Customer</source>
+          <target>Summe für Kunden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_CustomerCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3350891001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Shipping Address</source>
+          <target>Summe für Lieferadresse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_Shipping_AddressCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter :</source>
+          <target>Datumsfilter :</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 745995215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount</source>
+          <target>Gesamtbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Total_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reservation</source>
+          <target>Bonus Rückstellung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 2880216374" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Amount</source>
+          <target>Basisbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Base_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1972601055" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Qty.</source>
+          <target>Basis Menge</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Base_Qty_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3975341583" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus reservations</source>
+          <target>Bonusrückstellungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Bonus_reservationsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 717060633" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cash Discount</source>
+          <target>Skonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Cash_DiscountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3488564065" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract No.</source>
+          <target>Vertragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Contract_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1987762555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Seite</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType CurrReport_PAGENOCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1428681763" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No.</source>
+          <target>Debitorennr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Customer_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3406999958" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Amount</source>
+          <target>Rabattbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Discount_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 2680280112" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice No.</source>
+          <target>Rechnungsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Invoice_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 405133969" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reservation Amount</source>
+          <target>Rückstellungs- betrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Reservation_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1208057114" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Result Amount</source>
+          <target>Betragsergebnis</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Result_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 2041091924" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Code</source>
+          <target>Lief. an Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Ship_to_CodeCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1976394234" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Contract</source>
+          <target>Summe für Vertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_ContractCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3761711836" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Customer</source>
+          <target>Summe für Kunden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_CustomerCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3350891001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Shipping Address</source>
+          <target>Summe für Lieferadresse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_Shipping_AddressCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter:</source>
+          <target>Datumsfilter :</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 745995215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount</source>
+          <target>Gesamtbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Total_AmountCaptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Reserves</source>

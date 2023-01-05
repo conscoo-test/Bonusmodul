@@ -340,6 +340,38 @@ page 5266053 "lbtbn Bonus Contract"
                 #endregion OnAction
             }
         }
+        area(Reporting)
+        {
+            action("Print Reservation")
+            {
+                Caption = 'Reservation';
+                Image = Print;
+                ApplicationArea = All;
+
+                trigger OnAction()
+                var
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                begin
+                    BonusEntry.SetRange(Contract, Rec."No.");
+                    Report.RunModal(Report::"lbtbn Bonus Reservation", true, true, BonusEntry);
+                end;
+            }
+            action("Print Bonus Credit Memo")
+            {
+                Caption = 'Bonus Credit Memo';
+                Image = Print;
+                ApplicationArea = All;
+
+                trigger OnAction()
+                var
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                begin
+                    BonusEntry.SetRange(Contract, Rec."No.");
+                    Report.RunModal(Report::"lbtbn Bonus Protocol", true, true, BonusEntry);
+                end;
+            }
+        }
+
     }
 
     #region OnAfterGetRecord
