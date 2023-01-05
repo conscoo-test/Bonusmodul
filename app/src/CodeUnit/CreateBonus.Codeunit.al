@@ -97,7 +97,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         GetOrCreateSalesHeader(SalesHeader);
 
         SalesLine.Reset();
-        SalesLine.SetCurrentKey("Document Type", "Document No.", "lbt Process No.");
+        SalesLine.SetCurrentKey("Document Type", "Document No.", "Line No.");
         SalesLine.SetRange("Document Type", SalesLine."Document Type"::"Credit Memo");
         SalesLine.SetRange("Document No.", SalesHeader."No.");
         if (SalesLine.FindLast()) and

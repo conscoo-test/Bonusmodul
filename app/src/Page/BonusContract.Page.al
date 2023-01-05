@@ -213,7 +213,7 @@ page 5266053 "lbtbn Bonus Contract"
                 var
                     BonusSetup: Record "lbtbn Bonus Setup";
                     BonusEntry: Record "lbtbn Bonus Entry";
-                    ExplodeReservation: Page "lbtbn Explode Reservation";
+                    ExplodeReservation: Page "lbtbn Explode Bonus Reserv.";
                 begin
                     BonusSetup.Get();
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin

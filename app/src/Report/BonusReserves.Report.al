@@ -16,6 +16,7 @@ report 5266051 "lbtbn Bonus Reserves"
             #region dataitems
             dataitem(Invoices; Integer)
             {
+                DataItemTableView = sorting(Number);
                 #region OnPreDataItem
                 trigger OnPreDataItem()
                 begin
@@ -38,6 +39,7 @@ report 5266051 "lbtbn Bonus Reserves"
             }
             dataitem(CrMemos; Integer)
             {
+                DataItemTableView = sorting(Number);
                 #region OnPreDataItem
                 trigger OnPreDataItem()
                 begin
