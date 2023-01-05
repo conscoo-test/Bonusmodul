@@ -142,7 +142,7 @@ report 5266051 "lbtbn Bonus Reserves"
                 Dialog.Close();
                 Commit(); // after each Contract to not lose progress
 
-                CreateBonus.OpenPage();
+                CreateBonus.OpenPageReserve();
             end;
             #endregion OnPostDataItem
         }

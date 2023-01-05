@@ -96,7 +96,7 @@ report 5266052 "lbtbn Bonus Run"
             begin
                 Clear(Quantity);
                 Clear(Amount);
-
+                CheckFilters();
                 if "Bonus Contract"."Last Billing at" <> 0D then
                     if (PostingDate < CalcDate('+' + Format("Bonus Contract"."Billing Period"), "Bonus Contract"."Last Billing at")) then
                         CurrReport.Skip();
@@ -183,6 +183,25 @@ report 5266052 "lbtbn Bonus Run"
         // end;
     end;
     #endregion OnPreReport
+
+    trigger OnPostReport()
+    begin
+        CreateBonus.OpenPageBonus();
+    end;
+
+    local procedure CheckFilters()
+    var
+        BonusCustomer: Record "lbtbn Bonus Customer";
+        BonusItem: Record "lbtbn Bonus Item";
+        CheckLbl: Label 'Please check the filter %1 for Bonus Contract %2.', Comment = '%1 - Table Caption of what to check, %2 - Bonus Contract No.';
+    begin
+        BonusCustomer.SetRange(Contract, "Bonus Contract"."No.");
+        if BonusCustomer.IsEmpty then
+            Error(CheckLbl, BonusCustomer.TableCaption, "Bonus Contract"."No.");
+        BonusItem.SetRange("Contract No.", "Bonus Contract"."No.");
+        if BonusItem.IsEmpty then
+            Error(CheckLbl, BonusItem.TableCaption, "Bonus Contract"."No.");
+    end;
 
 
     var

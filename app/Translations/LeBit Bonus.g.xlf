@@ -1913,6 +1913,11 @@
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType SalesDocProgressTxt</note>
         </trans-unit>
+        <trans-unit id="Report 3491407518 - Method 1673206391 - NamedType 1646609768" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please check the filter %1 for Bonus Contract %2.</source>
+          <note from="Developer" annotates="general" priority="2">%1 - Table Caption of what to check, %2 - Bonus Contract No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Method CheckFilters - NamedType CheckLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3491407518 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
           <note from="Developer" annotates="general" priority="2"></note>

@@ -527,7 +527,7 @@
         </trans-unit>
         <trans-unit id="Table 3956665642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Item</source>
-          <target>Bonusartikel</target>
+          <target>Bonus Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Property Caption</note>
         </trans-unit>
@@ -1823,7 +1823,7 @@
         </trans-unit>
         <trans-unit id="Page 2559199511 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Items</source>
-          <target>Bonusartikel</target>
+          <target>Bonus Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Property Caption</note>
         </trans-unit>
@@ -2294,6 +2294,12 @@
           <target>Verkaufsbeleg #3##############</target>
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType SalesDocProgressTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 3491407518 - Method 1673206391 - NamedType 1646609768" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please check the filter %1 for Bonus Contract %2.</source>
+          <target>Bitte prüfen Sie %1 für Bonus Vertrag %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 - Table Caption of what to check, %2 - Bonus Contract No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Method CheckFilters - NamedType CheckLbl</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>

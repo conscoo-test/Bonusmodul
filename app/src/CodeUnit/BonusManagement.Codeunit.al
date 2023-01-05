@@ -51,35 +51,6 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
     #endregion SetBonusDoc
 
-    procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
-                                            var BonusCustomer: Record "lbtbn Bonus Customer";
-                                            EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
-                                            EntryDate: Date;
-                                            BonusRule: Integer;
-                                            Qty: Decimal;
-                                            Amt: Decimal;
-                                            AmtIncVAT: Decimal;
-                                            DocAmt: Decimal;
-                                            DiscAmt: Decimal;
-                                            PmtDiscAmt: Decimal
-        ): Integer
-    begin
-        exit(CreateBonusContractEntry(BonusContract,
-            BonusCustomer."Customer No.",
-            BonusCustomer."Ship-to Code",
-            EntryType,
-            EntryDate,
-            BonusRule,
-            Qty,
-            Amt,
-            AmtIncVAT,
-            DocAmt,
-            DiscAmt,
-            PmtDiscAmt));
-    end;
-
-
-
     #region CreateBonusContractEntry
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
                                         CustomerNo: Code[20];
