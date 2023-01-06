@@ -137,12 +137,12 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion AddItemChargeInvoiceLine
 
     #region CreateInvoiceHeader
-    local procedure CreateInvoiceHeader(BonusContract: Record "lbtbn Bonus Contract";  DateFrom: Date; DateTo: Date) SalesHeader: Record "Sales Header"
+    local procedure CreateInvoiceHeader(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date) SalesHeader: Record "Sales Header"
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         SalesLine: Record "Sales Line";
         NoSeriesMgt: Codeunit NoSeriesManagement;
-        ReverseReservalTxt: Label 'Reserve according to Bonus Contract %1.', Comment = '%1 - Contract No.';
+        ReverseReservalTxt: Label 'Reverse Reserve according to Bonus Contract %1.', Comment = '%1 - Contract No.';
         AccountingPeriodLTxt: Label 'Accounting Period %1 to %2', Comment = '%1 - from Date, %2 - to Date';
         UnpostedInvoiceExistsErr: Label 'There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.';
         PostingDescriptionTxt: Label 'Exploding Bonus reserve';
@@ -201,7 +201,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion CreateInvoiceHeader
 
     #region ReverseBonusEntries
-    local procedure ReverseBonusEntries(var BonusEntry: Record "lbtbn Bonus Entry"; DateFrom: Date; DateTo: Date)
+    procedure ReverseBonusEntries(var BonusEntry: Record "lbtbn Bonus Entry"; DateFrom: Date; DateTo: Date)
     begin
         if BonusEntry.FindSet() then
             repeat
@@ -216,21 +216,16 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BonusEntry2: Record "lbtbn Bonus Entry";
         ReturnReceiptLine: Record "Return Receipt Line";
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
-        SalesHeader: Record "Sales Header";
         SalesInvoiceLine: Record "Sales Invoice Line";
         SalesLine: Record "Sales Line";
         SalesShipmentLine: Record "Sales Shipment Line";
         BonusMgt: Codeunit "lbtbn Bonus Management";
+        DimSetID: Integer;
         BillingEntry: Integer;
         Sign: Integer;
-        LineMissingErr: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
-        InvoiceLbl: Label 'Invoice';
-        ShipmentLbl: Label 'Shipment';
-        CreditMemoLbl: Label 'Credit Memo';
-        ReturnReceiptLbl: Label 'Return Receipt';
     begin
-        case BonusEntry."Assignment Document Type" of
-            BonusEntry."Assignment Document Type"::"Sales Shipment":
+        case BonusEntry."From Document Type" of
+            BonusEntry."From Document Type"::"Sales Invoice":
                 begin
                     if not SalesInvoiceLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
                         Error(LineMissingErr, BonusEntry."From Document No.", InvoiceLbl, BonusEntry."From Document Line");
@@ -239,9 +234,10 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                     then
                         Error(LineMissingErr, BonusEntry."Assignment Document No.", ShipmentLbl,
                               BonusEntry."Assignment Doc. Line No.");
+                    DimSetID := SalesInvoiceLine."Dimension Set ID";
                     Sign := 1;
                 end;
-            BonusEntry."Assignment Document Type"::"Sales Return Receipt":
+            BonusEntry."From Document Type"::"Sales Credit Memo":
                 begin
                     if not SalesCrMemoLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
                         Error(LineMissingErr, BonusEntry."From Document No.", CreditMemoLbl, BonusEntry."From Document Line");
@@ -250,18 +246,25 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                     then
                         Error(LineMissingErr, BonusEntry."Assignment Document No.", ReturnReceiptLbl,
                               BonusEntry."Assignment Doc. Line No.");
+                    DimSetID := SalesCrMemoLine."Dimension Set ID";
                     Sign := -1;
+                end;
+            BonusEntry."From Document Type"::" ":
+                begin
+                    if not SalesShipmentLine.Get(BonusEntry."Assignment Document No.", BonusEntry."Assignment Doc. Line No.") then
+                        Error(LineMissingErr, BonusEntry."Assignment Document No.", ShipmentLbl, BonusEntry."Assignment Doc. Line No.");
+                    DimSetID := SalesShipmentLine."Dimension Set ID";
+                    Sign := 2;
                 end;
         end;
         AddItemChargeInvoiceLine(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, DateFrom, DateTo);
         BillingEntry := BonusMgt.BonusEntryReserveExploding(BonusEntry."Entry No.", WorkDate());
         SalesLine."lbtbn Bonus Entry No." := BillingEntry;
-        if SalesHeader."Shortcut Dimension 1 Code" <> '' then
-            SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
+        SalesLine."Dimension Set ID" := DimSetID;
         SalesLine.Modify();
         BonusEntry2.Get(BillingEntry);
         BonusEntry2."Bonus Document Type" := 1;
-        BonusEntry2."Bonus Document No." := SalesHeader."No.";
+        BonusEntry2."Bonus Document No." := SalesLine."Document No.";
         BonusEntry2."Bonus Document Line" := SalesLine."Line No.";
         BonusEntry2.Modify();
     end;
@@ -458,6 +461,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesLine.Insert();
     end;
     #endregion CreateSalesLine
+
     #region AssignItemCharge
     local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesInvoiceLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var SalesShipmentLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line")
     var
@@ -499,7 +503,11 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion AssignItemCharge
 
 
-
     var
+        LineMissingErr: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
+        InvoiceLbl: Label 'Invoice';
+        ShipmentLbl: Label 'Shipment';
+        CreditMemoLbl: Label 'Credit Memo';
+        ReturnReceiptLbl: Label 'Return Receipt';
         InvoiceHeaderCreated: Boolean;
 }
