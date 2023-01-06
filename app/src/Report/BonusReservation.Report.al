@@ -22,9 +22,6 @@ report 5266054 "lbtbn Bonus Reservation"
         {
             DataItemTableView = sorting(Contract, Customer, "Ship-to Code", "Entry Type", "Entry Date", Reversed) where("Entry Type" = const(Reserve), Reversed = const(false), "Bonus Document Deleted" = const(false));
             RequestFilterFields = Contract, Customer, "Ship-to Code", "Entry Date";
-            column(ReportForNavId_5077979; 5077979)
-            {
-            }
             column(PrintBody_4; PrintBody[4])
             {
             }
@@ -41,9 +38,6 @@ report 5266054 "lbtbn Bonus Reservation"
             {
             }
             column(CurrReport_PAGENO; CurrReport.PageNo)
-            {
-            }
-            column(FORMAT_TODAY_0_4_; Format(Today, 0, 4))
             {
             }
             column(COMPANYNAME; COMPANYNAME)
@@ -80,135 +74,6 @@ report 5266054 "lbtbn Bonus Reservation"
             {
             }
             column(ContractRec__Reserve_Amount_; ContractRec."Reserve Value")
-            {
-            }
-            column(Bonus_Contract_Entry_Customer_Control1117000049; Customer)
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000050; "Calculated Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000051; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000052; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000053; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry_Quantity_Control1117000054; "Sales Quantity")
-            {
-            }
-            column(Bonus_Contract_Entry__From_Document_No___Control1117000055; "From Document No.")
-            {
-            }
-            column(Bonus_Contract_Entry__Ship_to_Code__Control1117000056; "Ship-to Code")
-            {
-            }
-            column(ContractRec__Reserve_Amount__Control1117000074; ContractRec."Reserve Value")
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000057; "Calculated Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000058; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000059; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000060; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry_Quantity_Control1117000061; "Sales Quantity")
-            {
-            }
-            column(Bonus_Contract_Entry__From_Document_No___Control1117000062; "From Document No.")
-            {
-            }
-            column(Bonus_Contract_Entry__Ship_to_Code__Control1117000063; "Ship-to Code")
-            {
-            }
-            column(ContractRec__Reserve_Amount__Control1117000075; ContractRec."Reserve Value")
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000064; "Calculated Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000065; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000066; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000067; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry_Quantity_Control1117000068; "Sales Quantity")
-            {
-            }
-            column(Bonus_Contract_Entry__From_Document_No___Control1117000069; "From Document No.")
-            {
-            }
-            column(ContractRec__Reserve_Amount__Control1117000076; ContractRec."Reserve Value")
-            {
-            }
-            column(Bonus_Contract_Entry__Ship_to_Code__Control1117000018; "Ship-to Code")
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000032; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000037; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000038; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000039; "Calculated Amount")
-            {
-            }
-            column(Bonus_Contract_Entry_Customer_Control1117000020; Customer)
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000034; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000040; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000041; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000042; "Calculated Amount")
-            {
-            }
-            column(Bonus_Contract_Entry_Contract_Control1117000028; Contract)
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000035; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000043; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000044; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000045; "Calculated Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Base_Amount__Control1117000036; "Base Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Discount_Amount__Control1117000046; "Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000047; "Pmt. Discount Amount")
-            {
-            }
-            column(Bonus_Contract_Entry__Amount_calculated__Control1117000048; "Calculated Amount")
             {
             }
             column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
@@ -259,10 +124,6 @@ report 5266054 "lbtbn Bonus Reservation"
             column(Total_AmountCaption; Total_AmountCaptionLbl)
             {
             }
-            column(Bonus_Contract_Entry_Entry_No_; "Entry No.")
-            {
-            }
-
             trigger OnAfterGetRecord()
             begin
                 Clear(PrintBody);
@@ -324,4 +185,6 @@ report 5266054 "lbtbn Bonus Reservation"
         Sum_for_ContractCaptionLbl: Label 'Sum for Contract';
         Total_AmountCaptionLbl: Label 'Total Amount';
 }
+
+
 
