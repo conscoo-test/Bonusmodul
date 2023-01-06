@@ -718,8 +718,33 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Fixed Amount - Method GetDescription - NamedType FixedAmountLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType CreditMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType InvoiceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
+          <note from="Developer" annotates="general" priority="2">Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType LineMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 1892566544" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Receipt</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType ReturnReceiptLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 2531235046" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shipment</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType ShipmentLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1947743116" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reserve according to Bonus Contract %1.</source>
+          <source>Reverse Reserve according to Bonus Contract %1.</source>
           <note from="Developer" annotates="general" priority="2">%1 - Contract No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType ReverseReservalTxt</note>
         </trans-unit>
@@ -757,31 +782,6 @@
           <source>Bonus Fixed Amount Contract </source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType FixedAmountTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
-          <note from="Developer" annotates="general" priority="2">Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType LineMissingErr</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType InvoiceLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 2531235046" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Shipment</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType ShipmentLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Credit Memo</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType CreditMemoLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 2472719059 - NamedType 1892566544" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Return Receipt</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusEntry - NamedType ReturnReceiptLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reverse</source>
