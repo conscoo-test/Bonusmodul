@@ -222,9 +222,6 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region CreateItemChargeForBillingTypeAmount
     local procedure CreateItemChargeForBillingTypeAmount(BonusSumme: Decimal; var SalesLine: Record "Sales Line"; var Betrag: Decimal)
     var
-        Currency: Record Currency;
-        CurrExchRate: Record "Currency Exchange Rate";
-        CustRec: Record Customer;
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         PostedSalesShptLineRec: Record "Sales Shipment Line";
         AssignItemChargeSales: Codeunit "Item Charge Assgnt. (Sales)";
@@ -233,18 +230,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         FixedAmountTxt: Label 'Fixed Amount';
         Zusatz: Text;
     begin
-        if CustRec."Currency Code" = '' then
-            AmountCust := BonusContractLine.Value
-        else
-            if Currency.Get(CustRec."Currency Code") then begin
-                Currency.TestField("Unit-Amount Rounding Precision");
-                AmountCust :=
-                  Round(
-                   CurrExchRate.ExchangeAmtLCYToFCY(
-                    PostingDate, CustRec."Currency Code", BonusContractLine.Value,
-                     CurrExchRate.ExchangeRate(PostingDate, CustRec."Currency Code")),
-                      Currency."Unit-Amount Rounding Precision");
-            end;
+        CalculateAmountCust(AmountCust);
         Zusatz := FixedAmountTxt;
         PostedSalesShptLineRec.Reset();
         //PostedSalesShptLineRec.SETRANGE("Sell-to Customer No.","Bonus Contract".Customer);
@@ -272,48 +258,13 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region CreateItemChargeForBillingTypeAmountPerUnit
     local procedure CreateItemChargeForBillingTypeAmountPerUnit(DocAmt: Decimal; BonusSumme: Decimal; var SalesLine: Record "Sales Line"; TableId: Integer) Zusatz: Text
     var
-        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
-        CustRec: Record Customer;
-        Currency: Record Currency;
-        CurrExchRate: Record "Currency Exchange Rate";
         AmountCust: Decimal;
         PerTxt: Label ' per ';
     begin
         SalesLine.Validate(Quantity, BonusSumme);
-        ItemChargeAssRec.Init();
-        ItemChargeAssRec."Document Type" := SalesLine."Document Type";
-        ItemChargeAssRec."Document No." := SalesLine."Document No.";
-        ItemChargeAssRec."Document Line No." := SalesLine."Line No.";
-        ItemChargeAssRec."Line No." := 10000;
-        ItemChargeAssRec."Item Charge No." := SalesLine."No.";
-        case TableId of
-            Database::"Sales Invoice Line":
-                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
-            Database::"Sales Cr.Memo Line":
-                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
-        end;
-        ItemChargeAssRec."Applies-to Doc. Line Amount" := DocAmt;
-        ItemChargeAssRec."Item No." := ItemLedgerEntry."Item No.";
-        ItemChargeAssRec.Description := ItemLedgerEntry.Description;
-        ItemChargeAssRec."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
-        ItemChargeAssRec."Applies-to Doc. Line No." := ItemLedgerEntry."Document Line No.";
-        ItemChargeAssRec."Unit Cost" := 1;
-        ItemChargeAssRec.Validate("Qty. to Assign", BonusSumme);
-        ItemChargeAssRec.Insert();
+        CreateItemCharge(DocAmt, BonusSumme, TableId, SalesLine);
 
-        CustRec.Get(CustomerNo);
-        if CustRec."Currency Code" = '' then
-            AmountCust := BonusContractLine.Value
-        else
-            if Currency.Get(CustRec."Currency Code") then begin
-                Currency.TestField("Unit-Amount Rounding Precision");
-                AmountCust :=
-                  Round(
-                   CurrExchRate.ExchangeAmtLCYToFCY(
-                    PostingDate, CustRec."Currency Code", BonusContractLine.Value,
-                     CurrExchRate.ExchangeRate(PostingDate, CustRec."Currency Code")),
-                      Currency."Unit-Amount Rounding Precision");
-            end;
+        CalculateAmountCust(AmountCust);
         Zusatz := Format(AmountCust) + PerTxt + Format(BonusContractLine."Item Unit of Measure");
     end;
     #endregion CreateItemChargeForBillingTypeAmountPerUnit
@@ -397,33 +348,10 @@ codeunit 5266060 "lbtbn Create Bonus"
 
     #region CreateItemChargeForBillingTypePercent
     local procedure CreateItemChargeForBillingTypePercent(DocAmt: Decimal; BonusSumme: Decimal; TableId: Integer; var SalesLine: Record "Sales Line") Zusatz: Text
-    var
-        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
     begin
         SalesLine.Validate(Quantity, BonusSumme);
         SalesLine.Modify();
-        ItemChargeAssRec.Init();
-        ItemChargeAssRec."Document Type" := SalesLine."Document Type";
-        ItemChargeAssRec."Document No." := SalesLine."Document No.";
-        ItemChargeAssRec."Document Line No." := SalesLine."Line No.";
-        ItemChargeAssRec."Line No." := 10000;
-        ItemChargeAssRec."Item Charge No." := SalesLine."No.";
-
-        case TableId of
-            Database::"Sales Invoice Line":
-                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
-            Database::"Sales Cr.Memo Line":
-                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
-        end;
-
-        ItemChargeAssRec."Applies-to Doc. Line Amount" := DocAmt;
-        ItemChargeAssRec."Item No." := ItemLedgerEntry."Item No.";
-        ItemChargeAssRec.Description := ItemLedgerEntry.Description;
-        ItemChargeAssRec."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
-        ItemChargeAssRec."Applies-to Doc. Line No." := ItemLedgerEntry."Document Line No.";
-        ItemChargeAssRec."Unit Cost" := 1;
-        ItemChargeAssRec.Validate("Qty. to Assign", BonusSumme);
-        ItemChargeAssRec.Insert();
+        CreateItemCharge(DocAmt, BonusSumme, TableId, SalesLine);
         Zusatz := Format(BonusContractLine.Value) + ' %';
     end;
     #endregion CreateItemChargeForBillingTypePercent
@@ -520,64 +448,23 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion UpdateDocAmountFromValueEntry
 
     procedure CreateReserve(SalesCrMemoLine: Record "Sales Cr.Memo Line")
-
     var
         SalesCrMemoLineCU: Codeunit "lbtbn Sales Cr.Line";
-        BonusAmt: Decimal;
-        DiscAmt: Decimal;
-        DocAmount: Decimal;
-        PmtDiscAmt: Decimal;
-        NewQty: Decimal;
     begin
         I := SalesCrMemoLineCU;
         SalesCrMemoLineCU.SetLine(SalesCrMemoLine);
-        if CheckItemMeth.CheckItem(BonusContract."No.", SalesCrMemoLine."No.") then begin
-            DocAmount := I.GetAmount();
-            if CurrencyFactor <> 0 then
-                DocAmount := Round(DocAmount / CurrencyFactor, 0.01);
-
-            UpdateDocAmountFromValueEntry(DocAmount);
-
-            NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, -BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, BonusAmt, SalesCrMemoLine.Quantity);
-
-            if BonusAmt = 0 then
-                exit;
-            BonusSetup.Get();
-            if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
-                CreateForReserveMode_CreditMemo(NewQty, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
-            else
-                CreateJournalLine(BonusAmt, DocAmount, -DiscAmt, -PmtDiscAmt);
-        end;
+        if CheckItemMeth.CheckItem(BonusContract."No.", SalesCrMemoLine."No.") then
+            DoCreateReserve();
     end;
 
     procedure CreateReserve(SalesInvoiceLine: Record "Sales Invoice Line")
     var
         SalesInvoiceLineCU: Codeunit "lbtbn Sales Invoice Line";
-        BonusAmt: Decimal;
-        DiscAmt: Decimal;
-        DocAmount: Decimal;
-        PmtDiscAmt: Decimal;
-        NewQty: Decimal;
     begin
         I := SalesInvoiceLineCU;
         SalesInvoiceLineCU.SetLine(SalesInvoiceLine);
-        if CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLine."No.") then begin
-            DocAmount := I.GetAmount();
-            if CurrencyFactor <> 0 then
-                DocAmount := Round(DocAmount / CurrencyFactor, 0.01);
-
-            UpdateDocAmountFromValueEntry(DocAmount);
-
-            NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, BonusAmt, SalesInvoiceLine.Quantity);
-
-            if BonusAmt = 0 then
-                exit;
-            BonusSetup.Get();
-            if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
-                CreateForReserveMode_CreditMemo(NewQty, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
-            else
-                CreateJournalLine(BonusAmt, DocAmount, -DiscAmt, -PmtDiscAmt);
-        end;
+        if CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLine."No.") then
+            DoCreateReserve();
     end;
     #region CreateJournalLine
 
@@ -925,6 +812,80 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Modify();
     end;
     #endregion CreateBonusEntryForFixedAmount
+    local procedure CreateItemCharge(DocAmt: Decimal; BonusSumme: Decimal; TableId: Integer; var SalesLine: Record "Sales Line")
+    var
+        ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
+    begin
+        ItemChargeAssRec.Init();
+        ItemChargeAssRec."Document Type" := SalesLine."Document Type";
+        ItemChargeAssRec."Document No." := SalesLine."Document No.";
+        ItemChargeAssRec."Document Line No." := SalesLine."Line No.";
+        ItemChargeAssRec."Line No." := 10000;
+        ItemChargeAssRec."Item Charge No." := SalesLine."No.";
+
+        case TableId of
+            Database::"Sales Invoice Line":
+                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
+            Database::"Sales Cr.Memo Line":
+                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
+        end;
+
+        ItemChargeAssRec."Applies-to Doc. Line Amount" := DocAmt;
+        ItemChargeAssRec."Item No." := ItemLedgerEntry."Item No.";
+        ItemChargeAssRec.Description := ItemLedgerEntry.Description;
+        ItemChargeAssRec."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
+        ItemChargeAssRec."Applies-to Doc. Line No." := ItemLedgerEntry."Document Line No.";
+        ItemChargeAssRec."Unit Cost" := 1;
+        ItemChargeAssRec.Validate("Qty. to Assign", BonusSumme);
+        ItemChargeAssRec.Insert();
+    end;
+
+    local procedure DoCreateReserve()
+    var
+        BonusAmt: Decimal;
+        DiscAmt: Decimal;
+        DocAmount: Decimal;
+        PmtDiscAmt: Decimal;
+        NewQty: Decimal;
+    begin
+        DocAmount := I.GetAmount();
+        if CurrencyFactor <> 0 then
+            DocAmount := Round(DocAmount / CurrencyFactor, 0.01);
+
+        UpdateDocAmountFromValueEntry(DocAmount);
+
+        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, I.Sign() * BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, BonusAmt, I.Quantity());
+
+        if BonusAmt = 0 then
+            exit;
+        BonusSetup.Get();
+        if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
+            CreateForReserveMode_CreditMemo(NewQty, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
+        else
+            CreateJournalLine(BonusAmt, DocAmount, -DiscAmt, -PmtDiscAmt);
+    end;
+
+    local procedure CalculateAmountCust(var AmountCust: Decimal)
+    var
+        Currency: Record Currency;
+        CurrExchRate: Record "Currency Exchange Rate";
+        CustRec: Record Customer;
+    begin
+        CustRec.Get(CustomerNo);
+        if CustRec."Currency Code" = '' then
+            AmountCust := BonusContractLine.Value
+        else
+            if Currency.Get(CustRec."Currency Code") then begin
+                Currency.TestField("Unit-Amount Rounding Precision");
+                AmountCust :=
+                  Round(
+                   CurrExchRate.ExchangeAmtLCYToFCY(
+                    PostingDate, CustRec."Currency Code", BonusContractLine.Value,
+                     CurrExchRate.ExchangeRate(PostingDate, CustRec."Currency Code")),
+                      Currency."Unit-Amount Rounding Precision");
+            end;
+    end;
+
 
 
     var
