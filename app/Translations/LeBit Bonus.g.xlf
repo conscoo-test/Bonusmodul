@@ -1043,16 +1043,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Navigate - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3669386148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Cr. Memo - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3669386148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Cr. Memo</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Cr. Memo - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 4123040019 - Action 189515208 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This triggers the report for settling bonus contracts. The screen opens prefiltered for the respective contract.</source>
           <note from="Developer" annotates="general" priority="2">DEU="Hiermit wird  der  Report  zum  Abrechnen  der Bonusverträge angestoßen. Die Maske öffnet sich dabei vorgefiltert auf den jeweiligen Vertrag."</note>
@@ -1083,20 +1073,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Exlode Reservation - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3111013020 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prints a report, listing all the accrual items created for this contract.</source>
+        <trans-unit id="Page 4123040019 - Action 2390701205 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Reservation - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3111013020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reservation</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Reservation - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 2390701205 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Credit Memo</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4123040019 - Action 2163604355 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prints a report, listing all the accrual items created for this contract.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Reservation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 2163604355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reservation</source>
@@ -1283,16 +1273,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Navigate - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3669386148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3669386148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Cr. Memo</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 300417342 - Action 189515208 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This triggers the report for settling bonus contracts. The screen opens prefiltered for the respective contract.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1322,6 +1302,16 @@
           <source>Exlode Reservation</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Exlode Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 300417342 - Action 3669386148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 300417342 - Action 3669386148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Cr. Memo</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 300417342 - Action 3111013020 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prints a report, listing all the accrual items created for this contract.</source>
@@ -1569,19 +1559,34 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Number Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Control 3047527542 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for the number series that will be used to assign numbers to Billing Cr.Memo Nos.</source>
+          <source>Specifies the code for the number series that will be used to assign numbers to Bonus Statements.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Billing Cr.Memo Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1573773400 - Control 3047527542 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Statement</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Billing Cr.Memo Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Control 1196001075 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the code for the number series that will be used to assign numbers to bonus contracts.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Bonus Nos. - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 1573773400 - Control 1196001075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Bonus Nos. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1573773400 - Control 4140162563 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for the number series that will be used to assign numbers to Reserve Cr.Memo Nos.</source>
+          <source>Specifies the code for the number series that will be used to assign numbers to the statistical documents Reserve Cr.Memos and Explosion.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Reserve Cr.Memo Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1573773400 - Control 4140162563 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reservation/Explosion</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Reserve Cr.Memo Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Control 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve</source>
@@ -1899,7 +1904,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Discount_AmountCaptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 624272167 - NamedType 2680280112" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice No.</source>
+          <source>Document No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Invoice_No_CaptionLbl</note>
         </trans-unit>
@@ -1979,7 +1984,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Discount_AmountCaptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 4032073557 - NamedType 2680280112" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice No.</source>
+          <source>Document No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Invoice_No_CaptionLbl</note>
         </trans-unit>
@@ -1989,7 +1994,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Reservation_AmountCaptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 4032073557 - NamedType 1208057114" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Result Amount</source>
+          <source>Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Result_AmountCaptionLbl</note>
         </trans-unit>
@@ -2217,11 +2222,6 @@
           <source>Bonus consider</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item Charge - Field lbtbn Bonus consider - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 268913786 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 268913786">
-          <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
-          <note from="Developer" annotates="general" priority="2">%1 - Tablecaption</note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item Charge Assign. - NamedType Text001Msg</note>
         </trans-unit>
         <trans-unit id="TableExtension 167010268 - Field 3423839740 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>Bonus Entry No.</source>

@@ -169,13 +169,13 @@ report 5266054 "lbtbn Bonus Reservation"
         PrintBody: array[4] of Boolean;
         Text001: Label 'Date Filter:';
         CurrReport_PAGENOCaptionLbl: Label 'Page';
-        Result_AmountCaptionLbl: Label 'Result Amount';
+        Result_AmountCaptionLbl: Label 'Amount';
         Reservation_AmountCaptionLbl: Label 'Reservation Amount';
         Base_AmountCaptionLbl: Label 'Base Amount';
         Base_Qty_CaptionLbl: Label 'Base Qty.';
         Bonus_reservationsCaptionLbl: Label 'Bonus reservations';
         Contract_No_CaptionLbl: Label 'Contract No.';
-        Invoice_No_CaptionLbl: Label 'Invoice No.';
+        Invoice_No_CaptionLbl: Label 'Document No.';
         Customer_No_CaptionLbl: Label 'Customer No.';
         Ship_to_CodeCaptionLbl: Label 'Ship-to Code';
         Discount_AmountCaptionLbl: Label 'Discount Amount';

@@ -97,16 +97,15 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion ReverseBonusReserve
 
     #region AddItemChargeInvoiceLine
-    local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date)
+    local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date) SalesLine: Record "Sales Line"
     var
         BonusContract: Record "lbtbn Bonus Contract";
-        SalesHeader: Record "Sales Header";
-        SalesLine: Record "Sales Line";
+
     begin
         BonusContract.Get(BonusEntry.Contract);
-        SalesHeader := CreateInvoiceHeader(BonusContract, DateFrom, DateTo);
+        CreateInvoiceHeader(BonusContract, DateFrom, DateTo);
 
-        SalesLine := CreateSalesLine(BonusEntry, Sign, BonusContract, SalesHeader);
+        SalesLine := CreateSalesLine(BonusEntry, Sign, BonusContract);
 
         AssignItemCharge(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, SalesLine);
 
@@ -137,7 +136,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion AddItemChargeInvoiceLine
 
     #region CreateInvoiceHeader
-    local procedure CreateInvoiceHeader(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date) SalesHeader: Record "Sales Header"
+    local procedure CreateInvoiceHeader(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date)
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         SalesLine: Record "Sales Line";
@@ -165,14 +164,14 @@ codeunit 5266056 "lbtbn Reverse Reserve"
 
         SalesHeader.Init();
         SalesHeader."Document Type" := SalesHeader."Document Type"::Invoice;
-        SalesHeader."No. Series" := BonusSetup."Internal Statistic Postings";
-        SalesHeader."Posting No. Series" := BonusSetup."Internal Statistic Postings";
-        SalesHeader."Shipping No. Series" := BonusSetup."Internal Statistic Postings";
-        SalesHeader."No." := NoSeriesMgt.GetNextNo(BonusSetup."Internal Statistic Postings", WorkDate(), true);
+        SalesHeader."No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."Shipping No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
+        SalesHeader."No." := NoSeriesMgt.GetNextNo(BonusSetup."Reserve Cr.Memo Nos.", WorkDate(), true);
         SalesHeader.Insert(true);
-        SalesHeader."Posting No. Series" := BonusSetup."Internal Statistic Postings";
+        SalesHeader."Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader.SetHideValidationDialog(true);
-        SalesHeader.Validate("Sell-to Customer No.", BonusSetup."Customer Statistic Postings");
+        SalesHeader.Validate("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
         SalesHeader."Customer Posting Group" := BonusSetup."Cust Gr. Reserve Cr. Memo";
         SalesHeader."Gen. Bus. Posting Group" := BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo";
         SalesHeader."Posting Description" := PostingDescriptionTxt;
@@ -219,7 +218,6 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesInvoiceLine: Record "Sales Invoice Line";
         SalesLine: Record "Sales Line";
         SalesShipmentLine: Record "Sales Shipment Line";
-        BonusMgt: Codeunit "lbtbn Bonus Management";
         DimSetID: Integer;
         BillingEntry: Integer;
         Sign: Integer;
@@ -257,8 +255,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                     Sign := 2;
                 end;
         end;
-        AddItemChargeInvoiceLine(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, DateFrom, DateTo);
-        BillingEntry := BonusMgt.BonusEntryReserveExploding(BonusEntry."Entry No.", WorkDate());
+        SalesLine := AddItemChargeInvoiceLine(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, DateFrom, DateTo);
+        BillingEntry := BonusEntryReserveExploding(BonusEntry."Entry No.", WorkDate());
         SalesLine."lbtbn Bonus Entry No." := BillingEntry;
         SalesLine."Dimension Set ID" := DimSetID;
         SalesLine.Modify();
@@ -423,7 +421,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion ReverseGenLedgEntry
 
     #region CreateSalesLine
-    local procedure CreateSalesLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; BonusContract: Record "lbtbn Bonus Contract"; SalesHeader: Record "Sales Header") SalesLine: Record "Sales Line";
+    local procedure CreateSalesLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; BonusContract: Record "lbtbn Bonus Contract") SalesLine: Record "Sales Line";
     var
         ReverseTxt: Label 'Reverse Bonus Reserve for', Comment = 'Auflösung Bonusrückstellung für';
         InvoiceTxt: Label 'Invoice ';
@@ -504,6 +502,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
 
 
     var
+        SalesHeader: Record "Sales Header";
         LineMissingErr: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
         InvoiceLbl: Label 'Invoice';
         ShipmentLbl: Label 'Shipment';

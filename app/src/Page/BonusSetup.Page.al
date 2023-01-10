@@ -15,18 +15,21 @@ page 5266051 "lbtbn Bonus Setup"
                 Caption = 'Number Series';
                 field("Bonus Nos."; Rec."Bonus Contract Nos.")
                 {
+                    Caption = 'Bonus Contract';
                     ToolTip = 'Specifies the code for the number series that will be used to assign numbers to bonus contracts.';
                     ApplicationArea = All;
                 }
                 field("Reserve Cr.Memo Nos."; Rec."Reserve Cr.Memo Nos.")
                 {
+                    Caption = 'Reservation/Explosion';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to Reserve Cr.Memo Nos.';
+                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to the statistical documents Reserve Cr.Memos and Explosion.';
                 }
                 field("Billing Cr.Memo Nos."; Rec."Billing Cr.Memo Nos.")
                 {
+                    Caption = 'Bonus Statement';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to Billing Cr.Memo Nos.';
+                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to Bonus Statements.';
                 }
             }
 

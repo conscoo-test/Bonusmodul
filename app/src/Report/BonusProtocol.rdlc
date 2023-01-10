@@ -3468,7 +3468,7 @@
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>=First(Fields!Bonus_Contract_Entry_Quantity_Format.Value)</Format>
+                                    <Format>=First(Fields!Bonus_Contract_Entry_QuantityFormat.Value)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5752,9 +5752,6 @@ End Function
         </Field>
         <Field Name="UserId">
           <DataField>UserId</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
         </Field>
         <Field Name="COMPANYNAME">
           <DataField>COMPANYNAME</DataField>

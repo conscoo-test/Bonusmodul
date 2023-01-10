@@ -37,10 +37,7 @@ report 5266053 "lbtbn Bonus Protocol"
             column(UserId; UserId())
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PageNo)
-            {
-            }
-            column(COMPANYNAME; COMPANYNAME)
+            column(COMPANYNAME; CompanyName())
             {
             }
             column(LBText001________GETFILTER_Date_; Text001 + '  ' + GetFilter("Entry Date"))
@@ -73,7 +70,7 @@ report 5266053 "lbtbn Bonus Protocol"
             column(Bonus_Contract_Entry__Ship_to_Code_; "Ship-to Code")
             {
             }
-column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
+            column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
             {
             }
             column(Bonus_AmountCaption; Bonus_AmountCaptionLbl)
@@ -168,7 +165,7 @@ column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
         Base_Qty_CaptionLbl: Label 'Base Qty.';
         Bonus_ProtocolCaptionLbl: Label 'Bonus Protocol';
         Contract_No_CaptionLbl: Label 'Contract No.';
-        Invoice_No_CaptionLbl: Label 'Invoice No.';
+        Invoice_No_CaptionLbl: Label 'Document No.';
         Customer_No_CaptionLbl: Label 'Customer No.';
         Ship_to_CodeCaptionLbl: Label 'Ship-to Code';
         Discount_AmountCaptionLbl: Label 'Discount Amount';

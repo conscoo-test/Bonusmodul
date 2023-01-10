@@ -127,13 +127,6 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
     #endregion UpdateFromGenLedgEntry
 
-    #region BonusEntryReserveExploding
-    internal procedure BonusEntryReserveExploding(EntryNo: Integer; WorkDate: Date): Integer
-    begin
-        Error('Procedure BonusEntryReserveExploding not implemented.');//TODO: 
-    end;
-    #endregion BonusEntryReserveExploding
-
     #region EventSubscriber Page Navigate onAfterInsertDocEntries 
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
@@ -145,7 +138,7 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusContract.SetRange("Process No.", ProcessNo);
         Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
         BonusEntry.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntry.TableCaption, BonusEntry.Count);
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntry.TableCaption(), BonusEntry.Count());
     end;
     #endregion EventSubscriber Page Navigate onAfterInsertDocEntries 
 

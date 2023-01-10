@@ -104,33 +104,7 @@ page 5266052 "lbtbn Bonus Contracts"
                 #endregion OnAction
             }
 
-            action(Reservation)
-            {
-                Caption = 'Reservation';
-                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
-                ApplicationArea = All;
-                Image = Print;
-                Visible = false;
 
-                trigger OnAction()
-                begin
-                    Message('not implemented'); //TODO:
-                end;
-            }
-
-            action("Bonus Cr. Memo")
-            {
-                Caption = 'Bonus Cr. Memo';
-                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
-                ApplicationArea = All;
-                Image = Print;
-                Visible = false;
-
-                trigger OnAction()
-                begin
-                    Message('not implemented'); //TODO:
-                end;
-            }
         }
         area(Navigation)
         {
@@ -193,6 +167,40 @@ page 5266052 "lbtbn Bonus Contracts"
                 ApplicationArea = All;
                 Image = Setup;
                 RunObject = Page "lbtbn Bonus Setup";
+            }
+        }
+        area(Reporting)
+        {
+            action(Reservation)
+            {
+                Caption = 'Reservation';
+                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
+                ApplicationArea = All;
+                Image = Print;
+
+                trigger OnAction()
+                var
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                begin
+                    BonusEntry.SetRange(Contract, Rec."No.");
+                    Report.RunModal(Report::"lbtbn Bonus Reservation", true, true, BonusEntry);
+                end;
+            }
+
+            action("Bonus Cr. Memo")
+            {
+                Caption = 'Bonus Cr. Memo';
+                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
+                ApplicationArea = All;
+                Image = Print;
+
+                trigger OnAction()
+                var
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                begin
+                    BonusEntry.SetRange(Contract, Rec."No.");
+                    Report.RunModal(Report::"lbtbn Bonus Protocol", true, true, BonusEntry);
+                end;
             }
         }
     }

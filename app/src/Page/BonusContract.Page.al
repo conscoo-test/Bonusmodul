@@ -253,38 +253,6 @@ page 5266053 "lbtbn Bonus Contract"
                 end;
                 #endregion OnAction
             }
-
-            action(Reservation)
-            {
-                Caption = 'Reservation';
-                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
-                ApplicationArea = All;
-                Image = Print;
-                Visible = false;
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                    Message('not implemented'); //TODO:
-                end;
-                #endregion OnAction
-            }
-
-            action("Bonus Cr. Memo")
-            {
-                Caption = 'Bonus Cr. Memo';
-                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
-                ApplicationArea = All;
-                Image = Print;
-                Visible = false;
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                    Message('not implemented'); //TODO:
-                end;
-                #endregion OnAction
-            }
         }
         area(Navigation)
         {
@@ -345,6 +313,7 @@ page 5266053 "lbtbn Bonus Contract"
             action("Print Reservation")
             {
                 Caption = 'Reservation';
+                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
                 Image = Print;
                 ApplicationArea = All;
 
@@ -359,6 +328,7 @@ page 5266053 "lbtbn Bonus Contract"
             action("Print Bonus Credit Memo")
             {
                 Caption = 'Bonus Credit Memo';
+                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
                 Image = Print;
                 ApplicationArea = All;
 
