@@ -118,14 +118,19 @@ page 5266052 "lbtbn Bonus Contracts"
                 RunPageLink = "Customer No." = field("No.");
             }
 
-            action(Dimension)
+            action(Dimensions)
             {
-                Caption = 'Dimension';
-                ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.';
-                ApplicationArea = All;
+                AccessByPermission = tabledata Dimension = R;
+                ApplicationArea = Dimensions;
+                Caption = 'Dimensions';
                 Image = Dimensions;
-                RunObject = Page "lbtbn Bonus Contract Dimension";
-                RunPageLink = "Contract" = field("No.");
+                ShortCutKey = 'Alt+D';
+                ToolTip = 'View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
+
+                trigger OnAction()
+                begin
+                    Rec.ShowDimensions();
+                end;
             }
 
             action("Bonus Items")

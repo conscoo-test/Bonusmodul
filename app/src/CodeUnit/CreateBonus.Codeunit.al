@@ -14,7 +14,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         DateTo: Date;
         CustomerNo: Code[20];
         ShipToCode: Code[10];
-        BillingEntry: Integer;
         CurrencyFactor: Decimal;
         SalesLineNo: Integer;
         CrMemoHeaderCreated: Boolean;
@@ -101,6 +100,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     procedure CreateSalesCreditMemo3(TableID: Integer; DocNo: Code[20]; DocLineNo: Integer; DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Betrag: Decimal
     var
         SalesLine: Record "Sales Line";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        DimMgt: Codeunit DimensionManagement;
         LineNo: Integer;
         Zusatz: Text;
         AccountingTxt: Label 'Bonus Accounting';
@@ -135,9 +136,13 @@ codeunit 5266060 "lbtbn Create Bonus"
 
         SalesLine.UpdateAmounts();
 
-        CreateBonusEntry(BonusContract, DocNo, DocLineNo, DocAmt, DiscAmount, PmtDiscAmount, TableID, SalesLine);
 
-        SetDimensions(TableID, DocNo, DocLineNo, SalesLine);
+        SalesLine."lbtbn Bonus Entry No." := CreateBonusEntry(BonusContract, DocNo, DocLineNo, DocAmt, DiscAmount, PmtDiscAmount, TableID, SalesLine);
+        if BonusEntry.Get(SalesLine."lbtbn Bonus Entry No.") then
+            SalesLine."Dimension Set ID" := BonusEntry."Dimension Set ID";
+        DimMgt.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID",
+                                             SalesLine."Shortcut Dimension 1 Code",
+                                              SalesLine."Shortcut Dimension 2 Code");
         SalesLine.Modify(true);
     end;
     #endregion CreateSalesCreditMemo3
@@ -285,14 +290,14 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateTextLine
 
     #region CreateBonusEntry
-    local procedure CreateBonusEntry(var Contract: Record "lbtbn Bonus Contract"; DocNo: Code[20]; DocLineNo: Integer; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal; TableId: Integer; var SalesLine: Record "Sales Line")
+    local procedure CreateBonusEntry(var Contract: Record "lbtbn Bonus Contract"; DocNo: Code[20]; DocLineNo: Integer; DocAmt: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal; TableId: Integer; var SalesLine: Record "Sales Line"): Integer
     var
         BonusMgt: Codeunit "lbtbn Bonus Management";
     begin
         Clear(BonusMgt);
         BonusMgt.SetSourceDoc(TableId, DocNo, DocLineNo);
         BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
-        BillingEntry := BonusMgt.CreateBonusContractEntry(
+        exit(BonusMgt.CreateBonusContractEntry(
           Contract,
           CustomerNo,
           ShipToCode,
@@ -304,47 +309,10 @@ codeunit 5266060 "lbtbn Create Bonus"
           SalesLine."Amount Including VAT",  //Betrag inkl. Vat
           DocAmt,                             //Belegbetrag
           DiscAmount,
-          PmtDiscAmount);
+          PmtDiscAmount,
+          SalesLine."Dimension Set ID"));
     end;
     #endregion CreateBonusEntry
-
-    #region SetDimensions
-    local procedure SetDimensions(TableID: Integer; DocNo: Code[20]; DocLineNo: Integer; var SalesLine: Record "Sales Line")
-    var
-        SalesCrMemoLine: Record "Sales Cr.Memo Line";
-        SalesInvoiceLine: Record "Sales Invoice Line";
-    begin
-        // SalesLine."Billing Code" := VertriebEinrRec."Billing Code";
-        SalesLine."lbtbn Bonus Entry No." := BillingEntry;
-        if TableID <> 0 then
-            case TableID of
-                Database::"Sales Invoice Line":
-                    begin
-                        SalesInvoiceLine.Get(DocNo, DocLineNo);
-                        SalesLine."Shortcut Dimension 1 Code" := SalesInvoiceLine."Shortcut Dimension 1 Code";
-                        SalesLine."Shortcut Dimension 2 Code" := SalesInvoiceLine."Shortcut Dimension 2 Code";
-                        SalesLine."Dimension Set ID" := SalesInvoiceLine."Dimension Set ID";
-                    end;
-                Database::"Sales Cr.Memo Line":
-                    begin
-                        SalesCrMemoLine.Get(DocNo, DocLineNo);
-                        SalesLine."Shortcut Dimension 1 Code" := SalesCrMemoLine."Shortcut Dimension 1 Code";
-                        SalesLine."Shortcut Dimension 2 Code" := SalesCrMemoLine."Shortcut Dimension 2 Code";
-                        SalesLine."Dimension Set ID" := SalesCrMemoLine."Dimension Set ID";
-                    end;
-            end
-#pragma warning disable AA0005 // TODO:
-        else begin
-            // SalesLine."Dimension Set ID" := CreateDimSetID("Bonus Contract".Contract);
-            // DimMgt.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID",
-            //                                      SalesLine."Shortcut Dimension 1 Code",
-            //                                       SalesLine."Shortcut Dimension 2 Code");
-        end;
-#pragma warning restore AA0005 // TODO:
-        if SalesHeader."Shortcut Dimension 1 Code" <> '' then
-            SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
-    end;
-    #endregion SetDimensions
 
     #region CreateItemChargeForBillingTypePercent
     local procedure CreateItemChargeForBillingTypePercent(DocAmt: Decimal; BonusSumme: Decimal; TableId: Integer; var SalesLine: Record "Sales Line") Zusatz: Text
@@ -501,7 +469,8 @@ codeunit 5266060 "lbtbn Create Bonus"
             Amt,              //Betrag inkl. Vat
             DocAmt,         //Belegbetrag
             DiscAmount,
-            PmtDiscAmount);
+            PmtDiscAmount,
+            I.GetDimensionSetId());
 
         GenJournalLine.Reset();
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
@@ -531,33 +500,13 @@ codeunit 5266060 "lbtbn Create Bonus"
         GenJournalLine."Reason Code" := BonusSetup."Reason Code";
         GenJournalLine."Dimension Set ID" := I.GetDimensionSetId();
         if GenJournalLine."Dimension Set ID" = 0 then
-            GenJournalLine."Dimension Set ID" := CreateDimSetID();
+            GenJournalLine."Dimension Set ID" := BonusContract."Dimension Set ID";
         DimensionManagement.UpdateGlobalDimFromDimSetID(GenJournalLine."Dimension Set ID",
                                              GenJournalLine."Shortcut Dimension 1 Code",
                                               GenJournalLine."Shortcut Dimension 2 Code");
         GenJournalLine.Insert();
     end;
     #endregion CreateJournalLine
-
-    #region CreateDimSetID
-    local procedure CreateDimSetID(): Integer
-    var
-        TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
-        BonusContractDimensions: Record "lbtbn Bonus Contract Dimension";
-        DimensionManagement: Codeunit DimensionManagement;
-    begin
-        BonusContractDimensions.SetRange(Contract, BonusContract."No.");
-        if BonusContractDimensions.FindSet() then
-            repeat
-                TempDimensionSetEntry.Init();
-                TempDimensionSetEntry."Dimension Code" := BonusContractDimensions."Dimension Code";
-                TempDimensionSetEntry.Validate("Dimension Value Code", BonusContractDimensions."Dimension Value");
-                if TempDimensionSetEntry.Insert() then;
-            until BonusContractDimensions.Next() = 0;
-
-        exit(DimensionManagement.GetDimensionSetID(TempDimensionSetEntry));
-    end;
-    #endregion CreateDimSetID
 
     #region CreateForReserveMode_CreditMemo
     local procedure CreateForReserveMode_CreditMemo(Qty: Decimal; BonusAmt: Decimal; PmtDiscAmt: Decimal; DocAmount: Decimal; DiscAmt: Decimal)
@@ -595,7 +544,8 @@ codeunit 5266060 "lbtbn Create Bonus"
                                 BonusAmt,
                                 DocAmount,
                                 -DiscAmt,
-                                -PmtDiscAmt);
+                                -PmtDiscAmt,
+                                SalesLine."Dimension Set ID");
             SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
             SalesLine.Modify();
         end;
@@ -606,7 +556,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     local procedure AddItemChargeToSalesLine(var SalesLine: Record "Sales Line"; DocAmount: Decimal; BonusAmount: Decimal)
     var
         ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
-        ItemLedgerEntry: Record "Item Ledger Entry";
+        ItemLedgerEntryL: Record "Item Ledger Entry";
     begin
         ItemChargeAssignmentSales.Init();
         ItemChargeAssignmentSales."Document Type" := SalesLine."Document Type";
@@ -617,9 +567,9 @@ codeunit 5266060 "lbtbn Create Bonus"
 
         ItemChargeAssignmentSales."Applies-to Doc. Type" := I.GetAppliesToDocType();
         ItemChargeAssignmentSales."Applies-to Doc. Line Amount" := DocAmount;
-        ItemLedgerEntry := GetItemLedgerEntry();
-        ItemChargeAssignmentSales."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
-        ItemChargeAssignmentSales."Applies-to Doc. Line No." := ItemLedgerEntry."Document Line No.";
+        ItemLedgerEntryL := GetItemLedgerEntry();
+        ItemChargeAssignmentSales."Applies-to Doc. No." := ItemLedgerEntryL."Document No.";
+        ItemChargeAssignmentSales."Applies-to Doc. Line No." := ItemLedgerEntryL."Document Line No.";
         ItemChargeAssignmentSales."Unit Cost" := BonusAmount;
         ItemChargeAssignmentSales.Validate("Qty. to Assign", 1);
         ItemChargeAssignmentSales.Insert();
@@ -806,7 +756,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                                    1, PostingDate, 0,
                                    0, SalesLine.Amount, 0,
                                    SalesLine.Amount,
-                                   0, 0);
+                                   0, 0, SalesLine."Dimension Set ID");
         SalesLine."lbt Process No." := BonusContract."Process No.";
         SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
         SalesLine.Modify();

@@ -63,7 +63,8 @@ codeunit 5266052 "lbtbn Bonus Management"
                                         AmtIncVAT: Decimal;
                                         DocAmt: Decimal;
                                         DiscAmt: Decimal;
-                                        PmtDiscAmt: Decimal
+                                        PmtDiscAmt: Decimal;
+                                        DimSetId: Integer
     ): Integer
     var
         EntryNo: Integer;
@@ -99,6 +100,7 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Assignment Doc. Line No." := AssignmentDocLineNo;
         BonusEntry."Pmt. Discount Amount" := PmtDiscAmt;
         BonusEntry."Discount Amount" := DiscAmt;
+        BonusEntry."Dimension Set ID" := GetCombinedDimensionSetId(DimSetId, BonusContract."Dimension Set ID");
         BonusEntry.Insert();
 
         exit(BonusEntry."Entry No.");
@@ -127,57 +129,63 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
     #endregion UpdateFromGenLedgEntry
 
+    local procedure GetCombinedDimensionSetId(DimSetId1: Integer; DimSetId2: Integer): Integer
+    var
+        DimensionManagement: Codeunit DimensionManagement;
+        Dummy1: Code[20];
+        Dummy2: Code[20];
+        DimSetIds: array[10] of Integer;
+    begin
+        DimSetIds[1] := DimSetId1;
+        DimSetIds[2] := DimSetId2;
+
+        exit(DimensionManagement.GetCombinedDimensionSetID(DimSetIds, Dummy1, Dummy2));
+    end;
+
     #region EventSubscriber Page Navigate onAfterInsertDocEntries 
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
     var
         BonusContract: Record "lbtbn Bonus Contract";
-        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusEntryL: Record "lbtbn Bonus Entry";
         Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
         Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
-        BonusEntry.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntry.TableCaption(), BonusEntry.Count());
+        BonusEntryL.SetRange("Process No.", ProcessNo);
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntryL.TableCaption(), BonusEntryL.Count());
     end;
     #endregion EventSubscriber Page Navigate onAfterInsertDocEntries 
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnPostSalesLineOnAfterTestUpdatedSalesLine', '', false, false)]
     local procedure OnPostSalesLineOnAfterTestUpdatedSalesLine(var SalesLine: Record "Sales Line"; var EverythingInvoiced: Boolean; SalesHeader: Record "Sales Header");
     var
-        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusEntryL: Record "lbtbn Bonus Entry";
     begin
         if SalesLine."lbtbn Bonus Entry No." = 0 then
             exit;
-        if not BonusEntry.Get(SalesLine."lbtbn Bonus Entry No.") then
+        if not BonusEntryL.Get(SalesLine."lbtbn Bonus Entry No.") then
             exit;
 
         case SalesLine."Document Type" of
             SalesLine."Document Type"::Invoice:
-                BonusEntry."Posted Amount" := -SalesLine."Line Amount";
+                BonusEntryL."Posted Amount" := -SalesLine."Line Amount";
             SalesLine."Document Type"::"Credit Memo":
-                BonusEntry."Posted Amount" := SalesLine."Line Amount";
+                BonusEntryL."Posted Amount" := SalesLine."Line Amount";
         end;
-        BonusEntry.Modify();
+        BonusEntryL.Modify();
     end;
 
     var
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusSetup: Record "lbtbn Bonus Setup";
-
         AssignmentDocType: Option;
         AssignmentDocNo: Code[20];
         AssignmentDocLineNo: Integer;
-
         SourceDocType: Enum "lbtbn Document Type";
         SourceDocNo: Code[20];
         SourceDocLineNo: Integer;
-
         BonusDocType: Integer;
         BonusDocNo: Code[20];
         BonusDocLineNo: Integer;
-
-
-
-
 }

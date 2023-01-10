@@ -88,6 +88,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Description - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 3322554545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Set ID</source>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionssatz-ID"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Dimension Set ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 3310956332 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discount %</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -117,11 +122,6 @@
           <source>No. of Customers</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field No. of Customers - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 862970583 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Dimensions</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field No. of Dimensions - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 4123040019 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source>
@@ -167,26 +167,6 @@
           <source>Valid to</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Valid to - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Contract Dimensions</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Field 389783846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Contract</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Field Contract - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Field 2623957639 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension Code</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Field Dimension Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Field 1468132285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension Value</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Field Dimension Value - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3190487353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>
@@ -1023,15 +1003,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Customer - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 881177948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.</source>
+        <trans-unit id="Page 4123040019 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimension - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimensions - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 881177948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension</source>
+        <trans-unit id="Page 4123040019 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimensions</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimension - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimensions - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 3538210097 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).</source>
@@ -1093,26 +1073,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Reservation - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1837915587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Contract Dimensions</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>General</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Control General - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Control 2623957639 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You can define default dimensions for the provision for each contract.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Control Dimension Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Control 1468132285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can define the departments or the Value of the dimensions.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Control Dimension Value - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 2625601096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Details</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1152,11 +1112,6 @@
           <source>Indicates the number of customers.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control No. of Customer - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2625601096 - Control 862970583 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Indicates the number of dimensions.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control No. of Dimensions - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3190487353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Line</source>
@@ -1253,15 +1208,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Customer - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 881177948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.</source>
+        <trans-unit id="Page 300417342 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimension - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimensions - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 881177948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension</source>
+        <trans-unit id="Page 300417342 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimensions</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimension - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimensions - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 300417342 - Action 3538210097 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).</source>
