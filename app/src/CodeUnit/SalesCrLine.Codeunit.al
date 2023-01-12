@@ -20,7 +20,7 @@ codeunit 5266062 "lbtbn Sales Cr.Line" implements "lbtbn I"
 
     procedure GetAmount(): Decimal
     begin
-        exit(SalesCrMemoLine.Amount);
+        exit(-SalesCrMemoLine.Amount);
     end;
 
     procedure DocumentNo(): Code[20]
@@ -59,7 +59,7 @@ codeunit 5266062 "lbtbn Sales Cr.Line" implements "lbtbn I"
 
     procedure Quantity(): Decimal
     begin
-        exit(SalesCrMemoLine.Quantity);
+        exit(-SalesCrMemoLine.Quantity);
     end;
 
     procedure Sign(): Decimal

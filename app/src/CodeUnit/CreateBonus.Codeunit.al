@@ -372,8 +372,14 @@ codeunit 5266060 "lbtbn Create Bonus"
             ValueEntry.SetRange("Document Line No.", LineNo);
             if not ValueEntry.FindFirst() then exit(false);
             if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then exit(false);
-            if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
-                exit(true);
+            case TableNo of
+                Database::"Sales Invoice Line":
+                    if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
+                        exit(true);
+                Database::"Sales Cr.Memo Line":
+                    if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Return Receipt" then
+                        exit(true);
+            end;
         end;
     end;
     #endregion CheckValueEntry
@@ -804,7 +810,7 @@ codeunit 5266060 "lbtbn Create Bonus"
 
         UpdateDocAmountFromValueEntry(DocAmount);
 
-        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, I.Sign() * BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, BonusAmt, I.Quantity());
+        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, BonusAmt, I.Quantity());
 
         if BonusAmt = 0 then
             exit;
