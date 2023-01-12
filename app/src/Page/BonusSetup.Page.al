@@ -44,7 +44,7 @@ page 5266051 "lbtbn Bonus Setup"
                     trigger OnValidate()
 
                     begin
-                        SetEnabledOnAfterValidate();
+                        EnabledFields();
                     end;
                     #endregion OnValidate
                 }
@@ -121,20 +121,6 @@ page 5266051 "lbtbn Bonus Setup"
         ReserveMode_Journal: Boolean;
         ReserveMode_CreditMemo: Boolean;
 
-    #region SetEnabledOnAfterValidate
-    local procedure SetEnabledOnAfterValidate()
-    begin
-        EnabledFields();
-    end;
-    #endregion SetEnabledOnAfterValidate
-
-    #region SetEnabledOnOpenPage
-    local procedure SetEnabledOnOpenPage()
-    begin
-        EnabledFields();
-    end;
-    #endregion SetEnabledOnOpenPage
-
     #region EnabledFields
     local procedure EnabledFields()
     begin
@@ -143,11 +129,11 @@ page 5266051 "lbtbn Bonus Setup"
     end;
     #endregion EnabledFields
 
-    #region OnOpenPage
-    trigger OnOpenPage()
+    #region OnAfterGetRecord
+    trigger OnAfterGetRecord()
     begin
-        SetEnabledOnOpenPage();
+        EnabledFields();
     end;
-    #endregion OnOpenPage
+    #endregion OnAfterGetRecord
 
 }
