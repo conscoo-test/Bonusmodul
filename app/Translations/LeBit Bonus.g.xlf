@@ -693,6 +693,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType CrMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType InvoiceLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3086667624 - Method 4077369804 - NamedType 2437958988" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Fixed Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
