@@ -843,12 +843,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType InvoiceLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3086667624 - Method 4077369804 - NamedType 2437958988" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Fixed Amount</source>
-          <target>Bonusfestbetrag</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Fixed Amount - Method GetDescription - NamedType FixedAmountLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo</source>
           <target>Gutschrift</target>
@@ -938,18 +932,6 @@
           <target>Das Buchungsdatum der Rückstellungsauflösung liegt nicht im zugelassenen Buchungszeitraum.</target>
           <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType PostingDateErr</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 353387449 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Credit Memo </source>
-          <target>Gutschrift </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Sales Cr.Line - Method GetDescription - NamedType CrMemoLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3515037811 - Method 4077369804 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice </source>
-          <target>Rechnung </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Sales Invoice Line - Method GetDescription - NamedType InvoiceLbl</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>

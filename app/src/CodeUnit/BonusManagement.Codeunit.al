@@ -20,28 +20,6 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
     #endregion SetSourceDoc
 
-    procedure SetSourceDoc(I: Interface "lbtbn I")
-    begin
-        I.GetSourceDoc(SourceDocType, SourceDocNo, SourceDocLineNo);
-    end;
-
-    #region SetSourceDoc
-    procedure SetSourceDoc(TableNo: Integer; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
-    begin
-        case TableNo of
-            0:
-                SourceDocType := SourceDocType::" ";
-            Database::"Sales Invoice Header", Database::"Sales Invoice Line":
-                SourceDocType := SourceDocType::"Sales Invoice";
-            Database::"Sales Cr.Memo Header", Database::"Sales Cr.Memo Line":
-                SourceDocType := SourceDocType::"Sales Credit Memo";
-        end;
-
-        SourceDocNo := SourceDocNoP;
-        SourceDocLineNo := SourceDocLineNoP;
-    end;
-    #endregion SetSourceDoc
-
     #region SetBonusDoc
     procedure SetBonusDoc(BonusDocTypeP: Integer; BonusDocNoP: Code[20]; BonusDocLineNoP: Integer)
     begin

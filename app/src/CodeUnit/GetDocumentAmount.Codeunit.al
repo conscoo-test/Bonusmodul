@@ -23,7 +23,6 @@ codeunit 5266059 "lbtbn Get Document Amount"
     local procedure GetQuantityAndAmountInvoice(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
-        CreateBonus: Codeunit "lbtbn Create Bonus";
         LineAmount: Decimal;
     begin
         SalesInvoiceLine.SetRange("Document No.", No);
@@ -33,7 +32,7 @@ codeunit 5266059 "lbtbn Get Document Amount"
                 if CheckItemMeth.CheckItem(BonusContractNo, SalesInvoiceLine."No.") then begin
                     Quantity += SalesInvoiceLine.Quantity;
                     LineAmount := SalesInvoiceLine.Amount;
-                    CreateBonus.UpdateDocAmountFromValueEntry(
+                    UpdateDocAmountFromValueEntry(
                                 Database::"Sales Invoice Line",
                                 SalesInvoiceLine."Document No.",
                                 SalesInvoiceLine."Line No.",
@@ -48,7 +47,6 @@ codeunit 5266059 "lbtbn Get Document Amount"
     local procedure GetQuantityAndAmountCrMemo(var Quantity: Decimal; var Amount: Decimal; No: Code[20])
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
-        CreateBonus: Codeunit "lbtbn Create Bonus";
         LineAmount: Decimal;
     begin
         SalesCrMemoLine.SetRange("Document No.", No);
@@ -58,7 +56,7 @@ codeunit 5266059 "lbtbn Get Document Amount"
                 if CheckItemMeth.CheckItem(BonusContractNo, SalesCrMemoLine."No.") then begin
                     Quantity -= SalesCrMemoLine.Quantity;
                     LineAmount := -SalesCrMemoLine.Amount;
-                    CreateBonus.UpdateDocAmountFromValueEntry(
+                    UpdateDocAmountFromValueEntry(
                                 Database::"Sales Cr.Memo Line",
                                 SalesCrMemoLine."Document No.",
                                 SalesCrMemoLine."Line No.",
@@ -69,4 +67,27 @@ codeunit 5266059 "lbtbn Get Document Amount"
     end;
     #endregion GetQuantityAndAmountCrMemo
 
+    #region UpdateDocAmountFromValueEntry
+    procedure UpdateDocAmountFromValueEntry(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; var DocAmount: Decimal)
+    var
+        ValueEntry: Record "Value Entry";
+        CreateBonus: Codeunit "lbtbn Create Bonus";
+    begin
+        ValueEntry.Reset();
+        ValueEntry.SetCurrentKey("Document No.");
+        case TableNo of
+            Database::"Sales Invoice Line":
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+            Database::"Sales Cr.Memo Line":
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+        end;
+        ValueEntry.SetRange("Document No.", DocNo);
+        ValueEntry.SetRange("Document Line No.", DocLineNo);
+        if ValueEntry.FindSet() then
+            repeat
+                if ValueEntry."Sales Amount (Actual)" <> 0 then
+                    DocAmount += CreateBonus.AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
+            until ValueEntry.Next() = 0;
+    end;
+    #endregion UpdateDocAmountFromValueEntry
 }

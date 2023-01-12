@@ -3,6 +3,7 @@ page 5266065 "lbtbn Bonus Items"
     PageType = List;
     SourceTable = "lbtbn Bonus Item";
     Caption = 'Bonus Items';
+    UsageCategory = None;
 
     layout
     {

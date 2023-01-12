@@ -37,10 +37,7 @@ report 5266054 "lbtbn Bonus Reservation"
             column(UserId; UserId())
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PageNo)
-            {
-            }
-            column(COMPANYNAME; COMPANYNAME)
+            column(COMPANYNAME; CompanyName())
             {
             }
             column(LBText001______GETFILTER_Date_; Text001 + ' ' + GetFilter("Entry Date"))

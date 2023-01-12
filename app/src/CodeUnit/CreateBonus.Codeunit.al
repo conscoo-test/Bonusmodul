@@ -7,10 +7,8 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemLedgerEntry: Record "Item Ledger Entry";
         BonusContractLine: Record "lbtbn Bonus Contract Line";
         SalesHeader: Record "Sales Header";
-
         SalesInvoiceLineG: Record "Sales Invoice Line" temporary;
         CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
-
         PostingDate: Date;
         DateFrom: Date;
         DateTo: Date;
@@ -21,6 +19,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         Sign: Integer;
         SourceDocType: Enum "lbtbn Document Type";
         CrMemoHeaderCreated: Boolean;
+
     #region SetBonusContract
     procedure SetBonusContract(BonusContract2: Record "lbtbn Bonus Contract")
     begin
@@ -360,15 +359,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
-            ValueEntry.SetCurrentKey("Document No.");
-            ValueEntry.SetRange("Document No.", SalesInvoiceLineG."Document No.");
-            case Sign of
-                1:
-                    ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-                -1:
-                    ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
-            end;
-            ValueEntry.SetRange("Document Line No.", SalesInvoiceLineG."Line No.");
+            Filter(ValueEntry);
             if not ValueEntry.FindFirst() then exit(false);
             if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then exit(false);
             exit(Matches(ItemLedgerEntry));
@@ -382,14 +373,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         ValueEntry.Reset();
         ValueEntry.SetCurrentKey("Document No.");
-        case Sign of
-            1:
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-            -1:
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
-        end;
-        ValueEntry.SetRange("Document No.", SalesInvoiceLineG."Document No.");
-        ValueEntry.SetRange("Document Line No.", SalesInvoiceLineG."Line No.");
+        Filter(ValueEntry);
         if ValueEntry.FindSet() then
             repeat
                 if ValueEntry."Sales Amount (Actual)" <> 0 then
@@ -397,28 +381,6 @@ codeunit 5266060 "lbtbn Create Bonus"
             until ValueEntry.Next() = 0;
     end;
 
-    #region UpdateDocAmountFromValueEntry
-    procedure UpdateDocAmountFromValueEntry(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; var DocAmount: Decimal)
-    var
-        ValueEntry: Record "Value Entry";
-    begin
-        ValueEntry.Reset();
-        ValueEntry.SetCurrentKey("Document No.");
-        case TableNo of
-            Database::"Sales Invoice Line":
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-            Database::"Sales Cr.Memo Line":
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
-        end;
-        ValueEntry.SetRange("Document No.", DocNo);
-        ValueEntry.SetRange("Document Line No.", DocLineNo);
-        if ValueEntry.FindSet() then
-            repeat
-                if ValueEntry."Sales Amount (Actual)" <> 0 then
-                    DocAmount += AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
-            until ValueEntry.Next() = 0;
-    end;
-    #endregion UpdateDocAmountFromValueEntry
 
     procedure CreateReserve(SalesCrMemoLine: Record "Sales Cr.Memo Line")
     begin
@@ -519,16 +481,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusEntryNo: Integer;
     begin
         BonusContract.TestField("Reserve Item Charge");
-        ValueEntry.Reset();
-        ValueEntry.SetCurrentKey("Document No.");
-        case Sign of
-            1:
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-            -1:
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
-        end;
-        ValueEntry.SetRange("Document No.", SalesInvoiceLineG."Document No.");
-        ValueEntry.SetRange("Document Line No.", SalesInvoiceLineG."Line No.");
+        Filter(ValueEntry);
         if not ValueEntry.FindFirst() then
             exit;
         if not l_ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
@@ -587,14 +540,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     var
         ValueEntry: Record "Value Entry";
     begin
-        case Sign of
-            1:
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-            -1:
-                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
-        end;
-        ValueEntry.SetRange("Document No.", SalesInvoiceLineG."Document No.");
-        ValueEntry.SetRange("Document Line No.", SalesInvoiceLineG."Line No.");
+        Filter(ValueEntry);
         ValueEntry.FindFirst();
         ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.");
     end;
@@ -681,7 +627,7 @@ codeunit 5266060 "lbtbn Create Bonus"
 
 
     #region AddConsideredItemCharges
-    local procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
+    procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
     var
         ItemCharge: Record "Item Charge";
         ValueEntry: Record "Value Entry";
@@ -739,12 +685,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     internal procedure CreateReserveFixed()
     var
         SalesLine: Record "Sales Line";
-        FixedAmount: Codeunit "lbtbn Fixed Amount";
-
     begin
         BonusSetup.Get();
-        // I := FixedAmount; //TODO: 
-        FixedAmount.SetCustomerNo(CustomerNo);
         case BonusSetup."Reserve Mode" of
             BonusSetup."Reserve Mode"::CreditMemo:
                 begin
@@ -894,6 +836,18 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesInvoiceLineG.TransferFields(SalesInvoiceLine);
         Sign := 1;
         SourceDocType := SourceDocType::"Sales Invoice";
+    end;
+
+    local procedure Filter(var ValueEntry: Record "Value Entry")
+    begin
+        case Sign of
+            1:
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+            -1:
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+        end;
+        ValueEntry.SetRange("Document No.", SalesInvoiceLineG."Document No.");
+        ValueEntry.SetRange("Document Line No.", SalesInvoiceLineG."Line No.");
     end;
 
 
