@@ -10,9 +10,10 @@
     "installTestFramework": true,
     "installTestLibraries": true,
     "enableCodeCop": true,
-    "enableAppSourceCop": false,
+    "enableAppSourceCop": true,
     "enablePerTenantExtensionCop": false,
     "enableUICop": true,
+    "appSourceCopMandatoryAffixes": "lbtbn",
     "versions": [
         {
             "version": "current",

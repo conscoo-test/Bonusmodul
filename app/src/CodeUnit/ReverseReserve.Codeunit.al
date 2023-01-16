@@ -6,6 +6,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusSetup: Record "lbtbn Bonus Setup";
     begin
+        BonusSetup.Get();
         if BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::CreditMemo then
             exit;
 
@@ -154,7 +155,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader.Reset();
         SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.", "No.");
         SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Invoice);
-        SalesHeader.SetRange("Sell-to Customer No.", BonusSetup."Customer Statistic Postings");
+        SalesHeader.SetRange("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
         SalesHeader.SetRange("lbt Process No.", BonusContract."Process No.");
         if SalesHeader.FindSet() then
             repeat
