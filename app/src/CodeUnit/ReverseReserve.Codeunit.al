@@ -177,6 +177,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader."Gen. Bus. Posting Group" := BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo";
         SalesHeader."Posting Description" := PostingDescriptionTxt;
         SalesHeader."Posting Date" := DateTo;
+        SalesHeader."Posting No." := SalesHeader."No.";
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader.Modify();
         InvoiceHeaderCreated := true;

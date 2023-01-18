@@ -612,6 +612,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         // Validate("Gen. Bus. Posting Group", BonusSetupRec."Bus.Post.Gr.f.Res.Cr.Memo");
         // Validate("Customer Posting Group", BonusSetupRec."Cust Gr. Reserve Cr. Memo");
         SalesHeader."Posting Description" := BonusReserveLbl;
+        SalesHeader."Posting No." := SalesHeader."No.";
         PostingDate := DateTo;
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader.Modify();
