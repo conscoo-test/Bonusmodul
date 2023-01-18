@@ -218,6 +218,7 @@ codeunit 52050 "lbtbn Bonus Run Test"
         BonusSetup.Init();
         BonusSetup."Reserve Mode" := BonusSetup."Reserve Mode"::CreditMemo;
         BonusSetup."Reserve Cr.Memo Nos." := CreateNoSeriesAndLine();
+        BonusSetup."Billing Cr.Memo Nos." := CreateNoSeriesAndLine();
         BonusSetup.Modify();
     end;
     #endregion InitBonusSetupForCrMemo
