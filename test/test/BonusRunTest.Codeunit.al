@@ -3,6 +3,24 @@ codeunit 52050 "lbtbn Bonus Run Test"
     Subtype = Test;
 
     [Test]
+    [HandlerFunctions('HandleBonusRequestPage,HandleSalesCrMemoPage')]
+    procedure SalesReturnOrderWithAssignedItemCharge_CreditMemo()
+    var
+        Amount: Decimal;
+    begin
+        //GIVEN
+        Init(true);
+        Amount := PostReturnOrder();
+
+        //WHEN
+        ExecuteBonusRun();
+
+        //THEN
+        ValidateCreditMemoCreated(Amount, 0);
+        ValidateBonusEntryCreated(Amount, 0);
+    end;
+
+    [Test]
     #region CreditMemo_From_Invoice
     [HandlerFunctions('HandleBonusRequestPage,HandleSalesCrMemoPage')]
     procedure CreditMemo_From_Invoice()
@@ -269,6 +287,50 @@ codeunit 52050 "lbtbn Bonus Run Test"
         BonusRun.Run();
     end;
     #endregion ExecuteBonusRun
+
+    #region ValidateBonusEntryCreated
+    local procedure ValidateBonusEntryCreated(Amount: Decimal; Quantity: Decimal): Decimal
+    var
+        BonusEntry: Record "lbtbn Bonus Entry";
+        Expected: Decimal;
+    begin
+        Expected := GetExpectedAmount(Amount, Quantity);
+        BonusEntry.SetRange(Contract, BonusContract."No.");
+        Assert.AreEqual(1, BonusEntry.Count(), 'one bonus entry created');
+        BonusEntry.FindFirst();
+        Assert.AreNearlyEqual(Expected, BonusEntry."Calculated Amount", 0.005, '');
+        exit(BonusEntry."Calculated Amount");
+    end;
+    #endregion ValidateBonusEntryCreated
+
+    local procedure PostReturnOrder() Amount: Decimal
+    var
+        SalesHeader: Record "Sales Header";
+        ItemCharge: Record "Item Charge";
+        Item: Record Item;
+        SalesLine: Record "Sales Line";
+        SalesLine2: Record "Sales Line";
+        ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
+        DocNo: Code[20];
+    begin
+        LibrarySales.CreateSalesHeader(SalesHeader, SalesHeader."Document Type"::"Return Order", Customer."No.");
+        LibraryInventory.CreateItemWithUnitPriceAndUnitCost(
+          Item, LibraryRandom.RandDecInRange(1, 100, 2), LibraryRandom.RandDecInRange(1, 100, 2));
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, SalesLine.Type::Item, Item."No.", LibraryRandom.RandInt(100));
+        LibraryInventory.CreateItemCharge(ItemCharge);
+        ItemCharge."lbtbn Bonus consider" := true;
+        ItemCharge.Modify();
+        LibrarySales.CreateSalesLine(SalesLine2, SalesHeader, SalesLine.Type::"Charge (Item)", ItemCharge."No.", 1);
+        SalesLine2.Validate("Unit Price", 500);
+        SalesLine2.Modify();
+        LibrarySales.CreateItemChargeAssignment(ItemChargeAssignmentSales, SalesLine2, ItemCharge, "Sales Document Type"::"Return Order", SalesHeader."No.", SalesLine."Line No.", SalesLine."No.", 1, SalesLine2."Unit Price");
+        ItemChargeAssignmentSales.Insert();
+
+        DocNo := LibrarySales.PostSalesDocument(SalesHeader, true, true);
+        SalesCrMemoLine.SetRange("Document No.", DocNo);
+        SalesCrMemoLine.FindFirst();
+        Amount := -(SalesLine."Line Amount" + SalesLine2."Line Amount");
+    end;
 
     var
         BonusSetup: Record "lbtbn Bonus Setup";

@@ -69,7 +69,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         if not CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLineG."No.") then
             exit;
-        DocAmount := GetDocAmount(SalesInvoiceLineG.Amount);
+        DocAmount := Sign * GetDocAmount(SalesInvoiceLineG.Amount);
         UpdateDocAmountFromValueEntry(DocAmount);
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, DiscAmt, PmtDiscAmt, BonusAmount, Sign * SalesInvoiceLineG.Quantity);
         CreateCreditMemo(DocAmount, DiscAmt, PmtDiscAmt, BonusAmount);
@@ -151,10 +151,11 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.");
         SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
         SalesHeader.SetRange("Sell-to Customer No.", GetCustCode());
+        SalesHeader.SetRange("lbt Process No.", BonusContract."Process No.");
         SalesHeader.SetRange("Document Date", PostingDate);
         SalesHeader.SetRange("Posting Description", BonusCreditMemoLbl);
         if not SalesHeader.FindFirst() then begin
-            InitSalesHeader();
+            InitSalesHeaderBilling();
             CreateTextLine(10000, StrSubstNo(BonusSettlementTxt, BonusContract."No."));
             CreateTextLine(20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
         end;
@@ -169,11 +170,18 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion GetCustCode
 
     #region InitSalesHeader
-    local procedure InitSalesHeader()
+    local procedure InitSalesHeaderBilling()
+    var
+        NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
+        BonusSetup.Get();
         SalesHeader.Init();
         SalesHeader."Document Type" := SalesHeader."Document Type"::"Credit Memo";
-        SalesHeader."No." := '';
+        SalesHeader."No. Series" := BonusSetup."Billing Cr.Memo Nos.";
+        SalesHeader."Posting No. Series" := BonusSetup."Billing Cr.Memo Nos.";
+        SalesHeader."Shipping No. Series" := BonusSetup."Billing Cr.Memo Nos.";
+        SalesHeader."Return Receipt No. Series" := BonusSetup."Billing Cr.Memo Nos.";
+        SalesHeader."No." := NoSeriesManagement.GetNextNo(SalesHeader."No. Series", WorkDate(), true);
         SalesHeader.Insert(true);
         SalesHeader.Correction := false;
         SalesHeader.SetHideValidationDialog(true);

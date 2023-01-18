@@ -176,7 +176,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader."Customer Posting Group" := BonusSetup."Cust Gr. Reserve Cr. Memo";
         SalesHeader."Gen. Bus. Posting Group" := BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo";
         SalesHeader."Posting Description" := PostingDescriptionTxt;
-        SalesHeader."Posting Date" := 0D;
+        SalesHeader."Posting Date" := DateTo;
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader.Modify();
         InvoiceHeaderCreated := true;
@@ -202,11 +202,16 @@ codeunit 5266056 "lbtbn Reverse Reserve"
 
     #region ReverseBonusEntries
     procedure ReverseBonusEntries(var BonusEntry: Record "lbtbn Bonus Entry"; DateFrom: Date; DateTo: Date)
+    var
+        PageManagement: Codeunit "Page Management";
     begin
         if BonusEntry.FindSet() then
             repeat
                 ReverseBonusEntry(DateFrom, DateTo, BonusEntry);
             until BonusEntry.Next() = 0;
+
+        if InvoiceHeaderCreated then
+            PageManagement.PageRun(SalesHeader);
     end;
     #endregion ReverseBonusEntries
 

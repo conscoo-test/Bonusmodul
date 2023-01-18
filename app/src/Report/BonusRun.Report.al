@@ -97,9 +97,8 @@ report 5266052 "lbtbn Bonus Run"
                 Clear(Quantity);
                 Clear(Amount);
                 CheckFilters();
-                if "Bonus Contract"."Last Billing at" <> 0D then
-                    if (PostingDate < CalcDate('+' + Format("Bonus Contract"."Billing Period"), "Bonus Contract"."Last Billing at")) then
-                        CurrReport.Skip();
+                if not CheckDates() then
+                    CurrReport.Skip();
 
                 FindDocumentNos.FindDocumentNos("Bonus Contract"."No.", InvoiceNos, CrMemoNos, DateFrom, DateTo);
                 GetDocumentAmount.AddQuantityAndAmount(Quantity, Amount, InvoiceNos, CrMemoNos, CheckItemMeth, "Bonus Contract"."No.");
@@ -203,6 +202,18 @@ report 5266052 "lbtbn Bonus Run"
             Error(CheckLbl, BonusItem.TableCaption, "Bonus Contract"."No.");
     end;
 
+    #region CheckDates
+    local procedure CheckDates(): Boolean
+    begin
+        if (PostingDate < "Bonus Contract"."Valid from") or (("Bonus Contract"."Valid to" <> 0D) and (PostingDate > "Bonus Contract"."Valid to")) then
+            exit(false);
+
+        if "Bonus Contract"."Last Billing at" <> 0D then
+            if (PostingDate < CalcDate('+' + Format("Bonus Contract"."Billing Period"), "Bonus Contract"."Last Billing at")) then
+                exit(false);
+        exit(true);
+    end;
+    #endregion CheckDates
 
     var
         BonusContractLine: Record "lbtbn Bonus Contract Line";
