@@ -7,108 +7,118 @@ report 5266052 "lbtbn Bonus Run"
 
     dataset
     {
+        #region dataitem
         dataitem("Bonus Contract"; "lbtbn Bonus Contract")
         {
+            RequestFilterFields = "No.";
 
-            dataitem("Bonus Customer"; "lbtbn Bonus Customer")
+            #region dataitems
+            dataitem(Invoices; Integer)
             {
-                DataItemLink = "Contract" = field("No.");
+                DataItemTableView = sorting(Number);
 
-                dataitem("Sales Invoice Header"; "Sales Invoice Header")
-                {
-                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
+                #region OnAfterGetRecord
+                trigger OnAfterGetRecord()
+                var
+                    SalesInvoiceHeader: Record "Sales Invoice Header";
+                    SalesInvoiceLine: Record "Sales Invoice Line";
+                begin
+                    SalesInvoiceHeader.Get(InvoiceNos.Get(Number));
+                    Dialog.Update(3, SalesInvoiceHeader."No.");
+                    CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
+                    SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
+                    SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
+                    if SalesInvoiceLine.FindSet() then
+                        repeat
+                            CreateBonus.CreateBonus(SalesInvoiceLine);
+                        until SalesInvoiceLine.Next() = 0;
+                end;
+                #endregion OnAfterGetRecord
 
-                    dataitem("Sales Invoice Line"; "Sales Invoice Line")
-                    {
-                        DataItemLink = "Document No." = field("No.");
-
-                        trigger OnPreDataItem()
-                        begin
-                            //TODO:
-                            //SetFilter("No.", '<>%1', "Bonus Contract"."Billing Item");
-                            BonusAmount := 0;
-                        end;
-
-                        trigger OnAfterGetRecord()
-                        var
-                            ValueEntry: Record "Value Entry";
-                            ItemLedgerEntry: Record "Item Ledger Entry";
-                            DocAmount: Decimal;
-                            PmtDiscAmt: Decimal;
-                            DiscAmt: Decimal;
-                        begin
-                            DocAmount := GetDocAmount("Sales Invoice Line".Amount);
-                            //UpdateDocAmountFromValueEntry();
-                            case "Bonus Contract"."Bonus Billing Type" of
-                                "Bonus Contract"."Bonus Billing Type"::"%":
-                                    begin
-                                        if "Bonus Contract"."Pmt. Discount %" <> 0 then
-                                            PmtDiscAmt := DocAmount * "Bonus Contract"."Pmt. Discount %" / 100;
-                                        if "Bonus Contract"."Discount %" <> 0 then
-                                            DiscAmt := (DocAmount - PmtDiscAmt) * "Bonus Contract"."Discount %" / 100;
-                                        BonusAmount := Round((DocAmount - PmtDiscAmt - DiscAmt) * BonusContractLine."Value" / 100, 0.01);
-
-                                        if BonusAmount <> 0 then
-                                            if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
-                                                ValueEntry.SetCurrentKey("Document No.");
-                                                ValueEntry.SetRange("Document No.", "Document No.");
-                                                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-                                                ValueEntry.SetRange("Document Line No.", "Line No.");
-                                                if ValueEntry.FindFirst() then
-                                                    if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
-                                                        if ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment" then
-                                                            CreateSalesCreditMemo2();
-                                            end;
-                                    end;
-                                "Bonus Contract"."Bonus Billing Type"::"Amount (LCY)":
-                                    ;
-                                "Bonus Contract"."Bonus Billing Type"::"Amount per Unit":
-                                    ;
-                            end;
-                        end;
-                    }
-
-                    trigger OnPreDataItem()
-                    begin
-                        SetRange("Posting Date", DateFrom, DateTo);
-                        if "Bonus Customer"."Ship-to Code" <> '' then
-                            SetRange("Ship-to Code", "Bonus Customer"."Ship-to Code")
-                        else
-                            SetRange("Ship-to Code");
-                    end;
-
-                    trigger OnAfterGetRecord()
-                    var
-                        Customer: Record Customer;
-                    begin
-                        Dialog.Update(3, "No.");
-                        SalesPersonCode := '';
-                        //TODO: 
-                        // if "Bonus Contract"."Agent From Document" then 
-                        //     SalesPersonCode := "Salesperson Code"
-                        // else
-                        if Customer.Get("Bonus Contract"."Bonus Recipient") then
-                            SalesPersonCode := Customer."Salesperson Code";
-                    end;
-                }
-                dataitem("Sales Cr.Memo Header"; "Sales Cr.Memo Header")
-                {
-                    DataItemLink = "Sell-to Customer No." = field("Customer No.");
-
-                    dataitem("Sales Cr.Memo Line"; "Sales Cr.Memo Line")
-                    {
-                        DataItemLink = "Document No." = field("No.");
-                    }
-                }
+                #region OnPreDataItem
+                trigger OnPreDataItem()
+                begin
+                    if InvoiceNos.Count = 0 then
+                        CurrReport.Break();
+                    Invoices.SetRange(Number, 1, InvoiceNos.Count);
+                end;
+                #endregion OnPreDataItem
             }
+            dataitem(CrMemos; Integer)
+            {
+                DataItemTableView = sorting(Number);
+
+                #region OnAfterGetRecord
+                trigger OnAfterGetRecord()
+                var
+                    SalesCrMemoHeader: Record "Sales Cr.Memo Header";
+                    SalesCrMemoLine: Record "Sales Cr.Memo Line";
+                begin
+                    SalesCrMemoHeader.Get(CrMemoNos.Get(Number));
+                    Dialog.Update(3, SalesCrMemoHeader."No.");
+                    CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
+                    SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
+                    SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
+                    if SalesCrMemoLine.FindSet() then
+                        repeat
+                            CreateBonus.CreateBonus(SalesCrMemoLine);
+                        until SalesCrMemoLine.Next() = 0;
+                end;
+                #endregion OnAfterGetRecord
+
+                #region OnPreDataItem
+                trigger OnPreDataItem()
+                begin
+                    if CrMemoNos.Count = 0 then
+                        CurrReport.Break();
+                    CrMemos.SetRange(Number, 1, CrMemoNos.Count);
+                end;
+                #endregion OnPreDataItem
+            }
+            #endregion dataitems
+
+            #region OnPreDataItem
             trigger OnPreDataItem()
             begin
                 Dialog.Open(CustomerProgressTxt + ContractProgressTxt + SalesDocProgressTxt);
+                CreateBonus.SetGlobal(PostingDate, DateFrom, DateTo, CheckItemMeth);
             end;
+            #endregion OnPreDataItem
 
+            #region OnAfterGetRecord
+            trigger OnAfterGetRecord()
+            var
+                ReverseReserve: Codeunit "lbtbn Reverse Reserve";
+                FindDocumentNos: Codeunit "lbtbn Find Document Nos.";
+                GetDocumentAmount: Codeunit "lbtbn Get Document Amount";
+                Amount: Decimal;
+                Quantity: Decimal;
+            begin
+                Clear(Quantity);
+                Clear(Amount);
+                CheckFilters();
+                if not CheckDates() then
+                    CurrReport.Skip();
 
+                FindDocumentNos.FindDocumentNos("Bonus Contract"."No.", InvoiceNos, CrMemoNos, DateFrom, DateTo);
+                GetDocumentAmount.AddQuantityAndAmount(Quantity, Amount, InvoiceNos, CrMemoNos, CheckItemMeth, "Bonus Contract"."No.");
+
+                BonusContractLine.SetRange(Contract, "Bonus Contract"."No.");
+                BonusContractLine.SetFilter("From Quantity", '<=%1', Amount);
+                if not BonusContractLine.FindLast() then
+                    CurrReport.Skip();
+                ReverseReserve.ReverseBonusEntries("Bonus Contract", DateFrom, DateTo);
+                ReverseReserve.ReverseGenLedgEntry("Bonus Contract", DateFrom, DateTo, ReversePostingDate);
+
+                CreateBonus.SetBonusContract("Bonus Contract");
+                CreateBonus.SetBonusContractLine(BonusContractLine);
+                "Bonus Contract"."Last Billing at" := PostingDate;
+                "Bonus Contract".Modify();
+            end;
+            #endregion OnAfterGetRecord
 
         }
+        #endregion dataitem
     }
 
     requestpage
@@ -132,11 +142,13 @@ report 5266052 "lbtbn Bonus Run"
                         ApplicationArea = All;
                         Caption = 'Date to';
                         ToolTip = 'Specifies Date to';
+                        #region OnValidate
                         trigger OnValidate()
                         begin
                             if ReversePostingDate = 0D then
                                 ReversePostingDate := DateTo;
                         end;
+                        #endregion OnValidate
                     }
                     field("Reverse Posting Date"; ReversePostingDate)
                     {
@@ -149,6 +161,7 @@ report 5266052 "lbtbn Bonus Run"
         }
     }
 
+    #region OnPreReport
     trigger OnPreReport()
     begin
         if (DateFrom = 0D) or (DateTo = 0D) or (ReversePostingDate = 0D) then
@@ -158,132 +171,64 @@ report 5266052 "lbtbn Bonus Run"
         //GlobVarCU.s_date(ReversePostingDate,9);
 
         BonusSetup.Get();
-        if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
-            //TODO: Fehlendes Feld?
-            //BonusSetup.TestField("Billing Code");
-            BonusSetup.TestField("Cust Gr. Reserve Cr. Memo");
-            BonusSetup.TestField("Bus.Post.Gr.f.Res.Cr.Memo");
-            CustomerPostingGroup.Get(BonusSetup."Cust Gr. Reserve Cr. Memo");
-            CustomerPostingGroup.TestField("Receivables Account");
-            GenBusinessPostingGroup.Get(BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo");
-        end;
+        // if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
+        //     //TODO: Fehlendes Feld?
+        //     //BonusSetup.TestField("Billing Code");
+        //     BonusSetup.TestField("Cust Gr. Reserve Cr. Memo");
+        //     BonusSetup.TestField("Bus.Post.Gr.f.Res.Cr.Memo");
+        //     CustomerPostingGroup.Get(BonusSetup."Cust Gr. Reserve Cr. Memo");
+        //     CustomerPostingGroup.TestField("Receivables Account");
+        //     GenBusinessPostingGroup.Get(BonusSetup."Bus.Post.Gr.f.Res.Cr.Memo");
+        // end;
     end;
+    #endregion OnPreReport
 
     trigger OnPostReport()
     begin
-        //TODO: 
-        //GlobVarCU.s_date(0D,9);
+        CreateBonus.OpenPageBonus();
     end;
 
-    local procedure GetCustCode(): Code[20]
-    begin
-        // TODO: ?
-        // if "Bonus Contract"."Bonus Recipient" = '' then 
-        //     exit("Bonus Contract".Customer);
-        exit("Bonus Contract"."Bonus Recipient");
-    end;
-
-    local procedure InitSalesHeader(var SalesHeader: Record "Sales Header")
-    begin
-        SalesHeader.Init();
-        SalesHeader."Document Type" := SalesHeader."Document Type"::"Credit Memo";
-        SalesHeader."No." := '';
-        SalesHeader.Insert(true);
-        SalesHeader.Correction := false;
-        SalesHeader.SetHideValidationDialog(true);
-        SalesHeader.Validate("Sell-to Customer No.", GetCustCode());
-        // TODO: ?
-        // SalesHeader.Validate("Shortcut Dimension 1 Code", "Bonus Contract"."Allocation Group");
-        SalesHeader."Salesperson Code" := SalesPersonCode;
-        SalesHeader."Document Date" := PostingDate;
-        SalesHeader."Document Date" := 0D;
-        SalesHeader."Posting Description" := BonusCreditMemoLbl;
-        SalesHeader."lbt Process No." := "Bonus Contract"."Process No.";
-        SalesHeader.Modify();
-    end;
-
-    local procedure CreateTextLine(SalesHeader: Record "Sales Header"; LineNo: Integer; Description: Text[100])
+    local procedure CheckFilters()
     var
-        SalesLine: Record "Sales Line";
+        BonusCustomer: Record "lbtbn Bonus Customer";
+        BonusItem: Record "lbtbn Bonus Item";
+        CheckLbl: Label 'Please check the filter %1 for Bonus Contract %2.', Comment = '%1 - Table Caption of what to check, %2 - Bonus Contract No.';
     begin
-        SalesLine.Init();
-        SalesLine."Document Type" := SalesHeader."Document Type";
-        SalesLine."Document No." := SalesHeader."No.";
-        SalesLine."Line No." := LineNo;
-        // TODO: Printoption
-        SalesLine.Description := Description;
-        SalesLine.Insert();
+        BonusCustomer.SetRange(Contract, "Bonus Contract"."No.");
+        if BonusCustomer.IsEmpty then
+            Error(CheckLbl, BonusCustomer.TableCaption, "Bonus Contract"."No.");
+        BonusItem.SetRange("Contract No.", "Bonus Contract"."No.");
+        if BonusItem.IsEmpty then
+            Error(CheckLbl, BonusItem.TableCaption, "Bonus Contract"."No.");
     end;
 
-    local procedure GetSalesHeader(var SalesHeader: Record "Sales Header")
+    #region CheckDates
+    local procedure CheckDates(): Boolean
     begin
-        SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.", "Salesperson Code", "Shortcut Dimension 1 Code", "Shortcut Dimension 1 Code");
-        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
-        SalesHeader.SetRange("Sell-to Customer No.", GetCustCode());
-        // TODO: ?
-        // SalesHeader.SetRange("Shortcut Dimension 1 Code", "Bonus Contract"."Allocation Group");
-        SalesHeader.SetRange("Document Date", PostingDate);
-        SalesHeader.SetRange("Posting Description", BonusCreditMemoLbl);
-        if not SalesHeader.FindFirst() then begin
-            InitSalesHeader(SalesHeader);
-            CreateTextLine(SalesHeader, 10000, StrSubstNo(BonusSettlementTxt, "Bonus Contract"."No."));
-            CreateTextLine(SalesHeader, 20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
-        end;
+        if (PostingDate < "Bonus Contract"."Valid from") or (("Bonus Contract"."Valid to" <> 0D) and (PostingDate > "Bonus Contract"."Valid to")) then
+            exit(false);
+
+        if "Bonus Contract"."Last Billing at" <> 0D then
+            if (PostingDate < CalcDate('+' + Format("Bonus Contract"."Billing Period"), "Bonus Contract"."Last Billing at")) then
+                exit(false);
+        exit(true);
     end;
-
-    local procedure IsFixedAmountAndAlreadyCreated(): Boolean
-
-    begin
-        // SalesCrMemoLineRec.RESET;
-        // SalesCrMemoLineRec.SETCURRENTKEY("Document Type", "Document No.", "Process No.");
-        // SalesCrMemoLineRec.SETRANGE("Document Type", SalesCrMemoLineRec."Document Type"::"Credit Memo");
-        // SalesCrMemoLineRec.SETRANGE("Document No.", SalesCrMemoRec."No.");
-        // SalesCrMemoLineRec.SETRANGE("Process No.", BonusvertragRec."Process No.");
-        // IF (NOT SalesCrMemoLineRec.ISEMPTY) AND
-        //TODO: "Value Unit"::Fixed Amount
-        //   (BonusvertragRec."Value Unit" = BonusvertragRec."Value Unit"::"Fixed Amount")
-        // THEN
-        //     EXIT;
-
-    end;
-
-    local procedure CreateSalesCreditMemo2()
-    var
-        SalesHeader: Record "Sales Header";
-    begin
-        GetSalesHeader(SalesHeader);
-        if IsFixedAmountAndAlreadyCreated() then
-            exit;
-
-    end;
-
-    local procedure GetDocAmount(Amount: Decimal) DocAmount: Decimal
-    begin
-        if "Sales Invoice Header"."Currency Code" = '' then
-            DocAmount := Amount
-        else
-            DocAmount := Round(Amount / "Sales Invoice Header"."Currency Factor", 0.01);
-    end;
+    #endregion CheckDates
 
     var
-        BonusSetup: Record "lbtbn Bonus Setup";
         BonusContractLine: Record "lbtbn Bonus Contract Line";
-        CustomerPostingGroup: Record "Customer Posting Group";
-        GenBusinessPostingGroup: Record "Gen. Business Posting Group";
+        BonusSetup: Record "lbtbn Bonus Setup";
+        CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
+        CreateBonus: Codeunit "lbtbn Create Bonus";
+        InvoiceNos: List of [Code[20]];
+        CrMemoNos: List of [Code[20]];
+        Dialog: Dialog;
         DateFrom: Date;
         DateTo: Date;
-        ReversePostingDate: Date;
         PostingDate: Date;
-        SalesPersonCode: Code[20];
-        Dialog: Dialog;
-        BonusAmount: Decimal;
-
-
+        ReversePostingDate: Date;
         AccountingPeriodMissingErr: Label 'Please input the accounting period.';
-        CustomerProgressTxt: Label 'Customer    #1##############\', Comment = '%1 No.';
         ContractProgressTxt: Label 'Bonus Contract #2##############\', Comment = '%1 No.';
+        CustomerProgressTxt: Label 'Customer    #1##############\', Comment = '%1 No.';
         SalesDocProgressTxt: Label 'Sales Document #3##############', Comment = '%1 No.';
-        BonusCreditMemoLbl: Label 'Bonus Credit Memo';
-        BonusSettlementTxt: Label 'Bonus Settlement according to Bonus Contract %1', Comment = '%1 No.';
-        AccountingPeriodTxt: Label 'Accounting Period %1 to %2', Comment = '%1 from %2 to';
 }

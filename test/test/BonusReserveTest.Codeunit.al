@@ -1,4 +1,4 @@
-codeunit 5266062 "lbtbn Bonus Reserve Test"
+codeunit 52051 "lbtbn Bonus Reserve Test"
 {
     Subtype = Test;
 
@@ -14,22 +14,18 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         LibraryInventory: Codeunit "Library - Inventory";
         LibraryERM: Codeunit "Library - ERM";
         Assert: Codeunit Assert;
-
         LibraryLowerPermissions: Codeunit "Library - Lower Permissions";
-
-        IsInitialized: Boolean;
 
     [Test]
     [HandlerFunctions('HandleReserveRequestPage,HandleSalesCreditMemo')]
-    procedure ReserveToCreditMemo()
+    procedure SalesReturnOrderWithAssignedItemCharge_CreditMemo()
     var
         BonusReserves: Report "lbtbn Bonus Reserves";
+        Amount: Decimal;
     begin
-        Initialize();
         //GIVEN
         Init(true);
-        CreateSalesCrMemoAndPost();
-        Commit();
+        Amount := PostReturnOrder();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -37,23 +33,44 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusReserves.Run();
 
         //THEN
-        ValidateCrMemoCreated(SalesCrMemoLine.Amount, 0);
+        ValidateCrMemoCreated(Amount, 0);
+        ValidateBonusEntryCreated(Amount, 0);
     end;
 
 
+    [Test]
+    #region ReserveToCreditMemo
+    [HandlerFunctions('HandleReserveRequestPage,HandleSalesCreditMemo')]
+    procedure ReserveToCreditMemo()
+    var
+        BonusReserves: Report "lbtbn Bonus Reserves";
+    begin
+        //GIVEN
+        Init(true);
+        CreateSalesCrMemoAndPost();
+
+        //WHEN
+        BonusContract.SetRecFilter();
+        BonusReserves.SetTableView(BonusContract);
+        BonusReserves.Run();
+
+        //THEN
+        ValidateCrMemoCreated(-SalesCrMemoLine.Amount, 0);
+    end;
+    #endregion ReserveToCreditMemo
 
     [Test]
+    #region ReserveAmountJournal__ReserveType_Amount
     [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
     procedure ReserveAmountJournal__ReserveType_Amount()
     var
         BonusReserves: Report "lbtbn Bonus Reserves";
     begin
-        Initialize();
         //GIVEN
         Init(false);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount (LCY)";
         BonusContract.Modify();
-        Commit();
+        Commit(); //ansonsonsten kryptische Fehlermeldung
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -64,45 +81,44 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ValidateBonusEntryCreated(0, 0);
         ValidateGenJnlLineCreated(0, 0);
     end;
+    #endregion ReserveAmountJournal__ReserveType_Amount
 
     [Test]
+    #region ReserveAmountMemo__ReserveType_Amount
     [HandlerFunctions('HandleReserveRequestPage,HandleSalesCreditMemo')]
     procedure ReserveAmountMemo__ReserveType_Amount()
     var
         BonusReserves: Report "lbtbn Bonus Reserves";
     begin
-        Initialize();
         //GIVEN
         Init(true);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount (LCY)";
         BonusContract.Modify();
-        Commit();
+        Commit(); //ansonsonsten kryptische Fehlermeldung
 
         //WHEN
         BonusContract.SetRecFilter();
         BonusReserves.SetTableView(BonusContract);
         BonusReserves.Run();
 
-        Commit();
         //THEN
         ValidateBonusEntryCreated(0, 0);
         ValidateCrMemoCreated(BonusContract."Reserve Value", 0);
     end;
-
+    #endregion ReserveAmountMemo__ReserveType_Amount
 
     [Test]
+    #region Journal__FromCrMemo__ReserveType_AmountPerUnit
     [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
     procedure Journal__FromCrMemo__ReserveType_AmountPerUnit()
     var
         BonusReserves: Report "lbtbn Bonus Reserves";
     begin
-        Initialize();
         //GIVEN
         Init(false);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount per Unit";
         BonusContract.Modify();
         CreateSalesCrMemoAndPost();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -113,20 +129,20 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ValidateBonusEntryCreated(-SalesCrMemoLine.Amount, -SalesCrMemoLine.Quantity);
         ValidateGenJnlLineCreated(-SalesCrMemoLine.Amount, -SalesCrMemoLine.Quantity);
     end;
+    #endregion Journal__FromCrMemo__ReserveType_AmountPerUnit
 
     [Test]
+    #region Journal__FromInvoice__ReserveType_AmountPerUnit
     [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
     procedure Journal__FromInvoice__ReserveType_AmountPerUnit()
     var
         BonusReserves: Report "lbtbn Bonus Reserves";
     begin
-        Initialize();
         //GIVEN
         Init(false);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount per Unit";
         BonusContract.Modify();
         CreateSalesInvoiceAndPost();
-        Commit();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -137,18 +153,18 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ValidateBonusEntryCreated(SalesInvoiceLine.Amount, SalesInvoiceLine.Quantity);
         ValidateGenJnlLineCreated(SalesInvoiceLine.Amount, SalesInvoiceLine.Quantity);
     end;
+    #endregion Journal__FromInvoice__ReserveType_AmountPerUnit
 
     [Test]
+    #region Journal__FromInvoice__ReserveType_Percentage
     [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
     procedure Journal__FromInvoice__ReserveType_Percentage()
     var
         BonusContractCard: TestPage "lbtbn Bonus Contract";
     begin
-        Initialize();
         //GIVEN
         Init(false);
         CreateSalesInvoiceAndPost();
-        Commit();
 
         //WHEN
         BonusContractCard.OpenView();
@@ -159,18 +175,18 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ValidateGenJnlLineCreated(SalesInvoiceLine.Amount, SalesInvoiceLine.Quantity);
         ValidateBonusEntryCreated(SalesInvoiceLine.Amount, SalesInvoiceLine.Quantity);
     end;
+    #endregion Journal__FromInvoice__ReserveType_Percentage
 
     [Test]
+    #region Journal__FromCrMemo__ReserveType_Percentage
     [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
     procedure Journal__FromCrMemo__ReserveType_Percentage()
     var
         BonusContractCard: TestPage "lbtbn Bonus Contract";
     begin
-        Initialize();
         //GIVEN
         Init(false);
         CreateSalesCrMemoAndPost();
-        Commit();
 
         //WHEN
         BonusContractCard.OpenView();
@@ -181,8 +197,10 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ValidateGenJnlLineCreated(-SalesCrMemoLine.Amount, SalesCrMemoLine.Quantity);
         ValidateBonusEntryCreated(-SalesCrMemoLine.Amount, -SalesCrMemoLine.Quantity);
     end;
+    #endregion Journal__FromCrMemo__ReserveType_Percentage
 
     [Test]
+    #region ReserveFromInvoiceAndPostGenJournal
     [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
     procedure ReserveFromInvoiceAndPostGenJournal()
     var
@@ -190,17 +208,15 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusContractCard: TestPage "lbtbn Bonus Contract";
     begin
-        Initialize();
         //GIVEN
         Init(false);
         CreateSalesInvoiceAndPost();
-        Commit();
         BonusContractCard.OpenView();
         BonusContractCard.GoToRecord(BonusContract);
         BonusContractCard."Create Reserves".Invoke();
 
         //WHEN
-        GenJournalLine.setrange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
         GenJournalLine.FindFirst();
         LibraryERM.PostGeneralJnlLine(GenJournalLine);
@@ -211,27 +227,17 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         Assert.AreNotEqual(0, BonusEntry."Posted Amount", 'Posted Amount should be set');
 
     end;
+    #endregion ReserveFromInvoiceAndPostGenJournal
 
-    local procedure Initialize()
-    var
-        GenJournalTemplate: Record "Gen. Journal Template";
-        GenJournalBatch: Record "Gen. Journal Batch";
+    #region SetPermissions
+    local procedure SetPermissions()
     begin
         LibraryLowerPermissions.SetO365BusFull();
         LibraryLowerPermissions.AddPermissionSet('lbtbn Bonus');
-        if IsInitialized then
-            exit;
-        BonusSetup.Get();
-        LibraryERM.CreateGenJournalTemplate(GenJournalTemplate);
-        BonusSetup."Gen.Jnl.Templ.BonusReserve" := GenJournalTemplate.Name;
-        LibraryERM.CreateGenJournalBatch(GenJournalBatch, GenJournalTemplate.Name);
-        BonusSetup."Gen. Jnl. Bonus Reserve" := GenJournalBatch.Name;
-
-        BonusSetup.Modify();
-
-        IsInitialized := true;
     end;
+    #endregion SetPermissions
 
+    #region ValidateBonusEntryCreated
     local procedure ValidateBonusEntryCreated(Amount: Decimal; Quantity: Decimal): Decimal
     var
         BonusEntry: Record "lbtbn Bonus Entry";
@@ -239,24 +245,29 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
     begin
         Expected := GetExpectedAmount(Amount, Quantity);
         BonusEntry.SetRange(Contract, BonusContract."No.");
-        Assert.AreEqual(1, BonusEntry.count(), 'one bonus entry created');
+        Assert.AreEqual(1, BonusEntry.Count(), 'one bonus entry created');
         BonusEntry.FindFirst();
         Assert.AreNearlyEqual(Expected, BonusEntry."Calculated Amount", 0.005, '');
         exit(BonusEntry."Calculated Amount");
     end;
+    #endregion ValidateBonusEntryCreated
 
+    #region ValidateCrMemoCreated
     local procedure ValidateCrMemoCreated(Amount: Decimal; Quantity: Decimal): Decimal
     var
         SalesLine: Record "Sales Line";
         Expected: Decimal;
     begin
         Expected := GetExpectedAmount(Amount, Quantity);
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::"Credit Memo");
         SalesLine.FindLast();
         // Assert.AreEqual(1, BonusEntry.count(), 'one bonus entry created');
         Assert.AreNearlyEqual(Expected, SalesLine.Amount, 0.005, '');
         exit(SalesLine.Amount);
     end;
+    #endregion ValidateCrMemoCreated
 
+    #region GetExpectedAmount
     local procedure GetExpectedAmount(Amount: Decimal; Quantity: Decimal) Expected: Decimal
     begin
         case BonusContract."Reserve Type" of
@@ -268,43 +279,54 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
                 Expected := BonusContract."Reserve Value";
         end;
     end;
+    #endregion GetExpectedAmount
 
+    #region ValidateGenJnlLineCreated
     local procedure ValidateGenJnlLineCreated(Amount: Decimal; Quantity: Decimal)
     var
         GenJournalLine: Record "Gen. Journal Line";
         Expected: Decimal;
     begin
-        GenJournalLine.setrange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
         Assert.AreEqual(1, GenJournalLine.Count(), 'One Line created');
         GenJournalLine.FindFirst();
         Expected := GetExpectedAmount(Amount, Quantity);
         Assert.AreNearlyEqual(Expected, GenJournalLine.Amount, 0.005, 'The amount');
     end;
+    #endregion ValidateGenJnlLineCreated
 
+    #region HandleGeneralJournal
     [PageHandler]
     procedure HandleGeneralJournal(var GeneralJournal: TestPage "General Journal")
     begin
     end;
+    #endregion HandleGeneralJournal
 
+    #region HandleSalesCreditMemo
     [PageHandler]
     procedure HandleSalesCreditMemo(var SalesCreditMemo: TestPage "Sales Credit Memo")
     begin
     end;
+    #endregion HandleSalesCreditMemo
 
+    #region HandleReserveRequestPage
     [RequestPageHandler]
     procedure HandleReserveRequestPage(var BonusReserves: TestRequestPage "lbtbn Bonus Reserves")
     begin
-        BonusReserves."Date From".Value := format(WorkDate());
-        BonusReserves."Date To".Value := format(WorkDate());
+        BonusReserves."Date From".Value := Format(WorkDate());
+        BonusReserves."Date To".Value := Format(WorkDate());
 
         BonusReserves.OK().Invoke();
     end;
+    #endregion HandleReserveRequestPage
 
+    #region Init
     local procedure Init(ReserverModeCreditMemo: Boolean)
     var
         ItemChargeNo: Code[20];
     begin
+        SetPermissions();
         if ReserverModeCreditMemo then
             InitBonusSetupForCrMemo()
         else
@@ -312,8 +334,11 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         ItemChargeNo := CreateCustomerAndItemCharge();
         CreateBonusContract(ItemChargeNo);
         CreateBonusCustomer();
+        CreateBonusItems();
     end;
+    #endregion Init
 
+    #region CreateSalesInvoiceAndPost
     local procedure CreateSalesInvoiceAndPost()
     var
         SalesHeader: Record "Sales Header";
@@ -324,7 +349,9 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         SalesInvoiceLine.SetRange("Document No.", DocNo);
         SalesInvoiceLine.FindFirst();
     end;
+    #endregion CreateSalesInvoiceAndPost
 
+    #region CreateSalesCrMemoAndPost
     local procedure CreateSalesCrMemoAndPost()
     var
         SalesHeader: Record "Sales Header";
@@ -341,21 +368,25 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         SalesCrMemoLine.SetRange("Document No.", DocNo);
         SalesCrMemoLine.FindFirst();
     end;
+    #endregion CreateSalesCrMemoAndPost
 
+    #region CreateBonusContract
     local procedure CreateBonusContract(ItemChargeNo: Code[20])
     var
         ReserveCustomer: Record Customer;
     begin
-        LibrarySales.createcustomer(ReserveCustomer);
+        LibrarySales.CreateCustomer(ReserveCustomer);
 
         BonusContract.Init();
-        BonusContract."No." := LibraryUtility.GenerateRandomCode20(BonusContract.fieldno("No."), Database::"lbtbn Bonus Contract");
+        BonusContract."No." := LibraryUtility.GenerateRandomCode20(BonusContract.FieldNo("No."), Database::"lbtbn Bonus Contract");
         BonusContract."Reserve Value" := LibraryRandom.RandDecInDecimalRange(2.0, 12.0, 1);
         BonusContract."Reserve Item Charge" := ItemChargeNo;
         BonusContract."Customer Reserve Cr.Memo" := ReserveCustomer."No.";
         BonusContract.Insert();
     end;
+    #endregion CreateBonusContract
 
+    #region CreateNoSeriesAndLine
     local procedure CreateNoSeriesAndLine(): Code[20]
     var
         NoSeriesLine: Record "No. Series Line";
@@ -365,7 +396,9 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         LibraryUtility.CreateNoSeriesLine(NoSeriesLine, NoSeries.Code, NoSeries.Code, '');
         exit(NoSeries.Code);
     end;
+    #endregion CreateNoSeriesAndLine
 
+    #region CreateBonusCustomer
     local procedure CreateBonusCustomer()
     var
         BonusCustomers: Record "lbtbn Bonus Customer";
@@ -375,7 +408,9 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusCustomers."Customer No." := Customer."No.";
         BonusCustomers.Insert();
     end;
+    #endregion CreateBonusCustomer
 
+    #region CreateCustomerAndItemCharge
     local procedure CreateCustomerAndItemCharge(): Code[20]
     var
         VATPostingSetup: Record "VAT Posting Setup";
@@ -394,7 +429,9 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
             LibraryERM.CreateVATPostingSetup(VATPostingSetup, Customer."VAT Bus. Posting Group", ItemCharge."VAT Prod. Posting Group");
         exit(ItemCharge."No.");
     end;
+    #endregion CreateCustomerAndItemCharge
 
+    #region InitBonusSetupForJournal
     local procedure InitBonusSetupForJournal()
     var
         GenJournalTemplate: Record "Gen. Journal Template";
@@ -403,11 +440,14 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusSetup.Init();
         LibraryERM.CreateGenJournalTemplate(GenJournalTemplate);
         LibraryERM.CreateGenJournalBatch(GenJournalBatch, GenJournalTemplate.Name);
+        BonusSetup."Reserve Mode" := BonusSetup."Reserve Mode"::Journal;
         BonusSetup."Gen.Jnl.Templ.BonusReserve" := GenJournalTemplate.Name;
         BonusSetup."Gen. Jnl. Bonus Reserve" := GenJournalBatch.Name;
         BonusSetup.Modify();
     end;
+    #endregion InitBonusSetupForJournal
 
+    #region InitBonusSetupForCrMemo
     local procedure InitBonusSetupForCrMemo()
     begin
         BonusSetup.Init();
@@ -415,4 +455,46 @@ codeunit 5266062 "lbtbn Bonus Reserve Test"
         BonusSetup."Reserve Cr.Memo Nos." := CreateNoSeriesAndLine();
         BonusSetup.Modify();
     end;
+    #endregion InitBonusSetupForCrMemo
+
+    #region CreateBonusItems
+    local procedure CreateBonusItems()
+    var
+        BonusItem: Record "lbtbn Bonus Item";
+    begin
+        BonusItem.Init();
+        BonusItem."Contract No." := BonusContract."No.";
+        BonusItem.Insert(true);
+    end;
+    #endregion CreateBonusItems
+
+    local procedure PostReturnOrder() Amount: Decimal
+    var
+        SalesHeader: Record "Sales Header";
+        ItemCharge: Record "Item Charge";
+        Item: Record Item;
+        SalesLine: Record "Sales Line";
+        SalesLine2: Record "Sales Line";
+        ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
+        DocNo: Code[20];
+    begin
+        LibrarySales.CreateSalesHeader(SalesHeader, SalesHeader."Document Type"::"Return Order", Customer."No.");
+        LibraryInventory.CreateItemWithUnitPriceAndUnitCost(
+          Item, LibraryRandom.RandDecInRange(1, 100, 2), LibraryRandom.RandDecInRange(1, 100, 2));
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, SalesLine.Type::Item, Item."No.", LibraryRandom.RandInt(100));
+        LibraryInventory.CreateItemCharge(ItemCharge);
+        ItemCharge."lbtbn Bonus consider" := true;
+        ItemCharge.Modify();
+        LibrarySales.CreateSalesLine(SalesLine2, SalesHeader, SalesLine.Type::"Charge (Item)", ItemCharge."No.", 1);
+        SalesLine2.Validate("Unit Price", 500);
+        SalesLine2.Modify();
+        LibrarySales.CreateItemChargeAssignment(ItemChargeAssignmentSales, SalesLine2, ItemCharge, "Sales Document Type"::"Return Order", SalesHeader."No.", SalesLine."Line No.", SalesLine."No.", 1, SalesLine2."Unit Price");
+        ItemChargeAssignmentSales.Insert();
+
+        DocNo := LibrarySales.PostSalesDocument(SalesHeader, true, true);
+        SalesCrMemoLine.SetRange("Document No.", DocNo);
+        SalesCrMemoLine.FindFirst();
+        Amount := -(SalesLine."Line Amount" + SalesLine2."Line Amount");
+    end;
+
 }

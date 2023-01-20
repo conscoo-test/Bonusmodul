@@ -31,11 +31,6 @@ page 5266053 "lbtbn Bonus Contract"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the description';
                 }
-                field("Bonus Group"; Rec."Bonus Group")
-                {
-                    ToolTip = 'This field is filled with the Bonus group.';
-                    ApplicationArea = All;
-                }
                 field("Billing Period"; Rec."Billing Period")
                 {
                     ToolTip = 'This field specifies the interval in which billing takes place.';
@@ -218,13 +213,13 @@ page 5266053 "lbtbn Bonus Contract"
                 var
                     BonusSetup: Record "lbtbn Bonus Setup";
                     BonusEntry: Record "lbtbn Bonus Entry";
-                    ExplodeReservation: Page "lbtbn Explode Reservation";
+                    ExplodeReservation: Page "lbtbn Explode Bonus Reserv.";
                 begin
                     BonusSetup.Get();
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
                         BonusEntry.SetRange(Contract, Rec."No.");
                         BonusEntry.SetRange("Entry Type", BonusEntry."Entry Type"::Reserve);
-                        //TODO: BonusEntry.SetRange(Reversed, false);
+                        BonusEntry.SetRange(Reversed, false);
                         BonusEntry.SetFilter("Posted Amount", '<>%1', 0);
 
                         if BonusEntry.IsEmpty() then
@@ -258,36 +253,6 @@ page 5266053 "lbtbn Bonus Contract"
                 end;
                 #endregion OnAction
             }
-
-            action(Reservation)
-            {
-                Caption = 'Reservation';
-                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
-                ApplicationArea = All;
-                Image = Print;
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                    Message('not implemented'); //TODO:
-                end;
-                #endregion OnAction
-            }
-
-            action("Bonus Cr. Memo")
-            {
-                Caption = 'Bonus Cr. Memo';
-                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
-                ApplicationArea = All;
-                Image = Print;
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                    Message('not implemented'); //TODO:
-                end;
-                #endregion OnAction
-            }
         }
         area(Navigation)
         {
@@ -299,72 +264,24 @@ page 5266053 "lbtbn Bonus Contract"
                 Image = Customer;
                 RunObject = page "lbtbn Bonus Customers";
                 RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction();
-                begin
-                end;
-                #endregion OnAction
             }
-
-            action(Dimension)
+            action("Bonus Items")
             {
-                Caption = 'Dimension';
-                ToolTip = 'Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.';
+                Caption = 'Bonus Items';
                 ApplicationArea = All;
-                Image = Dimensions;
-                RunObject = page "lbtbn Bonus Contract Dimension";
-                RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
-            }
-            action("Bonus Contract Attribute")
-            {
-                Caption = 'Attribute Filter';
-                ToolTip = 'Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.';
-                ApplicationArea = All;
-                Image = "Filter";
-                RunObject = page "lbtbn Contract Attr. Filter";
-                RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
+                Image = Item;
+                RunObject = page "lbtbn Bonus Items";
+                RunPageLink = "Contract No." = field("No.");
             }
 
-            action(BonusGroup)
-            {
-                Caption = 'Bonus Group';
-                ToolTip = 'Here you can group bonus contracts.';
-                ApplicationArea = All;
-                Image = Group;
-                RunObject = page "lbtbn Bonus Group";
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
-            }
             action("Bonus Entry")
             {
                 Caption = 'Bonus Entry';
-                ToolTip = 'Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.';
+                ToolTip = 'Bonus entries are written in the background each time reserves or rebate settlements are created. These bonus entries can be called up for each bonus contract using this button.';
                 ApplicationArea = All;
                 Image = LedgerEntries;
                 RunObject = page "lbtbn Bonus Entry";
                 RunPageLink = "Contract" = field("No.");
-
-                #region OnAction
-                trigger OnAction()
-                begin
-                end;
-                #endregion OnAction
             }
             action(Navigate)
             {
@@ -376,13 +293,45 @@ page 5266053 "lbtbn Bonus Contract"
                 #region OnAction
                 trigger OnAction()
                 begin
-                    NavigatePage.SetProcessNo(Rec."Process No.");
-                    // Navigate.FindProcess();
-                    NavigatePage.Run();
+                    Rec.Navigate();
                 end;
                 #endregion OnAction
             }
         }
+        area(Reporting)
+        {
+            action("Print Reservation")
+            {
+                Caption = 'Reservation';
+                ToolTip = 'Prints a report, listing all the accrual items created for this contract.';
+                Image = Print;
+                ApplicationArea = All;
+
+                trigger OnAction()
+                var
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                begin
+                    BonusEntry.SetRange(Contract, Rec."No.");
+                    Report.RunModal(Report::"lbtbn Bonus Reservation", true, true, BonusEntry);
+                end;
+            }
+            action("Print Bonus Credit Memo")
+            {
+                Caption = 'Bonus Credit Memo';
+                ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
+                Image = Print;
+                ApplicationArea = All;
+
+                trigger OnAction()
+                var
+                    BonusEntry: Record "lbtbn Bonus Entry";
+                begin
+                    BonusEntry.SetRange(Contract, Rec."No.");
+                    Report.RunModal(Report::"lbtbn Bonus Protocol", true, true, BonusEntry);
+                end;
+            }
+        }
+
     }
 
     #region OnAfterGetRecord
@@ -393,7 +342,6 @@ page 5266053 "lbtbn Bonus Contract"
     #endregion OnAfterGetRecord
 
     var
-        NavigatePage: Page Navigate;
         BonusBillingType_Enable: Boolean;
         BonusReserveType_Enable: Boolean;
         ItemChargeEnabled: Boolean;

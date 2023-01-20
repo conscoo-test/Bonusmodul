@@ -3,9 +3,10 @@ page 5266063 "lbtbn Explode Bonus Reserv."
 
     PageType = Worksheet;
     SourceTable = "lbtbn Bonus Entry";
-    SourceTableView = where("Entry Type" = const(Reserve));
+    SourceTableView = where("Entry Type" = const(Reserve), Reversed = const(false));
     Caption = 'Explode Bonus Reservation';
     UsageCategory = None;
+    Editable = false;
 
     layout
     {
@@ -84,11 +85,14 @@ page 5266063 "lbtbn Explode Bonus Reserv."
                 trigger OnAction()
                 var
                     BonusEntry: Record "lbtbn Bonus Entry";
+                    ReverseReserve: Codeunit "lbtbn Reverse Reserve";
                 begin
                     GetSumAmount();
                     CurrPage.SetSelectionFilter(BonusEntry);
                     if not Confirm(ConfirmExplodeTxt, true, BonusEntry.Count(), SumAmount) then
                         exit;
+
+                    ReverseReserve.ReverseBonusEntries(BonusEntry, 0D, WorkDate());
                 end;
             }
         }

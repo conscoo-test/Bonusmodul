@@ -69,23 +69,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Billing Type - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 2573715434 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%,Amount (LCY),Amount per Unit</source>
-          <target>%,Festbetrag (MW),Betrag je Einheit</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Billing Type - Property OptionCaption</note>
-        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 707733428 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Billing Unit</source>
           <target>Bonusabrechnungseinheit</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Billing Unit - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <target>Bonusgruppe</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 4123040019 - Field 2922830250 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Recipient</source>
@@ -153,12 +141,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field No. of Customers - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 862970583 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Dimensions</source>
-          <target>Anzahl der Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field No. of Dimensions - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source>
           <target>Nummernserie</target>
@@ -189,12 +171,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Reserve Type - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 1502007340 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%,Amount (LCY),Amount per Unit</source>
-          <target>%,Festbetrag (MW),Betrag je Einheit</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Reserve Type - Property OptionCaption</note>
-        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 692020562 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve Unit</source>
           <target>Rückstellungseinheit</target>
@@ -218,30 +194,6 @@
           <target>Gültig bis</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Valid to - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Contract Dimensions</source>
-          <target>Bonusvertrag Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Field 389783846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Contract</source>
-          <target>Vertrag</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Field Contract - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Field 2623957639 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension Code</source>
-          <target>Dimensionscode</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Field Dimension Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1837915587 - Field 1468132285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension Value</source>
-          <target>Dimensionswert</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract Dimension - Field Dimension Value - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3190487353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>bonus scales</source>
@@ -302,6 +254,12 @@
           <target>Vertrag</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Customer - Field Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2836892049 - Field 475748445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Bonus Group</source>
+          <target>Debitorenbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Customer - Field Customer Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2836892049 - Field 1171137197 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Name</source>
@@ -375,6 +333,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Bonus Contract Line - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 4272010729 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Document Deleted</source>
+          <target>Bonusbeleg gelöscht</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Bonus Document Deleted - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 3526372336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Document Line</source>
           <target>Bonusbelegzeile</target>
@@ -422,6 +386,12 @@
           <target>Debitor</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Customer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 3322554545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Set ID</source>
+          <target>Dimensionssatz-ID</target>
+          <note from="Developer" annotates="general" priority="2">DEU="Dimensionssatz-ID"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Dimension Set ID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1267560475 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discount Amount</source>
@@ -471,12 +441,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field From Document Type - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3741211377 - Field 3281839723 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>,Sales Invoice,Sales Credit Memo</source>
-          <target>,Verkaufsrechnung,Verkaufsgutschrift</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field From Document Type - Property OptionCaption</note>
-        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 3391242172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General Ledger Entry No.</source>
           <target>Sachposten Lfd. Nr.</target>
@@ -507,6 +471,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Process No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 3744289816 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reversed</source>
+          <target>Storniert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Reversed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 1027046424 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reversed by Entry No.</source>
+          <target>Storniert durch Lfd. Nr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Reversed by Entry No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1086807421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Quantity</source>
           <target>Absatzmenge</target>
@@ -519,23 +495,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Ship-to Code - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3293732488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <target>Bonusgruppe</target>
+        <trans-unit id="Table 3956665642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Item</source>
+          <target>Bonus Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3293732488 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Code</source>
-          <target>Code</target>
+        <trans-unit id="Table 3956665642 - Field 3609111399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract No.</source>
+          <target>Vertragsnr.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Field Code - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Field Contract No. - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3293732488 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 3956665642 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
           <target>Beschreibung</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Group - Field Description - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3956665642 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Lfd. Nr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3956665642 - Field 60453471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Filter</source>
+          <target>Artikelfilter</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Field Item Filter - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1573773400 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
@@ -567,6 +555,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Cust Gr. Reserve Cr. Memo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1573773400 - Field 1487004051 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Statistic Postings</source>
+          <target>Debitor Statistikbuchungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Customer Statistic Postings - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1573773400 - Field 756057899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Gen. Jnl. Bonus Reserve</source>
           <target>Buchblatt Bonusrückstellung</target>
@@ -584,6 +578,12 @@
           <target>Buchblatt Bonusrückstellungsauflösung</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field GenJnlBonusReversReserve - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1573773400 - Field 2640556262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Internal Statistic Postings</source>
+          <target>Interne Statistikbuchungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Internal Statistic Postings - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1573773400 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
@@ -615,17 +615,17 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Reserve Mode - Property OptionCaption</note>
         </trans-unit>
-        <trans-unit id="Table 1573773400 - Field 4116527690 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Revers Reserve Mode</source>
-          <target>Rückstellungsauflösung Modus</target>
+        <trans-unit id="Table 1573773400 - Field 1818893357 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse Reserve Mode</source>
+          <target>Rückstellungsauflösungmodus</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Revers Reserve Mode - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Reverse Reserve Mode - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1573773400 - Field 4116527690 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 1573773400 - Field 1818893357 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
           <source>automatic,Journal Batch</source>
           <target>automatisch,Buchblatt</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Revers Reserve Mode - Property OptionCaption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Setup - Field Reverse Reserve Mode - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 2263892135 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Attribute</source>
@@ -669,6 +669,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn BonusContractAttribute - Field Attribute Value Name - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2263892135 - Field 1529234085 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Item Entry No.</source>
+          <target>Bonusartikel Lfd. Nr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn BonusContractAttribute - Field Bonus Item Entry No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2263892135 - Field 389783846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contract</source>
           <target>Vertrag</target>
@@ -680,6 +686,42 @@
           <target>ID</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn BonusContractAttribute - Field ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2047387159 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Bonus Group</source>
+          <target>Debitorenbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2047387159 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target>Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2047387159 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beschreibung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Customer Group - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428278704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Bonus Group</source>
+          <target>Artikelbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Item Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428278704 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target>Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Item Group - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2428278704 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beschreibung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Item Group - Field Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Codeunit 3100616550 - NamedType 262960121" size-unit="char" translate="yes" xml:space="preserve">
           <source>To Wizard...</source>
@@ -710,6 +752,180 @@
           <target>LeBit Bonus einrichten</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Bonus Assisted Setup - NamedType SetupLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2761214586" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting Period %1 to %2</source>
+          <target>Abrechnungszeitraum %1 bis %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType AccountingPeriodLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting Period %1 to %2</source>
+          <target>Abrechnungszeitraum %1 bis %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 from, %2 to</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType AccountingPeriodTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 170287482" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting accordingly Bonus Contract %1.</source>
+          <target>Rückstellungen gem. Vertrag %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusAccountingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Credit Memo</source>
+          <target>Bonusgutschrift</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusCreditMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 3545756256" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reserve for </source>
+          <target>Bonusrückstellung für </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusReserveForLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2329545137" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reserve</source>
+          <target>Bonusrückstellung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusReserveLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting according to Bonus Contract %1</source>
+          <target>Bonusabrchn. gem. Vertrag %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType BonusSettlementTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 2969456662" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract</source>
+          <target>Vertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType ContractTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - NamedType 3250359956" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.</source>
+          <target>Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden.</target>
+          <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType UnpostedCreditMemoErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 1978345793 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fixed Amount</source>
+          <target>Festbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmount - NamedType FixedAmountTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2654139666 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
+          <source> per </source>
+          <target> je </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmountPerUnit - NamedType PerTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 104546620 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting</source>
+          <target>Bonusabrechnung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo </source>
+          <target>Gutschrift </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType CrMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice </source>
+          <target>Rechnung </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType InvoiceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo</source>
+          <target>Gutschrift</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType CreditMemoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice</source>
+          <target>Rechnung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType InvoiceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
+          <target>Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</target>
+          <note from="Developer" annotates="general" priority="2">Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType LineMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 1892566544" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Receipt</source>
+          <target>Rücksendung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType ReturnReceiptLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - NamedType 2531235046" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shipment</source>
+          <target>Lieferung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType ShipmentLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1947743116" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse Reserve according to Bonus Contract %1.</source>
+          <target>Rückstellungsauflösung gem. Vertrag %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 - Contract No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType ReverseReservalTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 3440160180" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting Period %1 to %2</source>
+          <target>Abrechnungszeitraum %1 bis %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 - from Date, %2 - to Date</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType AccountingPeriodLTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 349814322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.</source>
+          <target>Es existiert eine ungebuchte Rechnung zur Auflösung von Bonusrückstellungen.\\Diese muss erst gebucht oder gelöscht werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType UnpostedInvoiceExistsErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1570802178" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exploding Bonus reserve</source>
+          <target>Auflösung Bonusrückstellung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateInvoiceHeader - NamedType PostingDescriptionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse Bonus Reserve for</source>
+          <target>Auflösung Bonusrückstellung für</target>
+          <note from="Developer" annotates="general" priority="2">Auflösung Bonusrückstellung für</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType ReverseTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 3804706331" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice </source>
+          <target>Rechnung </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType InvoiceTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 3292298585" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit Memo </source>
+          <target>Gutschrift </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType CreditMemoTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3016980590 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Fixed Amount Contract </source>
+          <target>Bonusfestbetrag Vertrag </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType FixedAmountTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse</source>
+          <target>Auflösung</target>
+          <note from="Developer" annotates="general" priority="2">Auflösung</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusReserve - NamedType ReverseTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 569513246 - NamedType 2932411483" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The posting date of exploding bonus reserves is not in the permitted posting period.</source>
+          <target>Das Buchungsdatum der Rückstellungsauflösung liegt nicht im zugelassenen Buchungszeitraum.</target>
+          <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType PostingDateErr</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
@@ -873,12 +1089,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Billing Period - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Control 3293458110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This field is filled with the Bonus group.</source>
-          <target>Dieses Feld wird mit der Bonusgruppe gefüllt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Bonus Group - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 4123040019 - Control 389783846 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is filled with the contract number of the bonus agreement.</source>
           <target>Dieses Feld wird mit der Vertragsnummer der Bonusvereinbarung gefüllt</target>
@@ -951,20 +1161,8 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Reserve Value - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 425109533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.</source>
-          <target>Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Contract Attribute - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 425109533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Attribute Filter</source>
-          <target>Attribute Filter</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Contract Attribute - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 4123040019 - Action 3454750851 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.</source>
+          <source>Bonus entries are written in the background each time reserves or rebate settlements are created. These bonus entries can be called up for each bonus contract using this button.</source>
           <target>Bei jeder Erzeugung von Rückstellungen oder Bonusabrechnungen werden im Hintergrund Bonusposten geschrieben. Diese Bonusposten können über diese Schaltfläche je Bonusvertrag aufgerufen werden.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Entry - Property ToolTip</note>
@@ -975,17 +1173,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Entry - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 2889083806 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can group bonus contracts.</source>
-          <target>Hier können Sie Bonusverträge gruppieren.</target>
+        <trans-unit id="Page 4123040019 - Action 2912272269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Items</source>
+          <target>Bonusartikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action BonusGroup - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 2889083806 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <target>Bonusgruppe</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action BonusGroup - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Items - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 1994964448 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Opens the overview of the customers stored for the bonus contract. The overview is the same as the one in the bonus contracts under Number of customers.</source>
@@ -999,18 +1191,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Customer - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 881177948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.</source>
-          <target>Hier können je Vertrag Vorgabedimensionen für die Rückstellung hinterlegt werden. Die hier angelegten Dimensionen werden beim Rückstellungslauf in die Buchungszeilen geschrieben.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimension - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 881177948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension</source>
-          <target>Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimension - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 4123040019 - Action 3538210097 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).</source>
           <target>Über diesen Button werden alle Datensätze angezeigt, die mit der Vorgangsnummer des Bonusvertrages gekennzeichnet sind. Dazu gehören gebuchte und ungebuchte Belege (Rechnung, Gutschrift), sowie die verschiedenen Posten (Sachposten, Debitorenposten, Bonusposten).</target>
@@ -1022,18 +1202,6 @@
           <target>In Posten suchen</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Navigate - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3669386148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
-          <target>Druckt einen Bericht, in dem alle für diesen Vertrag verbuchten Bonusabrechnungsposten aufgelistet werden.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Cr. Memo - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3669386148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Cr. Memo</source>
-          <target>Bonusgutschriften</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Bonus Cr. Memo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 189515208 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This triggers the report for settling bonus contracts. The screen opens prefiltered for the respective contract.</source>
@@ -1071,41 +1239,29 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Exlode Reservation - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3111013020 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 4123040019 - Action 2390701205 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
+          <target>Druckt einen Bericht, in dem alle für diesen Vertrag verbuchten Bonusabrechnungsposten aufgelistet werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4123040019 - Action 2390701205 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Credit Memo</source>
+          <target>Bonusgutschrift</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4123040019 - Action 2163604355 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prints a report, listing all the accrual items created for this contract.</source>
           <target>Druckt einen Bericht an, in dem alle für diesen Vertrag erzeugten Rückstellungsposten aufgelistet werden.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Reservation - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Reservation - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 3111013020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 4123040019 - Action 2163604355 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reservation</source>
           <target>Rückstellungen</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Reservation - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Contract Dimensions</source>
-          <target>Bonusvertrag Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>General</source>
-          <target>Allgemein</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Control General - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Control 2623957639 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You can define default dimensions for the provision for each contract.</source>
-          <target> Je Vertrag können Vorgabedimensionen für die Rückstellung hinterlegt werden. </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Control Dimension Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1837915587 - Control 1468132285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can define the departments or the Value of the dimensions.</source>
-          <target>Hier können Sie den Wert der Dimension oder Abteilung angeben.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Dimension - Control Dimension Value - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Reservation - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2625601096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Details</source>
@@ -1154,12 +1310,6 @@
           <target>Gibt die Anzahl der Debitoren an.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control No. of Customer - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2625601096 - Control 862970583 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Indicates the number of dimensions.</source>
-          <target>Gibt die Anzahl der Dimensionen an.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control No. of Dimensions - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3190487353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract Line</source>
@@ -1233,18 +1383,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Control Valid to - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 425109533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Opens the stored attribute filters for the respective contract. If attribute filters are set up for a bonus contract, only articles with the same attribute values are used for the provision and the bonus run.</source>
-          <target>Öffnet die hinterlegten Attributefilter zum jeweiligen Vertrag. Werden Attributefilter für ein Bonusvertrag eingerichtet, dann werden für die Rückstellung und für den Bonuslauf nur Artikel mit gleichen Attributewerten herangezogen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Contract Attribute - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 425109533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Attribute Filter</source>
-          <target>Attribute Filter</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Contract Attribute - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 300417342 - Action 3454750851 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus items are written in the background each time reserves or rebate settlements are created.  These bonus items can be called up for each bonus contract using this button.</source>
           <target>Bei jeder Erzeugung von Rückstellungen oder Bonusabrechnungen werden im Hintergrund Bonusposten geschrieben. Diese Bonusposten können über diese Schaltfläche je Bonusvertrag aufgerufen werden.</target>
@@ -1257,17 +1395,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Entry - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3293458110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can group bonus contracts.</source>
-          <target>Hier können Sie Bonusverträge gruppieren.</target>
+        <trans-unit id="Page 300417342 - Action 2912272269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Items</source>
+          <target>Bonusartikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Group - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3293458110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <target>Bonusgruppe</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Group - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Items - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 300417342 - Action 1771054030 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This takes you to the Bonus Setup screen where you can set up reserves and reverse reserves.</source>
@@ -1293,18 +1425,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Customer - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 300417342 - Action 881177948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can define default dimensions for the reserve for each contract. The dimensions created here are written to the posting lines during the provision run.</source>
-          <target>Hier können je Vertrag Vorgabedimensionen für die Rückstellung hinterlegt werden. Die hier angelegten Dimensionen werden beim Rückstellungslauf in die Buchungszeilen geschrieben.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimension - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 881177948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension</source>
-          <target>Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimension - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 300417342 - Action 3538210097 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).</source>
           <target>Über diesen Button werden alle Datensätze angezeigt, die mit der Vorgangsnummer des Bonusvertrages gekennzeichnet sind. Dazu gehören gebuchte und ungebuchte Belege (Rechnung, Gutschrift), sowie die verschiedenen Posten (Sachposten, Debitorenposten, Bonusposten).</target>
@@ -1312,22 +1432,10 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Navigate - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 300417342 - Action 3538210097 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Navigate</source>
-          <target>Navigate</target>
+          <source>Search in Entries</source>
+          <target>In Posten suchen</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Navigate - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3669386148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
-          <target>Druckt einen Bericht, in dem alle für diesen Vertrag verbuchten Bonusabrechnungsposten aufgelistet werden.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 3669386148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Cr. Memo</source>
-          <target>Bonusgutschriften</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 300417342 - Action 189515208 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This triggers the report for settling bonus contracts. The screen opens prefiltered for the respective contract.</source>
@@ -1365,6 +1473,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Exlode Reservation - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 300417342 - Action 3669386148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prints a report, listing all rebate settlement items posted for this contract.</source>
+          <target>Druckt einen Bericht, in dem alle für diesen Vertrag verbuchten Bonusabrechnungsposten aufgelistet werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 300417342 - Action 3669386148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Cr. Memo</source>
+          <target>Bonusgutschriften</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Bonus Cr. Memo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 300417342 - Action 3111013020 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prints a report, listing all the accrual items created for this contract.</source>
           <target>Druckt einen Bericht an, in dem alle für diesen Vertrag erzeugten Rückstellungsposten aufgelistet werden.</target>
@@ -1388,6 +1508,12 @@
           <target>Dieses Feld wird mit dem Debitor aus dem Bonusvertrag gefüllt.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Customers - Control Customer - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 203343688 - Control 475748445 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Customer Bonus Group field.</source>
+          <target>Gibt den Wert des Feldes Debitorenbonusgruppe an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Customers - Control Customer Group - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 203343688 - Control 1171137197 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is filled with the customer name from the bonus contract.</source>
@@ -1442,6 +1568,12 @@
           <target>Es wird die Bonusvertragszeile des jeweiligen Vertrages in die Bonusposten geschrieben.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Bonus Contract Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 4272010729 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Bonus Document Deleted field.</source>
+          <target>Gibt an, ob das Bonusdokument gelöscht wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Bonus Document Deleted - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 3526372336 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>You can use the bonus document lines field to identify the credit line in which this bonus item is located in the bonus credit memo.</source>
@@ -1557,6 +1689,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Process No. - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 3744289816 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Reversed field.</source>
+          <target>Gibt an, ob der Posten storniert ist.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Reversed - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 1027046424 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Reversed by Entry No. field.</source>
+          <target>Die Nummer des Bonuspostens, der diesen storniert hat.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Reversed by Entry No. - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1086807421 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>The quantity of the individual document line of the settlement credit memo is entered here.</source>
           <target>Hier wird die Menge der einzelnen Belegzeile der Abrechnungsgutschrift eingetragen.</target>
@@ -1569,29 +1713,59 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Ship-to Code - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3741211377 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.</source>
+          <target>Zeigt Dimensionen an oder bearbeitet Dimensionen, wie etwa eines Bereichs, eines Projekts oder einer Abteilung, die Sie Verkaufs- oder Einkaufsbelegen zuweisen können, um die Kosten zu verteilen und den Transaktionsverlauf zu analysieren.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Dimensions - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimensions</source>
+          <target>Dimensionen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Dimensions - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3741211377 - Action 1045917230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Source Document</source>
           <target>Herkunftsbeleg</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Action Source Document - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3293732488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Group</source>
-          <target>Bonusgruppe</target>
+        <trans-unit id="Page 2559199511 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Items</source>
+          <target>Bonus Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3293732488 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can group bonus contracts by code.</source>
-          <target>Hier können Sie Bonusverträge nach Codes gruppieren.</target>
+        <trans-unit id="Page 2559199511 - NamedType 1652824458" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set Attribute Filter</source>
+          <target>Setze Attributfilter</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Control Code - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - NamedType SetAttributeFilterTxt</note>
         </trans-unit>
-        <trans-unit id="Page 3293732488 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you can enter a description of the group.</source>
-          <target>Hier können Sie eine Beschreibung der Gruppe hinterlegen.</target>
+        <trans-unit id="Page 2559199511 - NamedType 4094645193" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set Item Filter</source>
+          <target>Setze Artikelfilter</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Group - Control Description - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - NamedType SetItemFilterTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 2559199511 - Control 287107392 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attribute Filter</source>
+          <target>Attributfilter</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Control Attribute Filter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2559199511 - Control 60453471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Filter</source>
+          <target>Artikelfilter</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Control Item Filter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2559199511 - Control 3437602538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Count</source>
+          <target>Anzahl Artikel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Items - Control ItemCount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
@@ -1606,10 +1780,16 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Number Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Control 3047527542 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for the number series that will be used to assign numbers to Billing Cr.Memo Nos.</source>
-          <target>Gibt den Code der Nummernserie an, die zum Zuweisen von Nummern zu Abrechnungsgutschriften verwendet wird.</target>
+          <source>Specifies the code for the number series that will be used to assign numbers to Bonus Statements.</source>
+          <target>Gibt den Code der Nummernserie an, die zum Zuweisen von Nummern zu Bonusabrechnungen verwendet wird.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Billing Cr.Memo Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1573773400 - Control 3047527542 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Statement</source>
+          <target>Bonusabrechnung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Billing Cr.Memo Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Control 1196001075 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the code for the number series that will be used to assign numbers to bonus contracts.</source>
@@ -1617,11 +1797,23 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Bonus Nos. - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 1573773400 - Control 1196001075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contract</source>
+          <target>Bonusvertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Bonus Nos. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1573773400 - Control 4140162563 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for the number series that will be used to assign numbers to Reserve Cr.Memo Nos.</source>
-          <target>Gibt den Code der Nummernserie an, die zum Zuweisen von Nummern zu Reservierungsgutschriften verwendet wird.</target>
+          <source>Specifies the code for the number series that will be used to assign numbers to the statistical documents Reserve Cr.Memos and Explosion.</source>
+          <target>Gibt den Code der Nummernserie an, die zum Zuweisen von Nummern zu den statistischen Belegen Rückstellungsgutschrift und Rückstellungsauflösung verwendet wird.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Reserve Cr.Memo Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1573773400 - Control 4140162563 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reservation/Explosion</source>
+          <target>Rückstellung/Auflösung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Setup - Control Reserve Cr.Memo Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1573773400 - Control 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve</source>
@@ -1760,6 +1952,24 @@
           <target>Gibt an, um welches Attribut es sich handelt. Wird automatisch befüllt, sobald ein Attributwert angegeben wird.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Contract Attr. Filter - Control Attribute Value Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1538342882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Bonus Groups</source>
+          <target>Debitorenbonusgruppen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1538342882 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used to uniquely identify the customer bonus group.</source>
+          <target>Dient zur eindeutigen Identifikation der Debitorenbonusgruppe.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Control Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1538342882 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Here you can type in the description of the customer bonus group.</source>
+          <target>Hier kann die Bezeichnung der Debitorenbonusgruppe stehen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Customer Groups - Control Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3389654593 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Explode Bonus Reservation</source>
@@ -1905,35 +2115,239 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control lbtbn Posting Date - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 959492753 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Bonus Groups</source>
+          <target>Artikelbonusgruppen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 959492753 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used to uniquely identify the Item bonus group.</source>
+          <target>Dient zur eindeutigen Identifikation der Artikelbonusgruppe.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Control Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 959492753 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Here you can type in the description of the Item bonus group.</source>
+          <target>Hier kann die Bezeichnung der Artikelbonusgruppe stehen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Protocol</source>
+          <target>Bonusprotokoll</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2880216374" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Amount</source>
+          <target>Basisbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Base_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1972601055" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Qty.</source>
+          <target>Basis Menge</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Base_Qty_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1879772342" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Amount</source>
+          <target>Bonusbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Bonus_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2672751556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Protocol</source>
+          <target>Bonus Protokoll</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Bonus_ProtocolCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 717060633" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cash Discount</source>
+          <target>Skonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Cash_DiscountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3488564065" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract No.</source>
+          <target>Vertragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Contract_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1987762555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Seite</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType CurrReport_PAGENOCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1428681763" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No.</source>
+          <target>Debitorennr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Customer_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3406999958" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Amount</source>
+          <target>Rabattbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Discount_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2680280112" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target>Belegnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Invoice_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 2041091924" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Code</source>
+          <target>Lief. an Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Ship_to_CodeCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 1976394234" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Contract</source>
+          <target>Summe für Vertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_ContractCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3761711836" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Customer</source>
+          <target>Summe für Kunden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_CustomerCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3350891001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Shipping Address</source>
+          <target>Summe für Lieferadresse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_Shipping_AddressCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter :</source>
+          <target>Datumsfilter :</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 745995215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount</source>
+          <target>Gesamtbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Total_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reservation</source>
+          <target>Bonus Rückstellung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 2880216374" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Amount</source>
+          <target>Basisbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Base_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1972601055" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base Qty.</source>
+          <target>Basis Menge</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Base_Qty_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3975341583" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus reservations</source>
+          <target>Bonusrückstellungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Bonus_reservationsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 717060633" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cash Discount</source>
+          <target>Skonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Cash_DiscountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3488564065" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract No.</source>
+          <target>Vertragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Contract_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1987762555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Seite</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType CurrReport_PAGENOCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1428681763" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No.</source>
+          <target>Debitorennr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Customer_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3406999958" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Amount</source>
+          <target>Rabattbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Discount_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 2680280112" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target>Belegnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Invoice_No_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 405133969" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reservation Amount</source>
+          <target>Rückstellungswert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Reservation_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1208057114" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <target>Betrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Result_AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 2041091924" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Code</source>
+          <target>Lief. an Code</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Ship_to_CodeCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 1976394234" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Contract</source>
+          <target>Summe für Vertrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_ContractCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3761711836" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Customer</source>
+          <target>Summe für Kunden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_CustomerCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3350891001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sum for Shipping Address</source>
+          <target>Summe für Lieferadresse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_Shipping_AddressCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter:</source>
+          <target>Datumsfilter :</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 745995215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount</source>
+          <target>Gesamtbetrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Total_AmountCaptionLbl</note>
+        </trans-unit>
         <trans-unit id="Report 510169692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Reserves</source>
           <target>Bonusrückstellungslauf</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2761214586" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Accounting Period %1 to %2</source>
-          <target>Abrechnungszeitraum %1 bis %2</target>
-          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType AccountingPeriodLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 170287482" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Accounting accordingly Bonus Contract %1.</source>
-          <target>Rückstellungen gem. Vertrag %1</target>
-          <note from="Developer" annotates="general" priority="2">%1 No.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusAccountingLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 3545756256" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Reserve for </source>
-          <target>Bonusrückstellung für </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusReserveForLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2329545137" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Reserve</source>
-          <target>Bonusrückstellung</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType BonusReserveLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3233932325" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please check the accounting period.</source>
@@ -1947,23 +2361,11 @@
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType ContractProgressTxt</note>
         </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Credit Memo </source>
-          <target>Gutschrift </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType CrMemoLbl</note>
-        </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 2162482411" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer #1##############\</source>
           <target>Debitor  #1##############\</target>
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType CustomerProgressTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2437958988" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Fixed Amount</source>
-          <target>Bonusfestbetrag</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType FixedAmountLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - NamedType 3677791141" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please input the accounting period.</source>
@@ -1971,17 +2373,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType InputAccountingPeriodMsg</note>
         </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 2813721509" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice </source>
-          <target>Rechnung </target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType InvoiceLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 510169692 - NamedType 3250359956" size-unit="char" translate="yes" xml:space="preserve">
-          <source>There is an unposted credit memo for bonus reserve.\\Please post or delete it at first.</source>
-          <target>Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden.</target>
-          <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType UnpostedCreditMemoErr</note>
+        <trans-unit id="Report 510169692 - Method 1673206391 - NamedType 1646609768" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please check the filter %1 for Bonus Contract %2.</source>
+          <target>Bitte prüfen Sie %1 für Bonus Vertrag %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 - Table Caption of what to check, %2 - Bonus Contract No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - Method CheckFilters - NamedType CheckLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - Control 2653493796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Option</source>
@@ -2025,24 +2421,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType AccountingPeriodMissingErr</note>
         </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 1568714272" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Accounting Period %1 to %2</source>
-          <target>Abrechnungszeitraum %1 bis %2</target>
-          <note from="Developer" annotates="general" priority="2">%1 from %2 to</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType AccountingPeriodTxt</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 2719356" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Credit Memo</source>
-          <target>Bonusgutschrift</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType BonusCreditMemoLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 3491407518 - NamedType 504501076" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Settlement according to Bonus Contract %1</source>
-          <target>Bonusabrchn. gem. Vertrag %1</target>
-          <note from="Developer" annotates="general" priority="2">%1 No.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType BonusSettlementTxt</note>
-        </trans-unit>
         <trans-unit id="Report 3491407518 - NamedType 3491330105" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Contract #2##############\</source>
           <target>Bonusvertrag  #2##############\</target>
@@ -2060,6 +2438,12 @@
           <target>Verkaufsbeleg #3##############</target>
           <note from="Developer" annotates="general" priority="2">%1 No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - NamedType SalesDocProgressTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 3491407518 - Method 1673206391 - NamedType 1646609768" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please check the filter %1 for Bonus Contract %2.</source>
+          <target>Bitte prüfen Sie %1 für Bonus Vertrag %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 - Table Caption of what to check, %2 - Bonus Contract No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Method CheckFilters - NamedType CheckLbl</note>
         </trans-unit>
         <trans-unit id="Report 3491407518 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
@@ -2103,6 +2487,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Run - Control Reverse Posting Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3261694402 - Control 3499160770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
+          <source>LeBit Bonus</source>
+          <target>LeBit Bonus</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Card - Control lbtbn  - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3261694402 - Control 2047387159 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
+          <source>The customer bonus groups can be assigned to the customer.</source>
+          <target>Die Debitorbuchungsgruppe kann dem Debitor zugewiesen werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Card - Control lbtbn Customer Group - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1695308226 - Control 3377816526 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2866362260">
           <source>Specifies the bonus reserve account</source>
           <target>Gibt das Konto für die Bonusreserven an</target>
@@ -2115,11 +2511,29 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Customer Posting Groups - Control lbtbn Bonus Reserve Bal. Account - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 215031601 - Control 1763507580 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>LeBit Bonus</source>
+          <target>LeBit Bonus</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Card - Control lbtbn lbtbn - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 215031601 - Control 2428278704 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
+          <source>The Item bonus groups can be assigned to the Item.</source>
+          <target>Die Artikelbonusgruppe kann dem Artikel zugeordnet werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Card - Control lbtbn Item Group - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1211669190 - Control 1809393980 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 200707616">
           <source>Indicate which surcharges and discounts are relevant for bonus.</source>
           <target>Kennzeichnen, welche ZU-/ABSCHLÄGE Bonusrelevant sind.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension lbtbn Item Charges - Control lbtbn Bonus consider - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1182399334 - Field 2047387159 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1994964448">
+          <source>Customer Bonus Group</source>
+          <target>Debitorenbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Customer - Field lbtbn Customer Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2890724663 - Field 698587409 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 410940989">
           <source>Bonus Reserve Account</source>
@@ -2139,11 +2553,29 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Gen. Journal Line - Field lbtbn Bonus Entry No - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 4054959661 - Field 495873533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Reserve Entry No.</source>
+          <target>Rückstellung Lfd. Nr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Gen. Journal Line - Field lbtbn Reserve Entry No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4054959661 - Field 1349881439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Reserve Transaction No.</source>
+          <target>Rückstellung Transaktionsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Gen. Journal Line - Field lbtbn Reserve Transaction No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 2427736203 - Field 1160090714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2825951060">
           <source>Bonus Entry No.</source>
           <target>Bonusposten Lfd. Nr.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn GLEntry - Field lbtbn Bonus Entry No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3308150221 - Field 2428278704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Item Bonus Group</source>
+          <target>Artikelbonusgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item - Field lbtbn Item Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3320833499 - Field 1809393980 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 151375497">
           <source>Bonus consider</source>
@@ -2151,17 +2583,41 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item Charge - Field lbtbn Bonus consider - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 268913786 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 268913786">
-          <source>You cannot assign item charges to the %1 because it has been invoiced. Instead you can get the posted document line and then assign the item charge to that line.</source>
-          <target>Sie können keine Artikel Zu-/Abschläge für die %1 zuweisen, da sie bereits fakturiert wurde. Stattdessen können Sie die gebuchte Belegzeile holen und den Artikel Zu-/Abschlag dieser Zeile zuweisen.</target>
-          <note from="Developer" annotates="general" priority="2">%1 - Tablecaption</note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn Item Charge Assign. - NamedType Text001Msg</note>
-        </trans-unit>
         <trans-unit id="TableExtension 167010268 - Field 3423839740 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>Bonus Entry No.</source>
           <target>Bonus Postennr.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn SalesLine - Field lbtbn Bonus Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 348662871 - EnumValue 2478407903 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%</source>
+          <target>% vom Umsatz</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 348662871 - EnumValue 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <target>Betrag (MW)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 348662871 - EnumValue 125470167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount per Unit</source>
+          <target>Betrag je Einheit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount per Unit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3044551195 - EnumValue 1708100201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Credit Memo</source>
+          <target>Verkaufsgutschrift</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Document Type - EnumValue Sales Credit Memo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3044551195 - EnumValue 4034894651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Invoice</source>
+          <target>Verkaufsrechnung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Document Type - EnumValue Sales Invoice - Property Caption</note>
         </trans-unit>
       </group>
     </body>

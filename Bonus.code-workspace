@@ -17,6 +17,7 @@
 		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
 		"CRS.RemovePrefixFromFilename": true,
 		"CRS.ObjectNamePrefix": "lbtbn ",
+		"alVarHelper.ignoreALPrefix": "lbtbn",
 		"CRS.OnSaveAlFileAction": "DoNothing",
 		"al.codeAnalyzers": [
 			"${CodeCop}",

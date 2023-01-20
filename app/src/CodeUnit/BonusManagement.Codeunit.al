@@ -1,5 +1,6 @@
 codeunit 5266052 "lbtbn Bonus Management"
 {
+    #region SetAssignmentDoc
     procedure SetAssignmentDoc(AssignmentDocTypeP: Option " ","Sales Shipment","Sales Return Receipt";
                                AssignmentDocNoP: Code[20];
                                AssignmentDocLineNoP: Integer)
@@ -8,23 +9,30 @@ codeunit 5266052 "lbtbn Bonus Management"
         AssignmentDocNo := AssignmentDocNoP;
         AssignmentDocLineNo := AssignmentDocLineNoP;
     end;
+    #endregion SetAssignmentDoc
 
-    procedure SetSourceDoc(SourceDocTypeP: Integer; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
+    #region SetSourceDoc
+    procedure SetSourceDoc(SourceDocTypeP: Enum "lbtbn Document Type"; SourceDocNoP: Code[20]; SourceDocLineNoP: Integer)
     begin
         SourceDocType := SourceDocTypeP;
         SourceDocNo := SourceDocNoP;
         SourceDocLineNo := SourceDocLineNoP;
     end;
+    #endregion SetSourceDoc
 
+    #region SetBonusDoc
     procedure SetBonusDoc(BonusDocTypeP: Integer; BonusDocNoP: Code[20]; BonusDocLineNoP: Integer)
     begin
         BonusDocType := BonusDocTypeP;
         BonusDocNo := BonusDocNoP;
         BonusDocLineNo := BonusDocLineNoP;
     end;
+    #endregion SetBonusDoc
 
+    #region CreateBonusContractEntry
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
-                                        var BonusCustomer: Record "lbtbn Bonus Customer";
+                                        CustomerNo: Code[20];
+                                        ShipToCode: Code[10];
                                         EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
                                         EntryDate: Date;
                                         BonusRule: Integer;
@@ -33,7 +41,8 @@ codeunit 5266052 "lbtbn Bonus Management"
                                         AmtIncVAT: Decimal;
                                         DocAmt: Decimal;
                                         DiscAmt: Decimal;
-                                        PmtDiscAmt: Decimal
+                                        PmtDiscAmt: Decimal;
+                                        DimSetId: Integer
     ): Integer
     var
         EntryNo: Integer;
@@ -48,8 +57,8 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Entry No." := EntryNo + 1;
         BonusEntry."Entry Type" := EntryType;
         BonusEntry."Contract" := BonusContract."No.";
-        BonusEntry."Customer" := BonusCustomer."Customer No.";
-        BonusEntry."Ship-to Code" := BonusCustomer."Ship-to Code";
+        BonusEntry."Customer" := CustomerNo;
+        BonusEntry."Ship-to Code" := ShipToCode;
         BonusEntry."Process No." := BonusContract."Process No.";
         BonusEntry."Invoice Customer No." := BonusContract."Bonus Recipient";
         BonusEntry."Entry Date" := EntryDate;
@@ -69,11 +78,14 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Assignment Doc. Line No." := AssignmentDocLineNo;
         BonusEntry."Pmt. Discount Amount" := PmtDiscAmt;
         BonusEntry."Discount Amount" := DiscAmt;
+        BonusEntry."Dimension Set ID" := DimSetId;
         BonusEntry.Insert();
 
         exit(BonusEntry."Entry No.");
     end;
+    #endregion CreateBonusContractEntry
 
+    #region UpdateFromGenLedgEntry
     procedure UpdateFromGenLedgEntry(var GLEntry: Record "G/L Entry")
     begin
         BonusSetup.Get();
@@ -93,34 +105,52 @@ codeunit 5266052 "lbtbn Bonus Management"
             BonusEntry.Modify();
         end;
     end;
+    #endregion UpdateFromGenLedgEntry
 
+    #region EventSubscriber Page Navigate onAfterInsertDocEntries 
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
     local procedure FindBonusContracts(var DocEntry: Record "Document Entry"; ProcessNo: Code[50])
     var
         BonusContract: Record "lbtbn Bonus Contract";
+        BonusEntryL: Record "lbtbn Bonus Entry";
         Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
         Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
+        BonusEntryL.SetRange("Process No.", ProcessNo);
+        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntryL.TableCaption(), BonusEntryL.Count());
+    end;
+    #endregion EventSubscriber Page Navigate onAfterInsertDocEntries 
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnPostSalesLineOnAfterTestUpdatedSalesLine', '', false, false)]
+    local procedure OnPostSalesLineOnAfterTestUpdatedSalesLine(var SalesLine: Record "Sales Line"; var EverythingInvoiced: Boolean; SalesHeader: Record "Sales Header");
+    var
+        BonusEntryL: Record "lbtbn Bonus Entry";
+    begin
+        if SalesLine."lbtbn Bonus Entry No." = 0 then
+            exit;
+        if not BonusEntryL.Get(SalesLine."lbtbn Bonus Entry No.") then
+            exit;
+
+        case SalesLine."Document Type" of
+            SalesLine."Document Type"::Invoice:
+                BonusEntryL."Posted Amount" := -SalesLine."Line Amount";
+            SalesLine."Document Type"::"Credit Memo":
+                BonusEntryL."Posted Amount" := SalesLine."Line Amount";
+        end;
+        BonusEntryL.Modify();
     end;
 
     var
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusSetup: Record "lbtbn Bonus Setup";
-
         AssignmentDocType: Option;
         AssignmentDocNo: Code[20];
         AssignmentDocLineNo: Integer;
-
-        SourceDocType: Integer;
+        SourceDocType: Enum "lbtbn Document Type";
         SourceDocNo: Code[20];
         SourceDocLineNo: Integer;
-
         BonusDocType: Integer;
         BonusDocNo: Code[20];
         BonusDocLineNo: Integer;
-
-
-
-
 }

@@ -1,6 +1,6 @@
 table 5266052 "lbtbn Bonus Contract"
 {
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
     Caption = 'Bonus Contract';
     LookupPageId = "lbtbn Bonus Contracts";
     DrillDownPageId = "lbtbn Bonus Contracts";
@@ -10,7 +10,6 @@ table 5266052 "lbtbn Bonus Contract"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
-            DataClassification = CustomerContent;
 
             trigger OnValidate()
             begin
@@ -20,29 +19,22 @@ table 5266052 "lbtbn Bonus Contract"
         field(2; "Valid from"; Date)
         {
             Caption = 'Valid from';
-            DataClassification = CustomerContent;
         }
         field(3; "Valid to"; Date)
         {
             Caption = 'Valid to';
-            DataClassification = CustomerContent;
         }
         field(4; "Billing Period"; DateFormula)
         {
             Caption = 'Billing Period';
-            DataClassification = CustomerContent;
         }
         field(5; "Reserve Value"; Decimal)
         {
             Caption = 'Reserve Value';
-            DataClassification = CustomerContent;
         }
-        field(6; "Reserve Type"; Option)
+        field(6; "Reserve Type"; Enum "lbtbn Billing Type")
         {
             Caption = 'Reverse Type';
-            OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaption = '%,Amount (LCY),Amount per Unit';
-            DataClassification = CustomerContent;
 
             trigger OnValidate()
             begin
@@ -55,20 +47,15 @@ table 5266052 "lbtbn Bonus Contract"
         field(7; "Reserve Unit"; Code[10])
         {
             Caption = 'Reserve Unit';
-            DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
         }
         field(8; "Last Reserve at"; Date)
         {
             Caption = 'Last Reserve at';
-            DataClassification = CustomerContent;
         }
-        field(9; "Bonus Billing Type"; Option)
+        field(9; "Bonus Billing Type"; Enum "lbtbn Billing Type")
         {
             Caption = 'Bonus Billing Type';
-            DataClassification = CustomerContent;
-            OptionMembers = "%","Amount (LCY)","Amount per Unit";
-            OptionCaption = '%,Amount (LCY),Amount per Unit';
 
             trigger OnValidate()
             begin
@@ -81,13 +68,11 @@ table 5266052 "lbtbn Bonus Contract"
         field(10; "Bonus Billing Unit"; Code[10])
         {
             Caption = 'Bonus Billing Unit';
-            DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
         }
         field(11; "Last Billing at"; Date)
         {
             Caption = 'Last Billing at';
-            DataClassification = CustomerContent;
 
             trigger OnValidate()
             begin
@@ -105,7 +90,6 @@ table 5266052 "lbtbn Bonus Contract"
         field(12; "Bonus Scale Type"; Option)
         {
             Caption = 'Bonus Scale Type';
-            DataClassification = CustomerContent;
             OptionMembers = "Sales Qty.","Sales (LCY)";
             OptionCaption = 'Sales Qty.,Sales (LCY)';
 
@@ -128,14 +112,7 @@ table 5266052 "lbtbn Bonus Contract"
         field(13; "Bonus Recipient"; Code[20])
         {
             Caption = 'Bonus Recipient';
-            DataClassification = CustomerContent;
             TableRelation = Customer."No.";
-        }
-        field(14; "Bonus Group"; Code[20])
-        {
-            Caption = 'Bonus Group';
-            DataClassification = CustomerContent;
-            TableRelation = "lbtbn Bonus Group"."Code";
         }
         field(16; "No. of Customers"; Integer)
         {
@@ -165,13 +142,6 @@ table 5266052 "lbtbn Bonus Contract"
             FieldClass = FlowField;
             CalcFormula = sum("lbtbn Bonus Entry"."Posted Amount" where(Contract = field("No."), "Entry Type" = const("Liquidation of Reserves")));
         }
-        field(20; "No. of Dimensions"; Integer)
-        {
-            Caption = 'No. of Dimensions';
-            Editable = false;
-            FieldClass = FlowField;
-            CalcFormula = count("lbtbn Bonus Contract Dimension" where(Contract = field("No.")));
-        }
         field(21; "No. of Attribute"; Integer)
         {
             Caption = 'No. of Attribute';
@@ -182,47 +152,39 @@ table 5266052 "lbtbn Bonus Contract"
         field(22; "Reserve Item Charge"; Code[20])
         {
             Caption = 'Reserve Item Charge';
-            DataClassification = CustomerContent;
             TableRelation = "Item Charge"."No.";
         }
         field(23; "Accounting Item Charge"; Code[20])
         {
             Caption = 'Accounting Item Charge';
-            DataClassification = CustomerContent;
             TableRelation = "Item Charge"."No.";
         }
         field(24; "Pmt. Discount %"; Decimal)
         {
             Caption = 'Payment Discount %';
-            DataClassification = CustomerContent;
         }
         field(25; "Discount %"; Decimal)
         {
             Caption = 'Discount %';
-            DataClassification = CustomerContent;
         }
-        field(26; "Process No."; Code[20])
+        field(5266500; "Process No."; Code[20])
         {
             Caption = 'Process No.';
-            DataClassification = CustomerContent;
             TableRelation = "lbt Process";
         }
         field(27; Description; Text[50])
         {
             Caption = 'Description';
-            DataClassification = CustomerContent;
         }
         field(28; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
-            DataClassification = CustomerContent;
             TableRelation = "No. Series";
             Editable = false;
         }
         field(29; "Customer Reserve Cr.Memo"; Code[20])
         {
             Caption = 'Customer Reserve Cr.Memo';
-            DataClassification = CustomerContent;
             TableRelation = Customer;
         }
     }
@@ -256,9 +218,6 @@ table 5266052 "lbtbn Bonus Contract"
             BonusContractLineRec.SetRange(Contract, "No.");
             if not BonusContractLineRec.IsEmpty() then
                 BonusContractLineRec.DeleteAll();
-            BonusContractDimension.SetRange(Contract, "No.");
-            if not BonusContractDimension.IsEmpty() then
-                BonusContractDimension.DeleteAll();
             BonusContractAttribute.SetRange(Contract, "No.");
             if not BonusContractAttribute.IsEmpty() then
                 BonusContractAttribute.DeleteAll();
@@ -315,10 +274,17 @@ table 5266052 "lbtbn Bonus Contract"
         end;
     end;
 
+    procedure Navigate()
+    var
+        NavigatePage: Page Navigate;
+    begin
+        NavigatePage.SetProcessNo(Rec."Process No.");
+        NavigatePage.Run();
+    end;
+
     var
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusContractLineRec: Record "lbtbn Bonus Contract Line";
-        BonusContractDimension: Record "lbtbn Bonus Contract Dimension";
         BonusContractAttribute: Record "lbtbn BonusContractAttribute";
         BonusCustomer: Record "lbtbn Bonus Customer";
         SalesHeaderRec: Record "Sales Header";

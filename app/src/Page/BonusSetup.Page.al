@@ -15,18 +15,21 @@ page 5266051 "lbtbn Bonus Setup"
                 Caption = 'Number Series';
                 field("Bonus Nos."; Rec."Bonus Contract Nos.")
                 {
+                    Caption = 'Bonus Contract';
                     ToolTip = 'Specifies the code for the number series that will be used to assign numbers to bonus contracts.';
                     ApplicationArea = All;
                 }
                 field("Reserve Cr.Memo Nos."; Rec."Reserve Cr.Memo Nos.")
                 {
+                    Caption = 'Reservation/Explosion';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to Reserve Cr.Memo Nos.';
+                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to the statistical documents Reserve Cr.Memos and Explosion.';
                 }
                 field("Billing Cr.Memo Nos."; Rec."Billing Cr.Memo Nos.")
                 {
+                    Caption = 'Bonus Statement';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to Billing Cr.Memo Nos.';
+                    ToolTip = 'Specifies the code for the number series that will be used to assign numbers to Bonus Statements.';
                 }
             }
 
@@ -41,7 +44,7 @@ page 5266051 "lbtbn Bonus Setup"
                     trigger OnValidate()
 
                     begin
-                        SetEnabledOnAfterValidate();
+                        EnabledFields();
                     end;
                     #endregion OnValidate
                 }
@@ -85,7 +88,7 @@ page 5266051 "lbtbn Bonus Setup"
             group("Revers Reserve")
             {
                 Caption = 'Revers Reserve';
-                field("Revers Reserve Mode"; Rec."Revers Reserve Mode")
+                field("Revers Reserve Mode"; Rec."Reverse Reserve Mode")
                 {
                     ToolTip = 'Here you specify whether reserves are to be reversed manually or automatically. If you have selected the automatic reversal mode, there is no need to post an extra book page.';
                     ApplicationArea = All;
@@ -118,20 +121,6 @@ page 5266051 "lbtbn Bonus Setup"
         ReserveMode_Journal: Boolean;
         ReserveMode_CreditMemo: Boolean;
 
-    #region SetEnabledOnAfterValidate
-    local procedure SetEnabledOnAfterValidate()
-    begin
-        EnabledFields();
-    end;
-    #endregion SetEnabledOnAfterValidate
-
-    #region SetEnabledOnOpenPage
-    local procedure SetEnabledOnOpenPage()
-    begin
-        EnabledFields();
-    end;
-    #endregion SetEnabledOnOpenPage
-
     #region EnabledFields
     local procedure EnabledFields()
     begin
@@ -140,11 +129,11 @@ page 5266051 "lbtbn Bonus Setup"
     end;
     #endregion EnabledFields
 
-    #region OnOpenPage
-    trigger OnOpenPage()
+    #region OnAfterGetRecord
+    trigger OnAfterGetRecord()
     begin
-        SetEnabledOnOpenPage();
+        EnabledFields();
     end;
-    #endregion OnOpenPage
+    #endregion OnAfterGetRecord
 
 }

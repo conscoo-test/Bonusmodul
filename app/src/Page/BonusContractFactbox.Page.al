@@ -30,12 +30,6 @@ page 5266060 "lbtbn Bonus Contract Factbox"
                 ToolTip = 'Indicates the number of existing attributes.';
                 ApplicationArea = All;
             }
-            field("No. of Dimensions"; Rec."No. of Dimensions")
-            {
-                ToolTip = 'Indicates the number of dimensions.';
-                ApplicationArea = All;
-            }
-
             field("Balance of Reserve"; Rec."Balance of Reserve")
             {
                 ToolTip = 'Indicates the balance of provisions.';
@@ -51,11 +45,6 @@ page 5266060 "lbtbn Bonus Contract Factbox"
                 ToolTip = 'Indicates the balance of the bonus.';
                 ApplicationArea = All;
             }
-
         }
-
-
-
     }
-
 }

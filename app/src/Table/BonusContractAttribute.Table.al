@@ -62,10 +62,14 @@ table 5266055 "lbtbn BonusContractAttribute"
         {
             Caption = 'Value Name';
         }
+        field(8; "Bonus Item Entry No."; Integer)
+        {
+            Caption = 'Bonus Item Entry No.';
+        }
     }
     keys
     {
-        key(PK; "Contract", "Attribute ID", "Attribute Value ID")
+        key(PK; "Contract", "Bonus Item Entry No.", "Attribute ID", "Attribute Value ID")
         {
             Clustered = true;
         }

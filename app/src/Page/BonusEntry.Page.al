@@ -4,6 +4,7 @@ page 5266057 "lbtbn Bonus Entry"
     Editable = false;
     PageType = List;
     SourceTable = "lbtbn Bonus Entry";
+    SourceTableView = sorting("Entry No.") order(descending);
     UsageCategory = None;
 
     layout
@@ -147,6 +148,21 @@ page 5266057 "lbtbn Bonus Entry"
                     ApplicationArea = All;
                     ToolTip = 'This field is filled with the invoice recipient of the bonus agreement.  An alternative customer can also be defined as the bill-to party.';
                 }
+                field(Reversed; Rec.Reversed)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Reversed field.';
+                }
+                field("Reversed by Entry No."; Rec."Reversed by Entry No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Reversed by Entry No. field.';
+                }
+                field("Bonus Document Deleted"; Rec."Bonus Document Deleted")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Bonus Document Deleted field.';
+                }
             }
         }
     }
@@ -164,6 +180,20 @@ page 5266057 "lbtbn Bonus Entry"
                 trigger OnAction()
                 begin
                     Rec.OpenSourceDocument();
+                end;
+            }
+            action(Dimensions)
+            {
+                AccessByPermission = tabledata Dimension = R;
+                ApplicationArea = Dimensions;
+                Caption = 'Dimensions';
+                Image = Dimensions;
+                ShortCutKey = 'Alt+D';
+                ToolTip = 'View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
+
+                trigger OnAction()
+                begin
+                    Rec.ShowDimensions();
                 end;
             }
         }
