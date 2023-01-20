@@ -105,12 +105,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Description - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 4123040019 - Field 3322554545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimension Set ID</source>
-          <target>Dimensionssatz-ID</target>
-          <note from="Developer" annotates="general" priority="2">DEU="Dimensionssatz-ID"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Dimension Set ID - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 3310956332 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discount %</source>
           <target>Rabatt %</target>
@@ -1197,18 +1191,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Customer - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.</source>
-          <target>Zeigt Dimensionen an oder bearbeitet Dimensionen, wie etwa eines Bereichs, eines Projekts oder einer Abteilung, die Sie Verkaufs- oder Einkaufsbelegen zuweisen können, um die Kosten zu verteilen und den Transaktionsverlauf zu analysieren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimensions - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4123040019 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimensions</source>
-          <target>Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Dimensions - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 4123040019 - Action 3538210097 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).</source>
           <target>Über diesen Button werden alle Datensätze angezeigt, die mit der Vorgangsnummer des Bonusvertrages gekennzeichnet sind. Dazu gehören gebuchte und ungebuchte Belege (Rechnung, Gutschrift), sowie die verschiedenen Posten (Sachposten, Debitorenposten, Bonusposten).</target>
@@ -1442,18 +1424,6 @@
           <target>Debitor</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Customer - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.</source>
-          <target>Zeigt Dimensionen an oder bearbeitet Dimensionen, wie etwa eines Bereichs, eines Projekts oder einer Abteilung, die Sie Verkaufs- oder Einkaufsbelegen zuweisen können, um die Kosten zu verteilen und den Transaktionsverlauf zu analysieren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimensions - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 300417342 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dimensions</source>
-          <target>Dimensionen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Action Dimensions - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 300417342 - Action 3538210097 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This button displays all data records that are marked with the process number of the bonus contract. This includes posted and unposted documents (invoice, credit memo), as well as the various items (G/L items, customer items, bonus items, etc.).</source>
@@ -2402,6 +2372,12 @@
           <target>Geben Sie den Abrechnungszeitraum ein.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - NamedType InputAccountingPeriodMsg</note>
+        </trans-unit>
+        <trans-unit id="Report 510169692 - Method 1673206391 - NamedType 1646609768" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please check the filter %1 for Bonus Contract %2.</source>
+          <target>Bitte prüfen Sie %1 für Bonus Vertrag %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 - Table Caption of what to check, %2 - Bonus Contract No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reserves - Method CheckFilters - NamedType CheckLbl</note>
         </trans-unit>
         <trans-unit id="Report 510169692 - Control 2653493796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Option</source>

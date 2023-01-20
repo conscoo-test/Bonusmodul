@@ -470,8 +470,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         GenJournalLine."lbtbn Bonus Entry No" := BonusEntryNo;
         GenJournalLine."Reason Code" := BonusSetup."Reason Code";
         GenJournalLine."Dimension Set ID" := SalesInvoiceLineG."Dimension Set ID";
-        if GenJournalLine."Dimension Set ID" = 0 then
-            GenJournalLine."Dimension Set ID" := BonusContract."Dimension Set ID";
         DimensionManagement.UpdateGlobalDimFromDimSetID(GenJournalLine."Dimension Set ID",
                                              GenJournalLine."Shortcut Dimension 1 Code",
                                               GenJournalLine."Shortcut Dimension 2 Code");

@@ -124,7 +124,7 @@ report 5266051 "lbtbn Bonus Reserves"
             begin
                 Dialog.Update(1, "No. of Customers");
                 Dialog.Update(2, "No.");
-
+                CheckFilters();
                 if not CheckDates() then
                     CurrReport.Skip();
                 FindDocumentNos.FindDocumentNos("Bonus Contract"."No.", InvoiceNos, CrMemoNos, DateFrom, DateTo);
@@ -216,4 +216,18 @@ report 5266051 "lbtbn Bonus Reserves"
         exit(true);
     end;
     #endregion CheckDates
+
+    local procedure CheckFilters()
+    var
+        BonusCustomer: Record "lbtbn Bonus Customer";
+        BonusItem: Record "lbtbn Bonus Item";
+        CheckLbl: Label 'Please check the filter %1 for Bonus Contract %2.', Comment = '%1 - Table Caption of what to check, %2 - Bonus Contract No.';
+    begin
+        BonusCustomer.SetRange(Contract, "Bonus Contract"."No.");
+        if BonusCustomer.IsEmpty then
+            Error(CheckLbl, BonusCustomer.TableCaption, "Bonus Contract"."No.");
+        BonusItem.SetRange("Contract No.", "Bonus Contract"."No.");
+        if BonusItem.IsEmpty then
+            Error(CheckLbl, BonusItem.TableCaption, "Bonus Contract"."No.");
+    end;
 }

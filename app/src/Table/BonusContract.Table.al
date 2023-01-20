@@ -114,12 +114,6 @@ table 5266052 "lbtbn Bonus Contract"
             Caption = 'Bonus Recipient';
             TableRelation = Customer."No.";
         }
-        field(14; "Dimension Set ID"; Integer)
-        {
-            Caption = 'Dimension Set ID', comment = 'DEU="Dimensionssatz-ID"';
-            TableRelation = "Dimension Set Entry";
-            Editable = false;
-        }
         field(16; "No. of Customers"; Integer)
         {
             Caption = 'No. of Customers';
@@ -287,21 +281,6 @@ table 5266052 "lbtbn Bonus Contract"
         NavigatePage.SetProcessNo(Rec."Process No.");
         NavigatePage.Run();
     end;
-
-    procedure ShowDimensions()
-    var
-        DimensionManagement: Codeunit DimensionManagement;
-        DimLbl: Label '%1 %2', Locked = true;
-        Caption: Text;
-        OldDimSetId: Integer;
-    begin
-        Caption := StrSubstNo(DimLbl, TableCaption, "No.");
-        OldDimSetId := Rec."Dimension Set ID";
-        Rec."Dimension Set ID" := DimensionManagement.EditDimensionSet(Rec."Dimension Set ID", CopyStr(Caption, 1, 250));
-        if OldDimSetId <> Rec."Dimension Set ID" then
-            Rec.Modify();
-    end;
-
 
     var
         BonusEntry: Record "lbtbn Bonus Entry";

@@ -117,22 +117,6 @@ page 5266052 "lbtbn Bonus Contracts"
                 RunObject = Page "lbtbn Bonus Customers";
                 RunPageLink = "Customer No." = field("No.");
             }
-
-            action(Dimensions)
-            {
-                AccessByPermission = tabledata Dimension = R;
-                ApplicationArea = Dimensions;
-                Caption = 'Dimensions';
-                Image = Dimensions;
-                ShortCutKey = 'Alt+D';
-                ToolTip = 'View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
-
-                trigger OnAction()
-                begin
-                    Rec.ShowDimensions();
-                end;
-            }
-
             action("Bonus Items")
             {
                 Caption = 'Bonus Items';

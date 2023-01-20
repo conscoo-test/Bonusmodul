@@ -78,7 +78,7 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Assignment Doc. Line No." := AssignmentDocLineNo;
         BonusEntry."Pmt. Discount Amount" := PmtDiscAmt;
         BonusEntry."Discount Amount" := DiscAmt;
-        BonusEntry."Dimension Set ID" := GetCombinedDimensionSetId(DimSetId, BonusContract."Dimension Set ID");
+        BonusEntry."Dimension Set ID" := DimSetId;
         BonusEntry.Insert();
 
         exit(BonusEntry."Entry No.");
@@ -106,19 +106,6 @@ codeunit 5266052 "lbtbn Bonus Management"
         end;
     end;
     #endregion UpdateFromGenLedgEntry
-
-    local procedure GetCombinedDimensionSetId(DimSetId1: Integer; DimSetId2: Integer): Integer
-    var
-        DimensionManagement: Codeunit DimensionManagement;
-        Dummy1: Code[20];
-        Dummy2: Code[20];
-        DimSetIds: array[10] of Integer;
-    begin
-        DimSetIds[1] := DimSetId1;
-        DimSetIds[2] := DimSetId2;
-
-        exit(DimensionManagement.GetCombinedDimensionSetID(DimSetIds, Dummy1, Dummy2));
-    end;
 
     #region EventSubscriber Page Navigate onAfterInsertDocEntries 
     [EventSubscriber(ObjectType::Page, Page::Navigate, 'onAfterInsertDocEntries', '', true, true)]
