@@ -7,6 +7,13 @@ tableextension 5266061 "lbtbn GLEntry" extends "G/L Entry" //17
             Caption = 'Bonus Entry No.';
             DataClassification = CustomerContent;
         }
+        field(5266052; "lbtbn In Reserve"; Boolean)
+        {
+            Caption = 'In Reserve';
+            FieldClass = FlowField;
+            Editable = false;
+            CalcFormula = exist("Gen. Journal Line" where("lbtbn Reserve Entry No" = field("Entry No.")));
+        }
 
     }
 

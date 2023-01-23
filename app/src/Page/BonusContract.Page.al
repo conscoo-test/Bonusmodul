@@ -233,6 +233,7 @@ page 5266053 "lbtbn Bonus Contract"
                         GLEntry.FilterGroup(2);
                         GLEntry.SetRange("lbt Process No.", Rec."Process No.");
                         GLEntry.SetRange(Reversed, false);
+                        GLEntry.SetRange("lbtbn In Reserve", false);
                         GLEntry.SetFilter("G/L Account No.", Rec.GetGLAccountFilter());
                         GLEntry.FilterGroup(0);
                         ExplodeReservation.SetTableView(GLEntry);

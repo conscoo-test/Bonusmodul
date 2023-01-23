@@ -2595,6 +2595,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn GLEntry - Field lbtbn Bonus Entry No - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2427736203 - Field 1564873283 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2825951060">
+          <source>In Reserve</source>
+          <target>In Reservierung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn GLEntry - Field lbtbn In Reserve - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 3308150221 - Field 2428278704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Item Bonus Group</source>
           <target>Artikelbonusgruppe</target>
