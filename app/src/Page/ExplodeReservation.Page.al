@@ -9,8 +9,9 @@ page 5266061 "lbtbn Explode Reservation"
     {
         area(content)
         {
-            field("lbtbn Posting Date"; Rec."Posting Date")
+            field("PostingDate"; PostingDate)
             {
+                Caption = 'Posting Date';
                 ToolTip = 'This date field refers to the posting date of the respective reserve items.';
                 ApplicationArea = All;
 
@@ -66,4 +67,45 @@ page 5266061 "lbtbn Explode Reservation"
         }
     }
 
+
+
+    actions
+    {
+        area(Processing)
+        {
+            action("Explode Reservation")
+            {
+                Caption = 'Explode Reservation';
+                ApplicationArea = All;
+                Image = CashFlow;
+                ToolTip = 'explode reservation';
+
+                trigger OnAction()
+                var
+                    GLEntry: Record "G/L Entry";
+                    ReverseReserve: Codeunit "lbtbn Reverse Reserve";
+                    PostingDateErr: Label 'Please enter a posting date.';
+                begin
+                    if PostingDate = 0D then
+                        Error(PostingDateErr);
+                    CurrPage.SetSelectionFilter(GLEntry);
+                    ReverseReserve.ReverseBonusReserve(GLEntry, PostingDate);
+                end;
+            }
+        }
+    }
+
+    trigger OnOpenPage()
+    var
+        BonusSetup: Record "lbtbn Bonus Setup";
+    begin
+        BonusSetup.Get();
+        BonusSetup.TestField("Reason Code");
+        Rec.FilterGroup(2);
+        Rec.SetRange("Reason Code", BonusSetup."Reason Code");
+        Rec.FilterGroup(0);
+    end;
+
+    var
+        PostingDate: Date;
 }

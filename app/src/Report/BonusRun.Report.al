@@ -183,11 +183,14 @@ report 5266052 "lbtbn Bonus Run"
     end;
     #endregion OnPreReport
 
+    #region OnPostReport
     trigger OnPostReport()
     begin
         CreateBonus.OpenPageBonus();
     end;
+    #endregion OnPostReport
 
+    #region CheckFilters
     local procedure CheckFilters()
     var
         BonusCustomer: Record "lbtbn Bonus Customer";
@@ -201,6 +204,7 @@ report 5266052 "lbtbn Bonus Run"
         if BonusItem.IsEmpty then
             Error(CheckLbl, BonusItem.TableCaption, "Bonus Contract"."No.");
     end;
+    #endregion CheckFilters
 
     #region CheckDates
     local procedure CheckDates(): Boolean

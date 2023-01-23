@@ -213,7 +213,9 @@ page 5266053 "lbtbn Bonus Contract"
                 var
                     BonusSetup: Record "lbtbn Bonus Setup";
                     BonusEntry: Record "lbtbn Bonus Entry";
-                    ExplodeReservation: Page "lbtbn Explode Bonus Reserv.";
+                    GLEntry: Record "G/L Entry";
+                    ExplodeBonusReservation: Page "lbtbn Explode Bonus Reserv.";
+                    ExplodeReservation: Page "lbtbn Explode Reservation";
                 begin
                     BonusSetup.Get();
                     if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
@@ -225,10 +227,17 @@ page 5266053 "lbtbn Bonus Contract"
                         if BonusEntry.IsEmpty() then
                             Error(NoPostedReservesErr);
 
-                        ExplodeReservation.SetTableView(BonusEntry);
+                        ExplodeBonusReservation.SetTableView(BonusEntry);
+                        ExplodeBonusReservation.Run();
+                    end else begin
+                        GLEntry.FilterGroup(2);
+                        GLEntry.SetRange("lbt Process No.", Rec."Process No.");
+                        GLEntry.SetRange(Reversed, false);
+                        GLEntry.SetFilter("G/L Account No.", Rec.GetGLAccountFilter());
+                        GLEntry.FilterGroup(0);
+                        ExplodeReservation.SetTableView(GLEntry);
                         ExplodeReservation.Run();
                     end;
-                    //TODO: "Reserve Mode"::Journal
                 end;
                 #endregion OnAction
             }
@@ -368,4 +377,9 @@ page 5266053 "lbtbn Bonus Contract"
         CustomerCreditMemoEnabled := BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::Journal;
     end;
     #endregion EnableFields
+
+
+
+
+
 }
