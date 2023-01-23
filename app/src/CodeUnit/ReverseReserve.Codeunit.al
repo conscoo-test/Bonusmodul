@@ -45,6 +45,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                         BillingCode := '';
                         BillingEntry := BonusEntryReserveExploding(GLEntry."Entry No.", PostingDate);
                         Clear(ReversalEntry);
+                        ReversalEntry.SetHideDialog(true);
+                        ReversalEntry.SetHideWarningDialogs();
                         ReversalEntry.ReverseTransaction(GLEntry."Transaction No.");
                     until GLEntry.Next() = 0;
             // GlobVarCU.Reset(9);
@@ -385,6 +387,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     var
         BonusCustomer: Record "lbtbn Bonus Customer";
         BonusSetup: Record "lbtbn Bonus Setup";
+        Customer: Record Customer;
     begin
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" <> BonusSetup."Reserve Mode"::Journal then
@@ -392,7 +395,15 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         BonusCustomer.SetRange(Contract, BonusContract."No.");
         if BonusCustomer.FindSet() then
             repeat
-                ReverseGenLedgEntry(BonusCustomer."Customer No.", BonusContract."Process No.", DateFrom, DateTo, ReversePostingDate);
+                if BonusCustomer."Customer No." <> '' then
+                    ReverseGenLedgEntry(BonusCustomer."Customer No.", BonusContract."Process No.", DateFrom, DateTo, ReversePostingDate);
+                if BonusCustomer."Customer Group" <> '' then begin
+                    Customer.SetRange("lbtbn Customer Group", BonusCustomer."Customer Group");
+                    if Customer.FindSet() then
+                        repeat
+                            ReverseGenLedgEntry(Customer."No.", BonusContract."Process No.", DateFrom, DateTo, ReversePostingDate);
+                        until Customer.Next() = 0;
+                end;
             until BonusCustomer.Next() = 0;
     end;
     #endregion ReverseGenLedgEntry

@@ -14,10 +14,10 @@ page 5266061 "lbtbn Explode Reservation"
                 Caption = 'Posting Date';
                 ToolTip = 'This date field refers to the posting date of the respective reserve items.';
                 ApplicationArea = All;
-
             }
             repeater(General)
             {
+                Editable = false;
                 field("Entry No."; Rec."Entry No.")
                 {
                     ToolTip = 'If the bonus items are posted with the item type Reserves and Reserve reversal, this field is linked to the serial number of the corresponding G/L item.';

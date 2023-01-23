@@ -365,13 +365,10 @@ codeunit 5266060 "lbtbn Create Bonus"
     var
         ValueEntry: Record "Value Entry";
     begin
-        BonusSetup.Get();
-        if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then begin
-            Filter(ValueEntry);
-            if not ValueEntry.FindFirst() then exit(false);
-            if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then exit(false);
-            exit(Matches(ItemLedgerEntry));
-        end;
+        Filter(ValueEntry);
+        if not ValueEntry.FindFirst() then exit(false);
+        if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then exit(false);
+        exit(Matches(ItemLedgerEntry));
     end;
     #endregion CheckValueEntry
 
