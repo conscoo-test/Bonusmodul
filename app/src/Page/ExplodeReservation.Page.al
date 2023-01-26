@@ -64,6 +64,21 @@ page 5266061 "lbtbn Explode Reservation"
                     ApplicationArea = All;
                 }
             }
+            group(y)
+            {
+                Caption = '', Locked = true;
+                field("Sum Amount"; SumAmount)
+                {
+                    Caption = 'Total';
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the Total';
+
+                    trigger OnAssistEdit()
+                    begin
+                        GetSumAmount();
+                    end;
+                }
+            }
         }
     }
 
@@ -90,6 +105,7 @@ page 5266061 "lbtbn Explode Reservation"
                         Error(PostingDateErr);
                     CurrPage.SetSelectionFilter(GLEntry);
                     ReverseReserve.ReverseBonusReserve(GLEntry, PostingDate);
+                    CurrPage.Update(false);
                 end;
             }
         }
@@ -106,6 +122,16 @@ page 5266061 "lbtbn Explode Reservation"
         Rec.FilterGroup(0);
     end;
 
+    local procedure GetSumAmount()
+    var
+        GLEntry: Record "G/L Entry";
+    begin
+        CurrPage.SetSelectionFilter(GLEntry);
+        GLEntry.CalcSums(Amount);
+        SumAmount := GLEntry.Amount;
+    end;
+
     var
         PostingDate: Date;
+        SumAmount: Decimal;
 }

@@ -1768,6 +1768,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control PostingDate - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 3953183481 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control Sum Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 3953183481 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control Sum Amount - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1053758539 - Action 719291897 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>explode reservation</source>
           <note from="Developer" annotates="general" priority="2"></note>
