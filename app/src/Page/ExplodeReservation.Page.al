@@ -9,7 +9,7 @@ page 5266061 "lbtbn Explode Reservation"
     {
         area(content)
         {
-            field("lbt btn PostingDate"; PostingDate)
+            field("lbtbn Posting Date"; PostingDate)
             {
                 ObsoleteState = Pending;
                 ObsoleteReason = 'Control renamed';
