@@ -1758,6 +1758,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control Source Code - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 2535521450 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This date field refers to the posting date of the respective reserve items.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control lbt btn PostingDate - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 2535521450 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control lbt btn PostingDate - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1053758539 - Control 3037438984 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This date field refers to the posting date of the respective reserve items.</source>
           <note from="Developer" annotates="general" priority="2"></note>

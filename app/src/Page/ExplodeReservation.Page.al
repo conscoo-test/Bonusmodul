@@ -9,6 +9,15 @@ page 5266061 "lbtbn Explode Reservation"
     {
         area(content)
         {
+            field("lbt btn PostingDate"; PostingDate)
+            {
+                ObsoleteState = Pending;
+                ObsoleteReason = 'Control renamed';
+                Caption = 'Posting Date';
+                ToolTip = 'This date field refers to the posting date of the respective reserve items.';
+                ApplicationArea = All;
+                Visible = false;
+            }
             field("PostingDate"; PostingDate)
             {
                 Caption = 'Posting Date';
