@@ -44,10 +44,11 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     procedure ReserveToCreditMemo()
     var
         BonusReserves: Report "lbtbn Bonus Reserves";
+        Amount: Decimal;
     begin
         //GIVEN
         Init(true);
-        CreateSalesCrMemoAndPost();
+        Amount := PostReturnOrder();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -55,7 +56,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         BonusReserves.Run();
 
         //THEN
-        ValidateCrMemoCreated(-SalesCrMemoLine.Amount, 0);
+        ValidateCrMemoCreated(Amount, 0);
     end;
     #endregion ReserveToCreditMemo
 
@@ -256,10 +257,15 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     local procedure ValidateCrMemoCreated(Amount: Decimal; Quantity: Decimal): Decimal
     var
         SalesLine: Record "Sales Line";
+        SalesHeader: Record "Sales Header";
         Expected: Decimal;
     begin
         Expected := GetExpectedAmount(Amount, Quantity);
+        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
+        SalesHeader.SetRange("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
+        SalesHeader.FindLast();
         SalesLine.SetRange("Document Type", SalesLine."Document Type"::"Credit Memo");
+        SalesLine.SetRange("Document No.", SalesHeader."No.");
         SalesLine.FindLast();
         // Assert.AreEqual(1, BonusEntry.count(), 'one bonus entry created');
         Assert.AreNearlyEqual(Expected, SalesLine.Amount, 0.005, '');
