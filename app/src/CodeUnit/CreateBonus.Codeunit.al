@@ -487,7 +487,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         Filter(ValueEntry);
         if not ValueEntry.FindFirst() then
             exit;
-        if not l_ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
+        if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
             exit;
         CreateBonusCrMemoLine(BonusAmt, SalesLine);
         AddItemChargeToSalesLine(SalesLine, DocAmount, BonusAmt);
@@ -534,6 +534,8 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemLedgerEntryL := GetItemLedgerEntry();
         ItemChargeAssignmentSales."Applies-to Doc. No." := ItemLedgerEntryL."Document No.";
         ItemChargeAssignmentSales."Applies-to Doc. Line No." := ItemLedgerEntryL."Document Line No.";
+        ItemChargeAssignmentSales."Item No." := ItemLedgerEntryL."Item No.";
+        ItemChargeAssignmentSales.Description := ItemLedgerEntryL.Description;
         ItemChargeAssignmentSales."Unit Cost" := BonusAmount;
         ItemChargeAssignmentSales.Validate("Qty. to Assign", 1);
         ItemChargeAssignmentSales.Insert();
