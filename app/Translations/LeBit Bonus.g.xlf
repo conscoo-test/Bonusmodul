@@ -748,15 +748,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType FixedAmountTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reverse</source>
-          <note from="Developer" annotates="general" priority="2">Auflösung</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusReserve - NamedType ReverseTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 569513246 - NamedType 2932411483" size-unit="char" translate="yes" xml:space="preserve">
           <source>The posting date of exploding bonus reserves is not in the permitted posting period.</source>
           <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType PostingDateErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 1868883687 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseJournalBatch - NamedType ReverseTxt</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
