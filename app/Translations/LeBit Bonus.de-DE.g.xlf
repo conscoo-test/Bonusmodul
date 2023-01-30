@@ -2115,6 +2115,54 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control lbtbn Posting Date - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 369784342 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target>Buchungsdatum</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control lbtbn Posting Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 3037438984 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This date field refers to the posting date of the respective reserve items.</source>
+          <target>Dieses Datumsfeld bezieht sich auf das Buchungsdatum der jeweiligen Rückstellungen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control PostingDate - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 3037438984 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target>Buchungsdatum</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control PostingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 3953183481 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Total</source>
+          <target>Gibt die Summe an</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control Sum Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Control 3953183481 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <target>Summe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Control Sum Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Action 719291897 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>explode reservation</source>
+          <target>Rückstellungen auflösen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Action Explode Reservation - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Action 719291897 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Explode Reservation</source>
+          <target>Rückstellungen auflösen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Action Explode Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1053758539 - Action 719291897 - Method 1377591017 - NamedType 2932411483" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please enter a posting date.</source>
+          <target>Bitte geben Sie ein Buchungsdatum ein.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Explode Reservation - Action Explode Reservation - Method OnAction - NamedType PostingDateErr</note>
+        </trans-unit>
         <trans-unit id="Page 959492753 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Bonus Groups</source>
           <target>Artikelbonusgruppen</target>
@@ -2570,6 +2618,12 @@
           <target>Bonusposten Lfd. Nr.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn GLEntry - Field lbtbn Bonus Entry No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2427736203 - Field 1564873283 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2825951060">
+          <source>In Reserve</source>
+          <target>In Reservierung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn GLEntry - Field lbtbn In Reserve - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3308150221 - Field 2428278704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Item Bonus Group</source>

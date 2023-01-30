@@ -11,10 +11,12 @@ table 5266052 "lbtbn Bonus Contract"
         {
             Caption = 'No.';
 
+            #region OnValidate
             trigger OnValidate()
             begin
                 TestNoSeries();
             end;
+            #endregion OnValidate
         }
         field(2; "Valid from"; Date)
         {
@@ -36,6 +38,7 @@ table 5266052 "lbtbn Bonus Contract"
         {
             Caption = 'Reverse Type';
 
+            #region OnValidate
             trigger OnValidate()
             begin
                 if "Reserve Type" <> "Reserve Type"::"%" then begin
@@ -43,6 +46,7 @@ table 5266052 "lbtbn Bonus Contract"
                     "Discount %" := 0;
                 end;
             end;
+            #endregion OnValidate
         }
         field(7; "Reserve Unit"; Code[10])
         {
@@ -57,6 +61,7 @@ table 5266052 "lbtbn Bonus Contract"
         {
             Caption = 'Bonus Billing Type';
 
+            #region OnValidate
             trigger OnValidate()
             begin
                 if "Bonus Billing Type" <> "Bonus Billing Type"::"%" then begin
@@ -64,6 +69,7 @@ table 5266052 "lbtbn Bonus Contract"
                     "Discount %" := 0;
                 end;
             end;
+            #endregion OnValidate
         }
         field(10; "Bonus Billing Unit"; Code[10])
         {
@@ -74,7 +80,10 @@ table 5266052 "lbtbn Bonus Contract"
         {
             Caption = 'Last Billing at';
 
+            #region OnValidate
             trigger OnValidate()
+            var
+                SalesHeaderRec: Record "Sales Header";
             begin
                 if ("Last Billing at" < xRec."Last Billing at") or ("Last Billing at" = 0D) then
                     SalesHeaderRec.Reset();
@@ -86,6 +95,7 @@ table 5266052 "lbtbn Bonus Contract"
                 if not SalesHeaderRec.IsEmpty() then
                     Error(Text001Msg);
             end;
+            #endregion OnValidate
         }
         field(12; "Bonus Scale Type"; Option)
         {
@@ -93,7 +103,12 @@ table 5266052 "lbtbn Bonus Contract"
             OptionMembers = "Sales Qty.","Sales (LCY)";
             OptionCaption = 'Sales Qty.,Sales (LCY)';
 
+            #region OnValidate
             trigger OnValidate()
+            var
+                BonusEntry: Record "lbtbn Bonus Entry";
+                BonusContractLineRec: Record "lbtbn Bonus Contract Line";
+
             begin
                 if "Bonus Scale Type" <> xRec."Bonus Scale Type" then
                     BonusEntry.SetRange(Contract, "No.");
@@ -108,6 +123,7 @@ table 5266052 "lbtbn Bonus Contract"
                     if "Bonus Billing Type" <> "Bonus Billing Type"::"%" then
                         FieldError("Bonus Billing Type");
             end;
+            #endregion OnValidate
         }
         field(13; "Bonus Recipient"; Code[20])
         {
@@ -196,6 +212,7 @@ table 5266052 "lbtbn Bonus Contract"
         }
     }
 
+    #region OnInsert
     trigger OnInsert()
     var
         BonusSetup: Record "lbtbn Bonus Setup";
@@ -208,8 +225,16 @@ table 5266052 "lbtbn Bonus Contract"
         end;
         SetProcessNo();
     end;
+    #endregion OnInsert
 
+    #region OnDelete
     trigger OnDelete()
+    var
+        BonusCustomer: Record "lbtbn Bonus Customer";
+        BonusEntry: Record "lbtbn Bonus Entry";
+        BonusContractAttribute: Record "lbtbn BonusContractAttribute";
+        BonusContractLineRec: Record "lbtbn Bonus Contract Line";
+
     begin
         if "No." <> '' then begin
             BonusEntry.SetRange(Contract, "No.");
@@ -226,7 +251,9 @@ table 5266052 "lbtbn Bonus Contract"
                 BonusCustomer.DeleteAll();
         end;
     end;
+    #endregion OnDelete
 
+    #region SetProcessNo
     local procedure SetProcessNo()
     var
         Process: Record "lbt Process";
@@ -238,7 +265,9 @@ table 5266052 "lbtbn Bonus Contract"
             Process.Insert(true);
         end;
     end;
+    #endregion SetProcessNo
 
+    #region AssistEdit
     procedure AssistEdit(xBonusContract: Record "lbtbn Bonus Contract"): Boolean
     var
         BonusContract: Record "lbtbn Bonus Contract";
@@ -255,7 +284,9 @@ table 5266052 "lbtbn Bonus Contract"
             exit(true);
         end;
     end;
+    #endregion AssistEdit
 
+    #region TestNoSeries
     local procedure TestNoSeries()
     var
         BonusSetup: Record "lbtbn Bonus Setup";
@@ -273,7 +304,38 @@ table 5266052 "lbtbn Bonus Contract"
             "No. Series" := '';
         end;
     end;
+    #endregion TestNoSeries
 
+    #region GetAccountNo
+    local procedure GetAccountNo(var Customer: Record Customer; var GLAccounts: List of [Code[20]])
+    var
+        CustomerPostingGroup: Record "Customer Posting Group";
+    begin
+        if CustomerPostingGroup.Get(Customer."Customer Posting Group") then
+            if not GLAccounts.Contains(CustomerPostingGroup."lbtbn Reserve Account") then
+                GLAccounts.Add(CustomerPostingGroup."lbtbn Reserve Account");
+    end;
+    #endregion GetAccountNo
+
+    #region GetAccountNos
+    local procedure GetAccountNos(var BonusCustomer: Record "lbtbn Bonus Customer"; var GLAccounts: List of [Code[20]])
+    var
+        Customer: Record Customer;
+    begin
+        if BonusCustomer."Customer No." <> '' then
+            if Customer.Get(BonusCustomer."Customer No.") then
+                GetAccountNo(Customer, GLAccounts);
+        if BonusCustomer."Customer Group" <> '' then begin
+            Customer.SetRange("lbtbn Customer Group", BonusCustomer."Customer Group");
+            if Customer.FindSet() then
+                repeat
+                    GetAccountNo(Customer, GLAccounts);
+                until Customer.Next() = 0;
+        end;
+    end;
+    #endregion GetAccountNos
+
+    #region Navigate
     procedure Navigate()
     var
         NavigatePage: Page Navigate;
@@ -281,13 +343,40 @@ table 5266052 "lbtbn Bonus Contract"
         NavigatePage.SetProcessNo(Rec."Process No.");
         NavigatePage.Run();
     end;
+    #endregion Navigate
+
+    #region GetGLAccountFilter
+    procedure GetGLAccountFilter(): Text
+    begin
+        exit(Join(GetGLAccounts(), '|'))
+    end;
+    #endregion GetGLAccountFilter
+
+    #region GetGLAccounts
+    local procedure GetGLAccounts() GLAccounts: List of [Code[20]]
+    var
+        BonusCustomer: Record "lbtbn Bonus Customer";
+    begin
+        BonusCustomer.SetRange(Contract, Rec."No.");
+        if BonusCustomer.FindSet() then
+            repeat
+                GetAccountNos(BonusCustomer, GLAccounts);
+            until BonusCustomer.Next() = 0;
+    end;
+    #endregion GetGLAccounts
+
+    #region Join
+    local procedure Join(GLAccounts: List of [Code[20]]; Seperator: Text) Result: Text
+    var
+        GLAccount: Code[20];
+    begin
+        foreach GLAccount in GLAccounts do
+            Result += GLAccount + Seperator;
+        Result := Result.TrimEnd(Seperator);
+    end;
+    #endregion Join
 
     var
-        BonusEntry: Record "lbtbn Bonus Entry";
-        BonusContractLineRec: Record "lbtbn Bonus Contract Line";
-        BonusContractAttribute: Record "lbtbn BonusContractAttribute";
-        BonusCustomer: Record "lbtbn Bonus Customer";
-        SalesHeaderRec: Record "Sales Header";
         Text001Msg: Label 'You can not reset the date, while there are unposted bonus credit memos.',
         Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"';
 
@@ -299,8 +388,10 @@ table 5266052 "lbtbn Bonus Contract"
         Text005Msg: Label 'There are already Bonus Contract Entries. You cannot modify the contract.',
         Comment = 'DEU="Es existieren bereits Bonusposten. Der Vertrag kann nicht geändert werden."';
 
+    #region OnBeforeTestNoSeries
     [IntegrationEvent(false, false)]
     local procedure OnBeforeTestNoSeries(BonusContract: Record "lbtbn Bonus Contract"; xBonusContract: Record "lbtbn Bonus Contract"; var IsHandled: Boolean)
     begin
     end;
+    #endregion OnBeforeTestNoSeries
 }

@@ -91,7 +91,8 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
             exit;
-        if BonusEntry.Get(GLEntry."lbtbn Bonus Entry No") then begin
+        // uns interessiert nur der erste Posten und nicht der Ausgleichsposten
+        if BonusEntry.Get(GLEntry."lbtbn Bonus Entry No") and (BonusEntry."General Ledger Entry No." = 0) then begin
             BonusEntry."General Ledger Entry No." := GLEntry."Entry No.";
             if BonusEntry."Posted Amount" = 0 then
                 if BonusEntry."Entry Type" <> BonusEntry."Entry Type"::"Liquidation of Reserves" then   ///Betrag wird in BonusRückstellauflösung gefüllt
