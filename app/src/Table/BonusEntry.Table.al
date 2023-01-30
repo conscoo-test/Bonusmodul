@@ -146,6 +146,7 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Clustered = true;
         }
+        key(key1; Contract, Customer, "Ship-to Code", "Entry Type", "Entry Date", Reversed) { }
     }
 
     trigger OnDelete()

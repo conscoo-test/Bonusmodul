@@ -40,7 +40,7 @@ report 5266054 "lbtbn Bonus Reservation"
             column(COMPANYNAME; CompanyName())
             {
             }
-            column(LBText001______GETFILTER_Date_; Text001 + ' ' + GetFilter("Entry Date"))
+            column(LBText001______GETFILTER_Date_; DateFilterLbl + ' ' + GetFilter("Entry Date"))
             {
             }
             column(Bonus_Contract_Entry_Quantity; "Sales Quantity")
@@ -164,7 +164,7 @@ report 5266054 "lbtbn Bonus Reservation"
         ContractRec: Record "lbtbn Bonus Contract";
         GrupValue: array[3] of Code[20];
         PrintBody: array[4] of Boolean;
-        Text001: Label 'Date Filter:';
+        DateFilterLbl: Label 'Date Filter:';
         CurrReport_PAGENOCaptionLbl: Label 'Page';
         Result_AmountCaptionLbl: Label 'Amount';
         Reservation_AmountCaptionLbl: Label 'Reservation Amount';

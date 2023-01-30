@@ -7,7 +7,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemLedgerEntry: Record "Item Ledger Entry";
         BonusContractLine: Record "lbtbn Bonus Contract Line";
         SalesHeader: Record "Sales Header";
-        SalesInvoiceLineG: Record "Sales Invoice Line" temporary;
+        TempSalesInvoiceLine: Record "Sales Invoice Line" temporary;
         CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
         PostingDate: Date;
         DateFrom: Date;
@@ -69,13 +69,13 @@ codeunit 5266060 "lbtbn Create Bonus"
         PmtDiscAmt: Decimal;
         BonusAmount: Decimal;
     begin
-        if not CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLineG."No.") then
+        if not CheckItemMeth.CheckItem(BonusContract."No.", TempSalesInvoiceLine."No.") then
             exit;
         if not LineIsShipped() then
             exit;
-        DocAmount := Sign * GetDocAmount(SalesInvoiceLineG.Amount);
+        DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
-        CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, DiscAmt, PmtDiscAmt, BonusAmount, Sign * SalesInvoiceLineG.Quantity);
+        CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, DiscAmt, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
         CreateBonusCreditMemoLine(DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
     end;
     #endregion CreateBonus
@@ -116,7 +116,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         InitSalesLine(SalesLine);
         SalesLine.Description := AccountingTxt;
         if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
-            SalesLine.Description += ' ' + Format(SalesInvoiceLineG."Document No.");
+            SalesLine.Description += ' ' + Format(TempSalesInvoiceLine."Document No.");
 
         SalesLine.Modify();
 
@@ -267,7 +267,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         Clear(BonusMgt);
         BonusMgt.SetAssignmentDoc(ItemLedgerEntry);
-        BonusMgt.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
+        BonusMgt.SetSourceDoc(SourceDocType, TempSalesInvoiceLine."Document No.", TempSalesInvoiceLine."Line No.");
         BonusMgt.SetBonusDoc("lbtbn Document Type"::"Sales Credit Memo", SalesLine."Document No.", SalesLine."Line No.");
         exit(BonusMgt.CreateBonusContractEntry(
           BonusContract,
@@ -387,7 +387,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         CustomerPostingGroup.TestField("lbtbn Reserve Bal. Account");
 
         Clear(BonusManagement);
-        BonusManagement.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
+        BonusManagement.SetSourceDoc(SourceDocType, TempSalesInvoiceLine."Document No.", TempSalesInvoiceLine."Line No.");
         BonusManagement.SetBonusDoc("lbtbn Document Type"::" ", '', 0);
         BonusEntryNo := BonusManagement.CreateBonusContractEntry(
             BonusContract,
@@ -402,7 +402,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             DocAmt,         //Belegbetrag
             DiscAmount,
             PmtDiscAmount,
-            SalesInvoiceLineG."Dimension Set ID");
+            TempSalesInvoiceLine."Dimension Set ID");
 
         GenJournalLine.Reset();
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
@@ -418,7 +418,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         GenJournalLine."Line No." := LineNo + 10000;
         LineNo := GenJournalLine."Line No.";
         GenJournalLine.Validate("Posting Date", PostingDate);
-        GenJournalLine."Document No." := SalesInvoiceLineG."Document No.";
+        GenJournalLine."Document No." := TempSalesInvoiceLine."Document No.";
         GenJournalLine."Account Type" := GenJournalLine."Account Type"::"G/L Account";
         GenJournalLine."Bal. Account Type" := GenJournalLine."Bal. Account Type"::"G/L Account";
         GenJournalLine.Validate("Account No.", CustomerPostingGroup."lbtbn Reserve Account");
@@ -430,7 +430,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         GenJournalLine."lbt Process No." := BonusContract."Process No.";
         GenJournalLine."lbtbn Bonus Entry No" := BonusEntryNo;
         GenJournalLine."Reason Code" := BonusSetup."Reason Code";
-        GenJournalLine."Dimension Set ID" := SalesInvoiceLineG."Dimension Set ID";
+        GenJournalLine."Dimension Set ID" := TempSalesInvoiceLine."Dimension Set ID";
         DimensionManagement.UpdateGlobalDimFromDimSetID(GenJournalLine."Dimension Set ID",
                                              GenJournalLine."Shortcut Dimension 1 Code",
                                               GenJournalLine."Shortcut Dimension 2 Code");
@@ -452,7 +452,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         CreateReserveCreditMemoLine(ReserveAmount, SalesLine);
         AddItemChargeToSalesLine(SalesLine, DocAmount, ReserveAmount);
         BonusManagement.SetAssignmentDoc(ItemLedgerEntry);
-        BonusManagement.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
+        BonusManagement.SetSourceDoc(SourceDocType, TempSalesInvoiceLine."Document No.", TempSalesInvoiceLine."Line No.");
         BonusManagement.SetBonusDoc("lbtbn Document Type"::"Sales Credit Memo", SalesLine."Document No.", SalesLine."Line No.");
         SalesLine."lbtbn Bonus Entry No." := BonusManagement.CreateBonusContractEntry(
                             BonusContract,
@@ -527,7 +527,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Description := BonusReserveForLbl;
         SalesLine.Description += GetDescription();
         SalesLine."lbt Process No." := BonusContract."Process No.";
-        SalesLine."Dimension Set ID" := SalesInvoiceLineG."Dimension Set ID";
+        SalesLine."Dimension Set ID" := TempSalesInvoiceLine."Dimension Set ID";
         DimensionManagement.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID", SalesLine."Shortcut Dimension 1 Code", SalesLine."Shortcut Dimension 2 Code");
         if SalesHeader."Shortcut Dimension 1 Code" <> '' then
             SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
@@ -689,10 +689,10 @@ codeunit 5266060 "lbtbn Create Bonus"
         PmtDiscAmt: Decimal;
         NewQty: Decimal;
     begin
-        DocAmount := Sign * GetDocAmount(SalesInvoiceLineG.Amount);
+        DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
 
-        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, ReserveAmount, Sign * SalesInvoiceLineG.Quantity);
+        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, ReserveAmount, Sign * TempSalesInvoiceLine.Quantity);
 
         if ReserveAmount = 0 then
             exit;
@@ -759,9 +759,9 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         case Sign of
             1:
-                exit(' ' + InvoiceLbl + SalesInvoiceLineG."Document No.");
+                exit(' ' + InvoiceLbl + TempSalesInvoiceLine."Document No.");
             -1:
-                exit(' ' + CrMemoLbl + SalesInvoiceLineG."Document No.");
+                exit(' ' + CrMemoLbl + TempSalesInvoiceLine."Document No.");
         end;
     end;
     #endregion GetDescription
@@ -769,7 +769,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region SetLine
     local procedure SetLine(var SalesCrMemoLine: Record "Sales Cr.Memo Line")
     begin
-        SalesInvoiceLineG.TransferFields(SalesCrMemoLine);
+        TempSalesInvoiceLine.TransferFields(SalesCrMemoLine);
         Sign := -1;
         SourceDocType := SourceDocType::"Sales Credit Memo";
     end;
@@ -778,7 +778,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region SetLine
     local procedure SetLine(var SalesInvoiceLine: Record "Sales Invoice Line")
     begin
-        SalesInvoiceLineG.TransferFields(SalesInvoiceLine);
+        TempSalesInvoiceLine.TransferFields(SalesInvoiceLine);
         Sign := 1;
         SourceDocType := SourceDocType::"Sales Invoice";
     end;
@@ -793,8 +793,8 @@ codeunit 5266060 "lbtbn Create Bonus"
             -1:
                 ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
         end;
-        ValueEntry.SetRange("Document No.", SalesInvoiceLineG."Document No.");
-        ValueEntry.SetRange("Document Line No.", SalesInvoiceLineG."Line No.");
+        ValueEntry.SetRange("Document No.", TempSalesInvoiceLine."Document No.");
+        ValueEntry.SetRange("Document Line No.", TempSalesInvoiceLine."Line No.");
     end;
     #endregion Filter
 
