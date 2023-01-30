@@ -71,10 +71,12 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         if not CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLineG."No.") then
             exit;
+        if not LineIsShipped() then
+            exit;
         DocAmount := Sign * GetDocAmount(SalesInvoiceLineG.Amount);
-        UpdateDocAmountFromValueEntry(DocAmount);
+        DocAmount += AddItemCharges();
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, DiscAmt, PmtDiscAmt, BonusAmount, Sign * SalesInvoiceLineG.Quantity);
-        CreateCreditMemo(DocAmount, DiscAmt, PmtDiscAmt, BonusAmount);
+        CreateBonusCreditMemoLine(DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
     end;
     #endregion CreateBonus
 
@@ -97,29 +99,21 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion GetDocAmount
 
     #region CreateSalesCreditMemo3
-    procedure CreateSalesCreditMemo3(DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Betrag: Decimal
+    procedure CreateBonusCreditMemoLine(DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Betrag: Decimal
     var
         SalesLine: Record "Sales Line";
         BonusEntry: Record "lbtbn Bonus Entry";
         DimMgt: Codeunit DimensionManagement;
-        LineNo: Integer;
         Zusatz: Text;
         AccountingTxt: Label 'Bonus Accounting';
     begin
         CreateSalesHeaderBilling();
 
-        SalesLine.Reset();
-        SalesLine.SetCurrentKey("Document Type", "Document No.", "Line No.");
-        SalesLine.SetRange("Document Type", SalesLine."Document Type"::"Credit Memo");
-        SalesLine.SetRange("Document No.", SalesHeader."No.");
-        if (SalesLine.FindLast()) and
-          (BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)")
-        then
-            exit;
+        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)" then
+            if SingleSalesLineExists() then
+                exit;
 
-        LineNo := SalesLine."Line No." + 10000;
-
-        InitSalesLine(SalesLine, LineNo);
+        InitSalesLine(SalesLine);
         SalesLine.Description := AccountingTxt;
         if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             SalesLine.Description += ' ' + Format(SalesInvoiceLineG."Document No.");
@@ -135,8 +129,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Modify(true);
 
         SalesLine.UpdateAmounts();
-
-
         SalesLine."lbtbn Bonus Entry No." := CreateBonusEntry(DocAmt, DiscAmount, PmtDiscAmount, SalesLine);
         if BonusEntry.Get(SalesLine."lbtbn Bonus Entry No.") then
             SalesLine."Dimension Set ID" := BonusEntry."Dimension Set ID";
@@ -155,8 +147,8 @@ codeunit 5266060 "lbtbn Create Bonus"
 
         BonusSetup.Get();
         InitSalesHeader(GetCustCode(), BonusSetup."Billing Cr.Memo Nos.", BonusCreditMemoLbl);
-        CreateTextLine(10000, StrSubstNo(BonusSettlementTxt, BonusContract."No."));
-        CreateTextLine(20000, StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
+        CreateTextLine(StrSubstNo(BonusSettlementTxt, BonusContract."No."));
+        CreateTextLine(StrSubstNo(AccountingPeriodTxt, DateFrom, DateTo));
     end;
     #endregion GetOrCreateSalesHeader
 
@@ -168,14 +160,15 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion GetCustCode
 
     #region InitSalesLine
-    local procedure InitSalesLine(var SalesLine: Record "Sales Line"; LineNo: Integer)
+    local procedure InitSalesLine(var SalesLine: Record "Sales Line")
     var
     begin
         SalesLine.Init();
         SalesLine."Document Type" := SalesHeader."Document Type";
         SalesLine."Document No." := SalesHeader."No.";
 
-        SalesLine."Line No." := LineNo;
+        SalesLineNo += 10000;
+        SalesLine."Line No." := SalesLineNo;
         SalesLine.Validate("Sell-to Customer No.", SalesHeader."Sell-to Customer No.");
         SalesLine.Insert(true);
 
@@ -195,7 +188,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             BonusContract."Bonus Billing Type"::"%":
                 Zusatz := CreateItemChargeForBillingTypePercent(DocAmt, BonusSumme, SalesLine);
             BonusContract."Bonus Billing Type"::"Amount (LCY)":
-                CreateItemChargeForBillingTypeAmount(BonusSumme, SalesLine, Betrag);
+                Zusatz := CreateItemChargeForBillingTypeAmount(BonusSumme, SalesLine, Betrag);
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 Zusatz := CreateItemChargeForBillingTypeAmountPerUnit(DocAmt, BonusSumme, SalesLine);
         end;
@@ -203,7 +196,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateItemCharge
 
     #region CreateItemChargeForBillingTypeAmount
-    local procedure CreateItemChargeForBillingTypeAmount(BonusSumme: Decimal; var SalesLine: Record "Sales Line"; var Betrag: Decimal)
+    local procedure CreateItemChargeForBillingTypeAmount(BonusSumme: Decimal; var SalesLine: Record "Sales Line"; var Betrag: Decimal) Zusatz: Text
     var
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         PostedSalesShptLineRec: Record "Sales Shipment Line";
@@ -211,7 +204,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         AmountCust: Decimal;
         TotalQuantity: Decimal;
         FixedAmountTxt: Label 'Fixed Amount';
-        Zusatz: Text;
     begin
         CalculateAmountCust(AmountCust);
         Zusatz := FixedAmountTxt;
@@ -253,14 +245,15 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateItemChargeForBillingTypeAmountPerUnit
 
     #region CreateTextLine
-    local procedure CreateTextLine(LineNo: Integer; Description: Text[100])
+    local procedure CreateTextLine(Description: Text[100])
     var
         SalesLine: Record "Sales Line";
     begin
         SalesLine.Init();
         SalesLine."Document Type" := SalesHeader."Document Type";
         SalesLine."Document No." := SalesHeader."No.";
-        SalesLine."Line No." := LineNo;
+        SalesLineNo += 10000;
+        SalesLine."Line No." := SalesLineNo;
         // TODO: Printoption
         SalesLine.Description := Description;
         SalesLine.Insert();
@@ -273,6 +266,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusMgt: Codeunit "lbtbn Bonus Management";
     begin
         Clear(BonusMgt);
+        BonusMgt.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
         BonusMgt.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
         BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
         exit(BonusMgt.CreateBonusContractEntry(
@@ -323,17 +317,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CalculateBonusAmount
 
-    #region CreateCreditMemo
-    local procedure CreateCreditMemo(DocAmount: Decimal; DiscAmt: Decimal; PmtDiscAmt: Decimal; BonusAmount: Decimal)
-    var
-    begin
-        if CheckValueEntry() then
-            CreateSalesCreditMemo3(DocAmount, BonusAmount, DiscAmt, PmtDiscAmt);
-    end;
-    #endregion CreateCreditMemo
-
     #region CheckValueEntry
-    local procedure CheckValueEntry(): Boolean
+    local procedure LineIsShipped(): Boolean
     var
         ValueEntry: Record "Value Entry";
     begin
@@ -345,7 +330,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CheckValueEntry
 
     #region UpdateDocAmountFromValueEntry
-    procedure UpdateDocAmountFromValueEntry(var DocAmount: Decimal)
+    procedure AddItemCharges() Result: Decimal
     var
         ValueEntry: Record "Value Entry";
     begin
@@ -355,7 +340,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         if ValueEntry.FindSet() then
             repeat
                 if ValueEntry."Sales Amount (Actual)" <> 0 then
-                    DocAmount += AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
+                    Result += AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
             until ValueEntry.Next() = 0;
     end;
     #endregion UpdateDocAmountFromValueEntry
@@ -455,36 +440,34 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateJournalLine
 
     #region CreateForReserveMode_CreditMemo
-    local procedure CreateForReserveMode_CreditMemo(Qty: Decimal; BonusAmt: Decimal; PmtDiscAmt: Decimal; DocAmount: Decimal; DiscAmt: Decimal)
+    local procedure CreateForReserveMode_CreditMemo(Qty: Decimal; ReserveAmount: Decimal; PmtDiscAmt: Decimal; DocAmount: Decimal; DiscAmt: Decimal)
     var
         SalesLine: Record "Sales Line";
         BonusManagement: Codeunit "lbtbn Bonus Management";
-        BonusEntryNo: Integer;
     begin
         BonusContract.TestField("Reserve Item Charge");
-        if not CheckValueEntry() then
+        if not LineIsShipped() then
             exit;
-        CreateBonusCrMemoLine(BonusAmt, SalesLine);
-        AddItemChargeToSalesLine(SalesLine, DocAmount, BonusAmt);
-        Clear(BonusManagement);
+        CreateReserveCrMemoHeader();
+        CreateReserveCreditMemoLine(ReserveAmount, SalesLine);
+        AddItemChargeToSalesLine(SalesLine, DocAmount, ReserveAmount);
         BonusManagement.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
         BonusManagement.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
         BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
-        BonusEntryNo := BonusManagement.CreateBonusContractEntry(
+        SalesLine."lbtbn Bonus Entry No." := BonusManagement.CreateBonusContractEntry(
                             BonusContract,
                             CustomerNo,
                             ShipToCode,
                             1,
                             PostingDate,
                             0,
-                            Qty, ////PostDocItemUnitRec.Quantity,
-                            BonusAmt,
-                            BonusAmt,
+                            Qty,
+                            ReserveAmount,
+                            ReserveAmount,
                             DocAmount,
                             -DiscAmt,
                             -PmtDiscAmt,
                             SalesLine."Dimension Set ID");
-        SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
         SalesLine.Modify();
     end;
     #endregion CreateForReserveMode_CreditMemo
@@ -524,13 +507,12 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.");
     end;
     #endregion GetItemLedgerEntry
+
     #region CreateBonusCrMemoLine
-    local procedure CreateBonusCrMemoLine(BonusAmt: Decimal; var SalesLine: Record "Sales Line")
+    local procedure CreateReserveCreditMemoLine(BonusAmt: Decimal; var SalesLine: Record "Sales Line")
     var
         DimensionManagement: Codeunit DimensionManagement;
     begin
-        CreateCrMemoHeader();
-
         SalesLine.Init();
         SalesLine."Document Type" := SalesHeader."Document Type";
         SalesLine."Document No." := SalesHeader."No.";
@@ -554,36 +536,18 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateBonusCrMemoLine
 
     #region CreateCrMemoHeader
-    local procedure CreateCrMemoHeader()
-    var
-        SalesLine: Record "Sales Line";
+    local procedure CreateReserveCrMemoHeader()
     begin
         if CrMemoHeaderCreated then
             exit;
         BonusSetup.Get();
-        SalesHeader.Reset();
-        SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.");
-        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
-        SalesHeader.SetRange("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
-        SalesHeader.SetRange("Posting Description", BonusReserveLbl);
-        if SalesHeader.FindFirst() then
-            Error(UnpostedCreditMemoErr);
+        CheckUnpostedReserveCreditMemoExists();
 
         BonusContract.TestField("Customer Reserve Cr.Memo");
         InitSalesHeader(BonusContract."Customer Reserve Cr.Memo", BonusSetup."Reserve Cr.Memo Nos.", BonusReserveLbl);
 
-        SalesLineNo := 10000;
-        SalesLine.Init();
-        SalesLine."Document Type" := SalesHeader."Document Type";
-        SalesLine."Document No." := SalesHeader."No.";
-        SalesLine."Line No." := SalesLineNo;
-        SalesLine.Description := StrSubstNo(BonusAccountingLbl, BonusContract."No.");
-        SalesLine.Insert();
-
-        SalesLineNo += 10000;
-        SalesLine."Line No." := SalesLineNo;
-        SalesLine.Description := StrSubstNo(AccountingPeriodLbl, DateFrom, DateTo);
-        SalesLine.Insert();
+        CreateTextLine(StrSubstNo(BonusAccountingLbl, BonusContract."No."));
+        CreateTextLine(StrSubstNo(AccountingPeriodLbl, DateFrom, DateTo));
     end;
     #endregion CreateCrMemoHeader
 
@@ -655,7 +619,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         case BonusSetup."Reserve Mode" of
             BonusSetup."Reserve Mode"::CreditMemo:
                 begin
-                    CreateBonusCrMemoLine(BonusContract."Reserve Value", SalesLine);
+                    CreateReserveCreditMemoLine(BonusContract."Reserve Value", SalesLine);
                     CreateBonusEntryForFixedAmount(SalesLine);
                 end;
             BonusSetup."Reserve Mode"::Journal:
@@ -685,6 +649,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Modify();
     end;
     #endregion CreateBonusEntryForFixedAmount
+
     #region CreateItemCharge
     local procedure CreateItemCharge(DocAmt: Decimal; BonusSumme: Decimal; var SalesLine: Record "Sales Line")
     var
@@ -718,25 +683,24 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region DoCreateReserve
     local procedure DoCreateReserve()
     var
-        BonusAmt: Decimal;
+        ReserveAmount: Decimal;
         DiscAmt: Decimal;
         DocAmount: Decimal;
         PmtDiscAmt: Decimal;
         NewQty: Decimal;
     begin
         DocAmount := Sign * GetDocAmount(SalesInvoiceLineG.Amount);
+        DocAmount += AddItemCharges();
 
-        UpdateDocAmountFromValueEntry(DocAmount);
+        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, ReserveAmount, Sign * SalesInvoiceLineG.Quantity);
 
-        NewQty := CalculateBonusAmount(BonusContract."Reserve Type", DocAmount, BonusContract."Reserve Value", DiscAmt, PmtDiscAmt, BonusAmt, Sign * SalesInvoiceLineG.Quantity);
-
-        if BonusAmt = 0 then
+        if ReserveAmount = 0 then
             exit;
         BonusSetup.Get();
         if BonusSetup."Reserve Mode" = BonusSetup."Reserve Mode"::CreditMemo then
-            CreateForReserveMode_CreditMemo(NewQty, BonusAmt, PmtDiscAmt, DocAmount, DiscAmt)
+            CreateForReserveMode_CreditMemo(NewQty, ReserveAmount, PmtDiscAmt, DocAmount, DiscAmt)
         else
-            CreateJournalLine(BonusAmt, DocAmount, -DiscAmt, -PmtDiscAmt);
+            CreateJournalLine(ReserveAmount, DocAmount, -DiscAmt, -PmtDiscAmt);
     end;
     #endregion DoCreateReserve
 
@@ -855,9 +819,34 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesHeader."Posting No." := SalesHeader."No.";
         SalesHeader.Modify();
         CrMemoHeaderCreated := true;
+        SalesLineNo := 10000;
     end;
     #endregion InitSalesHeader
 
+    #region CheckUnpostedReserveCreditMemoExists
+    local procedure CheckUnpostedReserveCreditMemoExists()
+    begin
+        SalesHeader.Reset();
+        SalesHeader.SetCurrentKey("Document Type", "Sell-to Customer No.");
+        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::"Credit Memo");
+        SalesHeader.SetRange("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
+        SalesHeader.SetRange("Posting Description", BonusReserveLbl);
+        if SalesHeader.FindFirst() then
+            Error(UnpostedCreditMemoErr);
+    end;
+    #endregion CheckUnpostedReserveCreditMemoExists
+
+    local procedure SingleSalesLineExists(): Boolean
+    var
+        SalesLine: Record "Sales Line";
+    begin
+        SalesLine.Reset();
+        SalesLine.SetCurrentKey("Document Type", "Document No.", "Line No.");
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::"Credit Memo");
+        SalesLine.SetRange("Document No.", SalesHeader."No.");
+        SalesLine.SetRange(Type, SalesLine.Type::"Charge (Item)");
+        exit(not SalesLine.IsEmpty);
+    end;
 
 
     var
