@@ -266,14 +266,14 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusMgt: Codeunit "lbtbn Bonus Management";
     begin
         Clear(BonusMgt);
-        BonusMgt.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
+        BonusMgt.SetAssignmentDoc(ItemLedgerEntry);
         BonusMgt.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
-        BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
+        BonusMgt.SetBonusDoc("lbtbn Document Type"::"Sales Credit Memo", SalesLine."Document No.", SalesLine."Line No.");
         exit(BonusMgt.CreateBonusContractEntry(
           BonusContract,
           CustomerNo,
           ShipToCode,
-          0,                                          //Postenart Bonus
+          Enum::"lbtbn Bonus Entry Type"::Bonus,
           PostingDate,
           BonusContractLine."Line No.",           //Bonusregelzeile
           SalesLine.Quantity,                //Menge
@@ -388,12 +388,12 @@ codeunit 5266060 "lbtbn Create Bonus"
 
         Clear(BonusManagement);
         BonusManagement.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
-        BonusManagement.SetBonusDoc(0, '', 0);
+        BonusManagement.SetBonusDoc("lbtbn Document Type"::" ", '', 0);
         BonusEntryNo := BonusManagement.CreateBonusContractEntry(
             BonusContract,
             CustomerNo,
             ShipToCode,
-            1,                //Postenart Rückstellung
+            Enum::"lbtbn Bonus Entry Type"::Reserve,                //Postenart Rückstellung
             PostingDate,
             0,                //Bonusregelzeile
             0,                //Menge
@@ -451,14 +451,14 @@ codeunit 5266060 "lbtbn Create Bonus"
         CreateReserveCrMemoHeader();
         CreateReserveCreditMemoLine(ReserveAmount, SalesLine);
         AddItemChargeToSalesLine(SalesLine, DocAmount, ReserveAmount);
-        BonusManagement.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
+        BonusManagement.SetAssignmentDoc(ItemLedgerEntry);
         BonusManagement.SetSourceDoc(SourceDocType, SalesInvoiceLineG."Document No.", SalesInvoiceLineG."Line No.");
-        BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
+        BonusManagement.SetBonusDoc("lbtbn Document Type"::"Sales Credit Memo", SalesLine."Document No.", SalesLine."Line No.");
         SalesLine."lbtbn Bonus Entry No." := BonusManagement.CreateBonusContractEntry(
                             BonusContract,
                             CustomerNo,
                             ShipToCode,
-                            1,
+                            Enum::"lbtbn Bonus Entry Type"::Reserve,
                             PostingDate,
                             0,
                             Qty,
@@ -635,12 +635,12 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusManagement: Codeunit "lbtbn Bonus Management";
         BonusEntryNo: Integer;
     begin
-        BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
+        BonusManagement.SetBonusDoc("lbtbn Document Type"::"Sales Credit Memo", SalesLine."Document No.", SalesLine."Line No.");
         BonusEntryNo := BonusManagement.CreateBonusContractEntry(
                                    BonusContract,
                                    CustomerNo,
                                    ShipToCode,
-                                   1, PostingDate, 0,
+                                   Enum::"lbtbn Bonus Entry Type"::Reserve, PostingDate, 0,
                                    0, SalesLine.Amount, 0,
                                    SalesLine.Amount,
                                    0, 0, SalesLine."Dimension Set ID");
