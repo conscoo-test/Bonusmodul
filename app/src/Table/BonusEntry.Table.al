@@ -11,9 +11,11 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Entry No.';
         }
-        field(2; "Entry Type"; Enum "lbtbn Bonus Entry Type")
+        field(2; "Entry Type"; Option)
         {
             Caption = 'Entry Type';
+            OptionMembers = Bonus,Reserve,"Liquidation of Reserves";
+            OptionCaption = 'Bonus,Reserve,Liquidation of Reserves';
         }
         field(3; Contract; Code[20])
         {
@@ -57,9 +59,11 @@ table 5266056 "lbtbn Bonus Entry"
             Caption = 'Invoice Customer No.';
             TableRelation = Customer;
         }
-        field(12; "Bonus Document Type"; Enum "lbtbn Document Type")
+        field(12; "Bonus Document Type"; Option)
         {
             Caption = 'Bonus Document Type';
+            OptionMembers = ,"Sales Invoice","Sales Credit Memo";
+            OptionCaption = ',Sales Invoice,Sales Credit Memo';
         }
         field(13; "Bonus Document No."; Code[20])
         {
@@ -101,9 +105,11 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Discount Amount';
         }
-        field(23; "Assignment Document Type"; Enum "lbtbn Bonus Ass. Document Type")
+        field(23; "Assignment Document Type"; Option)
         {
             Caption = 'Assignment Document Type';
+            OptionMembers = ,"Sales Shipment","Sales Return Receipt";
+            OptionCaption = ' ,Sales Shipment,Sales Return Receipt';
         }
         field(24; "Assignment Document No."; Code[20])
         {

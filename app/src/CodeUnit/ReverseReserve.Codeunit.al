@@ -194,7 +194,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesLine."Dimension Set ID" := DimSetID;
         SalesLine.Modify();
         BonusEntry2.Get(BillingEntry);
-        BonusEntry2."Bonus Document Type" := "lbtbn Document Type"::"Sales Invoice";
+        BonusEntry2."Bonus Document Type" := 1;
         BonusEntry2."Bonus Document No." := SalesLine."Document No.";
         BonusEntry2."Bonus Document Line" := SalesLine."Line No.";
         BonusEntry2.Modify();

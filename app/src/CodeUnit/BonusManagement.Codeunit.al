@@ -1,17 +1,13 @@
 codeunit 5266052 "lbtbn Bonus Management"
 {
-
     #region SetAssignmentDoc
-    procedure SetAssignmentDoc(ItemLedgerEntry: Record "Item Ledger Entry")
+    procedure SetAssignmentDoc(AssignmentDocTypeP: Option " ","Sales Shipment","Sales Return Receipt";
+                               AssignmentDocNoP: Code[20];
+                               AssignmentDocLineNoP: Integer)
     begin
-        case ItemLedgerEntry."Document Type" of
-            "Item Ledger Document Type"::"Sales Shipment":
-                AssignmentDocType := AssignmentDocType::"Sales Shipment";
-            "Item Ledger Document Type"::"Sales Return Receipt":
-                AssignmentDocType := AssignmentDocType::"Sales Return Receipt";
-        end;
-        AssignmentDocNo := ItemLedgerEntry."Document No.";
-        AssignmentDocLineNo := ItemLedgerEntry."Document Line No.";
+        AssignmentDocType := AssignmentDocTypeP;
+        AssignmentDocNo := AssignmentDocNoP;
+        AssignmentDocLineNo := AssignmentDocLineNoP;
     end;
     #endregion SetAssignmentDoc
 
@@ -25,7 +21,7 @@ codeunit 5266052 "lbtbn Bonus Management"
     #endregion SetSourceDoc
 
     #region SetBonusDoc
-    procedure SetBonusDoc(BonusDocTypeP: Enum "lbtbn Document Type"; BonusDocNoP: Code[20]; BonusDocLineNoP: Integer)
+    procedure SetBonusDoc(BonusDocTypeP: Integer; BonusDocNoP: Code[20]; BonusDocLineNoP: Integer)
     begin
         BonusDocType := BonusDocTypeP;
         BonusDocNo := BonusDocNoP;
@@ -37,7 +33,7 @@ codeunit 5266052 "lbtbn Bonus Management"
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
                                         CustomerNo: Code[20];
                                         ShipToCode: Code[10];
-                                        EntryType: Enum "lbtbn Bonus Entry Type";
+                                        EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
                                         EntryDate: Date;
                                         BonusRule: Integer;
                                         Qty: Decimal;
@@ -149,13 +145,13 @@ codeunit 5266052 "lbtbn Bonus Management"
     var
         BonusEntry: Record "lbtbn Bonus Entry";
         BonusSetup: Record "lbtbn Bonus Setup";
-        AssignmentDocType: Enum "lbtbn Bonus Ass. Document Type";
+        AssignmentDocType: Option;
         AssignmentDocNo: Code[20];
         AssignmentDocLineNo: Integer;
         SourceDocType: Enum "lbtbn Document Type";
         SourceDocNo: Code[20];
         SourceDocLineNo: Integer;
-        BonusDocType: Enum "lbtbn Document Type";
+        BonusDocType: Integer;
         BonusDocNo: Code[20];
         BonusDocLineNo: Integer;
 }

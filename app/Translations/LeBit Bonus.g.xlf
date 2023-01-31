@@ -263,6 +263,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Assignment Document Type - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 2318258712 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> ,Sales Shipment,Sales Return Receipt</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Assignment Document Type - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 3278951291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Base Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -292,6 +297,11 @@
           <source>Bonus Document Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Bonus Document Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 518230678 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Sales Invoice,Sales Credit Memo</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Bonus Document Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 520706350 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>calculated Amount incl. VAT</source>
@@ -337,6 +347,11 @@
           <source>Entry Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Entry Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 149522872 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus,Reserve,Liquidation of Reserves</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Entry Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1619798729 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>From Document Line</source>
@@ -2192,31 +2207,6 @@
           <source>Amount per Unit</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount per Unit - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Enum 28869237 - EnumValue 594446314 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Sales Return Receipt</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Bonus Ass. Document Type - EnumValue Sales Return Receipt - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Enum 28869237 - EnumValue 2746818404 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Sales Shipment</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Bonus Ass. Document Type - EnumValue Sales Shipment - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Enum 1610963849 - EnumValue 2444719103 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Bonus Entry Type - EnumValue Bonus - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Enum 1610963849 - EnumValue 4022187141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Liquidation of Reserves</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Bonus Entry Type - EnumValue Liquidation of Reserves - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Enum 1610963849 - EnumValue 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reserve</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Bonus Entry Type - EnumValue Reserve - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3044551195 - EnumValue 1708100201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Credit Memo</source>
