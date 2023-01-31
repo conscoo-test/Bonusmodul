@@ -62,7 +62,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateBonus Invoice
 
     #region CreateBonus
-    local procedure CreateBonus()
+    [Obsolete('this procedure should be local')]
+    procedure CreateBonus()
     var
         DocAmount: Decimal;
         DiscAmt: Decimal;
@@ -98,8 +99,14 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion GetDocAmount
 
+    [Obsolete('this procedure will be removed')]
+    procedure CreateSalesCreditMemo3(DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Betrag: Decimal
+    begin
+        exit(CreateBonusCreditMemoLine(DocAmt, BonusSumme, DiscAmount, PmtDiscAmount));
+    end;
+
     #region CreateSalesCreditMemo3
-    procedure CreateBonusCreditMemoLine(DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Betrag: Decimal
+    local procedure CreateBonusCreditMemoLine(DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal) Betrag: Decimal
     var
         SalesLine: Record "Sales Line";
         BonusEntry: Record "lbtbn Bonus Entry";
@@ -329,8 +336,14 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CheckValueEntry
 
-    #region UpdateDocAmountFromValueEntry
-    procedure AddItemCharges() Result: Decimal
+    [Obsolete('this procedure will be removed')]
+    procedure UpdateDocAmountFromValueEntry(var DocAmount: Decimal)
+    begin
+        AddItemCharges();
+    end;
+
+    #region AddItemCharges
+    local procedure AddItemCharges() Result: Decimal
     var
         ValueEntry: Record "Value Entry";
     begin
@@ -343,7 +356,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                     Result += AddConsideredItemCharges(ValueEntry."Item Ledger Entry No.");
             until ValueEntry.Next() = 0;
     end;
-    #endregion UpdateDocAmountFromValueEntry
+    #endregion AddItemCharges
 
 
     #region CreateReserve
@@ -553,6 +566,7 @@ codeunit 5266060 "lbtbn Create Bonus"
 
 
     #region AddConsideredItemCharges
+    [Obsolete('this procedure should be local')]
     procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
     var
         ItemCharge: Record "Item Charge";
@@ -572,6 +586,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion AddConsideredItemCharges
 
     #region OpenPage
+    [Obsolete('this procedure will be local')]
     procedure OpenPageReserve()
     var
         GenJournalLine: Record "Gen. Journal Line";
@@ -599,6 +614,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion OpenPage
 
     #region OpenPageBonus
+
+    [Obsolete('this procedure will be local')]
     procedure OpenPageBonus()
     var
         PageManagement: Codeunit "Page Management";
@@ -611,7 +628,7 @@ codeunit 5266060 "lbtbn Create Bonus"
 
 
     #region CreateReserveFixed
-    internal procedure CreateReserveFixed()
+    procedure CreateReserveFixed()
     var
         SalesLine: Record "Sales Line";
     begin
