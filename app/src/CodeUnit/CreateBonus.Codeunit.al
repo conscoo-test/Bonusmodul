@@ -126,6 +126,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 begin
                     SalesLine.Validate(Quantity, BonusSumme);
+                    SalesLine.Modify();
                     CreateItemCharge(DocAmt, BonusSumme, SalesLine);
                 end;
             BonusContract."Bonus Billing Type"::"Amount (LCY)":
