@@ -14,6 +14,8 @@
     "enablePerTenantExtensionCop": false,
     "enableUICop": true,
     "appSourceCopMandatoryAffixes": "lbtbn",
+    "rulesetFile": "scripts/lebit.ruleset.json",
+    "enableBcLntrCop": true,
     "versions": [
         {
             "version": "current",

@@ -636,6 +636,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         case BonusSetup."Reserve Mode" of
             BonusSetup."Reserve Mode"::CreditMemo:
                 begin
+                    CreateReserveCrMemoHeader();
                     CreateReserveCreditMemoLine(BonusContract."Reserve Value", SalesLine);
                     CreateBonusEntryForFixedAmount(SalesLine);
                 end;
