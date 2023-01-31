@@ -186,7 +186,7 @@ report 5266052 "lbtbn Bonus Run"
     #region OnPostReport
     trigger OnPostReport()
     begin
-        CreateBonus.OpenPageBonus();
+        CreateBonus.OpenPage();
     end;
     #endregion OnPostReport
 

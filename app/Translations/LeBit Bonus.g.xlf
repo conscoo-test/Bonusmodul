@@ -673,21 +673,6 @@
           <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType UnpostedCreditMemoErr</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4178859433 - Method 3687611404 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Accounting</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateBonusCreditMemoLine - NamedType AccountingTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4178859433 - Method 1978345793 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fixed Amount</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmount - NamedType FixedAmountTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4178859433 - Method 2654139666 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
-          <source> per </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmountPerUnit - NamedType PerTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo </source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -697,6 +682,21 @@
           <source>Invoice </source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType InvoiceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2865549206 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fixed Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription2 - NamedType FixedAmountTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2865549206 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
+          <source> per </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription2 - NamedType PerTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 3840737616 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method InitSalesLine - NamedType AccountingTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo</source>

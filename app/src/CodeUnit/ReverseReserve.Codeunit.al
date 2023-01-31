@@ -41,7 +41,6 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     local procedure AddItemChargeInvoiceLine(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; SalesInvoiceLine: Record "Sales Invoice Line"; SalesCrMemoLine: Record "Sales Cr.Memo Line"; SalesShipmentLine: Record "Sales Shipment Line"; DateFrom: Date; DateTo: Date) SalesLine: Record "Sales Line"
     var
         BonusContract: Record "lbtbn Bonus Contract";
-
     begin
         BonusContract.Get(BonusEntry.Contract);
         CreateInvoiceHeader(BonusContract, DateFrom, DateTo);
@@ -110,7 +109,6 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader."Shipping No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader."No." := NoSeriesMgt.GetNextNo(BonusSetup."Reserve Cr.Memo Nos.", WorkDate(), true);
         SalesHeader.Insert(true);
-        SalesHeader."Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader.SetHideValidationDialog(true);
         SalesHeader.Validate("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
         SalesHeader."Customer Posting Group" := BonusSetup."Cust Gr. Reserve Cr. Memo";
@@ -447,6 +445,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
             PageManagement.PageRun(GenJournalLine);
     end;
     #endregion OpenPage
+
     local procedure ReverseAutomatic(var GLEntry: Record "G/L Entry"; PostingDate: Date)
     var
         ReversalEntry: Record "Reversal Entry";
