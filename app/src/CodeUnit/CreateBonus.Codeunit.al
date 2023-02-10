@@ -110,7 +110,6 @@ codeunit 5266060 "lbtbn Create Bonus"
     local procedure CreateBonusCreditMemoLine(DocAmt: Decimal; BonusSumme: Decimal; DiscAmount: Decimal; PmtDiscAmount: Decimal)
     var
         SalesLine: Record "Sales Line";
-        BonusEntry: Record "lbtbn Bonus Entry";
         DimMgt: Codeunit DimensionManagement;
     begin
         CreateSalesHeaderBilling();
@@ -125,7 +124,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             BonusContract."Bonus Billing Type"::"%",
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 begin
-                    SalesLine.Validate(Quantity, BonusSumme);
+                    SalesLine.Validate("Unit Price", BonusSumme);
                     SalesLine.Modify();
                     CreateItemCharge(DocAmt, BonusSumme, SalesLine);
                 end;
@@ -186,7 +185,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Validate(Type, SalesLine.Type::"Charge (Item)");
         SalesLine.Validate("No.", BonusContract."Accounting Item Charge");
         // SalesLine.VALIDATE("Location Code", VertriebEinrRec."Location Bonus Item");
-        SalesLine.Validate("Unit Price", 1);
+        SalesLine.Validate(Quantity, 1);
         SalesLine."lbt Process No." := BonusContract."Process No.";
         SalesLine.Description := AccountingTxt;
         if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
@@ -694,8 +693,8 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemChargeAssRec."Item No." := ItemLedgerEntry."Item No.";
         ItemChargeAssRec.Description := ItemLedgerEntry.Description;
 
-        ItemChargeAssRec."Unit Cost" := 1;
-        ItemChargeAssRec.Validate("Qty. to Assign", BonusSumme);
+        ItemChargeAssRec."Unit Cost" := BonusSumme;
+        ItemChargeAssRec.Validate("Qty. to Assign", 1);
         ItemChargeAssRec.Insert();
     end;
     #endregion CreateItemCharge

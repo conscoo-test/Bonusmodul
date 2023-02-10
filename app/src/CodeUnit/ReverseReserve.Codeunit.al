@@ -372,8 +372,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesLine."Line No." := LineNo;
         SalesLine.Validate(Type, SalesLine.Type::"Charge (Item)");
         SalesLine.Validate("No.", BonusContract."Reserve Item Charge");
-        SalesLine.Validate("Unit Price", 1);
-        SalesLine.Validate(Quantity, BonusEntry."Posted Amount");
+        SalesLine.Validate("Unit Price", BonusEntry."Posted Amount");
+        SalesLine.Validate(Quantity, 1);
         SalesLine."Shipment Date" := WorkDate();
         SalesLine."Allow Invoice Disc." := true;
         SalesLine.Description := ReverseTxt;
@@ -425,8 +425,8 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         ItemChargeAssRec."Applies-to Doc. Line Amount" := BonusEntry."Base Amount";
         ItemChargeAssRec."Applies-to Doc. No." := BonusEntry."Assignment Document No.";
         ItemChargeAssRec."Applies-to Doc. Line No." := BonusEntry."Assignment Doc. Line No.";
-        ItemChargeAssRec."Unit Cost" := 1;
-        ItemChargeAssRec.Validate("Qty. to Assign", BonusEntry."Posted Amount");
+        ItemChargeAssRec."Unit Cost" := BonusEntry."Posted Amount";
+        ItemChargeAssRec.Validate("Qty. to Assign", 1);
         ItemChargeAssRec.Insert();
     end;
     #endregion AssignItemCharge
