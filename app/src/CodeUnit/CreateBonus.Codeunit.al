@@ -141,8 +141,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             exit;
 
         SalesLine."lbtbn Bonus Entry No." := CreateBonusEntry(DocAmt, DiscAmount, PmtDiscAmount, SalesLine);
-        if BonusEntry.Get(SalesLine."lbtbn Bonus Entry No.") then
-            SalesLine."Dimension Set ID" := BonusEntry."Dimension Set ID";
+
         DimMgt.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID",
                                              SalesLine."Shortcut Dimension 1 Code",
                                               SalesLine."Shortcut Dimension 2 Code");
@@ -192,6 +191,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Description := AccountingTxt;
         if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             SalesLine.Description += ' ' + Format(TempSalesInvoiceLine."Document No.");
+        SalesLine."Dimension Set ID" := TempSalesInvoiceLine."Dimension Set ID";
 
         SalesLine.Modify();
     end;
