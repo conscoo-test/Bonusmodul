@@ -32,7 +32,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
             BonusSetup."Reverse Reserve Mode"::automatic:
                 ReverseAutomatic(GLEntry, PostingDate);
             BonusSetup."Reverse Reserve Mode"::"Journal Batch":
-                ReverseJournalBatch(GLEntry, PostingDate, BonusSetup);
+                ReverseJournalBatch(GLEntry, PostingDate);
         end;
     end;
     #endregion ReverseBonusReserve
@@ -448,68 +448,15 @@ codeunit 5266056 "lbtbn Reverse Reserve"
 
     local procedure ReverseAutomatic(var GLEntry: Record "G/L Entry"; PostingDate: Date)
     var
-        ReversalEntry: Record "Reversal Entry";
+        PreviousLineNo: Integer;
     begin
-        if GLEntry.FindSet() then
-            repeat
-                GLEntry.TestField("Transaction No.");
-                GLEntry.TestField(Reversed, false);
-                //BillingCode := BonusEntryReserveExploding(GLEntry."Entry No.", PostingDate);
-                BonusEntryReserveExploding(GLEntry."Entry No.", PostingDate);
-                Clear(ReversalEntry);
-                ReversalEntry.SetHideDialog(true);
-                ReversalEntry.SetHideWarningDialogs();
-                ReversalEntry.ReverseTransaction(GLEntry."Transaction No.");
-            until GLEntry.Next() = 0;
+        PreviousLineNo := CreateGenJournalLines(GLEntry, PostingDate);
+        PostGenJournalLines(PreviousLineNo);
     end;
 
-    local procedure ReverseJournalBatch(var GLEntry: Record "G/L Entry"; PostingDate: Date; var BonusSetup: Record "lbtbn Bonus Setup")
-    var
-        GenJnlLineRec: Record "Gen. Journal Line";
-        LineNo: Integer;
-        ReverseTxt: Label 'Reverse';
+    local procedure ReverseJournalBatch(var GLEntry: Record "G/L Entry"; PostingDate: Date)
     begin
-        BonusSetup.TestField("Gen.Jnl.Templ.BonusReserve");
-        BonusSetup.TestField("Gen. Jnl. Bonus Reserve");
-
-        GenJnlLineRec.Reset();
-        GenJnlLineRec.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
-        GenJnlLineRec.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
-        if GenJnlLineRec.FindLast() then
-            LineNo := GenJnlLineRec."Line No."
-        else
-            LineNo := 0;
-
-        if GLEntry.FindSet() then
-            repeat
-                GLEntry.TestField("Transaction No.");
-                GLEntry.TestField(Reversed, false);
-
-                GenJnlLineRec.Init();
-                GenJnlLineRec."Journal Template Name" := BonusSetup."Gen.Jnl.Templ.BonusReserve";
-                GenJnlLineRec."Journal Batch Name" := BonusSetup.GenJnlBonusReversReserve;
-                GenJnlLineRec."Line No." := LineNo + 10000;
-                LineNo := GenJnlLineRec."Line No.";
-                GenJnlLineRec.Validate("Posting Date", PostingDate);
-                GenJnlLineRec."Document No." := GLEntry."Document No.";
-                GenJnlLineRec."Account Type" := GenJnlLineRec."Account Type"::"G/L Account";
-                GenJnlLineRec."Bal. Account Type" := GenJnlLineRec."Bal. Account Type"::"G/L Account";
-                GenJnlLineRec.Validate("Account No.", GLEntry."G/L Account No.");
-                GenJnlLineRec.Validate("Bal. Account No.", GLEntry."Bal. Account No.");
-                GenJnlLineRec."Gen. Bus. Posting Group" := '';
-                GenJnlLineRec."Gen. Prod. Posting Group" := '';
-                GenJnlLineRec.Description := CopyStr(ReverseTxt + ' ' + GLEntry.Description, 1, 50);
-                GenJnlLineRec.Validate(Amount, -GLEntry.Amount);
-                GenJnlLineRec."lbt Process No." := GLEntry."lbt Process No.";
-                GenJnlLineRec."Reason Code" := BonusSetup."Reason Code";
-                // GenJnlLineRec."Billing Code" := BonusSetup."Billing Code";
-                GenJnlLineRec.Correction := true;
-                GenJnlLineRec."lbtbn Reserve Entry No" := GLEntry."Entry No.";
-                GenJnlLineRec."lbtbn Reserve Transaction No." := GLEntry."Transaction No.";
-                GenJnlLineRec."Dimension Set ID" := GLEntry."Dimension Set ID";
-                GenJnlLineRec.Insert();
-            //Bonusposten werden beim Buchen des Buchblattes aktualisiert
-            until GLEntry.Next() = 0;
+        CreateGenJournalLines(GLEntry, PostingDate);
         OpenPage();
     end;
 
@@ -558,6 +505,76 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                     ReverseGenLedgEntry(Customer."No.", BonusContract."Process No.", DateFrom, DateTo, ReversePostingDate);
                 until Customer.Next() = 0;
         end;
+    end;
+
+    local procedure CreateGenJournalLines(var GLEntry: Record "G/L Entry"; PostingDate: Date) PreviousLineNo: Integer
+    var
+        GenJnlLineRec: Record "Gen. Journal Line";
+        BonusSetup: Record "lbtbn Bonus Setup";
+        LineNo: Integer;
+        ReverseTxt: Label 'Reverse';
+    begin
+        BonusSetup.Get();
+        BonusSetup.TestField("Gen.Jnl.Templ.BonusReserve");
+        BonusSetup.TestField(GenJnlBonusReversReserve);
+        GenJnlLineRec.Reset();
+        GenJnlLineRec.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
+        GenJnlLineRec.SetRange("Journal Batch Name", BonusSetup.GenJnlBonusReversReserve);
+        if GenJnlLineRec.FindLast() then
+            LineNo := GenJnlLineRec."Line No."
+        else
+            LineNo := 0;
+
+        PreviousLineNo := LineNo;
+
+        if GLEntry.FindSet() then
+            repeat
+                GLEntry.TestField("Transaction No.");
+                GLEntry.TestField(Reversed, false);
+
+                GenJnlLineRec.Init();
+                GenJnlLineRec."Journal Template Name" := BonusSetup."Gen.Jnl.Templ.BonusReserve";
+                GenJnlLineRec."Journal Batch Name" := BonusSetup.GenJnlBonusReversReserve;
+                GenJnlLineRec."Line No." := LineNo + 10000;
+                LineNo := GenJnlLineRec."Line No.";
+                GenJnlLineRec.Validate("Posting Date", PostingDate);
+                GenJnlLineRec."Document No." := GLEntry."Document No.";
+                GenJnlLineRec."Account Type" := GenJnlLineRec."Account Type"::"G/L Account";
+                GenJnlLineRec."Bal. Account Type" := GenJnlLineRec."Bal. Account Type"::"G/L Account";
+                GenJnlLineRec.Validate("Account No.", GLEntry."G/L Account No.");
+                GenJnlLineRec.Validate("Bal. Account No.", GLEntry."Bal. Account No.");
+                GenJnlLineRec."Gen. Bus. Posting Group" := '';
+                GenJnlLineRec."Gen. Prod. Posting Group" := '';
+                GenJnlLineRec.Description := CopyStr(ReverseTxt + ' ' + GLEntry.Description, 1, 50);
+                GenJnlLineRec.Validate(Amount, -GLEntry.Amount);
+                GenJnlLineRec."lbt Process No." := GLEntry."lbt Process No.";
+                GenJnlLineRec."Reason Code" := BonusSetup."Reason Code";
+                // GenJnlLineRec."Billing Code" := BonusSetup."Billing Code";
+                GenJnlLineRec.Correction := true;
+                GenJnlLineRec."lbtbn Reserve Entry No" := GLEntry."Entry No.";
+                GenJnlLineRec."lbtbn Reserve Transaction No." := GLEntry."Transaction No.";
+                GenJnlLineRec."Dimension Set ID" := GLEntry."Dimension Set ID";
+                GenJnlLineRec.Insert();
+            //Bonusposten werden beim Buchen des Buchblattes aktualisiert
+            until GLEntry.Next() = 0;
+    end;
+
+    local procedure PostGenJournalLines(PreviousLineNo: Integer)
+    var
+        GenJournalLine: Record "Gen. Journal Line";
+        BonusSetup: Record "lbtbn Bonus Setup";
+        GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
+    begin
+        BonusSetup.Get();
+        BonusSetup.TestField("Gen.Jnl.Templ.BonusReserve");
+        BonusSetup.TestField(GenJnlBonusReversReserve);
+        GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup.GenJnlBonusReversReserve);
+        GenJournalLine.SetFilter("Line No.", '>%1', PreviousLineNo);
+        if GenJournalLine.FindSet() then
+            repeat
+                GenJnlPostLine.RunWithCheck(GenJournalLine);
+            until GenJournalLine.Next() = 0
     end;
 
 

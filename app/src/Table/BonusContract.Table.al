@@ -376,6 +376,30 @@ table 5266052 "lbtbn Bonus Contract"
     end;
     #endregion Join
 
+    procedure SetCustomerView(var Customer: Record Customer)
+    var
+        BonusCustomer: Record "lbtbn Bonus Customer";
+    begin
+        BonusCustomer.SetRange(Contract, Rec."No.");
+        if BonusCustomer.FindSet() then
+            repeat
+                if BonusCustomer."Customer Group" <> '' then begin
+                    Customer.SetRange("lbtbn Customer Group", BonusCustomer."Customer Group");
+                    if Customer.FindSet() then
+                        repeat
+                            Customer.Mark(true);
+                        until Customer.Next() = 0;
+                end;
+                if BonusCustomer."Customer No." <> '' then begin
+                    Customer.Get(BonusCustomer."Customer No.");
+                    Customer.Mark(true);
+                end;
+            until BonusCustomer.Next() = 0;
+        Customer.SetRange("lbtbn Customer Group");
+        Customer.MarkedOnly(true);
+    end;
+
+
     var
         Text001Msg: Label 'You can not reset the date, while there are unposted bonus credit memos.',
         Comment = 'DEU="Sie können das Datum nicht zurücksetzen, solange es ungebuchte Bonusgutschriften für diesen Kunden gibt"';

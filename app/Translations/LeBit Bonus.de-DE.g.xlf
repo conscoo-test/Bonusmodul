@@ -867,6 +867,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType ShipmentLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 4202949400 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse</source>
+          <target>Auflösung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateGenJournalLines - NamedType ReverseTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1947743116" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reverse Reserve according to Bonus Contract %1.</source>
           <target>Rückstellungsauflösung gem. Vertrag %1</target>
@@ -921,12 +927,6 @@
           <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseGenLedgEntry - NamedType PostingDateErr</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 1868883687 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reverse</source>
-          <target>Auflösung</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseJournalBatch - NamedType ReverseTxt</note>
-        </trans-unit>
         <trans-unit id="Page 3100616550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>LeBit Bonus Setup</source>
           <target>LeBit Bonus Einrichtung</target>
@@ -964,9 +964,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Assisted Setup - Control Introduction - Property InstructionalText</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Control 2691068236 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
-          <source>englisch</source>
-          <target>Bei "weiter" werden in der Debitoren &amp; Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt</target>
-          <note from="Developer" annotates="general" priority="2">DEU="Bei "weiter" werden in der Debitoren &amp; Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"</note>
+          <source>With "Next", the fields "Shipment on Invoice" and "Return Receipt on Credit Memo" are set in the "Sales &amp; Receivables Setup".</source>
+          <target>Bei "Weiter" werden in der Debitoren &amp; Verkauf Einrichtung die Felder "Lieferschein b. VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Assisted Setup - Control Sales Receivables Setup - Property InstructionalText</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Action 2438272767 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1286,6 +1286,18 @@
           <target>Gibt den Saldo der Rückstellungen an.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control Balance of Reserve - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2625601096 - Control 1095364457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Count</source>
+          <target>Anzahl Debitoren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control CustomerCount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2625601096 - Control 3437602538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Count</source>
+          <target>Anzahl Artikel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control ItemCount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2625601096 - Control 4251025880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Displays when the last settlement was performed.</source>

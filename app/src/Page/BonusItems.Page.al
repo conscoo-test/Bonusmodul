@@ -82,7 +82,7 @@ page 5266065 "lbtbn Bonus Items"
         Item.SetView(Rec.GetItemFilter());
         if Item.FindSet() then
             repeat
-                if Rec.CheckAttributes(Item."No.") then
+                if CheckItemMeth.CheckItem(Rec."Contract No.", Item."No.") then
                     Item.Mark(true);
             until Item.Next() = 0;
         Item.MarkedOnly(true);
@@ -90,6 +90,7 @@ page 5266065 "lbtbn Bonus Items"
     end;
 
     var
+        CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
         ItemCount: Integer;
         SetItemFilterTxt: Label 'Set Item Filter';
         SetAttributeFilterTxt: Label 'Set Attribute Filter';
