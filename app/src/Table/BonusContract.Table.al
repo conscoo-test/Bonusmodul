@@ -341,7 +341,8 @@ table 5266052 "lbtbn Bonus Contract"
         NavigatePage: Page Navigate;
     begin
         NavigatePage.SetProcessNo(Rec."Process No.");
-        NavigatePage.Run();
+        NavigatePage.SetRec(Rec);
+        NavigatePage.RunModal();
     end;
     #endregion Navigate
 
