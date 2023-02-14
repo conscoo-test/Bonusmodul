@@ -70,14 +70,8 @@ page 5266062 "lbtbn Bonus Assisted Setup"
                 group("Sales Receivables Setup")
                 {
                     Caption = '', Locked = true;
-                    InstructionalText = 'englisch', //TODO:
-                        Comment = 'DEU="Bei "weiter" werden in der Debitoren & Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"';
+                    InstructionalText = 'With "Next", the fields "Shipment on Invoice" and "Return Receipt on Credit Memo" are set in the "Sales & Receivables Setup".';
                 }
-                // field("lbtbn No. Series Commission"; "lbtbn No. Series Commission")
-                // {
-                //     ApplicationArea = All;
-                //     ToolTip = 'english'; //TODO:
-                // }
             }
             group(Step3)
             {
@@ -201,9 +195,8 @@ page 5266062 "lbtbn Bonus Assisted Setup"
         if not (SalesReceivablesSetup."Shipment on Invoice" and SalesReceivablesSetup."Return Receipt on Credit Memo") then begin
             SalesReceivablesSetup."Shipment on Invoice" := true;
             SalesReceivablesSetup."Return Receipt on Credit Memo" := true;
-            Rec.Modify();
+            SalesReceivablesSetup.Modify();
         end;
-
     end;
 
     local procedure LoadTopBanners();

@@ -673,21 +673,6 @@
           <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType UnpostedCreditMemoErr</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4178859433 - Method 1978345793 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fixed Amount</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmount - NamedType FixedAmountTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4178859433 - Method 2654139666 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
-          <source> per </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateItemChargeForBillingTypeAmountPerUnit - NamedType PerTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4178859433 - Method 104546620 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Accounting</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method CreateSalesCreditMemo3 - NamedType AccountingTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo </source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -697,6 +682,21 @@
           <source>Invoice </source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription - NamedType InvoiceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2865549206 - NamedType 2402802390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fixed Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription2 - NamedType FixedAmountTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2865549206 - NamedType 553311249" size-unit="char" translate="yes" xml:space="preserve">
+          <source> per </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetDescription2 - NamedType PerTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 3840737616 - NamedType 229961467" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Accounting</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method InitSalesLine - NamedType AccountingTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 152529119" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo</source>
@@ -722,6 +722,11 @@
           <source>Shipment</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType ShipmentLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3886786226 - Method 4202949400 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverse</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateGenJournalLines - NamedType ReverseTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 335321606 - NamedType 1947743116" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reverse Reserve according to Bonus Contract %1.</source>
@@ -763,11 +768,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method CreateSalesLine - NamedType FixedAmountTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3886786226 - Method 3568340383 - NamedType 1436609492" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reverse</source>
-          <note from="Developer" annotates="general" priority="2">Auflösung</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - Method ReverseBonusReserve - NamedType ReverseTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 3886786226 - Method 569513246 - NamedType 2932411483" size-unit="char" translate="yes" xml:space="preserve">
           <source>The posting date of exploding bonus reserves is not in the permitted posting period.</source>
           <note from="Developer" annotates="general" priority="2">Das Buchungsdatum der Rückstellungsauflösung (%1) liegt nicht im zugelassenen Buchungszeitraum.</note>
@@ -804,8 +804,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Assisted Setup - Control Introduction - Property InstructionalText</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Control 2691068236 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
-          <source>englisch</source>
-          <note from="Developer" annotates="general" priority="2">DEU="Bei "weiter" werden in der Debitoren &amp; Verkauf Einrichtung die Felder "Lieferschein b VK-Rechnung" und "Rücksendung bei Gutschrift" gesetzt"</note>
+          <source>With "Next", the fields "Shipment on Invoice" and "Return Receipt on Credit Memo" are set in the "Sales &amp; Receivables Setup".</source>
+          <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Assisted Setup - Control Sales Receivables Setup - Property InstructionalText</note>
         </trans-unit>
         <trans-unit id="Page 3100616550 - Action 2438272767 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1072,6 +1072,16 @@
           <source>Indicates the balance of provisions.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control Balance of Reserve - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2625601096 - Control 1095364457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Count</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control CustomerCount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2625601096 - Control 3437602538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Count</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control ItemCount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2625601096 - Control 4251025880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Displays when the last settlement was performed.</source>
@@ -1853,6 +1863,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Customer_No_CaptionLbl</note>
         </trans-unit>
+        <trans-unit id="Report 624272167 - NamedType 3000237538" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType DateFilterLbl</note>
+        </trans-unit>
         <trans-unit id="Report 624272167 - NamedType 3406999958" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discount Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1882,11 +1897,6 @@
           <source>Sum for Shipping Address</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Sum_for_Shipping_AddressCaptionLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 624272167 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Date Filter :</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Protocol - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Report 624272167 - NamedType 745995215" size-unit="char" translate="yes" xml:space="preserve">
           <source>Total Amount</source>
@@ -1933,6 +1943,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Customer_No_CaptionLbl</note>
         </trans-unit>
+        <trans-unit id="Report 4032073557 - NamedType 3000237538" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter:</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType DateFilterLbl</note>
+        </trans-unit>
         <trans-unit id="Report 4032073557 - NamedType 3406999958" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discount Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1972,11 +1987,6 @@
           <source>Sum for Shipping Address</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Sum_for_Shipping_AddressCaptionLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 4032073557 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Date Filter:</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report lbtbn Bonus Reservation - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Report 4032073557 - NamedType 745995215" size-unit="char" translate="yes" xml:space="preserve">
           <source>Total Amount</source>

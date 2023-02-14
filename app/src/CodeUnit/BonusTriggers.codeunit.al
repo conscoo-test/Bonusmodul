@@ -42,17 +42,17 @@ codeunit 5266054 "lbtbn Bonus Triggers"
     end;
     #endregion EventSubscriber Codeunit "Gen. Jnl.-Post Line" OnAfterFinishPosting 
 
-    #region EventSubscriber Codeunit "Gen. Jnl.-Post Batch" OnBeforePostGenJnlLine 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Batch", 'OnBeforePostGenJnlLine', '', false, false)]
-    local procedure OnBeforePostGenJnlLine(var GenJournalLine: Record "Gen. Journal Line"; CommitIsSuppressed: Boolean; var Posted: Boolean; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; var PostingGenJournalLine: Record "Gen. Journal Line");
+    #region EventSubscriber Codeunit "Gen. Jnl.-Post Line" OnBeforeCode 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeCode', '', false, false)]
+    local procedure OnBeforeCode(var GenJnlLine: Record "Gen. Journal Line"; CheckLine: Boolean; var IsPosted: Boolean; var GLReg: Record "G/L Register")
     var
         ReverseReserve: Codeunit "lbtbn Reverse Reserve";
     begin
-        if GenJournalLine."lbtbn Reserve Entry No" = 0 then
+        if GenJnlLine."lbtbn Reserve Entry No" = 0 then
             exit;
-        GenJournalLine."lbtbn Bonus Entry No" := ReverseReserve.BonusEntryReserveExploding(GenJournalLine."lbtbn Reserve Entry No", GenJournalLine."Posting Date");
+        GenJnlLine."lbtbn Bonus Entry No" := ReverseReserve.BonusEntryReserveExploding(GenJnlLine."lbtbn Reserve Entry No", GenJnlLine."Posting Date");
 
     end;
-    #endregion EventSubscriber Codeunit "Gen. Jnl.-Post Batch" OnBeforePostGenJnlLine 
+    #endregion EventSubscriber Codeunit "Gen. Jnl.-Post Line" OnBeforeCode 
 
 }

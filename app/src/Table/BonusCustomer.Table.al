@@ -19,6 +19,8 @@ table 5266058 "lbtbn Bonus Customer"
             TableRelation = Customer."No.";
 
             trigger OnValidate()
+            var
+                Customer: Record Customer;
             begin
                 if Customer.Get("Customer No.") then
                     "Customer Name" := Customer.Name
@@ -66,6 +68,5 @@ table 5266058 "lbtbn Bonus Customer"
     }
 
     var
-        Customer: Record Customer;
         ShipToAdress: Record "Ship-to Address";
 }
