@@ -230,6 +230,45 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     end;
     #endregion ReserveFromInvoiceAndPostGenJournal
 
+    [Test]
+    #region PostExplodedBonusReserve_GenJournal
+    [HandlerFunctions('HandleReserveRequestPage,HandleGeneralJournal')]
+    procedure PostExplodedBonusReserve_GenJournal()
+    var
+        GenJournalLine: Record "Gen. Journal Line";
+        GLEntry: Record "G/L Entry";
+        BonusReserves: Report "lbtbn Bonus Reserves";
+        ReverseReserve: Codeunit "lbtbn Reverse Reserve";
+    begin
+        //GIVEN
+        Init(false);
+        CreateSalesInvoiceAndPost();
+        BonusReserves.SetTableView(BonusContract);
+        BonusReserves.Run();
+        GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup."Gen. Jnl. Bonus Reserve");
+        GenJournalLine.FindFirst();
+        LibraryERM.PostGeneralJnlLine(GenJournalLine);
+        GLEntry.FilterGroup(2);
+        GLEntry.SetRange("lbt Process No.", BonusContract."Process No.");
+        GLEntry.SetRange(Reversed, false);
+        GLEntry.SetRange("lbtbn In Reserve", false);
+        GLEntry.SetFilter("G/L Account No.", BonusContract.GetGLAccountFilter());
+        GLEntry.FilterGroup(0);
+        ReverseReserve.ReverseBonusReserve(GLEntry, WorkDate());
+
+        //WHEN
+        GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
+        GenJournalLine.SetRange("Journal Batch Name", BonusSetup.GenJnlBonusReversReserve);
+        GenJournalLine.FindFirst();
+        LibraryERM.PostGeneralJnlLine(GenJournalLine);
+
+        //THEN
+        // no permission error
+
+    end;
+    #endregion PostExplodedBonusReserve_GenJournal
+
     #region SetPermissions
     local procedure SetPermissions()
     begin
@@ -449,6 +488,9 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         BonusSetup."Reserve Mode" := BonusSetup."Reserve Mode"::Journal;
         BonusSetup."Gen.Jnl.Templ.BonusReserve" := GenJournalTemplate.Name;
         BonusSetup."Gen. Jnl. Bonus Reserve" := GenJournalBatch.Name;
+        BonusSetup."Reverse Reserve Mode" := BonusSetup."Reverse Reserve Mode"::"Journal Batch";
+        LibraryERM.CreateGenJournalBatch(GenJournalBatch, GenJournalTemplate.Name);
+        BonusSetup.GenJnlBonusReversReserve := GenJournalBatch.Name;
         BonusSetup.Modify();
     end;
     #endregion InitBonusSetupForJournal

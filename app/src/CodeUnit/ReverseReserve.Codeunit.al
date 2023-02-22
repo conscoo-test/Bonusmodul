@@ -1,5 +1,7 @@
 codeunit 5266056 "lbtbn Reverse Reserve"
 {
+    Permissions = tabledata "G/L Entry" = rimd;
+
     #region ReverseBonusEntries
     procedure ReverseBonusEntries(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date)
     var
