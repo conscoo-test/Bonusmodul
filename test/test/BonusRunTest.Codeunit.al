@@ -38,7 +38,7 @@ codeunit 52050 "lbtbn Bonus Run Test"
     #endregion CreditMemo_From_Invoice
 
     [Test]
-    #region CreditMemo_From_Invoice
+    #region CreditMemo_From_CrMemo
     [HandlerFunctions('HandleBonusRequestPage')]
     procedure CreditMemo_From_CrMemo()
     begin
@@ -52,7 +52,7 @@ codeunit 52050 "lbtbn Bonus Run Test"
         //THEN
         ValidateNoCreditMemoCreated();
     end;
-    #endregion CreditMemo_From_Invoice
+    #endregion CreditMemo_From_CrMemo
 
     [PageHandler]
     procedure HandleSalesCrMemoPage(var Page: TestPage "Sales Credit Memo")

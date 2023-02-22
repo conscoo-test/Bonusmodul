@@ -243,6 +243,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         //GIVEN
         Init(false);
         CreateSalesInvoiceAndPost();
+        BonusContract.SetRecFilter();
         BonusReserves.SetTableView(BonusContract);
         BonusReserves.Run();
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
