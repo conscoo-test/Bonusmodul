@@ -25,6 +25,10 @@ table 5266060 "lbtbn Bonus Item"
         {
             Caption = 'Description';
         }
+        field(6; "Item Count"; Integer)
+        {
+            Caption = 'Item Count';
+        }
     }
 
     keys
@@ -34,6 +38,23 @@ table 5266060 "lbtbn Bonus Item"
             Clustered = true;
         }
     }
+
+    procedure SetItemCount()
+    var
+        TempItem: Record Item temporary;
+        BonusContract: Record "lbtbn Bonus Contract";
+        dia: Dialog;
+    begin
+        if GuiAllowed then
+            dia.Open('processing');
+        Rec.GetItems(TempItem);
+        Rec."Item Count" := TempItem.Count();
+        Rec.Modify();
+        BonusContract.Get(Rec."Contract No.");
+        BonusContract.SetItemCount();
+        if GuiAllowed then
+            dia.Close();
+    end;
 
     procedure GetItemFilter() FilterText: Text
     var
@@ -59,17 +80,51 @@ table 5266060 "lbtbn Bonus Item"
         if FilterText <> '' then
             FilterPage.SetView(Item.TableCaption, FilterText);
         if FilterPage.RunModal() then
-            SetItemFilter(FilterPage.GetView(Item.TableCaption));
+            if SetItemFilter(FilterPage.GetView(Item.TableCaption)) then
+                SetItemCount();
+
     end;
 
-    procedure SetItemFilter(FilterText: Text)
+    procedure SetItemFilter(FilterText: Text) FilterChanged: Boolean
     var
         outs: OutStream;
+        ins: InStream;
+        xFilterText: Text;
     begin
+        xRec.CalcFields("Item Filter");
+        xRec."Item Filter".CreateInStream(ins);
+        ins.ReadText(xFilterText);
+        if xFilterText = FilterText then
+            exit(false);
         Clear(Rec."Item Filter");
         Rec."Item Filter".CreateOutStream(outs);
         outs.WriteText(FilterText);
-        Rec.Modify()
+        Rec.Modify();
+        exit(true);
+    end;
+
+    procedure GetItems(var TempItem: Record Item temporary)
+    var
+        BonusContractAttribute: Record "lbtbn BonusContractAttribute";
+        Item: Record Item;
+    begin
+        Item.SetView(Rec.GetItemFilter());
+        Item.LoadFields("No.");
+        if Item.FindSet() then
+            repeat
+                TempItem := Item;
+                TempItem.Insert();
+            until Item.Next() = 0;
+        BonusContractAttribute.SetRange(Contract, Rec."Contract No.");
+        BonusContractAttribute.SetRange("Bonus Item Entry No.", Rec."Entry No.");
+        if BonusContractAttribute.FindSet() then
+            repeat
+                if TempItem.FindSet() then
+                    repeat
+                        if not CheckAttribute(BonusContractAttribute, TempItem."No.") then
+                            TempItem.Delete();
+                    until TempItem.Next() = 0;
+            until BonusContractAttribute.Next() = 0;
     end;
 
     procedure CheckAttributes(ItemNo: Code[20]): Boolean;
@@ -98,6 +153,28 @@ table 5266060 "lbtbn Bonus Item"
                     exit(false);
             // end;
             until BonusContractAttribute.Next() = 0;
+        exit(true);
+    end;
+
+    local procedure CheckAttribute(var BonusContractAttribute: Record "lbtbn BonusContractAttribute"; ItemNo: Code[20]): Boolean
+    var
+        ItemAttributeValue: Record "Item Attribute Value";
+        ItemAttributeValueMapping: Record "Item Attribute Value Mapping";
+    begin
+        if not ItemAttributeValueMapping.Get(Database::Item, ItemNo, BonusContractAttribute."Attribute ID") then
+            exit(false);
+        ItemAttributeValue.Get(ItemAttributeValueMapping."Item Attribute ID", ItemAttributeValueMapping."Item Attribute Value ID");
+        // case BonusContractAttribute."Attribute Type" of
+        //     BonusContractAttribute."Attribute Type"::Decimal:
+        //         ;
+        //     BonusContractAttribute."Attribute Type"::Integer:
+        //         ;
+        //     BonusContractAttribute."Attribute Type"::Text:
+
+        //         ;
+        //     BonusContractAttribute."Attribute Type"::Option:
+        if ItemAttributeValue.ID <> BonusContractAttribute."Attribute Value ID" then
+            exit(false);
         exit(true);
     end;
 

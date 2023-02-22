@@ -203,6 +203,10 @@ table 5266052 "lbtbn Bonus Contract"
             Caption = 'Customer Reserve Cr.Memo';
             TableRelation = Customer;
         }
+        field(30; "Item Count"; Integer)
+        {
+            Caption = 'Item Count';
+        }
     }
     keys
     {
@@ -400,6 +404,26 @@ table 5266052 "lbtbn Bonus Contract"
         Customer.MarkedOnly(true);
     end;
 
+    procedure SetItemView(var Item: Record Item)
+    var
+        CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
+        dia: Dialog;
+    begin
+        if GuiAllowed then
+            dia.Open('Processing');
+        CheckItemMeth.GetItems(Rec."No.", Item);
+        if GuiAllowed then
+            dia.Close();
+    end;
+
+    procedure SetItemCount()
+    var
+        TempItem: Record Item temporary;
+    begin
+        SetItemView(TempItem);
+        Rec."Item Count" := TempItem.Count;
+        Rec.Modify();
+    end;
 
     var
         Text001Msg: Label 'You can not reset the date, while there are unposted bonus credit memos.',

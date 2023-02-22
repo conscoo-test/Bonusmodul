@@ -111,6 +111,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Discount % - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 2398032778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Count</source>
+          <target>Anzahl Artikel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Item Count - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 4251025880 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Last Billing at</source>
           <target>letzte Abrechnung am</target>
@@ -518,6 +524,12 @@
           <target>Lfd. Nr.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3956665642 - Field 2398032778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Count</source>
+          <target>Anzahl Artikel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Item - Field Item Count - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3956665642 - Field 60453471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Filter</source>
@@ -1293,11 +1305,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control CustomerCount - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2625601096 - Control 3437602538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2625601096 - Control 2398032778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Count</source>
           <target>Anzahl Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control ItemCount - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control Item Count - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2625601096 - Control 4251025880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Displays when the last settlement was performed.</source>
