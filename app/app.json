@@ -31,6 +31,11 @@
   "features": [
     "TranslationFile"
   ],
-  "runtime": "8.1",
+      "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "includeSourceInSymbolFile": true,
+        "applyToDevExtension": true
+    },
+  "runtime": "10.0",
   "applicationInsightsConnectionString": "InstrumentationKey=18c42e7b-8d3d-426d-a667-15303864951d;IngestionEndpoint=https://germanywestcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://germanywestcentral.livediagnostics.monitor.azure.com/"
 }
