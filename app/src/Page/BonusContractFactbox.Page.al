@@ -31,7 +31,7 @@ page 5266060 "lbtbn Bonus Contract Factbox"
                 ToolTip = 'Indicates the number of existing attributes.';
                 ApplicationArea = All;
             }
-            field("Item Count"; Rec."Item Count")
+            field(ItemCount; Rec."Item Count")
             {
                 Caption = 'Item Count';
                 ApplicationArea = All;

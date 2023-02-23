@@ -71,36 +71,33 @@ table 5266060 "lbtbn Bonus Item"
     var
         Item: Record Item;
         FilterPage: FilterPageBuilder;
-        FilterText: Text;
+        OldFilterText: Text;
+        NewFilterText: Text;
     begin
         FilterPage.AddTable(Item.TableCaption(), Database::Item);
         FilterPage.AddFieldNo(Item.TableCaption, Item.FieldNo("No."));
         FilterPage.AddFieldNo(Item.TableCaption, Item.FieldNo("lbtbn Item Group"));
-        FilterText := GetItemFilter();
-        if FilterText <> '' then
-            FilterPage.SetView(Item.TableCaption, FilterText);
-        if FilterPage.RunModal() then
-            if SetItemFilter(FilterPage.GetView(Item.TableCaption)) then
-                SetItemCount();
+        OldFilterText := GetItemFilter();
+        if OldFilterText <> '' then
+            FilterPage.SetView(Item.TableCaption, OldFilterText);
+        if not FilterPage.RunModal() then
+            exit;
+        NewFilterText := FilterPage.GetView(Item.TableCaption);
+        if OldFilterText = NewFilterText then
+            exit;
+        SetItemFilter(NewFilterText);
+        SetItemCount();
 
     end;
 
-    procedure SetItemFilter(FilterText: Text) FilterChanged: Boolean
+    procedure SetItemFilter(FilterText: Text)
     var
         outs: OutStream;
-        ins: InStream;
-        xFilterText: Text;
     begin
-        xRec.CalcFields("Item Filter");
-        xRec."Item Filter".CreateInStream(ins);
-        ins.ReadText(xFilterText);
-        if xFilterText = FilterText then
-            exit(false);
         Clear(Rec."Item Filter");
         Rec."Item Filter".CreateOutStream(outs);
         outs.WriteText(FilterText);
         Rec.Modify();
-        exit(true);
     end;
 
     procedure GetItems(var TempItem: Record Item temporary)
