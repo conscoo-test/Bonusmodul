@@ -41,6 +41,12 @@
       "name": "LeBit Bonus",
       "publisher": "LeBit Software & Consult GmbH",
       "version": "1.0.0.0"
+    },
+    {
+      "id": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
+      "name": "LeBit Processmanagement",
+      "version": "1.0.0.0",
+      "publisher": "LeBit Software & Consult GmbH"
     }
   ],
   "screenshots": [],
