@@ -1307,9 +1307,8 @@
         </trans-unit>
         <trans-unit id="Page 2625601096 - Control 3437602538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Count</source>
-          <target>[NAB: SUGGESTION]Anzahl Artikel</target>
+          <target>Anzahl Artikel</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract Factbox - Control ItemCount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2625601096 - Control 4251025880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
