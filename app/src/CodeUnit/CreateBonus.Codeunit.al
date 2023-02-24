@@ -333,6 +333,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     var
         ValueEntry: Record "Value Entry";
     begin
+        if TempSalesInvoiceLine.Type <> TempSalesInvoiceLine.Type::Item then
+            exit;
         ValueEntry.Reset();
         ValueEntry.SetCurrentKey("Document No.");
         Filter(ValueEntry);
@@ -555,7 +557,8 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemCharge: Record "Item Charge";
         ValueEntry: Record "Value Entry";
     begin
-        ValueEntry.Reset();
+        Filter(ValueEntry);
+        ValueEntry.SetRange("Document Line No.");
         ValueEntry.SetCurrentKey("Item Ledger Entry No.");
         ValueEntry.SetRange("Item Ledger Entry No.", ItemLedgerEntryNo);
         ValueEntry.SetFilter("Item Charge No.", '<>%1', '');
