@@ -73,8 +73,6 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         if not LineIsApplicableForBonus() then
             exit;
-        if not LineIsShipped() then
-            exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, DiscAmt, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
@@ -444,8 +442,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusManagement: Codeunit "lbtbn Bonus Management";
     begin
         BonusContract.TestField("Reserve Item Charge");
-        if not LineIsShipped() then
-            exit;
         CreateReserveCrMemoHeader();
         CreateReserveCreditMemoLine(ReserveAmount, SalesLine);
         AddItemChargeToSalesLine(SalesLine, DocAmount, ReserveAmount);
@@ -898,6 +894,9 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemCharge: Record "Item Charge";
         ItemNo: Code[20];
     begin
+        if not LineIsShipped() then
+            exit;
+
         ItemNo := GetItemNo();
         if not CheckItemMeth.CheckItem(BonusContract."No.", ItemNo) then
             exit;
