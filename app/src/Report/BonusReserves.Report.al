@@ -35,7 +35,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     SalesInvoiceHeader.Get(InvoiceNos.Get(Invoices.Number));
                     CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
                     SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
-                    SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
+                    SalesInvoiceLine.SetFilter(Type, '%1|%2', SalesInvoiceLine.Type::Item, SalesInvoiceLine.Type::"Charge (Item)");
                     if SalesInvoiceLine.FindSet() then
                         repeat
                             CreateBonus.CreateReserve(SalesInvoiceLine);
@@ -64,7 +64,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     SalesCrMemoHeader.Get(CrMemoNos.Get(CrMemos.Number));
                     CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
                     SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
-                    SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
+                    SalesCrMemoLine.SetFilter(Type, '%1|%2', SalesCrMemoLine.Type::Item, SalesCrMemoLine.Type::"Charge (Item)");
                     if SalesCrMemoLine.FindSet() then
                         repeat
                             CreateBonus.CreateReserve(SalesCrMemoLine);

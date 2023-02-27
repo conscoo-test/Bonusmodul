@@ -27,7 +27,7 @@ report 5266052 "lbtbn Bonus Run"
                     Dialog.Update(3, SalesInvoiceHeader."No.");
                     CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
                     SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
-                    SalesInvoiceLine.SetRange(Type, SalesInvoiceLine.Type::Item);
+                    SalesInvoiceLine.SetFilter(Type, '%1|%2', SalesInvoiceLine.Type::Item, SalesInvoiceLine.Type::"Charge (Item)");
                     if SalesInvoiceLine.FindSet() then
                         repeat
                             CreateBonus.CreateBonus(SalesInvoiceLine);
@@ -58,7 +58,7 @@ report 5266052 "lbtbn Bonus Run"
                     Dialog.Update(3, SalesCrMemoHeader."No.");
                     CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
                     SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
-                    SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
+                    SalesCrMemoLine.SetFilter(Type, '%1|%2', SalesCrMemoLine.Type::Item, SalesCrMemoLine.Type::"Charge (Item)");
                     if SalesCrMemoLine.FindSet() then
                         repeat
                             CreateBonus.CreateBonus(SalesCrMemoLine);

@@ -71,9 +71,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         PmtDiscAmt: Decimal;
         BonusAmount: Decimal;
     begin
-        if not CheckItemMeth.CheckItem(BonusContract."No.", TempSalesInvoiceLine."No.") then
-            exit;
-        if not LineIsShipped() then
+        if not LineIsApplicableForBonus() then
             exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
@@ -333,6 +331,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     var
         ValueEntry: Record "Value Entry";
     begin
+        if TempSalesInvoiceLine.Type <> TempSalesInvoiceLine.Type::Item then
+            exit;
         ValueEntry.Reset();
         ValueEntry.SetCurrentKey("Document No.");
         Filter(ValueEntry);
@@ -348,8 +348,6 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region CreateReserve
     procedure CreateReserve(SalesCrMemoLine: Record "Sales Cr.Memo Line")
     begin
-        if not CheckItemMeth.CheckItem(BonusContract."No.", SalesCrMemoLine."No.") then
-            exit;
         SetLine(SalesCrMemoLine);
         DoCreateReserve();
     end;
@@ -358,8 +356,6 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region CreateReserve
     procedure CreateReserve(SalesInvoiceLine: Record "Sales Invoice Line")
     begin
-        if not CheckItemMeth.CheckItem(BonusContract."No.", SalesInvoiceLine."No.") then
-            exit;
         SetLine(SalesInvoiceLine);
         DoCreateReserve();
     end;
@@ -446,8 +442,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusManagement: Codeunit "lbtbn Bonus Management";
     begin
         BonusContract.TestField("Reserve Item Charge");
-        if not LineIsShipped() then
-            exit;
         CreateReserveCrMemoHeader();
         CreateReserveCreditMemoLine(ReserveAmount, SalesLine);
         AddItemChargeToSalesLine(SalesLine, DocAmount, ReserveAmount);
@@ -559,7 +553,8 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemCharge: Record "Item Charge";
         ValueEntry: Record "Value Entry";
     begin
-        ValueEntry.Reset();
+        Filter(ValueEntry);
+        ValueEntry.SetRange("Document Line No.");
         ValueEntry.SetCurrentKey("Item Ledger Entry No.");
         ValueEntry.SetRange("Item Ledger Entry No.", ItemLedgerEntryNo);
         ValueEntry.SetFilter("Item Charge No.", '<>%1', '');
@@ -699,6 +694,19 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CreateItemCharge
 
+    procedure BelongsToSameDocument(): Boolean
+    var
+        ValueEntry: Record "Value Entry";
+    begin
+        Filter(ValueEntry);
+        if ValueEntry.FindFirst() then begin
+            ValueEntry.SetRange("Item Ledger Entry No.", ValueEntry."Item Ledger Entry No.");
+            ValueEntry.SetFilter("Document Line No.", '<>%1', ValueEntry."Document Line No.");
+            ValueEntry.SetRange("Item Charge No.", '');
+            exit(not ValueEntry.IsEmpty);
+        end;
+    end;
+
     #region DoCreateReserve
     local procedure DoCreateReserve()
     var
@@ -708,6 +716,8 @@ codeunit 5266060 "lbtbn Create Bonus"
         PmtDiscAmt: Decimal;
         NewQty: Decimal;
     begin
+        if not LineIsApplicableForBonus() then
+            exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
 
@@ -865,6 +875,41 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.SetRange("Document No.", SalesHeader."No.");
         SalesLine.SetRange(Type, SalesLine.Type::"Charge (Item)");
         exit(not SalesLine.IsEmpty);
+    end;
+
+    local procedure GetItemNo() ItemNo: Code[20]
+    var
+        ValueEntry: Record "Value Entry";
+    begin
+        if TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::Item then
+            exit(TempSalesInvoiceLine."No.");
+        Filter(ValueEntry);
+        if not ValueEntry.FindFirst() then
+            exit('');
+        exit(ValueEntry."Item No.");
+    end;
+
+    local procedure LineIsApplicableForBonus(): Boolean
+    var
+        ItemCharge: Record "Item Charge";
+        ItemNo: Code[20];
+    begin
+        if not LineIsShipped() then
+            exit;
+
+        ItemNo := GetItemNo();
+        if not CheckItemMeth.CheckItem(BonusContract."No.", ItemNo) then
+            exit;
+
+        if TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::"Charge (Item)" then begin
+            if BelongsToSameDocument() then
+                exit;
+            if not ItemCharge.Get(TempSalesInvoiceLine."No.") then
+                exit;
+            if not ItemCharge."lbtbn Bonus consider" then
+                exit;
+        end;
+        exit(true);
     end;
 
 

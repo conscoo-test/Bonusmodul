@@ -119,7 +119,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         Init(false);
         BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount per Unit";
         BonusContract.Modify();
-        CreateSalesCrMemoAndPost();
+        PostReturnOrder();
 
         //WHEN
         BonusContract.SetRecFilter();
@@ -184,10 +184,11 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     procedure Journal__FromCrMemo__ReserveType_Percentage()
     var
         BonusContractCard: TestPage "lbtbn Bonus Contract";
+        Amount: Decimal;
     begin
         //GIVEN
         Init(false);
-        CreateSalesCrMemoAndPost();
+        Amount := PostReturnOrder();
 
         //WHEN
         BonusContractCard.OpenView();
@@ -195,8 +196,8 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         BonusContractCard."Create Reserves".Invoke();
 
         //THEN
-        ValidateGenJnlLineCreated(-SalesCrMemoLine.Amount, SalesCrMemoLine.Quantity);
-        ValidateBonusEntryCreated(-SalesCrMemoLine.Amount, -SalesCrMemoLine.Quantity);
+        ValidateGenJnlLineCreated(Amount, SalesCrMemoLine.Quantity);
+        ValidateBonusEntryCreated(Amount, -SalesCrMemoLine.Quantity);
     end;
     #endregion Journal__FromCrMemo__ReserveType_Percentage
 
@@ -396,25 +397,6 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         SalesInvoiceLine.FindFirst();
     end;
     #endregion CreateSalesInvoiceAndPost
-
-    #region CreateSalesCrMemoAndPost
-    local procedure CreateSalesCrMemoAndPost()
-    var
-        SalesHeader: Record "Sales Header";
-        Item: Record Item;
-        SalesLine: Record "Sales Line";
-        DocNo: Code[20];
-    begin
-        LibrarySales.CreateSalesHeader(SalesHeader, SalesHeader."Document Type"::"Credit Memo", Customer."No.");
-        LibraryInventory.CreateItemWithUnitPriceAndUnitCost(
-          Item, LibraryRandom.RandDecInRange(1, 100, 2), LibraryRandom.RandDecInRange(1, 100, 2));
-        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, SalesLine.Type::Item, Item."No.", LibraryRandom.RandInt(100));
-
-        DocNo := LibrarySales.PostSalesDocument(SalesHeader, false, true);
-        SalesCrMemoLine.SetRange("Document No.", DocNo);
-        SalesCrMemoLine.FindFirst();
-    end;
-    #endregion CreateSalesCrMemoAndPost
 
     #region CreateBonusContract
     local procedure CreateBonusContract(ItemChargeNo: Code[20])
