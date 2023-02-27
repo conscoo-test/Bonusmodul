@@ -24,7 +24,7 @@ page 5266065 "lbtbn Bonus Items"
                     trigger OnDrillDown()
                     begin
                         Rec.AssistEdit();
-                        SetCount();
+                        Rec.SetItemCount();
                     end;
                 }
                 field("Attribute Filter"; SetAttributeFilterTxt)
@@ -41,10 +41,10 @@ page 5266065 "lbtbn Bonus Items"
                         BonusContractAttribute.SetRange(Contract, Rec."Contract No.");
                         BonusContractAttribute.SetRange("Bonus Item Entry No.", Rec."Entry No.");
                         PageManagement.PageRunModal(BonusContractAttribute);
-                        SetCount();
+                        Rec.SetItemCount();
                     end;
                 }
-                field(ItemCount; ItemCount)
+                field(ItemCount; Rec."Item Count")
                 {
                     Caption = 'Item Count';
                     ApplicationArea = All;
@@ -52,46 +52,24 @@ page 5266065 "lbtbn Bonus Items"
 
                     trigger OnDrillDown()
                     var
-                        Item: Record Item;
+                        TempItem: Record Item temporary;
                         PageManagement: Codeunit "Page Management";
+                        dia: Dialog;
                     begin
-                        SetItemView(Item);
-                        Item."No." := ''; // Force PageManagement to open List
-                        PageManagement.PageRun(Item);
+                        if GuiAllowed then
+                            dia.Open('processing');
+                        Rec.GetItems(TempItem);
+                        TempItem."No." := ''; // Force PageManagement to open List
+                        PageManagement.PageRun(TempItem);
+                        if GuiAllowed then
+                            dia.Close();
                     end;
                 }
             }
         }
     }
 
-    trigger OnAfterGetRecord()
-    begin
-        SetCount();
-    end;
-
-    local procedure SetCount()
     var
-        Item: Record Item;
-    begin
-        SetItemView(Item);
-        ItemCount := Item.Count();
-    end;
-
-    local procedure SetItemView(var Item: Record Item)
-    begin
-        Item.SetView(Rec.GetItemFilter());
-        if Item.FindSet() then
-            repeat
-                if CheckItemMeth.CheckItem(Rec."Contract No.", Item."No.") then
-                    Item.Mark(true);
-            until Item.Next() = 0;
-        Item.MarkedOnly(true);
-        if Item.FindFirst() then;
-    end;
-
-    var
-        CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
-        ItemCount: Integer;
         SetItemFilterTxt: Label 'Set Item Filter';
         SetAttributeFilterTxt: Label 'Set Attribute Filter';
 }

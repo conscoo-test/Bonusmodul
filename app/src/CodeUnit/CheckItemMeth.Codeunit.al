@@ -53,6 +53,24 @@ codeunit 5266055 "lbtbn CheckItem Meth"
         exit(false);
     end;
 
+    procedure GetItems(BonusContractNo: Code[20]; var TempItem: Record Item temporary)
+    var
+        TempItem2: Record Item temporary;
+        BonusItem: Record "lbtbn Bonus Item";
+    begin
+        BonusItem.SetRange("Contract No.", BonusContractNo);
+        if BonusItem.FindSet() then
+            repeat
+                TempItem2.DeleteAll();
+                BonusItem.GetItems(TempItem2);
+                if TempItem2.FindSet() then
+                    repeat
+                        TempItem := TempItem2;
+                        if TempItem.Insert() then;
+                    until TempItem2.Next() = 0;
+            until BonusItem.Next() = 0;
+    end;
+
     local procedure ItemFits(BonusItem: Record "lbtbn Bonus Item"; ItemNo: Code[20]): Boolean
     var
         TempItem: Record Item temporary;
