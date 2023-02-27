@@ -103,6 +103,9 @@ table 5266056 "lbtbn Bonus Entry"
         }
         field(22; "Discount Amount"; Decimal)
         {
+            ObsoleteState = Pending;
+            ObsoleteTag = '2023-02-27';
+            ObsoleteReason = 'Discount is include in base amount';
             Caption = 'Discount Amount';
         }
         field(23; "Assignment Document Type"; Option)

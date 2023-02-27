@@ -41,10 +41,8 @@ table 5266052 "lbtbn Bonus Contract"
             #region OnValidate
             trigger OnValidate()
             begin
-                if "Reserve Type" <> "Reserve Type"::"%" then begin
+                if "Reserve Type" <> "Reserve Type"::"%" then
                     "Pmt. Discount %" := 0;
-                    "Discount %" := 0;
-                end;
             end;
             #endregion OnValidate
         }
@@ -64,10 +62,8 @@ table 5266052 "lbtbn Bonus Contract"
             #region OnValidate
             trigger OnValidate()
             begin
-                if "Bonus Billing Type" <> "Bonus Billing Type"::"%" then begin
+                if "Bonus Billing Type" <> "Bonus Billing Type"::"%" then
                     "Pmt. Discount %" := 0;
-                    "Discount %" := 0;
-                end;
             end;
             #endregion OnValidate
         }
@@ -181,6 +177,9 @@ table 5266052 "lbtbn Bonus Contract"
         }
         field(25; "Discount %"; Decimal)
         {
+            ObsoleteState = Pending;
+            ObsoleteTag = '2023-02-27';
+            ObsoleteReason = 'Discount is include in base amount';
             Caption = 'Discount %';
         }
         field(5266500; "Process No."; Code[20])

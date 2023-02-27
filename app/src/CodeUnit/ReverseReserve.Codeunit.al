@@ -242,7 +242,6 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                 BonusEntry2."Posted Amount" := -BonusEntry."Posted Amount";
             BonusEntry2."Base Amount" := -BonusEntry."Base Amount";
             BonusEntry2."Pmt. Discount Amount" := -BonusEntry."Pmt. Discount Amount";
-            BonusEntry2."Discount Amount" := -BonusEntry."Discount Amount";
             BonusEntry2.Insert();
             BonusEntry.Reversed := true;
             BonusEntry."Reversed by Entry No." := BonusEntry2."Entry No.";

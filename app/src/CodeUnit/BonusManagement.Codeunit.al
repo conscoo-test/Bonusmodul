@@ -29,7 +29,7 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
     #endregion SetBonusDoc
 
-    #region CreateBonusContractEntry
+    [Obsolete('DiscAmt is removed. Use procedure without DisAmt parameter.', '2023-02-27')]
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
                                         CustomerNo: Code[20];
                                         ShipToCode: Code[10];
@@ -41,6 +41,25 @@ codeunit 5266052 "lbtbn Bonus Management"
                                         AmtIncVAT: Decimal;
                                         DocAmt: Decimal;
                                         DiscAmt: Decimal;
+                                        PmtDiscAmt: Decimal;
+                                        DimSetId: Integer
+    ): Integer
+    begin
+        CreateBonusContractEntry(BonusContract, CustomerNo, ShipToCode, EntryType, EntryDate, BonusRule,
+        Qty, Amt, AmtIncVAT, DocAmt, PmtDiscAmt, DimSetId);
+    end;
+
+    #region CreateBonusContractEntry
+    procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
+                                        CustomerNo: Code[20];
+                                        ShipToCode: Code[10];
+                                        EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
+                                        EntryDate: Date;
+                                        BonusRule: Integer;
+                                        Qty: Decimal;
+                                        Amt: Decimal;
+                                        AmtIncVAT: Decimal;
+                                        DocAmt: Decimal;
                                         PmtDiscAmt: Decimal;
                                         DimSetId: Integer
     ): Integer
@@ -77,7 +96,6 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Assignment Document No." := AssignmentDocNo;
         BonusEntry."Assignment Doc. Line No." := AssignmentDocLineNo;
         BonusEntry."Pmt. Discount Amount" := PmtDiscAmt;
-        BonusEntry."Discount Amount" := DiscAmt;
         BonusEntry."Dimension Set ID" := DimSetId;
         BonusEntry.Insert();
 
