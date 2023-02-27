@@ -513,6 +513,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     var
         GenJnlLineRec: Record "Gen. Journal Line";
         BonusSetup: Record "lbtbn Bonus Setup";
+        DimensionManagement: Codeunit DimensionManagement;
         LineNo: Integer;
         ReverseTxt: Label 'Reverse';
     begin
@@ -556,6 +557,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                 GenJnlLineRec."lbtbn Reserve Entry No" := GLEntry."Entry No.";
                 GenJnlLineRec."lbtbn Reserve Transaction No." := GLEntry."Transaction No.";
                 GenJnlLineRec."Dimension Set ID" := GLEntry."Dimension Set ID";
+                DimensionManagement.UpdateGlobalDimFromDimSetID(GenJnlLineRec."Dimension Set ID",
+                                             GenJnlLineRec."Shortcut Dimension 1 Code",
+                                              GenJnlLineRec."Shortcut Dimension 2 Code");
                 GenJnlLineRec.Insert();
             //Bonusposten werden beim Buchen des Buchblattes aktualisiert
             until GLEntry.Next() = 0;
