@@ -316,7 +316,9 @@ codeunit 5266060 "lbtbn Create Bonus"
         Filter(ValueEntry);
         if not ValueEntry.FindFirst() then exit(false);
         if not ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then exit(false);
-        exit(Matches(ItemLedgerEntry));
+        if (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Return Receipt") or
+            (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment") then
+            exit(true);
     end;
     #endregion CheckValueEntry
 
@@ -479,9 +481,9 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemChargeAssignmentSales."Line No." := 10000;
         ItemChargeAssignmentSales."Item Charge No." := SalesLine."No.";
 
-        ItemChargeAssignmentSales."Applies-to Doc. Type" := GetAppliesToDoctype();
-        ItemChargeAssignmentSales."Applies-to Doc. Line Amount" := DocAmount;
         ItemLedgerEntryL := GetItemLedgerEntry();
+        ItemChargeAssignmentSales."Applies-to Doc. Type" := GetAppliesToDoctype(ItemLedgerEntryL);
+        ItemChargeAssignmentSales."Applies-to Doc. Line Amount" := DocAmount;
         ItemChargeAssignmentSales."Applies-to Doc. No." := ItemLedgerEntryL."Document No.";
         ItemChargeAssignmentSales."Applies-to Doc. Line No." := ItemLedgerEntryL."Document Line No.";
         ItemChargeAssignmentSales."Item No." := ItemLedgerEntryL."Item No.";
@@ -680,7 +682,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         ItemChargeAssRec."Line No." := 10000;
         ItemChargeAssRec."Item Charge No." := SalesLine."No.";
 
-        ItemChargeAssRec."Applies-to Doc. Type" := GetAppliesToDoctype();
+        ItemChargeAssRec."Applies-to Doc. Type" := GetAppliesToDoctype(ItemLedgerEntry);
         ItemChargeAssRec."Applies-to Doc. Line Amount" := DocAmt;
 
         ItemChargeAssRec."Applies-to Doc. No." := ItemLedgerEntry."Document No.";
@@ -756,26 +758,14 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
     #endregion CalculateAmountCust
 
-    #region Matches
-    local procedure Matches(var l_ItemLedgerEntry: Record "Item Ledger Entry"): Boolean
-    begin
-        case Sign of
-            1:
-                exit(l_ItemLedgerEntry."Document Type" = l_ItemLedgerEntry."Document Type"::"Sales Shipment");
-            -1:
-                exit(l_ItemLedgerEntry."Document Type" = l_ItemLedgerEntry."Document Type"::"Sales Return Receipt");
-        end;
-    end;
-    #endregion Matches
-
     #region GetAppliesToDoctype
-    local procedure GetAppliesToDoctype() DocumentType: Enum "Sales Applies-to Document Type"
+    local procedure GetAppliesToDoctype(ItemLedgerEntryL: Record "Item Ledger Entry") DocumentType: Enum "Sales Applies-to Document Type"
     begin
-        case Sign of
-            1:
-                exit(DocumentType::Shipment);
-            -1:
-                exit(DocumentType::"Return Receipt");
+        case ItemLedgerEntryL."Document Type" of
+            "Item Ledger Document Type"::"Sales Shipment":
+                exit("Sales Applies-to Document Type"::Shipment);
+            "Item Ledger Document Type"::"Sales Return Receipt":
+                exit("Sales Applies-to Document Type"::"Return Receipt");
         end;
     end;
     #endregion GetAppliesToDoctype
