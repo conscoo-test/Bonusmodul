@@ -216,7 +216,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
 
     #region CreateItemChargeForBillingTypeAmount
-    local procedure CreateItemChargeForBillingTypeAmount(var SalesLine: Record "Sales Line") Zusatz: Text
+    local procedure CreateItemChargeForBillingTypeAmount(var SalesLine: Record "Sales Line")
     var
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         PostedSalesShptLineRec: Record "Sales Shipment Line";
@@ -759,7 +759,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CalculateAmountCust
 
     #region GetAppliesToDoctype
-    local procedure GetAppliesToDoctype(ItemLedgerEntryL: Record "Item Ledger Entry") DocumentType: Enum "Sales Applies-to Document Type"
+    local procedure GetAppliesToDoctype(ItemLedgerEntryL: Record "Item Ledger Entry"): Enum "Sales Applies-to Document Type"
     begin
         case ItemLedgerEntryL."Document Type" of
             "Item Ledger Document Type"::"Sales Shipment":
@@ -867,7 +867,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         exit(not SalesLine.IsEmpty);
     end;
 
-    local procedure GetItemNo() ItemNo: Code[20]
+    local procedure GetItemNo(): Code[20]
     var
         ValueEntry: Record "Value Entry";
     begin
