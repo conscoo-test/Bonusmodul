@@ -569,7 +569,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     var
         GenJournalLine: Record "Gen. Journal Line";
         BonusSetup: Record "lbtbn Bonus Setup";
-        GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
+        GenJnlPostBatch: Codeunit "Gen. Jnl.-Post Batch";
     begin
         BonusSetup.Get();
         BonusSetup.TestField("Gen.Jnl.Templ.BonusReserve");
@@ -578,9 +578,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         GenJournalLine.SetRange("Journal Batch Name", BonusSetup.GenJnlBonusReversReserve);
         GenJournalLine.SetFilter("Line No.", '>%1', PreviousLineNo);
         if GenJournalLine.FindSet() then
-            repeat
-                GenJnlPostLine.RunWithCheck(GenJournalLine);
-            until GenJournalLine.Next() = 0
+            GenJnlPostBatch.Run(GenJournalLine);
     end;
 
 
