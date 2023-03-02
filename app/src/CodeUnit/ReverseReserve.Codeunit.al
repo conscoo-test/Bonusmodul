@@ -577,7 +577,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
         GenJournalLine.SetRange("Journal Batch Name", BonusSetup.GenJnlBonusReversReserve);
         GenJournalLine.SetFilter("Line No.", '>%1', PreviousLineNo);
-        if not GenJournalLine.IsEmpty() then
+        if GenJournalLine.FindSet() then
             GenJnlPostBatch.Run(GenJournalLine);
     end;
 
