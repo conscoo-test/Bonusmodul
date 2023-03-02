@@ -80,6 +80,10 @@ page 5266057 "lbtbn Bonus Entry"
                 }
                 field("Discount Amount"; Rec."Discount Amount")
                 {
+                    ObsoleteState = Pending;
+                    ObsoleteTag = '2023-02-27';
+                    ObsoleteReason = 'Discount is include in base amount';
+                    Visible = false;
                     ApplicationArea = All;
                     ToolTip = 'This field contains the calculated discount.';
                 }

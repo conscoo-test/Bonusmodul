@@ -1031,7 +1031,7 @@
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 633568778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Discounts</source>
-          <target>Rabatte/Skonto</target>
+          <target>Skonto</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Discounts - Property Caption</note>
         </trans-unit>

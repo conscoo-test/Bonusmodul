@@ -58,6 +58,9 @@ report 5266053 "lbtbn Bonus Protocol"
             }
             column(Bonus_Contract_Entry__Discount_Amount_; "Discount Amount")
             {
+                ObsoleteState = Pending;
+                ObsoleteTag = '2023-02-27';
+                ObsoleteReason = 'Discount is include in base amount';
             }
             column(Bonus_Contract_Entry__From_Document_No__; "From Document No.")
             {

@@ -152,6 +152,10 @@ page 5266053 "lbtbn Bonus Contract"
                 Caption = 'Discounts';
                 field("Discount %"; Rec."Discount %")
                 {
+                    ObsoleteState = Pending;
+                    ObsoleteTag = '2023-02-27';
+                    ObsoleteReason = 'Discount is include in base amount';
+                    Visible = false;
                     ToolTip = 'Here you can enter a percentage value to calculate an additional discount.',
                         Comment = 'DEU="Hier kann ein prozentualer Wert zur Berechnung eines zusätzlichen Rabattes hinterlegt werden."';
                     ApplicationArea = All;

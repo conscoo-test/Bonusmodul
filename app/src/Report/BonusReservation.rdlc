@@ -36,9 +36,6 @@
                   <Width>2.1002cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.77749cm</Width>
-                </TablixColumn>
-                <TablixColumn>
                   <Width>1.54932cm</Width>
                 </TablixColumn>
                 <TablixColumn>
@@ -235,40 +232,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <ZIndex>8</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Style>Double</Style>
-                            </BottomBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Bottom</VerticalAlign>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Discount_AmountCaption2">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Discount_AmountCaption.Value</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <ZIndex>7</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -565,35 +528,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox189">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox189</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.095cm</PaddingLeft>
-                            <PaddingRight>0.1275cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox190">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -843,34 +777,6 @@
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>0.055cm</PaddingLeft>
                             <PaddingRight>0.095cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount_">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Bonus_Contract_Entry__Discount_Amount_.Value</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <Format>=Fields!Bonus_Contract_Entry__Pmt__Discount_Amount_Format.Value</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.095cm</PaddingLeft>
-                            <PaddingRight>0.1275cm</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -1136,34 +1042,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount_9">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Bonus_Contract_Entry__Discount_Amount_.Value</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <Format>=Fields!Bonus_Contract_Entry__Pmt__Discount_Amount_Format.Value</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.095cm</PaddingLeft>
-                            <PaddingRight>0.1275cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount_6">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1415,34 +1293,6 @@
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>0.055cm</PaddingLeft>
                             <PaddingRight>0.095cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount_4">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Bonus_Contract_Entry__Discount_Amount_.Value</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <Format>=Fields!Bonus_Contract_Entry__Pmt__Discount_Amount_Format.Value</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.095cm</PaddingLeft>
-                            <PaddingRight>0.1275cm</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -1712,34 +1562,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount_2">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Bonus_Contract_Entry__Discount_Amount_.Value</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <Format>=Fields!Bonus_Contract_Entry__Pmt__Discount_Amount_Format.Value</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.095cm</PaddingLeft>
-                            <PaddingRight>0.1275cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount_8">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1965,41 +1787,6 @@
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>0.0745cm</PaddingLeft>
                             <PaddingRight>0.055cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Discount_Amount__Control1117000038">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!Bonus_Contract_Entry__Discount_Amount_.Value)</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>=First(Fields!Bonus_Contract_Entry__Discount_Amount_Format.Value)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Style>Solid</Style>
-                            </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.055cm</PaddingLeft>
-                            <PaddingRight>0.095cm</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -2261,41 +2048,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Discount_Amount__Control1117000041">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!Bonus_Contract_Entry__Discount_Amount_.Value)</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>=First(Fields!Bonus_Contract_Entry__Discount_Amount_Format.Value)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Style>Solid</Style>
-                            </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.055cm</PaddingLeft>
-                            <PaddingRight>0.095cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000042">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2547,41 +2299,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Discount_Amount__Control1117000043">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!Bonus_Contract_Entry__Discount_Amount_.Value)</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>=First(Fields!Bonus_Contract_Entry__Discount_Amount_Format.Value)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Style>Solid</Style>
-                            </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.055cm</PaddingLeft>
-                            <PaddingRight>0.095cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000044">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2808,35 +2525,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Bonus_Contract_Entry__Discount_Amount__Control1117000046">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!Bonus_Contract_Entry__Discount_Amount_.Value)</Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>=First(Fields!Bonus_Contract_Entry__Discount_Amount_Format.Value)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>0.055cm</PaddingLeft>
-                            <PaddingRight>0.095cm</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Bonus_Contract_Entry__Pmt__Discount_Amount__Control1117000047">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2926,7 +2614,6 @@
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
-                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -3030,7 +2717,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.42333cm</Top>
             <Height>5.16903cm</Height>
-            <Width>18.14934cm</Width>
+            <Width>16.37185cm</Width>
             <Style />
           </Tablix>
         </ReportItems>
