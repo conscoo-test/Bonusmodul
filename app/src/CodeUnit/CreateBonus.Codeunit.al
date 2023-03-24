@@ -823,6 +823,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesHeader."Posting Description" := PostingDescription;
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader."Posting No." := SalesHeader."No.";
+        OnInitSalesHeaderOnBeforeModify(SalesHeader, BonusContract);
         SalesHeader.Modify();
         CrMemoHeaderCreated := true;
         SalesLineNo := 10000;
@@ -887,6 +888,11 @@ codeunit 5266060 "lbtbn Create Bonus"
                 exit;
         end;
         exit(true);
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnInitSalesHeaderOnBeforeModify(var SalesHeader: Record "Sales Header"; BonusContract: Record "lbtbn Bonus Contract")
+    begin
     end;
 
 
