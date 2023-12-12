@@ -103,9 +103,7 @@ report 5266052 "lbtbn Bonus Run"
                 FindDocumentNos.FindDocumentNos("Bonus Contract"."No.", InvoiceNos, CrMemoNos, DateFrom, DateTo);
                 GetDocumentAmount.AddQuantityAndAmount(Quantity, Amount, InvoiceNos, CrMemoNos, CheckItemMeth, "Bonus Contract"."No.");
 
-                BonusContractLine.SetRange(Contract, "Bonus Contract"."No.");
-                BonusContractLine.SetFilter("From Quantity", '<=%1', Amount);
-                if not BonusContractLine.FindLast() then
+                if not FindBonusContractLine(Amount, Quantity) then
                     CurrReport.Skip();
                 ReverseReserve.ReverseBonusEntries("Bonus Contract", DateFrom, DateTo);
                 ReverseReserve.ReverseGenLedgEntry("Bonus Contract", DateFrom, DateTo, ReversePostingDate);
@@ -218,6 +216,20 @@ report 5266052 "lbtbn Bonus Run"
         exit(true);
     end;
     #endregion CheckDates
+
+    local procedure FindBonusContractLine(Amount: Decimal; Quantity: Decimal): Boolean
+    begin
+        BonusContractLine.SetCurrentKey(Contract, "From Quantity");
+        BonusContractLine.SetRange(Contract, "Bonus Contract"."No.");
+        case "Bonus Contract"."Bonus Scale Type" of
+            "Bonus Contract"."Bonus Scale Type"::"Sales (LCY)":
+                BonusContractLine.SetFilter("From Quantity", '<=%1', Amount);
+            "Bonus Contract"."Bonus Scale Type"::"Sales Qty.":
+                BonusContractLine.SetFilter("From Quantity", '<=%1', Quantity);
+        end;
+        exit(BonusContractLine.FindLast());
+    end;
+
 
     var
         BonusContractLine: Record "lbtbn Bonus Contract Line";

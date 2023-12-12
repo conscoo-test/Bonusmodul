@@ -280,8 +280,8 @@ table 5266052 "lbtbn Bonus Contract"
         BonusContract := Rec;
         BonusSetup.Get();
         BonusSetup.TestField("Bonus Contract Nos.");
-        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", xBonusContract."No. Series", "No. Series") then begin
-            NoSeriesManagement.SetSeries("No.");
+        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", xBonusContract."No. Series", BonusContract."No. Series") then begin
+            NoSeriesManagement.SetSeries(BonusContract."No.");
             Rec := BonusContract;
             // SetProcessNo();
             exit(true);
