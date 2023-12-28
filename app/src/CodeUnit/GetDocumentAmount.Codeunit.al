@@ -3,6 +3,7 @@ codeunit 5266059 "lbtbn Get Document Amount"
     var
         CheckItemMeth: Codeunit "lbtbn CheckItem Meth";
         BonusContractNo: Code[20];
+        BonusUnitOfMeasure: Code[10];
 
     #region AddQuantityAndAmount
     procedure AddQuantityAndAmount(var Quantity: Decimal; var Amount: Decimal; Invoices: List of [Code[20]]; CreditMemos: List of [Code[20]]; CheckItemMeth2: Codeunit "lbtbn CheckItem Meth"; BonusContractNo2: Code[20])
@@ -24,13 +25,18 @@ codeunit 5266059 "lbtbn Get Document Amount"
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
         LineAmount: Decimal;
+        LineQuantity: Decimal;
+        ItemNo: Code[20];
     begin
         SalesInvoiceLine.SetRange("Document No.", No);
         SalesInvoiceLine.SetFilter(Type, '%1|%2', SalesInvoiceLine.Type::Item, SalesInvoiceLine.Type::"Charge (Item)");
         if SalesInvoiceLine.FindSet() then
             repeat
-                if CheckItemMeth.CheckItem(BonusContractNo, GetItemNo(SalesInvoiceLine)) then begin
-                    Quantity += SalesInvoiceLine.Quantity;
+                ItemNo := GetItemNo(SalesInvoiceLine);
+                if CheckItemMeth.CheckItem(BonusContractNo, ItemNo) then begin
+                    LineQuantity := CalcQuantity(ItemNo, SalesInvoiceLine.Quantity, SalesInvoiceLine."Unit of Measure Code");
+                    OnGetQuantityAndAmountInvoiceOnAfterCalcQuantity(SalesInvoiceLine, BonusUnitOfMeasure, LineQuantity);
+                    Quantity += LineQuantity;
                     LineAmount := SalesInvoiceLine.Amount;
                     UpdateDocAmountFromValueEntry(
                                 Database::"Sales Invoice Line",
@@ -48,13 +54,18 @@ codeunit 5266059 "lbtbn Get Document Amount"
     var
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         LineAmount: Decimal;
+        LineQuantity: Decimal;
+        ItemNo: Code[20];
     begin
         SalesCrMemoLine.SetRange("Document No.", No);
         SalesCrMemoLine.SetFilter(Type, '%1|%2', SalesCrMemoLine.Type::Item, SalesCrMemoLine.Type::"Charge (Item)");
         if SalesCrMemoLine.FindSet() then
             repeat
-                if CheckItemMeth.CheckItem(BonusContractNo, GetItemNo(SalesCrMemoLine)) then begin
-                    Quantity -= SalesCrMemoLine.Quantity;
+                ItemNo := GetItemNo(SalesCrMemoLine);
+                if CheckItemMeth.CheckItem(BonusContractNo, ItemNo) then begin
+                    LineQuantity := CalcQuantity(ItemNo, SalesCrMemoLine.Quantity, SalesCrMemoLine."Unit of Measure Code");
+                    OnGetQuantityAndAmountCrMemoOnAfterCalcQuantity(SalesCrMemoLine, BonusUnitOfMeasure, LineQuantity);
+                    Quantity -= LineQuantity;
                     LineAmount := -SalesCrMemoLine.Amount;
                     UpdateDocAmountFromValueEntry(
                                 Database::"Sales Cr.Memo Line",
@@ -101,6 +112,25 @@ codeunit 5266059 "lbtbn Get Document Amount"
     end;
     #endregion GetItemNo
 
+    local procedure CalcQuantity(ItemNo: Code[20]; Quantity: Decimal; ItemUnitOfMeasureCode: Code[10]): Decimal
+    var
+        ItemUnitOfMeasure: Record "Item Unit of Measure";
+    begin
+        if ItemUnitOfMeasureCode = BonusUnitOfMeasure then
+            exit(Quantity);
+        ItemUnitOfMeasure.SetRange("Item No.", ItemNo);
+        ItemUnitOfMeasure.SetRange("Code", ItemUnitOfMeasureCode);
+        if not ItemUnitOfMeasure.Get(ItemNo, ItemUnitOfMeasureCode) then
+            exit(0);
+        Quantity *= ItemUnitOfMeasure."Qty. per Unit of Measure";
+
+        if not ItemUnitOfMeasure.Get(ItemNo, BonusUnitOfMeasure) then
+            exit(0);
+
+        Quantity /= ItemUnitOfMeasure."Qty. per Unit of Measure";
+        exit(Quantity);
+    end;
+
 
     #region UpdateDocAmountFromValueEntry
     procedure UpdateDocAmountFromValueEntry(TableNo: Integer; DocNo: Code[20]; DocLineNo: Integer; var DocAmount: Decimal)
@@ -125,4 +155,19 @@ codeunit 5266059 "lbtbn Get Document Amount"
             until ValueEntry.Next() = 0;
     end;
     #endregion UpdateDocAmountFromValueEntry
+    internal procedure SetUnit(ItemUnitofMeasure: Code[10])
+    begin
+        BonusUnitOfMeasure := ItemUnitofMeasure;
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnGetQuantityAndAmountCrMemoOnAfterCalcQuantity(SalesCrMemoLine: Record "Sales Cr.Memo Line"; BonusUnitofMeasure: Code[10]; var LineQuantity: Decimal)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnGetQuantityAndAmountInvoiceOnAfterCalcQuantity(SalesInvoiceLine: Record "Sales Invoice Line"; BonusUnitofMeasure: Code[10]; var LineQuantity: Decimal)
+    begin
+    end;
+
 }

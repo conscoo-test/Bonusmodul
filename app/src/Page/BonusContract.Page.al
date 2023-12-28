@@ -77,6 +77,10 @@ page 5266053 "lbtbn Bonus Contract"
                         ToolTip = 'Indicates whether the bonus calculation is based on sales or turnover.';
                         ApplicationArea = All;
                     }
+                    field("Item Unit of Measure"; Rec."Item Unit of Measure")
+                    {
+                        ApplicationArea = All;
+                    }
                     field("Last Billing at"; Rec."Last Billing at")
                     {
                         ToolTip = 'Is filled by the system after bonus settlement.';

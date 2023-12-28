@@ -21,6 +21,9 @@ page 5266054 "lbtbn Bonus Contract Line"
                 }
                 field("Item Unit of Measure"; Rec."Item Unit of Measure")
                 {
+                    ObsoleteState = Pending;
+                    ObsoleteReason = 'Moved to Bonus Contract';
+                    Visible = false;
                     ToolTip = 'Specifies the unit of the article.';
                     ApplicationArea = All;
                 }

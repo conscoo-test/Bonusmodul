@@ -30,6 +30,7 @@ permissionset 5266051 "lbtbn Bonus"
         codeunit "lbtbn Find Document Nos." = X,
         codeunit "lbtbn Get Document Amount" = X,
         codeunit "lbtbn Create Bonus" = X,
+        codeunit "lbtbn Upgrade" = X,
         page "lbtbn Bonus Assisted Setup" = X,
         page "lbtbn Bonus Contract" = X,
         page "lbtbn Bonus Contract Factbox" = X,

@@ -202,7 +202,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 begin
                     CalculateAmountCust(AmountCust);
-                    Zusatz := Format(AmountCust) + PerTxt + Format(BonusContractLine."Item Unit of Measure");
+                    Zusatz := Format(AmountCust) + PerTxt + Format(BonusContract."Item Unit of Measure");
                 end;
         end;
         Description2 := ContractTxt + Format(BonusContract."No.") + ': ' + Zusatz;

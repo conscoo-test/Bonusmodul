@@ -101,6 +101,7 @@ report 5266052 "lbtbn Bonus Run"
                     CurrReport.Skip();
 
                 FindDocumentNos.FindDocumentNos("Bonus Contract"."No.", InvoiceNos, CrMemoNos, DateFrom, DateTo);
+                GetDocumentAmount.SetUnit("Bonus Contract"."Item Unit of Measure");
                 GetDocumentAmount.AddQuantityAndAmount(Quantity, Amount, InvoiceNos, CrMemoNos, CheckItemMeth, "Bonus Contract"."No.");
 
                 if not FindBonusContractLine(Amount, Quantity) then
