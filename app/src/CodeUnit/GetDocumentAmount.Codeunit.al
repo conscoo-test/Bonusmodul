@@ -113,18 +113,21 @@ codeunit 5266059 "lbtbn Get Document Amount"
     #endregion GetItemNo
 
     local procedure CalcQuantity(ItemNo: Code[20]; Quantity: Decimal; ItemUnitOfMeasureCode: Code[10]): Decimal
+    begin
+        exit(CalcQuantity(ItemNo, Quantity, ItemUnitOfMeasureCode, BonusUnitOfMeasure));
+    end;
+
+    internal procedure CalcQuantity(ItemNo: Code[20]; Quantity: Decimal; FromUnit: Code[10]; ToUnit: Code[10]): Decimal
     var
         ItemUnitOfMeasure: Record "Item Unit of Measure";
     begin
-        if ItemUnitOfMeasureCode = BonusUnitOfMeasure then
+        if FromUnit = ToUnit then
             exit(Quantity);
-        ItemUnitOfMeasure.SetRange("Item No.", ItemNo);
-        ItemUnitOfMeasure.SetRange("Code", ItemUnitOfMeasureCode);
-        if not ItemUnitOfMeasure.Get(ItemNo, ItemUnitOfMeasureCode) then
+        if not ItemUnitOfMeasure.Get(ItemNo, FromUnit) then
             exit(0);
         Quantity *= ItemUnitOfMeasure."Qty. per Unit of Measure";
 
-        if not ItemUnitOfMeasure.Get(ItemNo, BonusUnitOfMeasure) then
+        if not ItemUnitOfMeasure.Get(ItemNo, ToUnit) then
             exit(0);
 
         Quantity /= ItemUnitOfMeasure."Qty. per Unit of Measure";

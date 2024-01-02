@@ -72,6 +72,9 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         if not LineIsApplicableForBonus() then
             exit;
+        ConvertQtyToContractUnit();
+        if TempSalesInvoiceLine.Quantity = 0 then
+            exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
@@ -707,6 +710,9 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         if not LineIsApplicableForBonus() then
             exit;
+        ConvertQtyToContractUnit();
+        if TempSalesInvoiceLine.Quantity = 0 then
+            exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
 
@@ -888,6 +894,18 @@ codeunit 5266060 "lbtbn Create Bonus"
                 exit;
         end;
         exit(true);
+    end;
+
+    local procedure ConvertQtyToContractUnit()
+    var
+        GetDocumentAmount: Codeunit "lbtbn Get Document Amount";
+    begin
+        if TempSalesInvoiceLine.Type <> TempSalesInvoiceLine.Type::Item then
+            exit;
+        TempSalesInvoiceLine.Quantity := GetDocumentAmount.CalcQuantity(TempSalesInvoiceLine."No.",
+                                                                TempSalesInvoiceLine.Quantity,
+                                                                TempSalesInvoiceLine."Unit of Measure Code",
+                                                                BonusContract."Item Unit of Measure");
     end;
 
     [IntegrationEvent(false, false)]
