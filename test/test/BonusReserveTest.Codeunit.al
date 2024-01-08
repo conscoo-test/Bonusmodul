@@ -1,7 +1,7 @@
 codeunit 52051 "lbtbn Bonus Reserve Test"
 {
     Subtype = Test;
-
+    EventSubscriberInstance = Manual;
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         Customer: Record Customer;
@@ -16,6 +16,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         Assert: Codeunit Assert;
         LibraryLowerPermissions: Codeunit "Library - Lower Permissions";
 
+        UnitOfMeasureCode: Code[10];
     [Test]
     [HandlerFunctions('HandleReserveRequestPage,HandleSalesCreditMemo')]
     procedure SalesReturnOrderWithAssignedItemCharge_CreditMemo()
@@ -389,8 +390,12 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     local procedure CreateSalesInvoiceAndPost()
     var
         SalesHeader: Record "Sales Header";
+        BonusReserveTest: Codeunit "lbtbn Bonus Reserve Test";
         DocNo: Code[20];
     begin
+        BindSubscription(BonusReserveTest);
+        BonusReserveTest.SetBaseUnitOfMeasure(BonusContract."Item Unit of Measure");
+
         LibrarySales.CreateSalesInvoiceForCustomerNo(SalesHeader, Customer."No.");
         DocNo := LibrarySales.PostSalesDocument(SalesHeader, false, true);
         SalesInvoiceLine.SetRange("Document No.", DocNo);
@@ -402,14 +407,17 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     local procedure CreateBonusContract(ItemChargeNo: Code[20])
     var
         ReserveCustomer: Record Customer;
+        UnitOfMeasure: Record "Unit of Measure";
     begin
         LibrarySales.CreateCustomer(ReserveCustomer);
+        LibraryInventory.CreateUnitOfMeasureCode(UnitOfMeasure);
 
         BonusContract.Init();
         BonusContract."No." := LibraryUtility.GenerateRandomCode20(BonusContract.FieldNo("No."), Database::"lbtbn Bonus Contract");
         BonusContract."Reserve Value" := LibraryRandom.RandDecInDecimalRange(2.0, 12.0, 1);
         BonusContract."Reserve Item Charge" := ItemChargeNo;
         BonusContract."Customer Reserve Cr.Memo" := ReserveCustomer."No.";
+        BonusContract."Item Unit of Measure" := UnitOfMeasure.Code;
         BonusContract.Insert();
     end;
     #endregion CreateBonusContract
@@ -507,8 +515,11 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         SalesLine: Record "Sales Line";
         SalesLine2: Record "Sales Line";
         ItemChargeAssignmentSales: Record "Item Charge Assignment (Sales)";
+        BonusReserveTest: Codeunit "lbtbn Bonus Reserve Test";
         DocNo: Code[20];
     begin
+        BindSubscription(BonusReserveTest);
+        BonusReserveTest.SetBaseUnitOfMeasure(BonusContract."Item Unit of Measure");
         LibrarySales.CreateSalesHeader(SalesHeader, SalesHeader."Document Type"::"Return Order", Customer."No.");
         LibraryInventory.CreateItemWithUnitPriceAndUnitCost(
           Item, LibraryRandom.RandDecInRange(1, 100, 2), LibraryRandom.RandDecInRange(1, 100, 2));
@@ -526,6 +537,17 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         SalesCrMemoLine.SetRange("Document No.", DocNo);
         SalesCrMemoLine.FindFirst();
         Amount := -(SalesLine."Line Amount" + SalesLine2."Line Amount");
+    end;
+
+    internal procedure SetBaseUnitOfMeasure(UnitOfMeasureCode2: Code[10])
+    begin
+        UnitOfMeasureCode := UnitOfMeasureCode2;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Library - Inventory", 'OnAfterCreateItem', '', false, false)]
+    local procedure "Library - Inventory_OnAfterCreateItem"(var Item: Record Item)
+    begin
+        Item.Validate("Base Unit of Measure", UnitOfMeasureCode);
     end;
 
 }
