@@ -118,6 +118,8 @@ table 5266052 "lbtbn Bonus Contract"
                 if "Bonus Scale Type" = "Bonus Scale Type"::"Sales (LCY)" then
                     if "Bonus Billing Type" <> "Bonus Billing Type"::"%" then
                         FieldError("Bonus Billing Type");
+                if Rec."Bonus Scale Type" <> "Bonus Scale Type"::"Sales Qty." then
+                    Rec."Item Unit of Measure" := '';
             end;
             #endregion OnValidate
         }
@@ -206,6 +208,16 @@ table 5266052 "lbtbn Bonus Contract"
         {
             Caption = 'Item Count';
         }
+        field(31; "Item Unit of Measure"; Code[10])
+        {
+            Caption = 'Item Unit of Measure';
+            TableRelation = "Unit of Measure".Code;
+
+            trigger OnValidate()
+            begin
+                TestField("Bonus Scale Type", "Bonus Scale Type"::"Sales Qty.");
+            end;
+        }
     }
     keys
     {
@@ -280,8 +292,8 @@ table 5266052 "lbtbn Bonus Contract"
         BonusContract := Rec;
         BonusSetup.Get();
         BonusSetup.TestField("Bonus Contract Nos.");
-        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", xBonusContract."No. Series", "No. Series") then begin
-            NoSeriesManagement.SetSeries("No.");
+        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", xBonusContract."No. Series", BonusContract."No. Series") then begin
+            NoSeriesManagement.SetSeries(BonusContract."No.");
             Rec := BonusContract;
             // SetProcessNo();
             exit(true);

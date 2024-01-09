@@ -18,6 +18,8 @@ table 5266053 "lbtbn Bonus Contract Line"
         }
         field(3; "Item Unit of Measure"; Code[10])
         {
+            ObsoleteState = Pending;
+            ObsoleteReason = 'Moved to Bonus Contract';
             Caption = 'Item Unit of Measure';
             DataClassification = CustomerContent;
             TableRelation = "Unit of Measure".Code;
@@ -61,8 +63,5 @@ table 5266053 "lbtbn Bonus Contract Line"
     begin
         if BonusContractRec.Get("Contract") then
             "Bonus Scale Type" := BonusContractRec."Bonus Scale Type";
-
-        if "Bonus Scale Type" = "Bonus Scale Type"::"Sales Qty." then
-            TestField("Item Unit of Measure");
     end;
 }

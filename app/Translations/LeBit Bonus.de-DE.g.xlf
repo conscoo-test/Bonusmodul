@@ -117,6 +117,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Item Count - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 1568817742 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Unit of Measure</source>
+          <target>Artikeleinheit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Item Unit of Measure - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 4251025880 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Last Billing at</source>
           <target>letzte Abrechnung am</target>
