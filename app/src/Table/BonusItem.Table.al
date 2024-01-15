@@ -97,7 +97,8 @@ table 5266060 "lbtbn Bonus Item"
         Clear(Rec."Item Filter");
         Rec."Item Filter".CreateOutStream(outs);
         outs.WriteText(FilterText);
-        Rec.Modify();
+        if not Rec.Insert(true) then
+            Rec.Modify(true);
     end;
 
     procedure GetItems(var TempItem: Record Item temporary)
