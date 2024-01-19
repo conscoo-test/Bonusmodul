@@ -868,9 +868,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType InvoiceLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
-          <target>Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</target>
-          <note from="Developer" annotates="general" priority="2">Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</note>
+          <source>Line %3 in the posted %2 %1 does not exist anywhere.</source>
+          <target>Die Zeile %3 in der geb. %2 %1 existiert nicht mehr.</target>
+          <note from="Developer" annotates="general" priority="2">Die Zeile %3 in der geb. %2 %1 existiert nicht mehr.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType LineMissingErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 1892566544" size-unit="char" translate="yes" xml:space="preserve">

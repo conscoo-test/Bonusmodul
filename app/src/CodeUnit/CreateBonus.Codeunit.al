@@ -263,7 +263,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         BonusMgt: Codeunit "lbtbn Bonus Management";
     begin
         Clear(BonusMgt);
-        BonusMgt.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
+        BonusMgt.SetAssignmentDoc(GetDocType(ItemLedgerEntry."Document Type"), ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
         BonusMgt.SetSourceDoc(SourceDocType, TempSalesInvoiceLine."Document No.", TempSalesInvoiceLine."Line No.");
         BonusMgt.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
         exit(BonusMgt.CreateBonusContractEntry(
@@ -440,7 +440,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         CreateReserveCrMemoHeader();
         CreateReserveCreditMemoLine(ReserveAmount, SalesLine);
         AddItemChargeToSalesLine(SalesLine, DocAmount, ReserveAmount);
-        BonusManagement.SetAssignmentDoc(1, ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
+        BonusManagement.SetAssignmentDoc(GetDocType(ItemLedgerEntry."Document Type"), ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
         BonusManagement.SetSourceDoc(SourceDocType, TempSalesInvoiceLine."Document No.", TempSalesInvoiceLine."Line No.");
         BonusManagement.SetBonusDoc(2, SalesLine."Document No.", SalesLine."Line No.");
         SalesLine."lbtbn Bonus Entry No." := BonusManagement.CreateBonusContractEntry(
@@ -906,6 +906,18 @@ codeunit 5266060 "lbtbn Create Bonus"
                                                                 TempSalesInvoiceLine.Quantity,
                                                                 TempSalesInvoiceLine."Unit of Measure Code",
                                                                 BonusContract."Item Unit of Measure");
+    end;
+
+    local procedure GetDocType(DocumentType: Enum "Item Ledger Document Type") DocType: Option " ","Sales Shipment","Sales Return Receipt"
+    begin
+        case DocumentType of
+            DocumentType::"Sales Shipment":
+                exit(DocType::"Sales Shipment");
+            DocumentType::"Sales Return Receipt":
+                exit(DocType::"Sales Return Receipt");
+            else
+                exit(DocType::" ");
+        end;
     end;
 
     [IntegrationEvent(false, false)]

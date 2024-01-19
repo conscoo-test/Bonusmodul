@@ -396,6 +396,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesInvoiceLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var SalesShipmentLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line")
     var
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
+        ItemLedgerEntry: Record "Item Ledger Entry";
     begin
         ItemChargeAssRec.Init();
         ItemChargeAssRec."Document Type" := SalesLine."Document Type";
@@ -403,27 +404,19 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         ItemChargeAssRec."Document Line No." := SalesLine."Line No.";
         ItemChargeAssRec."Line No." := 10000;
         ItemChargeAssRec."Item Charge No." := SalesLine."No.";
-        case Sign of
-            -1:
-                begin
-                    ItemChargeAssRec."Item No." := SalesCrMemoLine."No.";
-                    ItemChargeAssRec.Description := SalesCrMemoLine.Description;
-                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
-                end;
-            1:
-                begin
-                    ItemChargeAssRec."Item No." := SalesInvoiceLine."No.";
-                    ItemChargeAssRec.Description := SalesInvoiceLine.Description;
-                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
-                end;
-            2:
-                begin
-                    ItemChargeAssRec."Item No." := SalesShipmentLine."No.";
-                    ItemChargeAssRec.Description := SalesShipmentLine.Description;
-                    ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
-                end;
-        end;
+
+        ItemLedgerEntry := GetItemLedgerEntry(Sign, BonusEntry);
+        ItemChargeAssRec."Item No." := ItemLedgerEntry."Item No.";
+        ItemChargeAssRec.Description := ItemLedgerEntry.Description;
         ItemChargeAssRec."Applies-to Doc. Line Amount" := BonusEntry."Base Amount";
+        case BonusEntry."Assignment Document Type" of
+            BonusEntry."Assignment Document Type"::"Sales Shipment":
+                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
+            BonusEntry."Assignment Document Type"::"Sales Return Receipt":
+                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::"Return Receipt";
+            else
+                ItemChargeAssRec."Applies-to Doc. Type" := ItemChargeAssRec."Applies-to Doc. Type"::Shipment;
+        end;
         ItemChargeAssRec."Applies-to Doc. No." := BonusEntry."Assignment Document No.";
         ItemChargeAssRec."Applies-to Doc. Line No." := BonusEntry."Assignment Doc. Line No.";
         ItemChargeAssRec."Unit Cost" := BonusEntry."Posted Amount";
@@ -462,29 +455,17 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     end;
 
     local procedure GetSourceDocLine(BonusEntry: Record "lbtbn Bonus Entry"; var SalesInvoiceLine: Record "Sales Invoice Line")
-    var
-        SalesShipmentLine: Record "Sales Shipment Line";
     begin
         if not SalesInvoiceLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
             Error(LineMissingErr, BonusEntry."From Document No.", InvoiceLbl, BonusEntry."From Document Line");
-        if not SalesShipmentLine.Get(BonusEntry."Assignment Document No.",
-               BonusEntry."Assignment Doc. Line No.")
-        then
-            Error(LineMissingErr, BonusEntry."Assignment Document No.", ShipmentLbl,
-                  BonusEntry."Assignment Doc. Line No.");
+        CheckAssignmentDocumentLine(BonusEntry);
     end;
 
     local procedure GetSourceDocLine(BonusEntry: Record "lbtbn Bonus Entry"; var SalesCrMemoLine: Record "Sales Cr.Memo Line")
-    var
-        ReturnReceiptLine: Record "Return Receipt Line";
     begin
         if not SalesCrMemoLine.Get(BonusEntry."From Document No.", BonusEntry."From Document Line") then
             Error(LineMissingErr, BonusEntry."From Document No.", CreditMemoLbl, BonusEntry."From Document Line");
-        if not ReturnReceiptLine.Get(BonusEntry."Assignment Document No.",
-               BonusEntry."Assignment Doc. Line No.")
-        then
-            Error(LineMissingErr, BonusEntry."Assignment Document No.", ReturnReceiptLbl,
-                  BonusEntry."Assignment Doc. Line No.");
+        CheckAssignmentDocumentLine(BonusEntry);
     end;
 
     local procedure GetSourceDocLine(BonusEntry: Record "lbtbn Bonus Entry"; var SalesShipmentLine: Record "Sales Shipment Line")
@@ -580,10 +561,43 @@ codeunit 5266056 "lbtbn Reverse Reserve"
             GenJnlPostBatch.Run(GenJournalLine);
     end;
 
+    local procedure CheckAssignmentDocumentLine(var BonusEntry: Record "lbtbn Bonus Entry")
+    var
+        SalesShipmentLine: Record "Sales Shipment Line";
+        ReturnReceiptLine: Record "Return Receipt Line";
+    begin
+        case BonusEntry."Assignment Document Type" of
+            BonusEntry."Assignment Document Type"::"Sales Shipment":
+                if not SalesShipmentLine.Get(BonusEntry."Assignment Document No.", BonusEntry."Assignment Doc. Line No.") then
+                    Error(LineMissingErr, BonusEntry."Assignment Document No.", ShipmentLbl,
+                          BonusEntry."Assignment Doc. Line No.");
+            BonusEntry."Assignment Document Type"::"Sales Return Receipt":
+                if not ReturnReceiptLine.Get(BonusEntry."Assignment Document No.", BonusEntry."Assignment Doc. Line No.") then
+                    Error(LineMissingErr, BonusEntry."Assignment Document No.", ReturnReceiptLbl,
+                          BonusEntry."Assignment Doc. Line No.");
+        end;
+    end;
+
+    local procedure GetItemLedgerEntry(Sign: Integer; BonusEntry: Record "lbtbn Bonus Entry") ItemLedgerEntry: Record "Item Ledger Entry"
+    var
+        ValueEntry: Record "Value Entry";
+    begin
+        case Sign of
+            1:
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+            -1:
+                ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Credit Memo");
+        end;
+        ValueEntry.SetRange("Document No.", BonusEntry."From Document No.");
+        ValueEntry.SetRange("Document Line No.", BonusEntry."From Document Line");
+        ValueEntry.FindFirst();
+        ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.");
+    end;
+
 
     var
         SalesHeader: Record "Sales Header";
-        LineMissingErr: Label 'Line %1 in the posted %2 %3 does not exist anywhere.', Comment = 'Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.';
+        LineMissingErr: Label 'Line %3 in the posted %2 %1 does not exist anywhere.', Comment = 'Die Zeile %3 in der geb. %2 %1 existiert nicht mehr.';
         InvoiceLbl: Label 'Invoice';
         ShipmentLbl: Label 'Shipment';
         CreditMemoLbl: Label 'Credit Memo';
