@@ -5,7 +5,8 @@ page 5266057 "lbtbn Bonus Entry"
     PageType = List;
     SourceTable = "lbtbn Bonus Entry";
     SourceTableView = sorting("Entry No.") order(descending);
-    UsageCategory = None;
+    UsageCategory = History;
+    ApplicationArea = All;
 
     layout
     {

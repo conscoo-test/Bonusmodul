@@ -15,7 +15,8 @@ report 5266054 "lbtbn Bonus Reservation"
 
     Caption = 'Bonus Reservation';
     PreviewMode = PrintLayout;
-    UsageCategory = None;
+    UsageCategory = ReportsAndAnalysis;
+    ApplicationArea = All;
 
     dataset
     {

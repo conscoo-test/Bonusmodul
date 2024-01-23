@@ -45,8 +45,10 @@ permissionset 5266051 "lbtbn Bonus"
         page "lbtbn Explode Bonus Reserv." = X,
         page "lbtbn Explode Reservation" = X,
         page "lbtbn Item Groups" = X,
+        page "lbtbn Role Center" = X,
         report "lbtbn Bonus Reserves" = X,
         report "lbtbn Bonus Protocol" = X,
         report "lbtbn Bonus Reservation" = X,
-        report "lbtbn Bonus Run" = X;
+        report "lbtbn Bonus Run" = X,
+        page "lbtbn Navigation Role Center" = X;
 }
