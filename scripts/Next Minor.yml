@@ -26,7 +26,7 @@ stages:
       platform: x64
       version: "nextminor"
       appVersion: "1.0"
-      appBuild: $[counter(variables['appVersion'],20000)]
+      appBuild: $(Build.BuildID)
       appRevision: 0
       createRuntimePackages: False
       skipComponentGovernanceDetection: True
