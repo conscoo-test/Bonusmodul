@@ -114,6 +114,8 @@ codeunit 5266060 "lbtbn Create Bonus"
 
         InitSalesLine(SalesLine);
 
+        BonusSumme := BonusSumme * SalesHeader."Currency Factor";
+
         case BonusContract."Bonus Billing Type" of
             BonusContract."Bonus Billing Type"::"%",
             BonusContract."Bonus Billing Type"::"Amount per Unit":
