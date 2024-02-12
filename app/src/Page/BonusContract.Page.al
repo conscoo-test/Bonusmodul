@@ -335,7 +335,7 @@ page 5266053 "lbtbn Bonus Contract"
             }
             action("Print Bonus Credit Memo")
             {
-                Caption = 'Bonus Credit Memo';
+                Caption = 'Bonus Protocol';
                 ToolTip = 'Prints a report, listing all rebate settlement items posted for this contract.';
                 Image = Print;
                 ApplicationArea = All;

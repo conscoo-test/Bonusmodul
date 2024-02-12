@@ -15,7 +15,7 @@ tableextension 5266060 "lbtbn SalesLine" extends "Sales Line" //37
         BonusEntry: Record "lbtbn Bonus Entry";
         ReserveBonusEntry: Record "lbtbn Bonus Entry";
     begin
-        if Rec."lbtbn Bonus Entry No." <> 0 then
+        if Rec."lbtbn Bonus Entry No." = 0 then
             exit;
         if not BonusEntry.Get(Rec."lbtbn Bonus Entry No.") then
             exit;
