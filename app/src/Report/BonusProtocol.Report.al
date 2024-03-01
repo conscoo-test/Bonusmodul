@@ -15,7 +15,8 @@ report 5266053 "lbtbn Bonus Protocol"
 
     Caption = 'Bonus Protocol';
     PreviewMode = PrintLayout;
-    UsageCategory = None;
+    UsageCategory = ReportsAndAnalysis;
+    ApplicationArea = All;
 
     dataset
     {

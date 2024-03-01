@@ -724,8 +724,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType InvoiceLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Line %1 in the posted %2 %3 does not exist anywhere.</source>
-          <note from="Developer" annotates="general" priority="2">Die Zeile %1 in der geb. %2 %3 existiert nicht mehr.</note>
+          <source>Line %3 in the posted %2 %1 does not exist anywhere.</source>
+          <note from="Developer" annotates="general" priority="2">Die Zeile %3 in der geb. %2 %1 existiert nicht mehr.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Reverse Reserve - NamedType LineMissingErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 3886786226 - NamedType 1892566544" size-unit="char" translate="yes" xml:space="preserve">
@@ -1054,7 +1054,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Action 2390701205 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus Credit Memo</source>
+          <source>Bonus Protocol</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Action Print Bonus Credit Memo - Property Caption</note>
         </trans-unit>
@@ -1833,6 +1833,101 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Item Groups - Control Description - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 2571907030 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Entries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 2535375929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Bonus Entries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 2176459415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reports</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Reports - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 3458496042 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Protocol</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Protocol - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 3111013020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reservation</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Reservation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 1514883969 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 293473096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Contracts</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Bonus Contracts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 1771054030 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LeBit Bonus Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Bonus Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 2278988916 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Groups</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Customer Groups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 200707616 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Charges</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Item Charges - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 1211352515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Groups</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Item Groups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 2973329650 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tasks</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Tasks - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 2878798573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reserves</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Reserves - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1079310397 - Action 3851712227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Run</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Navigation Role Center - Action Run - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2408592187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LeBit Bonus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Role Center - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2408592187 - Action 2878798573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reserves</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Role Center - Action Reserves - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2408592187 - Action 3851712227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Run</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Role Center - Action Run - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2408592187 - Action 3458496042 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Protocol</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Role Center - Action Protocol - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2408592187 - Action 3111013020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus Reservation</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Role Center - Action Reservation - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 624272167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Protocol</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2217,6 +2312,26 @@
           <source>Bonus Entry No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension lbtbn SalesLine - Field lbtbn Bonus Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Profile 2726998748 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LeBit Bonus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Profile lbtbn Navigation Only - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Profile 2726998748 - Property 4111922599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Navigation menu only.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Profile lbtbn Navigation Only - Property ProfileDescription</note>
+        </trans-unit>
+        <trans-unit id="Profile 3689749527 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LeBit Bonus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Profile lbtbn Profile - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Profile 3689749527 - Property 4111922599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LeBit Bonus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Profile lbtbn Profile - Property ProfileDescription</note>
         </trans-unit>
         <trans-unit id="Enum 348662871 - EnumValue 2478407903 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>%</source>
