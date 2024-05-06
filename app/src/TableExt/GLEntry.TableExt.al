@@ -17,4 +17,9 @@ tableextension 5266061 "lbtbn GLEntry" extends "G/L Entry" //17
 
     }
 
+    keys
+    {
+        key("lbtbn Key1"; "Transaction No.", "G/L Account No.", "Document No.") { }
+    }
+
 }

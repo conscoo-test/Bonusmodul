@@ -262,7 +262,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         GLEntry.Reset();
         NewGLEntry.Reset();
         GLEntry.SetCurrentKey("Transaction No.");
-        NewGLEntry.SetCurrentKey("Transaction No.");
+        NewGLEntry.SetCurrentKey("Transaction No.", "G/L Account No.", "Document No.");
         GLEntry.SetRange("Transaction No.", GenJournalLine."lbtbn Reserve Transaction No.");
         if GLEntry.FindSet(true) then
             repeat
