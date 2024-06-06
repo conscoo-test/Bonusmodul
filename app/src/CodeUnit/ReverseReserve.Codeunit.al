@@ -258,54 +258,113 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         NewGLEntry: Record "G/L Entry";
         NewVATEntry: Record "VAT Entry";
         VATEntry: Record "VAT Entry";
+        i, j : Integer;
+        GLEntryDictionary: Dictionary of [Integer, Integer];
+        NewGLEntryDictionary: Dictionary of [Integer, Integer];
+        VATEntryDictionary: Dictionary of [Integer, Integer];
+        NewVATEntryDictionary: Dictionary of [Integer, Integer];
+
+        entryNo: Integer;
+
     begin
         GLEntry.Reset();
         NewGLEntry.Reset();
         GLEntry.SetCurrentKey("Transaction No.");
         NewGLEntry.SetCurrentKey("Transaction No.", "G/L Account No.", "Document No.");
         GLEntry.SetRange("Transaction No.", GenJournalLine."lbtbn Reserve Transaction No.");
+        GLEntry.SetLoadFields("Transaction No.", "G/L Account No.", "Document No.", Amount, Reversed, "Reversed by Entry No.", "Reversed Entry No.");
+        NewGLEntry.SetLoadFields("Transaction No.", "G/L Account No.", "Document No.", Amount, "Entry No.", "Reversed by Entry No.", "Reversed Entry No.");
         if GLEntry.FindSet(true) then
             repeat
                 NewGLEntry.SetRange("Transaction No.", GlobalGLEntry."Transaction No.");
                 NewGLEntry.SetRange("G/L Account No.", GLEntry."G/L Account No.");
                 NewGLEntry.SetRange("Document No.", GLEntry."Document No.");
-                NewGLEntry.SetRange(Amount, -GLEntry.Amount);
-                if NewGLEntry.FindFirst() then begin
-                    GLEntry.Reversed := true;
-                    GLEntry."Reversed by Entry No." := NewGLEntry."Entry No.";
-                    GLEntry.Modify();
-                    NewGLEntry.Reversed := true;
-                    NewGLEntry."Reversed Entry No." := GLEntry."Entry No.";
-                    NewGLEntry.Modify();
-                end;
+                //NewGLEntry.SetRange(Amount, -GLEntry.Amount);
+                if NewGLEntry.FindFirst() then
+                    if NewGLEntry.Amount = -GLEntry.Amount then begin
+                        if not GLEntryDictionary.ContainsKey(GLEntry."Entry No.") then
+                            GLEntryDictionary.Add(GLEntry."Entry No.", NewGLEntry."Entry No.");
+                        if not NewGLEntryDictionary.ContainsKey(NewGLEntry."Entry No.") then
+                            NewGLEntryDictionary.Add(NewGLEntry."Entry No.", GLEntry."Entry No.");
+
+                        // GLEntry.Reversed := true;
+                        // GLEntry."Reversed by Entry No." := NewGLEntry."Entry No.";
+                        // GLEntry.Modify();
+                        // NewGLEntry.Reversed := true;
+                        // NewGLEntry."Reversed Entry No." := GLEntry."Entry No.";
+                        // NewGLEntry.Modify();
+                        i += 1;
+
+                    end;
             until GLEntry.Next() = 0;
+
+        foreach entryNo in GLEntryDictionary.Keys do begin
+            GLEntry.Get(entryNo);
+            GLEntry.Reversed := true;
+            GLEntry."Reversed by Entry No." := GLEntryDictionary.Get(entryNo);
+            GLEntry.Modify();
+        end;
+        foreach entryNo in NewGLEntryDictionary.Keys do begin
+            NewGLEntry.Get(entryNo);
+            NewGLEntry.Reversed := true;
+            NewGLEntry."Reversed Entry No." := NewGLEntryDictionary.Get(entryNo);
+            NewGLEntry.Modify();
+        end;
 
         VATEntry.Reset();
         NewVATEntry.Reset();
         VATEntry.SetCurrentKey("Transaction No.");
-        NewVATEntry.SetCurrentKey("Transaction No.");
         VATEntry.SetRange("Transaction No.", GenJournalLine."lbtbn Reserve Transaction No.");
+        NewVATEntry.SetCurrentKey("Transaction No.", "Gen. Bus. Posting Group", "Gen. Prod. Posting Group", "Document No.");
+        NewVATEntry.SetLoadFields("Transaction No.", "Gen. Bus. Posting Group", "Gen. Prod. Posting Group", "Document No.", Amount, Reversed, "Reversed by Entry No.", "Reversed Entry No.");
+        VATEntry.SetLoadFields("Transaction No.", "Gen. Bus. Posting Group", "Gen. Prod. Posting Group", "Document No.", Amount, "Entry No.", "Reversed by Entry No.", "Reversed Entry No.");
         if VATEntry.FindSet(true) then
             repeat
                 NewVATEntry.SetRange("Transaction No.", GlobalGLEntry."Transaction No.");
                 NewVATEntry.SetRange("Gen. Bus. Posting Group", VATEntry."Gen. Bus. Posting Group");
                 NewVATEntry.SetRange("Gen. Prod. Posting Group", VATEntry."Gen. Prod. Posting Group");
                 NewVATEntry.SetRange("Document No.", VATEntry."Document No.");
-                NewVATEntry.SetRange(Amount, -VATEntry.Amount);
-                if NewVATEntry.FindFirst() then begin
-                    VATEntry.Reversed := true;
-                    VATEntry."Reversed by Entry No." := NewVATEntry."Entry No.";
-                    VATEntry.Modify();
-                    NewVATEntry.Reversed := true;
-                    NewVATEntry."Reversed Entry No." := VATEntry."Entry No.";
-                    NewVATEntry.Modify();
-                end;
+                //NewVATEntry.SetRange(Amount, -VATEntry.Amount);
+                if NewVATEntry.FindFirst() then
+                    if NewVATEntry.Amount = -VATEntry.Amount then begin
+
+                        if not VATEntryDictionary.ContainsKey(VATEntry."Entry No.") then
+                            VATEntryDictionary.Add(VATEntry."Entry No.", NewVATEntry."Entry No.");
+                        if not NewVATEntryDictionary.ContainsKey(NewVATEntry."Entry No.") then
+                            NewVATEntryDictionary.Add(NewVATEntry."Entry No.", VATEntry."Entry No.");
+
+
+                        // VATEntry.Reversed := true;
+                        // VATEntry."Reversed by Entry No." := NewVATEntry."Entry No.";
+                        // VATEntry.Modify();
+                        // NewVATEntry.Reversed := true;
+                        // NewVATEntry."Reversed Entry No." := VATEntry."Entry No.";
+                        // NewVATEntry.Modify();
+                        j += 1;
+                    end;
+
             until VATEntry.Next() = 0;
+        foreach entryNo in VATEntryDictionary.Keys do begin
+            VATEntry.Get(entryNo);
+            VATEntry.Reversed := true;
+            VATEntry."Reversed by Entry No." := VATEntryDictionary.Get(entryNo);
+            VATEntry.Modify();
+        end;
+        foreach entryNo in NewVATEntryDictionary.Keys do begin
+            NewVATEntry.Get(entryNo);
+            NewVATEntry.Reversed := true;
+            NewVATEntry."Reversed Entry No." := NewVATEntryDictionary.Get(entryNo);
+            NewVATEntry.Modify();
+        end;
+
     end;
     #endregion BonusReverseReserve
 
     #region ReverseGenLedgEntry
-    procedure ReverseGenLedgEntry(BonusContract: Record "lbtbn Bonus Contract"; DateFrom: Date; DateTo: Date; ReversePostingDate: Date)
+    procedure ReverseGenLedgEntry(BonusContract: Record "lbtbn Bonus Contract";
+        DateFrom: Date;
+        DateTo: Date;
+        ReversePostingDate: Date)
     var
         BonusCustomer: Record "lbtbn Bonus Customer";
         BonusSetup: Record "lbtbn Bonus Setup";
