@@ -1066,8 +1066,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Billing - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 1567031250 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.</source>
-          <target>Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der bei der Erstellung der Abrechnungsgutschrift verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus ‚Gutschrift‘ gewählt ist.</target>
+          <source>Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo.</source>
+          <target>Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der bei der Erstellung der Abrechnungsgutschrift verwendet werden soll.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Accounting Item Charge - Property ToolTip</note>
         </trans-unit>
@@ -1121,7 +1121,7 @@
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 1017370016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the process no.</source>
-          <target>Gibt die Vorgangsnummer an</target>
+          <target>Gibt die Prozessnummer an</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Process No. - Property ToolTip</note>
         </trans-unit>
@@ -1157,7 +1157,7 @@
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 3072632569 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Here you must select the appropriate surcharge/discount to be used in the credit memo for posting the provisions and in the invoice for cancelling the provisions. This is required if the reserve mode credit memo is selected.</source>
-          <target>Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist</target>
+          <target>Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist.</target>
           <note from="Developer" annotates="general" priority="2">DEU="Hier muss der entsprechende Zu-/Abschlag ausgewählt werden, der in der Gutschrift zum Verbuchen der Rückstellungen und der Rechnung zum Auflösen der Rückstellungen, verwendet werden soll. Dieser wird benötigt, wenn der Rückstellungsmodus "Gutschrift" gewählt ist"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Reserve Item Charge - Property ToolTip</note>
         </trans-unit>
@@ -1397,7 +1397,7 @@
         </trans-unit>
         <trans-unit id="Page 300417342 - Control 1017370016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the process no.</source>
-          <target>Gibt die Vorgangsnummer an</target>
+          <target>Gibt die Prozessnummer an.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contracts - Control Process No. - Property ToolTip</note>
         </trans-unit>
@@ -1715,7 +1715,7 @@
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1017370016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the process no.</source>
-          <target>Gibt die Vorgangsnummer an</target>
+          <target>Gibt die Prozessnummer an</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Process No. - Property ToolTip</note>
         </trans-unit>
