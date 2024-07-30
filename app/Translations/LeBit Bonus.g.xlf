@@ -889,7 +889,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Billing - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 1567031250 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.</source>
+          <source>Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Accounting Item Charge - Property ToolTip</note>
         </trans-unit>

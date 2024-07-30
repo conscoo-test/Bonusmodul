@@ -93,7 +93,7 @@ page 5266053 "lbtbn Bonus Contract"
                     }
                     field("Accounting Item Charge"; Rec."Accounting Item Charge")
                     {
-                        ToolTip = 'Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo. This is required if the Credit memo reset mode is selected.';
+                        ToolTip = 'Here you must select the appropriate surcharge or discount to be used when creating the settlement credit memo.';
                         ApplicationArea = All;
                     }
                 }
