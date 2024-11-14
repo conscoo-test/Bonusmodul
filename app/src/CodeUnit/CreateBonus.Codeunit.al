@@ -73,11 +73,11 @@ codeunit 5266060 "lbtbn Create Bonus"
         if not LineIsApplicableForBonus() then
             exit;
         ConvertQtyToContractUnit();
-        if TempSalesInvoiceLine.Quantity = 0 then
-            exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
+        if BonusAmount = 0 then
+            exit;
         CreateBonusCreditMemoLine(DocAmount, BonusAmount, PmtDiscAmt);
     end;
     #endregion CreateBonus
@@ -713,8 +713,6 @@ codeunit 5266060 "lbtbn Create Bonus"
         if not LineIsApplicableForBonus() then
             exit;
         ConvertQtyToContractUnit();
-        if TempSalesInvoiceLine.Quantity = 0 then
-            exit;
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
 
