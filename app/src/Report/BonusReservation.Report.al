@@ -57,12 +57,6 @@ report 5266054 "lbtbn Bonus Reservation"
             column(Bonus_Contract_Entry__Pmt__Discount_Amount_; "Pmt. Discount Amount")
             {
             }
-            column(Bonus_Contract_Entry__Discount_Amount_; "Discount Amount")
-            {
-                ObsoleteState = Pending;
-                ObsoleteTag = '2023-02-27';
-                ObsoleteReason = 'Discount is include in base amount';
-            }
             column(Bonus_Contract_Entry__From_Document_No__; "From Document No.")
             {
             }

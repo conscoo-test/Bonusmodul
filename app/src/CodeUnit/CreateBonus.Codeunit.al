@@ -63,8 +63,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateBonus Invoice
 
     #region CreateBonus
-    [Obsolete('this procedure should be local')]
-    procedure CreateBonus()
+    local procedure CreateBonus()
     var
         DocAmount: Decimal;
         PmtDiscAmt: Decimal;
@@ -543,8 +542,7 @@ codeunit 5266060 "lbtbn Create Bonus"
 
 
     #region AddConsideredItemCharges
-    [Obsolete('this procedure should be local')]
-    procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
+    internal procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
     var
         ItemCharge: Record "Item Charge";
         ValueEntry: Record "Value Entry";

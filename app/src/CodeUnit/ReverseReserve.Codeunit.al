@@ -49,7 +49,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
 
         SalesLine := CreateSalesLine(BonusEntry, Sign, BonusContract);
 
-        AssignItemCharge(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, SalesLine);
+        AssignItemCharge(BonusEntry, Sign, SalesLine);
 
         case Sign of
             -1:
@@ -293,7 +293,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                         // NewGLEntry.Reversed := true;
                         // NewGLEntry."Reversed Entry No." := GLEntry."Entry No.";
                         // NewGLEntry.Modify();
+#pragma warning disable AA0206
                         i += 1;
+#pragma warning restore AA0206
 
                     end;
             until GLEntry.Next() = 0;
@@ -340,7 +342,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                         // NewVATEntry.Reversed := true;
                         // NewVATEntry."Reversed Entry No." := VATEntry."Entry No.";
                         // NewVATEntry.Modify();
+#pragma warning disable AA0206
                         j += 1;
+#pragma warning restore AA0206
                     end;
 
             until VATEntry.Next() = 0;
@@ -452,7 +456,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion CreateSalesLine
 
     #region AssignItemCharge
-    local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesInvoiceLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var SalesShipmentLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line")
+    local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesLine: Record "Sales Line")
     var
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         ItemLedgerEntry: Record "Item Ledger Entry";
