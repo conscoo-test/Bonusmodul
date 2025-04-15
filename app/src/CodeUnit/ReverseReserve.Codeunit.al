@@ -82,7 +82,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         SalesLine: Record "Sales Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
         ReverseReservalTxt: Label 'Reverse Reserve according to Bonus Contract %1.', Comment = '%1 - Contract No.';
         AccountingPeriodLTxt: Label 'Accounting Period %1 to %2', Comment = '%1 - from Date, %2 - to Date';
         UnpostedInvoiceExistsErr: Label 'There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.';
@@ -109,7 +109,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader."No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader."Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader."Shipping No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
-        SalesHeader."No." := NoSeriesMgt.GetNextNo(BonusSetup."Reserve Cr.Memo Nos.", WorkDate(), true);
+        SalesHeader."No." := NoSeries.GetNextNo(BonusSetup."Reserve Cr.Memo Nos.");
         SalesHeader.Insert(true);
         SalesHeader.SetHideValidationDialog(true);
         SalesHeader.Validate("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");

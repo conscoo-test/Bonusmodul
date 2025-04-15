@@ -4,7 +4,7 @@
   "publisher": "LeBit Software & Consult GmbH",
   "brief": "Funktion zur Bildung und Auflösung von Bonusrückstellungen und Ermittelung von Bonusabrechnungen",
   "description": "LeBit Bonus",
-  "version": "20.13.0.5",
+  "version": "26.13.0.5",
   "privacyStatement": "https://www.lebit.net/impressum#datenschutz",
   "EULA": "https://www.lebit.net/impressum#datenschutz",
   "help": "https://www.lebit.net/#support",
@@ -21,7 +21,7 @@
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "19.0.0.0",
+  "application": "26.0.0.0",
   "idRanges": [
     {
       "from": 5266051,
@@ -36,6 +36,6 @@
         "includeSourceInSymbolFile": true,
         "applyToDevExtension": true
     },
-  "runtime": "10.0",
+  "runtime": "15.0",
   "applicationInsightsConnectionString": "InstrumentationKey=18c42e7b-8d3d-426d-a667-15303864951d;IngestionEndpoint=https://germanywestcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://germanywestcentral.livediagnostics.monitor.azure.com/"
 }
