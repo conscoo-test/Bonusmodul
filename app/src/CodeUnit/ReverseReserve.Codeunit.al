@@ -49,7 +49,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
 
         SalesLine := CreateSalesLine(BonusEntry, Sign, BonusContract);
 
-        AssignItemCharge(BonusEntry, Sign, SalesInvoiceLine, SalesCrMemoLine, SalesShipmentLine, SalesLine);
+        AssignItemCharge(BonusEntry, Sign, SalesLine);
 
         case Sign of
             -1:
@@ -82,7 +82,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         SalesLine: Record "Sales Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
         ReverseReservalTxt: Label 'Reverse Reserve according to Bonus Contract %1.', Comment = '%1 - Contract No.';
         AccountingPeriodLTxt: Label 'Accounting Period %1 to %2', Comment = '%1 - from Date, %2 - to Date';
         UnpostedInvoiceExistsErr: Label 'There is an unposted invoice for exploding bonus reservations.\\Please post or delete this at first.';
@@ -109,7 +109,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
         SalesHeader."No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader."Posting No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
         SalesHeader."Shipping No. Series" := BonusSetup."Reserve Cr.Memo Nos.";
-        SalesHeader."No." := NoSeriesMgt.GetNextNo(BonusSetup."Reserve Cr.Memo Nos.", WorkDate(), true);
+        SalesHeader."No." := NoSeries.GetNextNo(BonusSetup."Reserve Cr.Memo Nos.");
         SalesHeader.Insert(true);
         SalesHeader.SetHideValidationDialog(true);
         SalesHeader.Validate("Sell-to Customer No.", BonusContract."Customer Reserve Cr.Memo");
@@ -293,7 +293,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                         // NewGLEntry.Reversed := true;
                         // NewGLEntry."Reversed Entry No." := GLEntry."Entry No.";
                         // NewGLEntry.Modify();
+#pragma warning disable AA0206
                         i += 1;
+#pragma warning restore AA0206
 
                     end;
             until GLEntry.Next() = 0;
@@ -340,7 +342,9 @@ codeunit 5266056 "lbtbn Reverse Reserve"
                         // NewVATEntry.Reversed := true;
                         // NewVATEntry."Reversed Entry No." := VATEntry."Entry No.";
                         // NewVATEntry.Modify();
+#pragma warning disable AA0206
                         j += 1;
+#pragma warning restore AA0206
                     end;
 
             until VATEntry.Next() = 0;
@@ -452,7 +456,7 @@ codeunit 5266056 "lbtbn Reverse Reserve"
     #endregion CreateSalesLine
 
     #region AssignItemCharge
-    local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesInvoiceLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var SalesShipmentLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line")
+    local procedure AssignItemCharge(BonusEntry: Record "lbtbn Bonus Entry"; Sign: Integer; var SalesLine: Record "Sales Line")
     var
         ItemChargeAssRec: Record "Item Charge Assignment (Sales)";
         ItemLedgerEntry: Record "Item Ledger Entry";

@@ -231,12 +231,13 @@ table 5266052 "lbtbn Bonus Contract"
     trigger OnInsert()
     var
         BonusSetup: Record "lbtbn Bonus Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
     begin
         if "No." = '' then begin
             BonusSetup.Get();
             BonusSetup.TestField("Bonus Contract Nos.");
-            NoSeriesManagement.InitSeries(BonusSetup."Bonus Contract Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            "No. Series" := BonusSetup."Bonus Contract Nos.";
+            "No." := NoSeries.GetNextNo("No. Series");
         end;
         SetProcessNo();
     end;
@@ -287,13 +288,13 @@ table 5266052 "lbtbn Bonus Contract"
     var
         BonusContract: Record "lbtbn Bonus Contract";
         BonusSetup: Record "lbtbn Bonus Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
     begin
         BonusContract := Rec;
         BonusSetup.Get();
         BonusSetup.TestField("Bonus Contract Nos.");
-        if NoSeriesManagement.SelectSeries(BonusSetup."Bonus Contract Nos.", xBonusContract."No. Series", BonusContract."No. Series") then begin
-            NoSeriesManagement.SetSeries(BonusContract."No.");
+        if NoSeries.LookupRelatedNoSeries(xBonusContract."No. Series", BonusContract."No. Series") then begin
+            BonusContract."No." := NoSeries.GetNextNo(BonusContract."No. Series");
             Rec := BonusContract;
             // SetProcessNo();
             exit(true);
@@ -305,7 +306,7 @@ table 5266052 "lbtbn Bonus Contract"
     local procedure TestNoSeries()
     var
         BonusSetup: Record "lbtbn Bonus Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
         IsHandled: Boolean;
     begin
         IsHandled := false;
@@ -315,7 +316,7 @@ table 5266052 "lbtbn Bonus Contract"
 
         if "No." <> xRec."No." then begin
             BonusSetup.Get();
-            NoSeriesManagement.TestManual(BonusSetup."Bonus Contract Nos.");
+            NoSeries.TestManual(BonusSetup."Bonus Contract Nos.");
             "No. Series" := '';
         end;
     end;

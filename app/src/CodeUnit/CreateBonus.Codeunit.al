@@ -63,8 +63,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion CreateBonus Invoice
 
     #region CreateBonus
-    [Obsolete('this procedure should be local')]
-    procedure CreateBonus()
+    local procedure CreateBonus()
     var
         DocAmount: Decimal;
         PmtDiscAmt: Decimal;
@@ -543,8 +542,7 @@ codeunit 5266060 "lbtbn Create Bonus"
 
 
     #region AddConsideredItemCharges
-    [Obsolete('this procedure should be local')]
-    procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
+    internal procedure AddConsideredItemCharges(ItemLedgerEntryNo: Integer) AmountFromItemCharge: Decimal;
     var
         ItemCharge: Record "Item Charge";
         ValueEntry: Record "Value Entry";
@@ -811,17 +809,17 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion Filter
 
     #region InitSalesHeader
-    local procedure InitSalesHeader(CustNo: Code[20]; NoSeries: Code[20]; PostingDescription: Text[100])
+    local procedure InitSalesHeader(CustNo: Code[20]; NoSeriesCode: Code[20]; PostingDescription: Text[100])
     var
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
     begin
         SalesHeader.Init();
         SalesHeader."Document Type" := SalesHeader."Document Type"::"Credit Memo";
-        SalesHeader."No. Series" := NoSeries;
-        SalesHeader."Posting No. Series" := NoSeries;
-        SalesHeader."Shipping No. Series" := NoSeries;
-        SalesHeader."Return Receipt No. Series" := NoSeries;
-        SalesHeader."No." := NoSeriesManagement.GetNextNo(SalesHeader."No. Series", WorkDate(), true);
+        SalesHeader."No. Series" := NoSeriesCode;
+        SalesHeader."Posting No. Series" := NoSeriesCode;
+        SalesHeader."Shipping No. Series" := NoSeriesCode;
+        SalesHeader."Return Receipt No. Series" := NoSeriesCode;
+        SalesHeader."No." := NoSeries.GetNextNo(SalesHeader."No. Series");
         SalesHeader.Insert(true);
         SalesHeader.SetHideValidationDialog(true);
         SalesHeader.Validate("Sell-to Customer No.", CustNo);

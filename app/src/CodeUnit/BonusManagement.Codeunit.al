@@ -132,12 +132,11 @@ codeunit 5266052 "lbtbn Bonus Management"
     var
         BonusContract: Record "lbtbn Bonus Contract";
         BonusEntryL: Record "lbtbn Bonus Entry";
-        Navigate: Page Navigate;
     begin
         BonusContract.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Contract", Enum::"Document Entry Document Type"::" ", CopyStr(BonusContract.TableCaption(), 1, 1024), BonusContract.Count());
+        DocEntry.InsertIntoDocEntry(Database::"lbtbn Bonus Contract", BonusContract.TableCaption(), BonusContract.Count());
         BonusEntryL.SetRange("Process No.", ProcessNo);
-        Navigate.InsertIntoDocEntry(DocEntry, Database::"lbtbn Bonus Entry", BonusEntryL.TableCaption(), BonusEntryL.Count());
+        DocEntry.InsertIntoDocEntry(Database::"lbtbn Bonus Entry", BonusEntryL.TableCaption(), BonusEntryL.Count());
     end;
     #endregion EventSubscriber Page Navigate onAfterInsertDocEntries 
 

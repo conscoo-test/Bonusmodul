@@ -3004,12 +3004,6 @@ End Function
         <Field Name="Bonus_Contract_Entry__Pmt__Discount_Amount_Format">
           <DataField>Bonus_Contract_Entry__Pmt__Discount_Amount_Format</DataField>
         </Field>
-        <Field Name="Bonus_Contract_Entry__Discount_Amount_">
-          <DataField>Bonus_Contract_Entry__Discount_Amount_</DataField>
-        </Field>
-        <Field Name="Bonus_Contract_Entry__Discount_Amount_Format">
-          <DataField>Bonus_Contract_Entry__Discount_Amount_Format</DataField>
-        </Field>
         <Field Name="Bonus_Contract_Entry__From_Document_No__">
           <DataField>Bonus_Contract_Entry__From_Document_No__</DataField>
         </Field>
