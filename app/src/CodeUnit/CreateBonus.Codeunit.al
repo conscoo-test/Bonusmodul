@@ -140,6 +140,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         DimMgt.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID",
                                              SalesLine."Shortcut Dimension 1 Code",
                                               SalesLine."Shortcut Dimension 2 Code");
+        OnBeforeModifySalesLine(SalesLine);
         SalesLine.Modify(true);
     end;
     #endregion CreateSalesCreditMemo3
@@ -521,6 +522,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         DimensionManagement.UpdateGlobalDimFromDimSetID(SalesLine."Dimension Set ID", SalesLine."Shortcut Dimension 1 Code", SalesLine."Shortcut Dimension 2 Code");
         if SalesHeader."Shortcut Dimension 1 Code" <> '' then
             SalesLine.Validate("Shortcut Dimension 1 Code", SalesHeader."Shortcut Dimension 1 Code");
+        OnBeforeModifySalesLine(SalesLine);
         SalesLine.Insert();
     end;
     #endregion CreateBonusCrMemoLine
@@ -922,6 +924,11 @@ codeunit 5266060 "lbtbn Create Bonus"
 
     [IntegrationEvent(false, false)]
     local procedure OnInitSalesHeaderOnBeforeModify(var SalesHeader: Record "Sales Header"; BonusContract: Record "lbtbn Bonus Contract")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeModifySalesLine(var SalesLine: Record "Sales Line")
     begin
     end;
 
