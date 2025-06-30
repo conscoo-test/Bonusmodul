@@ -21,7 +21,7 @@
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "26.0.0.0",
+  "application": "25.0.0.0",
   "idRanges": [
     {
       "from": 5266051,
@@ -36,6 +36,6 @@
         "includeSourceInSymbolFile": true,
         "applyToDevExtension": true
     },
-  "runtime": "15.0",
+  "runtime": "14.0",
   "applicationInsightsConnectionString": "InstrumentationKey=18c42e7b-8d3d-426d-a667-15303864951d;IngestionEndpoint=https://germanywestcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://germanywestcentral.livediagnostics.monitor.azure.com/"
 }
