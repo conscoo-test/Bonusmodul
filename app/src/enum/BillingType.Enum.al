@@ -6,9 +6,9 @@ enum 5266052 "lbtbn Billing Type"
     {
         Caption = '%';
     }
-    value(1; "Amount (LCY)")
+    value(1; "Amount")
     {
-        Caption = 'Amount (LCY)';
+        Caption = 'Amount';
     }
     value(2; "Amount per Unit")
     {

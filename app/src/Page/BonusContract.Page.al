@@ -54,6 +54,11 @@ page 5266053 "lbtbn Bonus Contract"
                 group(Billing)
                 {
                     Caption = 'Billing';
+                    field("Currency Code"; Rec."Currency Code")
+                    {
+                        ApplicationArea = All;
+                        ToolTip = 'Specifies the value of the Currency Code field.', Comment = '%';
+                    }
                     field("Bonus Billing Type"; Rec."Bonus Billing Type")
                     {
                         ToolTip = 'Here you select the specification of settlement type.';

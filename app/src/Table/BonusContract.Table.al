@@ -218,6 +218,13 @@ table 5266052 "lbtbn Bonus Contract"
                 TestField("Bonus Scale Type", "Bonus Scale Type"::"Sales Qty.");
             end;
         }
+        field(32; "Currency Code"; Code[10])
+        {
+            Caption = 'Currency Code';
+            TableRelation = Currency;
+
+
+        }
     }
     keys
     {

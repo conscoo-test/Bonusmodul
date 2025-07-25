@@ -33,7 +33,7 @@ codeunit 5266052 "lbtbn Bonus Management"
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
                                         CustomerNo: Code[20];
                                         ShipToCode: Code[10];
-                                        EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
+                                        EntryType: Enum "lbtbn BonusEntryType";
                                         EntryDate: Date;
                                         BonusRule: Integer;
                                         Qty: Decimal;
@@ -50,10 +50,11 @@ codeunit 5266052 "lbtbn Bonus Management"
     end;
 
     #region CreateBonusContractEntry
+    [Obsolete('Use procedure with CurrencyCode and CurrencyFactor parameters instead.', '2023-02-27')]
     procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
                                         CustomerNo: Code[20];
                                         ShipToCode: Code[10];
-                                        EntryType: Option "Bonus","Rückstellung","Rückstellungsauflösung";
+                                        EntryType: Enum "lbtbn BonusEntryType";
                                         EntryDate: Date;
                                         BonusRule: Integer;
                                         Qty: Decimal;
@@ -62,6 +63,27 @@ codeunit 5266052 "lbtbn Bonus Management"
                                         DocAmt: Decimal;
                                         PmtDiscAmt: Decimal;
                                         DimSetId: Integer
+    ): Integer
+    begin
+        exit(CreateBonusContractEntry(BonusContract, CustomerNo, ShipToCode, EntryType, EntryDate, BonusRule,
+        Qty, Amt, AmtIncVAT, DocAmt, PmtDiscAmt, DimSetId, '', 1, Amt));
+    end;
+
+    procedure CreateBonusContractEntry(var BonusContract: Record "lbtbn Bonus Contract";
+                                        CustomerNo: Code[20];
+                                        ShipToCode: Code[10];
+                                        EntryType: Enum "lbtbn BonusEntryType";
+                                        EntryDate: Date;
+                                        BonusRule: Integer;
+                                        Qty: Decimal;
+                                        Amt: Decimal;
+                                        AmtIncVAT: Decimal;
+                                        DocAmt: Decimal;
+                                        PmtDiscAmt: Decimal;
+                                        DimSetId: Integer;
+                                        CurrencyCode: Code[10];
+                                        CurrencyFactor: Decimal;
+                                        AmtFCY: Decimal
     ): Integer
     var
         EntryNo: Integer;
@@ -97,6 +119,9 @@ codeunit 5266052 "lbtbn Bonus Management"
         BonusEntry."Assignment Doc. Line No." := AssignmentDocLineNo;
         BonusEntry."Pmt. Discount Amount" := PmtDiscAmt;
         BonusEntry."Dimension Set ID" := DimSetId;
+        BonusEntry."Currency Code" := CurrencyCode;
+        BonusEntry."Currency Factor" := CurrencyFactor;
+        BonusEntry."Amount (FCY)" := AmtFCY;
         BonusEntry.Insert();
 
         exit(BonusEntry."Entry No.");

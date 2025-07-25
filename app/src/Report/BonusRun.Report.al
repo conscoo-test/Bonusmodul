@@ -25,7 +25,7 @@ report 5266052 "lbtbn Bonus Run"
                 begin
                     SalesInvoiceHeader.Get(InvoiceNos.Get(Number));
                     Dialog.Update(3, SalesInvoiceHeader."No.");
-                    CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
+                    CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor", SalesInvoiceHeader."Currency Code");
                     SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
                     SalesInvoiceLine.SetFilter(Type, '%1|%2', SalesInvoiceLine.Type::Item, SalesInvoiceLine.Type::"Charge (Item)");
                     if SalesInvoiceLine.FindSet() then
@@ -56,7 +56,7 @@ report 5266052 "lbtbn Bonus Run"
                 begin
                     SalesCrMemoHeader.Get(CrMemoNos.Get(Number));
                     Dialog.Update(3, SalesCrMemoHeader."No.");
-                    CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
+                    CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor", SalesCrMemoHeader."Currency Code");
                     SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
                     SalesCrMemoLine.SetFilter(Type, '%1|%2', SalesCrMemoLine.Type::Item, SalesCrMemoLine.Type::"Charge (Item)");
                     if SalesCrMemoLine.FindSet() then
