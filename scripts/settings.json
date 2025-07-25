@@ -5,7 +5,6 @@
     "installApps": [
         "\\\\192.168.244.16\\Software_Business\\apps\\product\\Vorgangsmanagement\\LeBit_LeBit Processmanagement_1.*.zip"
     ],
-    "previousApps": "\\\\192.168.244.16\\Software_Business\\apps\\product\\Bonusmodul\\latest.zip",
     "installTestRunner": true,
     "installTestFramework": true,
     "installTestLibraries": true,
