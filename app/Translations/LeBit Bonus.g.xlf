@@ -704,7 +704,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType UnpostedCreditMemoErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4178859433 - Method 2256291286 - NamedType 3415091118" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Currency code Bonus contract %1 and bonus recipient %2are different. Please check the master data.</source>
+          <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetCustCode - NamedType CurrencyErr</note>
         </trans-unit>

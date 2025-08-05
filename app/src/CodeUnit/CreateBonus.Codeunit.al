@@ -47,6 +47,8 @@ codeunit 5266060 "lbtbn Create Bonus"
     end;
 
     procedure SetDocument(CustomerNo2: Code[20]; ShipToCode2: Code[10]; CurrencyFactor2: Decimal; CurrencyCode2: Code[10])
+    var
+        CurrExchRate: Record "Currency Exchange Rate";
     begin
         CustomerNo := CustomerNo2;
         ShipToCode := ShipToCode2;
@@ -178,7 +180,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     local procedure GetCustCode(): Code[20]
     var
         Cust: Record "Customer";
-        CurrencyErr: Label 'Currency code Bonus contract %1 and bonus recipient %2are different. Please check the master data.';
+        CurrencyErr: Label 'Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.';
     begin
         Cust.Get(BonusContract."Bonus Recipient");
         if BonusContract."Currency Code" <> Cust."Currency Code" then
@@ -230,7 +232,10 @@ codeunit 5266060 "lbtbn Create Bonus"
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 begin
                     CalculateAmountCust(AmountCust);
-                    Zusatz := Format(AmountCust) + PerTxt + Format(BonusContract."Item Unit of Measure");
+                    if BonusContract."Currency Code" <> SalesHeader."Currency Code" then
+                        Zusatz := Format(AmountCust) + PerTxt + Format(BonusContract."Item Unit of Measure")
+                    else
+                        Zusatz := Format(BonusContractLine.Value) + PerTxt + Format(BonusContract."Item Unit of Measure");
                 end;
         end;
         Description2 := ContractTxt + Format(BonusContract."No.") + ': ' + Zusatz;
@@ -759,11 +764,15 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region DoCreateReserve
     local procedure DoCreateReserve()
     var
-        ReserveAmount: Decimal;
+        CurrExchRate: Record "Currency Exchange Rate";
         DocAmount: Decimal;
-        PmtDiscAmt: Decimal;
         NewQty: Decimal;
+        PmtDiscAmt: Decimal;
+        ReserveAmount: Decimal;
     begin
+        ////Rückstellung mit Tageskurs
+        CurrencyFactor := CurrExchRate.ExchangeRate(PostingDate, CurrencyCode);
+
         if not LineIsApplicableForBonus() then
             exit;
         ConvertQtyToContractUnit();
