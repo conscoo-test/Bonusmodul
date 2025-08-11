@@ -81,6 +81,13 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Recipient - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 2922830250 - Method 2126772001 - NamedType 3415091118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
+          <target>Währungscode Bonusvertrag %1 und Bonusempfänger %2 unterscheiden sich. Bitte prüfen Sie die Stammdaten.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Recipient - Method OnValidate - NamedType CurrencyErr</note>
+        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 3931021831 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Scale Type</source>
           <target>Bonusstaffelart</target>
@@ -97,7 +104,6 @@
           <source>Currency Code</source>
           <target>Währungscode</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Currency Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 4123040019 - Field 2188680187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -320,7 +326,6 @@
           <source>Amount (FCY)</source>
           <target>Betrag (FCY)</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Amount (FCY) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1577329712 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -411,14 +416,12 @@
           <source>Currency Code</source>
           <target>Währungscode</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Currency Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 2324056710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Currency Factor</source>
           <target>Währungsfaktor</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Currency Factor - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1994964448 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -851,7 +854,6 @@
           <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
           <target>Währungscode Bonusvertrag %1 und Bonusempfänger %2 unterscheiden sich. Bitte prüfen Sie die Stammdaten.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetCustCode - NamedType CurrencyErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
@@ -1128,7 +1130,6 @@
           <source>Specifies the value of the Currency Code field.</source>
           <target>Gibt den Wert des Feldes Währungscode an.</target>
           <note from="Developer" annotates="general" priority="2">%</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Currency Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 4251025880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1609,7 +1610,6 @@
           <source>Specifies the value of the Amount (FCY) field.</source>
           <target>Gibt den Wert des Feldes Betrag (FCY) an.</target>
           <note from="Developer" annotates="general" priority="2">%</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Amount (FCY) - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1577329712 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1688,14 +1688,12 @@
           <source>Specifies the value of the Currency Code field.</source>
           <target>Gibt den Wert des Feldes Währungscode an.</target>
           <note from="Developer" annotates="general" priority="2">%</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Currency Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 2324056710 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Currency Factor field.</source>
           <target>Gbt den Wert des Feldes Währungsfaktor an.</target>
           <note from="Developer" annotates="general" priority="2">%</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Currency Factor - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1994964448 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -2866,7 +2864,6 @@
           <source>Amount</source>
           <target>Betrag</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 348662871 - EnumValue 125470167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -2879,21 +2876,18 @@
           <source>Bonus</source>
           <target>Bonus</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn BonusEntryType - EnumValue Bonus - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2240643177 - EnumValue 4022187141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Liquidation of Reserves</source>
           <target>Auflösung der Rückstellung</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn BonusEntryType - EnumValue Liquidation of Reserves - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2240643177 - EnumValue 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reserve</source>
           <target>Rückstellung</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn BonusEntryType - EnumValue Reserve - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3044551195 - EnumValue 1708100201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">

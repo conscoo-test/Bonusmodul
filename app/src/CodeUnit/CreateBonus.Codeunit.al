@@ -941,6 +941,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     var
         ItemCharge: Record "Item Charge";
         ItemNo: Code[20];
+        TempSalesCrMemoLineLoc: Record "Sales Cr.Memo Line" temporary;
     begin
         if not LineIsShipped() then
             exit;
@@ -957,8 +958,22 @@ codeunit 5266060 "lbtbn Create Bonus"
             if not ItemCharge."lbtbn Bonus consider" then
                 exit;
         end;
-        if TempSalesInvoiceLine.GetCurrencyCode() <> BonusContract."Currency Code" then
-            exit(false);
+        //if TempSalesInvoiceLine.GetCurrencyCode() <> BonusContract."Currency Code" then
+        //exit(false);
+        case SourceDocType of
+            SourceDocType::"Sales Invoice":
+                begin
+                    if TempSalesInvoiceLine.GetCurrencyCode() <> BonusContract."Currency Code" then
+                        exit(false);
+                end;
+
+            SourceDocType::"Sales Credit Memo":
+                begin
+                    TempSalesCrMemoLineLoc.Transferfields(TempSalesInvoiceLine);
+                    if TempSalesCrMemoLineLoc.GetCurrencyCode() <> BonusContract."Currency Code" then
+                        exit(false);
+                end;
+        end;
         exit(true);
     end;
 

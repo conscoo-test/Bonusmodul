@@ -127,6 +127,16 @@ table 5266052 "lbtbn Bonus Contract"
         {
             Caption = 'Bonus Recipient';
             TableRelation = Customer."No.";
+
+            trigger OnValidate()
+            var
+                Customer: Record Customer;
+                CurrencyErr: Label 'Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.';
+            begin
+                if Customer.Get("Bonus Recipient") then
+                    if Rec."Currency Code" <> Customer."Currency Code" then
+                        Error(CurrencyErr, Rec."No.", Rec."Bonus Recipient");
+            end;
         }
         field(16; "No. of Customers"; Integer)
         {
