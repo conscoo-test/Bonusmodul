@@ -88,6 +88,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Currency Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 4198939294 - Method 2126772001 - NamedType 3415091118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Currency Code - Method OnValidate - NamedType CurrencyErr</note>
+        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 2188680187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Reserve Cr.Memo</source>
           <note from="Developer" annotates="general" priority="2"></note>
