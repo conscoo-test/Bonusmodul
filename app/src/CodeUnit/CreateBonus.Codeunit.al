@@ -892,7 +892,9 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesHeader."Posting Description" := PostingDescription;
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader."Posting No." := SalesHeader."No.";
-        SalesHeader.Validate("Currency Code", BonusContract."Currency Code");
+        ///Rückstellungsgutschrift in € nur Bonus GS in Fremdwährung, analog zu BBL
+        if SalesHeader."Sell-to Customer No." <> BonusContract."Customer Reserve Cr.Memo" then
+            SalesHeader.Validate("Currency Code", BonusContract."Currency Code");
         OnInitSalesHeaderOnBeforeModify(SalesHeader, BonusContract);
         SalesHeader.Modify();
         CrMemoHeaderCreated := true;
