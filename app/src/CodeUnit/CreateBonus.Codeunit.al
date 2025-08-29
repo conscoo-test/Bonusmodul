@@ -90,6 +90,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
         DocAmountFCY := Sign * TempSalesInvoiceLine.Amount;
+        DocAmountFCY += Round(AddItemCharges() * CurrencyFactor, 0.01);///TODO: hier bin ich unsicher
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
         CalculateBonusAmountFCY(BonusContract."Bonus Billing Type", DocAmountFCY, BonusContractLine.Value, PmtDiscAmt, BonusAmountFCY, Sign * TempSalesInvoiceLine.Quantity);
 
