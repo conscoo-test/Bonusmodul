@@ -19,7 +19,7 @@
     "versions": [
         {
             "version": "current",
-            "artifact": "//23/de/",
+            "artifact": "///de/Current",
             "CreateRuntimePackages": true
         },
         {
