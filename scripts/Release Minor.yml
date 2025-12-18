@@ -14,6 +14,7 @@ stages:
 - stage: Build
   jobs:
   - job: Build
+    timeoutInMinutes: 120
     variables:
       build.clean: all
       platform: x64
