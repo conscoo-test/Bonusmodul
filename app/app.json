@@ -1,10 +1,10 @@
 {
   "id": "1716d377-7e43-42d6-ae75-ad9977f24a69",
   "name": "LeBit Bonus",
-  "publisher": "conscoo",
+  "publisher": "LeBit Software & Consult GmbH",
   "brief": "Funktion zur Bildung und Auflösung von Bonusrückstellungen und Ermittelung von Bonusabrechnungen",
   "description": "LeBit Bonus",
-  "version": "26.14.0.5",
+  "version": "26.15.0.5",
   "privacyStatement": "https://www.lebit.net/impressum#datenschutz",
   "EULA": "https://www.lebit.net/impressum#datenschutz",
   "help": "https://www.lebit.net/#support",
