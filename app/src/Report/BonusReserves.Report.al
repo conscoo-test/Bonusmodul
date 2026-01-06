@@ -33,7 +33,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     SalesInvoiceLine: Record "Sales Invoice Line";
                 begin
                     SalesInvoiceHeader.Get(InvoiceNos.Get(Invoices.Number));
-                    CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor");
+                    CreateBonus.SetDocument(SalesInvoiceHeader."Sell-to Customer No.", SalesInvoiceHeader."Ship-to Code", SalesInvoiceHeader."Currency Factor", SalesInvoiceHeader."Currency Code");
                     SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
                     SalesInvoiceLine.SetFilter(Type, '%1|%2', SalesInvoiceLine.Type::Item, SalesInvoiceLine.Type::"Charge (Item)");
                     if SalesInvoiceLine.FindSet() then
@@ -62,7 +62,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     SalesCrMemoLine: Record "Sales Cr.Memo Line";
                 begin
                     SalesCrMemoHeader.Get(CrMemoNos.Get(CrMemos.Number));
-                    CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor");
+                    CreateBonus.SetDocument(SalesCrMemoHeader."Sell-to Customer No.", SalesCrMemoHeader."Ship-to Code", SalesCrMemoHeader."Currency Factor", SalesCrMemoHeader."Currency Code");
                     SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
                     SalesCrMemoLine.SetFilter(Type, '%1|%2', SalesCrMemoLine.Type::Item, SalesCrMemoLine.Type::"Charge (Item)");
                     if SalesCrMemoLine.FindSet() then
@@ -85,7 +85,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     #region OnPreDataItem
                     trigger OnPreDataItem()
                     begin
-                        if "Bonus Contract"."Reserve Type" <> "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
+                        if "Bonus Contract"."Reserve Type" <> "Bonus Contract"."Reserve Type"::"Amount" then
                             CurrReport.Break();
                     end;
                     #endregion OnPreDataItem
@@ -102,7 +102,7 @@ report 5266051 "lbtbn Bonus Reserves"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CreateBonus.SetDocument("Bonus Customer"."Customer No.", "Bonus Customer"."Ship-to Code", 0);
+                    CreateBonus.SetDocument("Bonus Customer"."Customer No.", "Bonus Customer"."Ship-to Code", 0, '');
                 end;
             }
             #endregion dataitems

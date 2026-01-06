@@ -68,6 +68,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Recipient - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 2922830250 - Method 2126772001 - NamedType 3415091118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Recipient - Method OnValidate - NamedType CurrencyErr</note>
+        </trans-unit>
         <trans-unit id="Table 4123040019 - Field 3931021831 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bonus Scale Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -77,6 +82,16 @@
           <source>Sales Qty.,Sales (LCY)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Bonus Scale Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 4198939294 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Currency Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4123040019 - Field 4198939294 - Method 2126772001 - NamedType 3415091118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Contract - Field Currency Code - Method OnValidate - NamedType CurrencyErr</note>
         </trans-unit>
         <trans-unit id="Table 4123040019 - Field 2188680187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Reserve Cr.Memo</source>
@@ -258,6 +273,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Method OnDelete - NamedType DeleteErr</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 619872723 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (FCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Amount (FCY) - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1577329712 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assignment Doc. Line No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -328,6 +348,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Contract - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 4198939294 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Currency Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3741211377 - Field 2324056710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency Factor</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Currency Factor - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1994964448 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -357,11 +387,6 @@
           <source>Entry Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Entry Type - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3741211377 - Field 149522872 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bonus,Reserve,Liquidation of Reserves</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table lbtbn Bonus Entry - Field Entry Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 3741211377 - Field 1619798729 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>From Document Line</source>
@@ -688,6 +713,11 @@
           <note from="Developer" annotates="general" priority="2">DEU="Es existiert eine ungebuchte Gutschrift zur Bonusrückstellung.\\Diese muss erst gebucht oder gelöscht werden."</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - NamedType UnpostedCreditMemoErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4178859433 - Method 2256291286 - NamedType 3415091118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit lbtbn Create Bonus - Method GetCustCode - NamedType CurrencyErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4178859433 - Method 4077369804 - NamedType 3054658795" size-unit="char" translate="yes" xml:space="preserve">
           <source>Credit Memo </source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -912,6 +942,11 @@
           <source>Indicates whether the bonus calculation is based on sales or turnover.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Bonus Scale Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4123040019 - Control 4198939294 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Currency Code field.</source>
+          <note from="Developer" annotates="general" priority="2">%</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Contract - Control Currency Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4123040019 - Control 4251025880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Is filled by the system after bonus settlement.</source>
@@ -1308,6 +1343,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 619872723 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Amount (FCY) field.</source>
+          <note from="Developer" annotates="general" priority="2">%</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Amount (FCY) - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1577329712 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>You can use the Assignment document line number field to identify in which credit memo line this rebate item is located in the rebate credit memo.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1367,6 +1407,16 @@
           <source>This field is filled with the contract number of the bonus agreement.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Contract - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 4198939294 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Currency Code field.</source>
+          <note from="Developer" annotates="general" priority="2">%</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Currency Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3741211377 - Control 2324056710 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Currency Factor field.</source>
+          <note from="Developer" annotates="general" priority="2">%</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page lbtbn Bonus Entry - Control Currency Factor - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3741211377 - Control 1994964448 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is filled with the customer from the bonus contract.</source>
@@ -2338,15 +2388,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue % - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 348662871 - EnumValue 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Amount (LCY)</source>
+        <trans-unit id="Enum 348662871 - EnumValue 636392376 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount (LCY) - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 348662871 - EnumValue 125470167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount per Unit</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount per Unit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2240643177 - EnumValue 2444719103 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bonus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn BonusEntryType - EnumValue Bonus - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2240643177 - EnumValue 4022187141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Liquidation of Reserves</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn BonusEntryType - EnumValue Liquidation of Reserves - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2240643177 - EnumValue 825293260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reserve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn BonusEntryType - EnumValue Reserve - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3044551195 - EnumValue 1708100201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Credit Memo</source>

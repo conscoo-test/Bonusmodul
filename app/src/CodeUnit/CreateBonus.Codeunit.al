@@ -15,6 +15,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         CustomerNo: Code[20];
         ShipToCode: Code[10];
         CurrencyFactor: Decimal;
+        CurrencyCode: Code[10];
         SalesLineNo: Integer;
         Sign: Integer;
         SourceDocType: Enum "lbtbn Document Type";
@@ -36,11 +37,23 @@ codeunit 5266060 "lbtbn Create Bonus"
     #endregion SetBonusContractLine
 
     #region SetDocument
+    [Obsolete('Use SetDocument with CurrencyCode parameter')]
     procedure SetDocument(CustomerNo2: Code[20]; ShipToCode2: Code[10]; CurrencyFactor2: Decimal)
     begin
         CustomerNo := CustomerNo2;
         ShipToCode := ShipToCode2;
         CurrencyFactor := CurrencyFactor2;
+
+    end;
+
+    procedure SetDocument(CustomerNo2: Code[20]; ShipToCode2: Code[10]; CurrencyFactor2: Decimal; CurrencyCode2: Code[10])
+    var
+        CurrExchRate: Record "Currency Exchange Rate";
+    begin
+        CustomerNo := CustomerNo2;
+        ShipToCode := ShipToCode2;
+        CurrencyFactor := CurrencyFactor2;
+        CurrencyCode := CurrencyCode2;
     end;
     #endregion SetDocument
 
@@ -66,18 +79,30 @@ codeunit 5266060 "lbtbn Create Bonus"
     local procedure CreateBonus()
     var
         DocAmount: Decimal;
+        DocAmountFCY: Decimal;
         PmtDiscAmt: Decimal;
         BonusAmount: Decimal;
+        BonusAmountFCY: Decimal;
+        ItemChargeAmt: Decimal;
     begin
         if not LineIsApplicableForBonus() then
             exit;
         ConvertQtyToContractUnit();
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
+        DocAmountFCY := Sign * TempSalesInvoiceLine.Amount;
+        ItemChargeAmt := AddItemCharges();
+        if CurrencyFactor <> 0 then
+            ItemChargeAmt := Round(ItemChargeAmt * CurrencyFactor, 0.01);
+        DocAmountFCY += ItemChargeAmt;
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
+        CalculateBonusAmountFCY(BonusContract."Bonus Billing Type", DocAmountFCY, BonusContractLine.Value, PmtDiscAmt, BonusAmountFCY, Sign * TempSalesInvoiceLine.Quantity);
+
         if BonusAmount = 0 then
             exit;
-        CreateBonusCreditMemoLine(DocAmount, BonusAmount, PmtDiscAmt);
+        //CreateBonusCreditMemoLine(DocAmount, BonusAmount, PmtDiscAmt);
+        CreateBonusCreditMemoLine(DocAmountFCY, BonusAmountFCY, PmtDiscAmt);
+
     end;
     #endregion CreateBonus
 
@@ -107,13 +132,13 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         CreateSalesHeaderBilling();
 
-        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)" then
+        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount" then
             if SingleSalesLineExists() then
                 exit;
 
         InitSalesLine(SalesLine);
-        if SalesHeader."Currency Factor" <> 0 then
-            BonusSumme := BonusSumme * SalesHeader."Currency Factor";
+        //if SalesHeader."Currency Factor" <> 0 then
+        //    BonusSumme := BonusSumme * SalesHeader."Currency Factor";
 
         case BonusContract."Bonus Billing Type" of
             BonusContract."Bonus Billing Type"::"%",
@@ -123,7 +148,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                     SalesLine.Modify();
                     CreateItemCharge(DocAmt, BonusSumme, SalesLine);
                 end;
-            BonusContract."Bonus Billing Type"::"Amount (LCY)":
+            BonusContract."Bonus Billing Type"::"Amount":
                 CreateItemChargeForBillingTypeAmount(SalesLine);
         end;
 
@@ -131,7 +156,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Modify(true);
 
         SalesLine.UpdateAmounts();
-        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)" then
+        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount" then
             exit;
 
         SalesLine."lbtbn Bonus Entry No." := CreateBonusEntry(DocAmt, PmtDiscAmount, SalesLine);
@@ -159,7 +184,13 @@ codeunit 5266060 "lbtbn Create Bonus"
 
     #region GetCustCode
     local procedure GetCustCode(): Code[20]
+    var
+        Cust: Record "Customer";
+        CurrencyErr: Label 'Currency code Bonus contract %1 and bonus recipient %2 are different. Please check the master data.';
     begin
+        Cust.Get(BonusContract."Bonus Recipient");
+        if BonusContract."Currency Code" <> Cust."Currency Code" then
+            Error(CurrencyErr, BonusContract."No.", BonusContract."Bonus Recipient");
         exit(BonusContract."Bonus Recipient");
     end;
     #endregion GetCustCode
@@ -184,7 +215,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Validate(Quantity, 1);
         SalesLine."lbt Process No." := BonusContract."Process No.";
         SalesLine.Description := AccountingTxt;
-        if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
+        if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount" then
             SalesLine.Description += ' ' + Format(TempSalesInvoiceLine."Document No.");
         SalesLine."Dimension Set ID" := TempSalesInvoiceLine."Dimension Set ID";
 
@@ -202,12 +233,15 @@ codeunit 5266060 "lbtbn Create Bonus"
         case BonusContract."Bonus Billing Type" of
             BonusContract."Bonus Billing Type"::"%":
                 Zusatz := Format(BonusContractLine.Value) + ' %';
-            BonusContract."Bonus Billing Type"::"Amount (LCY)":
+            BonusContract."Bonus Billing Type"::"Amount":
                 Zusatz := FixedAmountTxt;
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 begin
                     CalculateAmountCust(AmountCust);
-                    Zusatz := Format(AmountCust) + PerTxt + Format(BonusContract."Item Unit of Measure");
+                    if BonusContract."Currency Code" <> SalesHeader."Currency Code" then
+                        Zusatz := Format(AmountCust) + PerTxt + Format(BonusContract."Item Unit of Measure")
+                    else
+                        Zusatz := Format(BonusContractLine.Value) + PerTxt + Format(BonusContract."Item Unit of Measure");
                 end;
         end;
         Description2 := ContractTxt + Format(BonusContract."No.") + ': ' + Zusatz;
@@ -272,7 +306,7 @@ codeunit 5266060 "lbtbn Create Bonus"
           BonusContract,
           CustomerNo,
           ShipToCode,
-          0,                                          //Postenart Bonus
+          enum::"lbtbn BonusEntryType"::Bonus,                                          //Postenart Bonus
           PostingDate,
           BonusContractLine."Line No.",           //Bonusregelzeile
           SalesLine.Quantity,                //Menge
@@ -280,7 +314,10 @@ codeunit 5266060 "lbtbn Create Bonus"
           SalesLine."Amount Including VAT",  //Betrag inkl. Vat
           DocAmt,                             //Belegbetrag
           PmtDiscAmount,
-          SalesLine."Dimension Set ID"));
+          SalesLine."Dimension Set ID",
+          SalesHeader."Currency Code",
+          SalesHeader."Currency Factor",
+          SalesLine.Amount));
     end;
     #endregion CreateBonusEntry
 
@@ -293,7 +330,27 @@ codeunit 5266060 "lbtbn Create Bonus"
                     PmtDiscAmt := DocAmount * BonusContract."Pmt. Discount %" / 100;
                     BonusAmount := Round((DocAmount - PmtDiscAmt) * BaseAmount / 100, 0.01);
                 end;
-            BillingType::"Amount (LCY)":
+            BillingType::"Amount":
+                ;
+            BillingType::"Amount per Unit":
+                begin
+                    BonusAmount := Round(Quantity * BaseAmount, 0.01);
+                    if CurrencyFactor <> 0 then
+                        BonusAmount := Round(BonusAmount / CurrencyFactor, 0.01);
+                    NewQty := Quantity;
+                end;
+        end;
+    end;
+
+    local procedure CalculateBonusAmountFCY(BillingType: Enum "lbtbn Billing Type"; DocAmount: Decimal; BaseAmount: Decimal; var PmtDiscAmt: Decimal; var BonusAmount: Decimal; Quantity: Decimal) NewQty: Decimal
+    begin
+        case BillingType of
+            BillingType::"%":
+                begin
+                    PmtDiscAmt := DocAmount * BonusContract."Pmt. Discount %" / 100;
+                    BonusAmount := Round((DocAmount - PmtDiscAmt) * BaseAmount / 100, 0.01);
+                end;
+            BillingType::"Amount":
                 ;
             BillingType::"Amount per Unit":
                 begin
@@ -386,7 +443,7 @@ codeunit 5266060 "lbtbn Create Bonus"
             BonusContract,
             CustomerNo,
             ShipToCode,
-            1,                //Postenart Rückstellung
+            enum::"lbtbn BonusEntryType"::Reserve,                //Postenart Rückstellung
             PostingDate,
             0,                //Bonusregelzeile
             0,                //Menge
@@ -394,7 +451,10 @@ codeunit 5266060 "lbtbn Create Bonus"
             Amt,              //Betrag inkl. Vat
             DocAmt,         //Belegbetrag
             PmtDiscAmount,
-            TempSalesInvoiceLine."Dimension Set ID");
+            TempSalesInvoiceLine."Dimension Set ID",
+            CurrencyCode,
+            CurrencyFactor,
+            Round(Amt * CurrencyFactor, 0.01));
 
         GenJournalLine.Reset();
         GenJournalLine.SetRange("Journal Template Name", BonusSetup."Gen.Jnl.Templ.BonusReserve");
@@ -449,7 +509,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                             BonusContract,
                             CustomerNo,
                             ShipToCode,
-                            1,
+                            enum::"lbtbn BonusEntryType"::Reserve,
                             PostingDate,
                             0,
                             Qty,
@@ -457,7 +517,10 @@ codeunit 5266060 "lbtbn Create Bonus"
                             ReserveAmount,
                             DocAmount,
                             -PmtDiscAmt,
-                            SalesLine."Dimension Set ID");
+                            SalesLine."Dimension Set ID",
+                            SalesLine."Currency Code",
+                            SalesHeader."Currency Factor",
+                            DocAmount);
         SalesLine.Modify();
     end;
     #endregion CreateForReserveMode_CreditMemo
@@ -653,10 +716,13 @@ codeunit 5266060 "lbtbn Create Bonus"
                                    BonusContract,
                                    CustomerNo,
                                    ShipToCode,
-                                   1, PostingDate, 0,
+                                   enum::"lbtbn BonusEntryType"::Reserve, PostingDate, 0,
                                    0, SalesLine.Amount, 0,
                                    SalesLine.Amount,
-                                   0, SalesLine."Dimension Set ID");
+                                   0, SalesLine."Dimension Set ID",
+                                   SalesLine."Currency Code",
+                                   SalesHeader."Currency Factor",
+                                   SalesLine.Amount);
         SalesLine."lbt Process No." := BonusContract."Process No.";
         SalesLine."lbtbn Bonus Entry No." := BonusEntryNo;
         SalesLine.Modify();
@@ -705,11 +771,15 @@ codeunit 5266060 "lbtbn Create Bonus"
     #region DoCreateReserve
     local procedure DoCreateReserve()
     var
-        ReserveAmount: Decimal;
+        CurrExchRate: Record "Currency Exchange Rate";
         DocAmount: Decimal;
-        PmtDiscAmt: Decimal;
         NewQty: Decimal;
+        PmtDiscAmt: Decimal;
+        ReserveAmount: Decimal;
     begin
+        ////Rückstellung mit Tageskurs
+        CurrencyFactor := CurrExchRate.ExchangeRate(PostingDate, CurrencyCode);
+
         if not LineIsApplicableForBonus() then
             exit;
         ConvertQtyToContractUnit();
@@ -829,6 +899,9 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesHeader."Posting Description" := PostingDescription;
         SalesHeader."lbt Process No." := BonusContract."Process No.";
         SalesHeader."Posting No." := SalesHeader."No.";
+        ///Rückstellungsgutschrift in € nur Bonus GS in Fremdwährung, analog zu BBL
+        if SalesHeader."Sell-to Customer No." <> BonusContract."Customer Reserve Cr.Memo" then
+            SalesHeader.Validate("Currency Code", BonusContract."Currency Code");
         OnInitSalesHeaderOnBeforeModify(SalesHeader, BonusContract);
         SalesHeader.Modify();
         CrMemoHeaderCreated := true;
@@ -877,6 +950,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     var
         ItemCharge: Record "Item Charge";
         ItemNo: Code[20];
+        TempSalesCrMemoLineLoc: Record "Sales Cr.Memo Line" temporary;
     begin
         if not LineIsShipped() then
             exit;
@@ -892,6 +966,22 @@ codeunit 5266060 "lbtbn Create Bonus"
                 exit;
             if not ItemCharge."lbtbn Bonus consider" then
                 exit;
+        end;
+        //if TempSalesInvoiceLine.GetCurrencyCode() <> BonusContract."Currency Code" then
+        //exit(false);
+        case SourceDocType of
+            SourceDocType::"Sales Invoice":
+                begin
+                    if TempSalesInvoiceLine.GetCurrencyCode() <> BonusContract."Currency Code" then
+                        exit(false);
+                end;
+
+            SourceDocType::"Sales Credit Memo":
+                begin
+                    TempSalesCrMemoLineLoc.Transferfields(TempSalesInvoiceLine);
+                    if TempSalesCrMemoLineLoc.GetCurrencyCode() <> BonusContract."Currency Code" then
+                        exit(false);
+                end;
         end;
         exit(true);
     end;

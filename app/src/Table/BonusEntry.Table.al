@@ -11,11 +11,9 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Entry No.';
         }
-        field(2; "Entry Type"; Option)
+        field(2; "Entry Type"; Enum "lbtbn BonusEntryType")
         {
             Caption = 'Entry Type';
-            OptionMembers = Bonus,Reserve,"Liquidation of Reserves";
-            OptionCaption = 'Bonus,Reserve,Liquidation of Reserves';
         }
         field(3; Contract; Code[20])
         {
@@ -145,6 +143,23 @@ table 5266056 "lbtbn Bonus Entry"
         {
             Caption = 'Dimension Set ID', comment = 'DEU="Dimensionssatz-ID"';
             TableRelation = "Dimension Set Entry";
+            Editable = false;
+        }
+        field(31; "Currency Code"; Code[10])
+        {
+            Caption = 'Currency Code';
+            TableRelation = Currency;
+            Editable = false;
+        }
+        field(32; "Currency Factor"; Decimal)
+        {
+            Caption = 'Currency Factor';
+            Editable = false;
+            DecimalPlaces = 5;
+        }
+        field(33; "Amount (FCY)"; Decimal)
+        {
+            Caption = 'Amount (FCY)';
             Editable = false;
         }
     }

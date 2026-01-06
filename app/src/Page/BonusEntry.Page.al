@@ -168,6 +168,18 @@ page 5266057 "lbtbn Bonus Entry"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Bonus Document Deleted field.';
                 }
+                field("Currency Code"; Rec."Currency Code")
+                {
+                    ToolTip = 'Specifies the value of the Currency Code field.', Comment = '%';
+                }
+                field("Currency Factor"; Rec."Currency Factor")
+                {
+                    ToolTip = 'Specifies the value of the Currency Factor field.', Comment = '%';
+                }
+                field("Amount (FCY)"; Rec."Amount (FCY)")
+                {
+                    ToolTip = 'Specifies the value of the Amount (FCY) field.', Comment = '%';
+                }
             }
         }
     }

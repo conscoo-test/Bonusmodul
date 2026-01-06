@@ -2,6 +2,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
 {
     Subtype = Test;
     EventSubscriberInstance = Manual;
+
     var
         BonusSetup: Record "lbtbn Bonus Setup";
         Customer: Record Customer;
@@ -17,6 +18,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
         LibraryLowerPermissions: Codeunit "Library - Lower Permissions";
 
         UnitOfMeasureCode: Code[10];
+
     [Test]
     [HandlerFunctions('HandleReserveRequestPage,HandleSalesCreditMemo')]
     procedure SalesReturnOrderWithAssignedItemCharge_CreditMemo()
@@ -70,7 +72,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     begin
         //GIVEN
         Init(false);
-        BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount (LCY)";
+        BonusContract."Reserve Type" := BonusContract."Reserve Type"::Amount;
         BonusContract.Modify();
         Commit(); //ansonsonsten kryptische Fehlermeldung
 
@@ -94,7 +96,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
     begin
         //GIVEN
         Init(true);
-        BonusContract."Reserve Type" := BonusContract."Reserve Type"::"Amount (LCY)";
+        BonusContract."Reserve Type" := BonusContract."Reserve Type"::Amount;
         BonusContract.Modify();
         Commit(); //ansonsonsten kryptische Fehlermeldung
 
@@ -323,7 +325,7 @@ codeunit 52051 "lbtbn Bonus Reserve Test"
                 Expected := Amount * BonusContract."Reserve Value" / 100;
             BonusContract."Reserve Type"::"Amount per Unit":
                 Expected := Quantity * BonusContract."Reserve Value";
-            BonusContract."Reserve Type"::"Amount (LCY)":
+            BonusContract."Reserve Type"::Amount:
                 Expected := BonusContract."Reserve Value";
         end;
     end;
