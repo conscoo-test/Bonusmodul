@@ -83,6 +83,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         PmtDiscAmt: Decimal;
         BonusAmount: Decimal;
         BonusAmountFCY: Decimal;
+        ItemChargeAmt: Decimal;
     begin
         if not LineIsApplicableForBonus() then
             exit;
@@ -90,7 +91,10 @@ codeunit 5266060 "lbtbn Create Bonus"
         DocAmount := Sign * GetDocAmount(TempSalesInvoiceLine.Amount);
         DocAmount += AddItemCharges();
         DocAmountFCY := Sign * TempSalesInvoiceLine.Amount;
-        DocAmountFCY += Round(AddItemCharges() * CurrencyFactor, 0.01);///TODO: hier bin ich unsicher
+        ItemChargeAmt := AddItemCharges();
+        if CurrencyFactor <> 0 then
+            ItemChargeAmt := Round(ItemChargeAmt * CurrencyFactor, 0.01);
+        DocAmountFCY += ItemChargeAmt;
         CalculateBonusAmount(BonusContract."Bonus Billing Type", DocAmount, BonusContractLine.Value, PmtDiscAmt, BonusAmount, Sign * TempSalesInvoiceLine.Quantity);
         CalculateBonusAmountFCY(BonusContract."Bonus Billing Type", DocAmountFCY, BonusContractLine.Value, PmtDiscAmt, BonusAmountFCY, Sign * TempSalesInvoiceLine.Quantity);
 
