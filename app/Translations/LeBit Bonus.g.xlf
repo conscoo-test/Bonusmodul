@@ -2388,10 +2388,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue % - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 348662871 - EnumValue 636392376 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 348662871 - EnumValue 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum lbtbn Billing Type - EnumValue Amount (LCY) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 348662871 - EnumValue 125470167 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount per Unit</source>

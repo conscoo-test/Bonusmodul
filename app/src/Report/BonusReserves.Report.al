@@ -85,7 +85,7 @@ report 5266051 "lbtbn Bonus Reserves"
                     #region OnPreDataItem
                     trigger OnPreDataItem()
                     begin
-                        if "Bonus Contract"."Reserve Type" <> "Bonus Contract"."Reserve Type"::"Amount" then
+                        if "Bonus Contract"."Reserve Type" <> "Bonus Contract"."Reserve Type"::"Amount (LCY)" then
                             CurrReport.Break();
                     end;
                     #endregion OnPreDataItem

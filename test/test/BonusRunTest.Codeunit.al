@@ -281,7 +281,7 @@ codeunit 52050 "lbtbn Bonus Run Test"
                 Expected := Amount * BonusContractLine.Value / 100;
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 Expected := Quantity * BonusContractLine.Value / 100;
-            BonusContract."Bonus Billing Type"::Amount:
+            BonusContract."Bonus Billing Type"::"Amount (LCY)":
                 Expected := BonusContractLine.Value;
         end;
     end;
