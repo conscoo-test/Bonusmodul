@@ -132,7 +132,7 @@ codeunit 5266060 "lbtbn Create Bonus"
     begin
         CreateSalesHeaderBilling();
 
-        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount" then
+        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             if SingleSalesLineExists() then
                 exit;
 
@@ -148,7 +148,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                     SalesLine.Modify();
                     CreateItemCharge(DocAmt, BonusSumme, SalesLine);
                 end;
-            BonusContract."Bonus Billing Type"::"Amount":
+            BonusContract."Bonus Billing Type"::"Amount (LCY)":
                 CreateItemChargeForBillingTypeAmount(SalesLine);
         end;
 
@@ -156,7 +156,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Modify(true);
 
         SalesLine.UpdateAmounts();
-        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount" then
+        if BonusContract."Bonus Billing Type" = BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             exit;
 
         SalesLine."lbtbn Bonus Entry No." := CreateBonusEntry(DocAmt, PmtDiscAmount, SalesLine);
@@ -215,7 +215,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         SalesLine.Validate(Quantity, 1);
         SalesLine."lbt Process No." := BonusContract."Process No.";
         SalesLine.Description := AccountingTxt;
-        if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount" then
+        if BonusContract."Bonus Billing Type" <> BonusContract."Bonus Billing Type"::"Amount (LCY)" then
             SalesLine.Description += ' ' + Format(TempSalesInvoiceLine."Document No.");
         SalesLine."Dimension Set ID" := TempSalesInvoiceLine."Dimension Set ID";
 
@@ -233,7 +233,7 @@ codeunit 5266060 "lbtbn Create Bonus"
         case BonusContract."Bonus Billing Type" of
             BonusContract."Bonus Billing Type"::"%":
                 Zusatz := Format(BonusContractLine.Value) + ' %';
-            BonusContract."Bonus Billing Type"::"Amount":
+            BonusContract."Bonus Billing Type"::"Amount (LCY)":
                 Zusatz := FixedAmountTxt;
             BonusContract."Bonus Billing Type"::"Amount per Unit":
                 begin
@@ -330,7 +330,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                     PmtDiscAmt := DocAmount * BonusContract."Pmt. Discount %" / 100;
                     BonusAmount := Round((DocAmount - PmtDiscAmt) * BaseAmount / 100, 0.01);
                 end;
-            BillingType::"Amount":
+            BillingType::"Amount (LCY)":
                 ;
             BillingType::"Amount per Unit":
                 begin
@@ -350,7 +350,7 @@ codeunit 5266060 "lbtbn Create Bonus"
                     PmtDiscAmt := DocAmount * BonusContract."Pmt. Discount %" / 100;
                     BonusAmount := Round((DocAmount - PmtDiscAmt) * BaseAmount / 100, 0.01);
                 end;
-            BillingType::"Amount":
+            BillingType::"Amount (LCY)":
                 ;
             BillingType::"Amount per Unit":
                 begin

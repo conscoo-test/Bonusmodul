@@ -6,7 +6,9 @@ enum 5266052 "lbtbn Billing Type"
     {
         Caption = '%';
     }
-    value(1; "Amount")
+    //value(1; "Amount")
+    ///Umbenennung auf alten Wert da Umbenennung im APP-Store nicht erlaubt ist (Caption bleibt auf neuem Wert)
+    value(1; "Amount (LCY)")
     {
         Caption = 'Amount';
     }
