@@ -1,34 +1,34 @@
 {
-    "name": "LeBit365 Bonus",
-    "appFolders": "app",
-    "testFolders": "test",
-    "installApps": [
-        "\\\\192.168.244.16\\Software_Business\\apps\\product\\Vorgangsmanagement\\latest.zip"
-    ],
-    "previousApps": "\\\\192.168.244.16\\Software_Business\\apps\\product\\Bonusmodul\\latest.zip",
-    "installTestRunner": true,
-    "installTestFramework": true,
-    "installTestLibraries": true,
-    "enableCodeCop": true,
-    "enableAppSourceCop": true,
-    "enablePerTenantExtensionCop": false,
-    "enableUICop": true,
-    "appSourceCopMandatoryAffixes": "lbtbn",
-    "rulesetFile": "scripts/lebit.ruleset.json",
-    "enableBcLntrCop": true,
-    "versions": [
-        {
-            "version": "current",
-            "artifact": "///de/Current",
-            "CreateRuntimePackages": true
-        },
-        {
-            "version": "nextmajor",
-            "artifact": "///de/NextMajor/{INSIDERSASTOKEN}"
-        },
-        {
-            "version": "nextminor",
-            "artifact": "///de/NextMinor/{INSIDERSASTOKEN}"
-        }
-    ]
+  "name": "LeBit365 Bonus",
+  "appFolders": "app",
+  "testFolders": "test",
+  "installApps": [
+    "\\\\10.60.0.35\\Software\\apps\\product\\Vorgangsmanagement\\latest.zip"
+  ],
+  "previousApps": "\\\\10.60.0.35\\Software\\apps\\product\\Bonusmodul\\latest.zip",
+  "installTestRunner": true,
+  "installTestFramework": true,
+  "installTestLibraries": true,
+  "enableCodeCop": true,
+  "enableAppSourceCop": true,
+  "enablePerTenantExtensionCop": false,
+  "enableUICop": true,
+  "appSourceCopMandatoryAffixes": "lbtbn",
+  "rulesetFile": "scripts/lebit.ruleset.json",
+  "enableBcLntrCop": true,
+  "versions": [
+    {
+      "version": "current",
+      "artifact": "///de/Current",
+      "CreateRuntimePackages": true
+    },
+    {
+      "version": "nextmajor",
+      "artifact": "///de/NextMajor/{INSIDERSASTOKEN}"
+    },
+    {
+      "version": "nextminor",
+      "artifact": "///de/NextMinor/{INSIDERSASTOKEN}"
+    }
+  ]
 }
