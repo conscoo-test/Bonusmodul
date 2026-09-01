@@ -13,7 +13,7 @@
   ],
    "appDependencyProbingPaths": [
     {
-      "repo": "Vorgangsmanagement",
+      "repo": "https://github.com/conscoo-test/Vorgangsmanagement",
       "release_status": "latestBuild",
       "projects": "*",
       "branch": "main",
