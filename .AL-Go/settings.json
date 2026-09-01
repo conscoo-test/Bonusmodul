@@ -11,6 +11,15 @@
   "appSourceCopMandatoryAffixes": [
     "lbt"
   ],
+   "appDependencyProbingPaths": [
+    {
+      "repo": "Vorgangsmanagement",
+      "release_status": "latestBuild",
+      "projects": "*",
+      "branch": "main",
+      "authTokenSecret": "ghTokenWorkflow"
+    }
+  ],
   "customCodeCops": [
     ".alcops/ALCops.ApplicationCop.dll",
     ".alcops/ALCops.DocumentationCop.dll",
