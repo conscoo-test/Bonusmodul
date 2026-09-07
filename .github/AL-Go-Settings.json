@@ -2,5 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.2/.Modules/settings.schema.json",
   "type": "AppSource App",
   "templateSha": "09cbbaba71d5312cd9d20b5961d27494364cf47b",
-  "templateUrl": "https://github.com/conscoo-test/ALGoTemplate@main"
+  "templateUrl": "https://github.com/conscoo-test/ALGoTemplate@main",
+  "DeliverToFileShare": {
+    "Branches": [ "main" ]
+  }
 }
