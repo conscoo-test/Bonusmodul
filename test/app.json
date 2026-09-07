@@ -4,7 +4,7 @@
   "publisher": "LeBit Software & Consult GmbH",
   "brief": "Test APP",
   "description": "Test APP",
-  "version": "1.0.0.0",
+  "version": "1.1.0.0",
   "privacyStatement": "https://www.lebit.net/impressum#datenschutz",
   "EULA": "https://www.lebit.net/impressum#datenschutz",
   "help": "https://www.lebit.net/#support",
@@ -40,7 +40,7 @@
       "id": "1716d377-7e43-42d6-ae75-ad9977f24a69",
       "name": "LeBit Bonus",
       "publisher": "LeBit Software & Consult GmbH",
-      "version": "1.0.0.0"
+      "version": "26.19.0.0"
     },
     {
       "id": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",

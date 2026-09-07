@@ -4,14 +4,14 @@
   "publisher": "LeBit Software & Consult GmbH",
   "brief": "Funktion zur Bildung und Auflösung von Bonusrückstellungen und Ermittelung von Bonusabrechnungen",
   "description": "LeBit Bonus",
-  "version": "26.18.0.5",
+  "version": "26.19.0.0",
   "privacyStatement": "https://www.lebit.net/impressum#datenschutz",
   "EULA": "https://www.lebit.net/impressum#datenschutz",
   "help": "https://www.lebit.net/#support",
   "url": "https://www.lebit.net/#kontakt",
   "contextSensitiveHelpUrl": "http://www.lebit.net",
   "logo": "Appendix\\Logo\\LB18.jpg",
-    "dependencies": [
+  "dependencies": [
     {
       "id": "d33e833c-6dd5-4392-a5ce-502d6d7f9315",
       "name": "LeBit Processmanagement",
@@ -31,11 +31,11 @@
   "features": [
     "TranslationFile"
   ],
-      "resourceExposurePolicy": {
-        "allowDebugging": true,
-        "includeSourceInSymbolFile": true,
-        "applyToDevExtension": true
-    },
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "includeSourceInSymbolFile": true,
+    "applyToDevExtension": true
+  },
   "runtime": "14.0",
   "applicationInsightsConnectionString": "InstrumentationKey=18c42e7b-8d3d-426d-a667-15303864951d;IngestionEndpoint=https://germanywestcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://germanywestcentral.livediagnostics.monitor.azure.com/"
 }
