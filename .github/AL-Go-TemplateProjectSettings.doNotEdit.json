@@ -1,25 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.2/.Modules/settings.schema.json",
   "country": "de",
-  "appFolders": [
-    "app"
-  ],
-  "testFolders": [
-    "test"
-  ],
+  "appFolders": [],
+  "testFolders": [],
   "bcptTestFolders": [],
-  "appSourceCopMandatoryAffixes": [
-    "lbt"
-  ],
-  "appDependencyProbingPaths": [
-    {
-      "repo": "https://github.com/conscoo-test/Vorgangsmanagement",
-      "release_status": "latestBuild",
-      "projects": "*",
-      "branch": "main",
-      "authTokenSecret": "ghTokenWorkflow"
-    }
-  ],
   "customCodeCops": [
     ".alcops/ALCops.ApplicationCop.dll",
     ".alcops/ALCops.DocumentationCop.dll",
