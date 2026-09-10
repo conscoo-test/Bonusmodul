@@ -12,14 +12,8 @@
     "lbt"
   ],
   "fileSharePath": "product",
-  "appDependencyProbingPaths": [
-    {
-      "repo": "https://github.com/conscoo-test/Vorgangsmanagement",
-      "release_status": "latestBuild",
-      "projects": "*",
-      "branch": "main",
-      "authTokenSecret": "ghTokenWorkflow"
-    }
+  "installApps": [
+    "\\\\10.60.0.35\\Software\\apps\\product\\Vorgangsmanagement\\latest.zip"
   ],
   "customCodeCops": [
     ".alcops/ALCops.ApplicationCop.dll",
