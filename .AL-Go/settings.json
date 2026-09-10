@@ -12,6 +12,9 @@
     "lbt"
   ],
   "fileSharePath": "product",
+  "fullBuildPatterns": [
+    ".AL-Go/settings.json"
+  ],
   "installApps": [
     "\\\\10.60.0.35\\Software\\apps\\product\\Vorgangsmanagement\\latest.zip"
   ],
